@@ -1,0 +1,347 @@
+/* Week 7 specific styles */
+.w7-svg {
+  width: 100%;
+  height: auto;
+  margin: 12px 0;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.w7-vector-label,
+.w7-scene-label,
+.w7-motion-arrow text,
+.w7-axis-label,
+.w7-graph-label {
+  font-weight: 800;
+  paint-order: stroke;
+  stroke: #fff;
+  stroke-linejoin: round;
+}
+
+.w7-vector-label {
+  font-size: 18px;
+  stroke-width: 5px;
+}
+
+.w7-readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.w7-pill {
+  padding: 8px 12px;
+  color: #1e3a8a;
+  font-weight: 800;
+  background: white;
+  border: 1px solid #bfdbfe;
+  border-radius: 999px;
+}
+
+.w7-energy-bar {
+  height: 18px;
+  overflow: hidden;
+  background: #e5e7eb;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+}
+
+.w7-energy-fill {
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, #dbeafe, #60a5fa);
+}
+
+.w7-energy-fill.loss {
+  background: linear-gradient(90deg, #fee2e2, var(--accent));
+}
+
+.w7-step {
+  display: none;
+}
+
+.w7-step.active {
+  display: block;
+}
+
+.w7-note {
+  margin: 14px 0;
+  padding: 16px;
+  color: #7c2d12;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-left: 6px solid var(--accent);
+  border-radius: 16px;
+}
+
+.w7-solution-box {
+  margin-top: 12px;
+  padding: 16px 18px;
+  background: #fff;
+  border: 1px solid #bfdbfe;
+  border-left: 6px solid var(--primary);
+  border-radius: 16px;
+}
+
+.w7-solution-box h4 {
+  margin: 0 0 10px;
+  color: #1e3a8a;
+}
+
+.w7-solution-box p {
+  margin: 10px 0;
+}
+
+.w7-mini-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.w7-car {
+  filter: drop-shadow(0 5px 8px rgba(15, 23, 42, 0.16));
+}
+
+.w7-equation-list .card {
+  min-height: 120px;
+}
+
+.w7-center,
+.w7-highlight-card {
+  text-align: center;
+}
+
+.w7-highlight-card,
+.w7-example-text {
+  font-size: 22px;
+}
+
+.w7-axis-formula {
+  font-size: 18px;
+}
+
+.w7-formula-box {
+  margin: 14px 0;
+  padding: 16px;
+  font-size: 28px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+}
+
+.w7-collapsible-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.w7-collapsible-summary {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 18px;
+  list-style: none;
+  cursor: pointer;
+}
+
+.w7-collapsible-summary::-webkit-details-marker {
+  display: none;
+}
+
+.w7-collapsible-summary::before {
+  content: "";
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  background-color: var(--soft);
+  background-image: linear-gradient(45deg, transparent 48%, #1e40af 50%),
+    linear-gradient(135deg, #1e40af 50%, transparent 52%);
+  background-repeat: no-repeat;
+  background-position: 10px 12px, 14px 12px;
+  background-size: 6px 6px;
+  border-radius: 999px;
+  transition: transform 0.18s ease;
+}
+
+.w7-collapsible-card:not([open]) .w7-collapsible-summary::before {
+  transform: rotate(-90deg);
+}
+
+.w7-collapsible-summary h3 {
+  margin: 0;
+  color: #111827;
+}
+
+.w7-collapsible-summary:hover {
+  background: #eff6ff;
+}
+
+.w7-collapsible-content {
+  padding: 0 18px 18px;
+}
+
+.w7-multi-scene,
+.w7-collision-scene {
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 58%, #f1f5f9 100%);
+}
+
+.w7-track {
+  stroke: #334155;
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+
+.w7-collision-line {
+  stroke: #ef4444;
+  stroke-width: 3;
+  stroke-dasharray: 8 8;
+  opacity: 0.75;
+}
+
+.w7-scene-label {
+  font-size: 18px;
+  fill: #0f172a;
+  stroke-width: 5px;
+}
+
+.w7-box rect {
+  height: 58px;
+  stroke-width: 3;
+  filter: drop-shadow(0 7px 8px rgba(15, 23, 42, 0.18));
+}
+
+.w7-box text {
+  font-size: 18px;
+  font-weight: 900;
+  dominant-baseline: middle;
+  fill: #0f172a;
+  pointer-events: none;
+}
+
+.w7-box-one rect {
+  fill: #dbeafe;
+  stroke: var(--primary);
+}
+
+.w7-box-two rect {
+  fill: #dcfce7;
+  stroke: var(--good);
+}
+
+.w7-box-three rect {
+  fill: #ffedd5;
+  stroke: #f97316;
+}
+
+.w7-box.stuck rect {
+  stroke: #7c3aed;
+  stroke-dasharray: 0;
+}
+
+.w7-motion-arrow line {
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.w7-motion-arrow text {
+  font-size: 16px;
+  stroke-width: 4px;
+}
+
+#w7MultiArrow1 line {
+  stroke: var(--primary);
+}
+
+#w7MultiArrow1 text {
+  fill: var(--primary);
+}
+
+#w7MultiArrow2 line {
+  stroke: var(--good);
+}
+
+#w7MultiArrow2 text {
+  fill: var(--good);
+}
+
+#w7MultiArrow3 line {
+  stroke: #f97316;
+}
+
+#w7MultiArrow3 text {
+  fill: #f97316;
+}
+
+.w7-final-arrow line {
+  stroke: #7c3aed;
+}
+
+.w7-final-arrow text {
+  fill: #7c3aed;
+}
+
+.w7-normal-graph .w7-grid-lines line,
+.w7-trapezoid-graph .w7-grid-lines line {
+  stroke: #e2e8f0;
+  stroke-width: 1.5;
+}
+
+.w7-col-object circle {
+  stroke-width: 4;
+  filter: drop-shadow(0 7px 8px rgba(15, 23, 42, 0.18));
+}
+
+.w7-col-object text {
+  font-size: 18px;
+  font-weight: 900;
+  text-anchor: middle;
+  dominant-baseline: middle;
+  fill: #0f172a;
+  pointer-events: none;
+}
+
+.w7-col-object-one circle {
+  fill: #dbeafe;
+  stroke: var(--primary);
+}
+
+.w7-col-object-two circle {
+  fill: #dcfce7;
+  stroke: var(--good);
+}
+
+.w7-axis-label {
+  font-size: 18px;
+  fill: #0f172a;
+}
+
+.w7-graph-label {
+  font-size: 17px;
+  font-weight: 900;
+  fill: #7c2d12;
+  stroke-width: 5px;
+}
+
+.w7-avg-label {
+  fill: #166534;
+}
+
+@media (max-width: 680px) {
+  .w7-scene-label {
+    font-size: 16px;
+  }
+
+  .w7-motion-arrow text {
+    font-size: 14px;
+  }
+
+  .w7-axis-label,
+  .w7-graph-label {
+    font-size: 15px;
+  }
+}

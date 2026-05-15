@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>สัปดาห์ที่ 5 หน่วยที่ 3 งานและพลังงาน</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/week5.css" />
+    <script src="js/mathjax-config.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <script defer src="script.js"></script>
+    <script defer src="js/week5.js"></script>
+  </head>
+  <body>
+
+    <svg
+      width="0"
+      height="0"
+      class="position-absolute"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <marker
+          id="w5ArrowBlue"
+          markerWidth="4"
+          markerHeight="4"
+          refX="3.5"
+          refY="2"
+          orient="auto"
+          markerUnits="strokeWidth"
+        >
+          <path d="M0,0 L4,2 L0,4 z" fill="#2563eb" />
+        </marker>
+        <marker
+          id="w5ArrowGreen"
+          markerWidth="4"
+          markerHeight="4"
+          refX="3.5"
+          refY="2"
+          orient="auto"
+          markerUnits="strokeWidth"
+        >
+          <path d="M0,0 L4,2 L0,4 z" fill="#16a34a" />
+        </marker>
+        <marker
+          id="w5ArrowOrange"
+          markerWidth="4"
+          markerHeight="4"
+          refX="3.5"
+          refY="2"
+          orient="auto"
+          markerUnits="strokeWidth"
+        >
+          <path d="M0,0 L4,2 L0,4 z" fill="#f59e0b" />
+        </marker>
+        <marker
+          id="w5ArrowRed"
+          markerWidth="4"
+          markerHeight="4"
+          refX="3.5"
+          refY="2"
+          orient="auto"
+          markerUnits="strokeWidth"
+        >
+          <path d="M0,0 L4,2 L0,4 z" fill="#dc2626" />
+        </marker>
+        <marker
+          id="w5ArrowPurple"
+          markerWidth="4"
+          markerHeight="4"
+          refX="3.5"
+          refY="2"
+          orient="auto"
+          markerUnits="strokeWidth"
+        >
+          <path d="M0,0 L4,2 L0,4 z" fill="#7c3aed" />
+        </marker>
+      </defs>
+    </svg>
+
+    <header>
+      <div class="hero">
+        <h1>สัปดาห์ที่ 5: งานและพลังงาน</h1>
+        <p>
+          เว็บไซต์ประกอบการเรียนการสอนรายวิชา Fundamental of Physics for
+          Engineers (FUNSC115)
+        </p>
+      </div>
+    </header>
+
+    <div class="topbar">
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <nav class="nav" id="nav">
+        <a href="index.html#content-table">🏠 หน้าแรก</a>
+        <a href="#course">🚀 เปิดบทเรียน</a>
+        <a href="#newton-review">🧠 กฎข้อที่ 2</a>
+        <a href="#work">🧰 งานและกราฟ F-x</a>
+        <a href="#dot-product">🧭 การคูณแบบดอทและงาน</a>
+        <a href="#kinetic">⚡ พลังงานจลน์และงาน–พลังงาน</a>
+        <a href="#summary">🎯 สรุป</a>
+      </nav>
+    </div>
+
+    <main>
+      <section class="lesson" id="course">
+        <h2>🚀 เปิดบทเรียน</h2>
+        <p class="lead">
+          คาบนี้เป็นการแนะนำปริมาณทางฟิสิกส์อื่น ๆ
+          นอกเหนือจากแรงและการเคลื่อนที่
+          เพื่อเตรียมความพร้อมสำหรับการเปลี่ยนมุมในการอธิบายปรากฏการณ์ทางฟิสิกส์
+          จากกฎการเคลื่อนที่ของนิวตันไปสู่แนวคิดเรื่องงานและพลังงาน
+        </p>
+        <div class="grid">
+          <div class="card">
+            <strong>🎯 เป้าหมายวันนี้</strong><br />
+            <ul>
+              <li>
+                อธิบายความหมายของงาน และพลังงานจลน์
+              </li>
+              <li>
+                คำนวณงานที่เกิดจากแรงคงที่และแรงที่เปลี่ยนแปลงตามตำแหน่ง
+                รวมถึงตีความพื้นที่ใต้กราฟแรง–ระยะทาง
+              </li>
+              <li>ใช้การคูณแบบดอท เพื่ออธิบายงานของแรงที่กระทำในทิศต่าง ๆ</li>
+              <li>
+                ประยุกต์ใช้ทฤษฎีบทงาน–พลังงานในการวิเคราะห์การเปลี่ยนแปลงการเคลื่อนที่ของวัตถุ
+              </li>
+            </ul>
+          </div>
+          <div class="card">
+            <strong>🗺️ ภาพรวม</strong
+            ><br />สัปดาห์นี้จะศึกษาความสัมพันธ์ระหว่างแรง งาน และพลังงาน
+            โดยเริ่มจากการคำนวณงานทั้งกรณีแรงคงที่และแรงไม่คงที่
+            รวมถึงการตีความงานผ่านพื้นที่ใต้กราฟแรง–ระยะทาง และจะศึกษาการคูณแบบดอทเพื่ออธิบายงานเมื่อแรงกับการเคลื่อนที่ไม่อยู่ในทิศเดียวกัน
+            จากนั้นศึกษาพลังงานจลน์และสรุปแนวคิดทั้งหมดผ่านทฤษฎีบทงาน–พลังงาน
+          </div>
+          <div class="card">
+            <strong>🧭 วิธีเรียน</strong><br />เรียนผ่านคำถาม ทดลองคิด ทำกิจกรรม
+            และตอบ quiz ระหว่างสอน
+          </div>
+        </div>
+        <div class="interaction">
+          <h3>📊 Poll เปิดบทเรียน</h3>
+          <p>
+            จากสัปดาห์ที่แล้ว เราใช้กฎข้อที่ 2 ของนิวตันอธิบายว่า
+            เมื่อมีแรงลัพธ์กระทำต่อวัตถุ วัตถุจะเกิดความเร่ง
+            <br />
+            <strong
+              >นอกจากแนวคิดเรื่องแรงและกฎการเคลื่อนที่ของนิวตันแล้ว
+              ยังมีปริมาณฟิสิกส์และกฎอื่น ๆ
+              ที่สำคัญในอธิบายปรากฏการณ์ทางธรรมชาติอีกไหม?</strong
+            >
+          </p>
+        </div>
+      </section>
+
+      <section class="lesson" id="newton-review">
+        <h2>🧠 พิจารณากฎการเคลื่อนที่ข้อที่ 2 อีกครั้ง</h2>
+        <p class="lead">
+          เพื่อให้ได้มุมมองใหม่ในทางฟิสิกส์
+          เราจะพิจารณากฎการเคลื่อนที่ของนิวตันข้อที่ 2 อีกครั้ง
+          โดยครั้งนี้เราจะมองหาปริมาณทางฟิสิกส์ที่มีค่าคงที่ไม่เปลี่ยนแปลง
+          ซึ่งเราเรียกปริมาณลักษณะนี้ว่า
+          <b>ปริมาณอนุรักษ์ (conserved quantity)</b>
+          ปริมาณอนุรักษ์แรกที่เราจะกล่าวถึงคือ <b>พลังงาน</b> (ปริมาณอนุรักษ์จะถูกขยายความในสัปดาห์ถัดไป)
+        </p>
+        <figure class="figure-card">
+          <img
+            src="asset/week%205/image 1.png"
+            alt="ภาพจำลองวัตถุมวล \(m\) ถูกแรงคงที่ \(F\) กระทำขณะเคลื่อนที่เป็นระยะ
+            \(\Delta x\) และความเร็วเปลี่ยนไป \(v-v_0\)"
+          />
+          <figcaption class="caption">
+            ภาพจำลองวัตถุมวล \(m\) ถูกแรงคงที่ \(F\) กระทำขณะเคลื่อนที่เป็นระยะ
+            \(\Delta x\) และความเร็วเปลี่ยนไป \(v-v_0\)
+          </figcaption>
+        </figure>
+        <div class="grid">
+          <div class="card">
+            <p>
+              1) เริ่มจากปัญหาแบบหนึ่งมิติ
+              เมื่อแรงคงที่กระทำกับวัตถุในแนวเดียวกับการเคลื่อนที่
+            </p>
+            <p class="math-md">\[F=ma\]</p>
+          </div>
+          <div class="card">
+            <p>
+              2) จากนั้นคูณทั้งสองข้างด้วยระยะทางที่เคลื่อนที่ไป
+              <p class="math-md">\[F(x-x_0)=ma(x-x_0)\]</p>
+            </p>
+          </div>
+          <div class="card">
+            <p>
+              3) จากสมการจลนศาสตร์ \(v^2=v_0^2+2a(x-x_0)\) หรือ
+              \(a(x-x_0)=\frac{1}{2}(v^2-v_0^2)\) จะได้ว่า
+              <p class="math-md">\[F\Delta
+              x=\frac{1}{2}mv^2-\frac{1}{2}mv_0^2\]</p>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="lesson-bridge">
+        <strong>🔗 เชื่อมโยงสู่บทเรียนถัดไป</strong>
+        <p>
+          สมการ \(F\Delta
+              x=\frac{1}{2}mv^2-\frac{1}{2}mv_0^2\) ซึ่งพิสูจนล์ได้จากกฎข้อที่ 2 ของนิวตัน
+          เป็นจุดเริ่มต้นในการปรับเปลี่ยนมุมในการพิจารณาปรากฏการณ์ธรรมชาติใหม่
+          ผ่านปริมาณทางฟิสิกส์ใหม่
+          ซึ่งบทต่อจากนี้จะแบ่งพิจารณาพจน์ซ้ายและขวาของสมการนี้ตามลำดับ
+        </p>
+      </div>
+
+      <section class="lesson" id="work">
+        <h2>🧰 1. งาน</h2>
+        <div class="card">
+          <h3>📌 1.1 งานสำหรับแรงคงที่</h3>
+          <p class="lead">
+            พิจารณาต่อเพิ่มเติมเกี่ยวกับปริมาณทางด้านซ้ายมือของสมการดังกล่าว
+            (แรงคูณกับการกระจัด) ซึ่งเท่ากับ
+            ปริมาณทางฟิสิกส์ที่เรียกว่า งาน (Work) เขียนแทนด้วย \[W=F \Delta x\]
+            ในระบบหน่วย SI หน่วยของงาน คือ นิวตันเมตร (N.m) หรือ จูล (J)
+          </p>
+          <p class="lead">
+            จากสมการนี้สามารถกล่าวได้ว่า หากเราวาดกราฟระหว่างแรงและตำแหน่ง
+            <br><b>“พื้นที่ใต้กราฟในช่วงระยะทางที่ออกแรงมีค่าเท่ากับงานที่แรงนั้นกระทำในช่วงระยะทางนั้น”</b>
+          </p>
+        </div>
+
+        <div class="interaction">
+          <h3>📐 งาน = พื้นที่ใต้กราฟแรง–ตำแหน่ง (เมื่อแรงคงที่)</h3>
+          <p>
+            ปรับค่าแรงคงที่ \(\vec F\) ตำแหน่งเริ่มต้น \(x_0\) และตำแหน่งสุดท้าย
+            \(x\)
+            เพื่อดูความสัมพันธ์ระหว่างแผนภาพการเคลื่อนที่กับพื้นที่ใต้กราฟ
+            \(F-x\)
+          </p>
+
+          <div class="grid">
+            <div>
+              <label>แรง \(\vec F\) = <span id="workAreaFVal">6</span> \(\hat{i}\) N</label>
+              <input
+                id="workAreaF"
+                type="range"
+                min="-10"
+                max="10"
+                step="0.1"
+                value="6"
+                oninput="updateWorkAreaDemo()"
+              />
+            </div>
+            <div>
+              <label
+                >ตำแหน่งเริ่มต้น \(x_0\) =
+                <span id="workAreaXiVal">1</span> m</label
+              >
+              <input
+                id="workAreaXi"
+                type="range"
+                min="0"
+                max="10"
+                step="0.1"
+                value="1"
+                oninput="updateWorkAreaDemo()"
+              />
+            </div>
+            <div>
+              <label
+                >ตำแหน่งสุดท้าย \(x\) =
+                <span id="workAreaXfVal">7</span> m</label
+              >
+              <input
+                id="workAreaXf"
+                type="range"
+                min="0"
+                max="10"
+                step="0.1"
+                value="7"
+                oninput="updateWorkAreaDemo()"
+              />
+            </div>
+          </div>
+
+          <h3>🧱 แผนภาพวัตถุ แรง และระยะทาง</h3>
+          <svg
+            viewBox="0 0 920 260" class="svg-panel"
+          >
+            <defs>
+              <marker
+                id="workForceArrow"
+                markerWidth="4"
+                markerHeight="4"
+                refX="0"
+                refY="1.5"
+                orient="auto"
+              >
+                <path d="M0,0 L0,3 L4,1.5 z" fill="#2563eb"></path>
+              </marker>
+
+              <marker
+                id="workDistanceArrow"
+                markerWidth="4"
+                markerHeight="4"
+                refX="3.5"
+                refY="1.5"
+                orient="auto"
+              >
+                <path d="M0,0 L0,3 L4,1.5 z" fill="#16a34a"></path>
+              </marker>
+            </defs>
+
+            <!-- ground -->
+            <line
+              x1="90"
+              y1="180"
+              x2="830"
+              y2="180"
+              stroke="#111827"
+              stroke-width="4"
+            ></line>
+            <g id="workMotionTicks"></g>
+
+            <!-- start and final guide -->
+            <line
+              id="workXiGuide"
+              x1="164"
+              y1="70"
+              x2="164"
+              y2="205"
+              stroke="#2563eb"
+              stroke-width="2"
+              stroke-dasharray="8 6"
+            ></line>
+            <line
+              id="workXfGuide"
+              x1="608"
+              y1="70"
+              x2="608"
+              y2="205"
+              stroke="#f59e0b"
+              stroke-width="2"
+              stroke-dasharray="8 6"
+            ></line>
+
+            <!-- object at initial position -->
+            <rect
+              id="workObject"
+              x="124"
+              y="125"
+              width="80"
+              height="55"
+              rx="10"
+              fill="#f59e0b"
+              stroke="#92400e"
+              stroke-width="3"
+            ></rect>
+
+            <text
+              id="workXiLabel"
+              x="164"
+              y="220"
+              text-anchor="middle"
+              font-size="16"
+              fill="#1e40af"
+            >
+              x0 = 1 m
+            </text>
+
+            <text
+              id="workXfLabel"
+              x="608"
+              y="220"
+              text-anchor="middle"
+              font-size="16"
+              fill="#92400e"
+            >
+              x = 7 m
+            </text>
+
+            <!-- force vector -->
+            <line
+              id="workForceVector"
+              x1="204"
+              y1="110"
+              x2="324"
+              y2="110"
+              stroke="#2563eb"
+              stroke-width="6"
+              marker-end="url(#workForceArrow)"
+            ></line>
+
+            <text
+              id="workForceLabel"
+              x="264"
+              y="92"
+              text-anchor="middle"
+              font-size="18"
+              font-weight="700"
+              fill="#1e40af"
+            >
+              F = 6 N
+            </text>
+
+            <!-- displacement vector -->
+            <line
+              id="workDistanceVector"
+              x1="164"
+              y1="75"
+              x2="608"
+              y2="75"
+              stroke="#16a34a"
+              stroke-width="5"
+              marker-end="url(#workDistanceArrow)"
+            ></line>
+
+            <text
+              id="workDistanceLabel"
+              x="386"
+              y="58"
+              text-anchor="middle"
+              font-size="18"
+              font-weight="700"
+              fill="#166534"
+            >
+              Δx = 6 m
+            </text>
+          </svg>
+
+          <h3>📊 กราฟแรง–ตำแหน่ง</h3>
+          <svg
+            viewBox="0 0 920 420" class="svg-panel"
+          >
+            <!-- axes -->
+            <line
+              x1="90"
+              y1="210"
+              x2="850"
+              y2="210"
+              stroke="#111827"
+              stroke-width="3"
+            ></line>
+            <line
+              x1="110"
+              y1="360"
+              x2="110"
+              y2="50"
+              stroke="#111827"
+              stroke-width="3"
+            ></line>
+
+            <text x="858" y="215" font-size="18">x (m)</text>
+            <text x="110" y="45" font-size="18">F (N)</text>
+
+            <g id="workGraphGrid"></g>
+
+            <!-- shaded area -->
+            <rect
+              id="workAreaRect"
+              x="184"
+              y="120"
+              width="444"
+              height="90"
+              fill="#dbeafe"
+              stroke="#2563eb"
+              stroke-width="2"
+              opacity="0.85"
+            ></rect>
+
+            <!-- force line -->
+            <line
+              id="workForceLine"
+              x1="110"
+              y1="120"
+              x2="850"
+              y2="120"
+              stroke="#2563eb"
+              stroke-width="5"
+            ></line>
+
+            <!-- xi xf lines -->
+            <line
+              id="workGraphXiLine"
+              x1="184"
+              y1="210"
+              x2="184"
+              y2="120"
+              stroke="#64748b"
+              stroke-width="2"
+              stroke-dasharray="8 6"
+            ></line>
+
+            <line
+              id="workGraphXfLine"
+              x1="628"
+              y1="210"
+              x2="628"
+              y2="120"
+              stroke="#64748b"
+              stroke-width="2"
+              stroke-dasharray="8 6"
+            ></line>
+
+            <text
+              id="workGraphFLabel"
+              x="790"
+              y="110"
+              font-size="18"
+              font-weight="700"
+              fill="#1e40af"
+            >
+              F = 6 N
+            </text>
+          </svg>
+
+          <p id="workAreaFeedback" class="formula">
+            \[ W = F(x-x_0) = 6(7-1)=36\ \mathrm{J} \]
+          </p>
+
+          <div class="warning-box">
+            <div class="warning-icon">⚠️</div>
+            <div class="warning-content">
+              <strong>ข้อจำกัดของการพิจารณานี้</strong>
+              <ul>
+                <li>แรงคงที่</li>
+                <li>แรงกระทำในแนวเดียวกับการเคลื่อนที่</li>
+                <li>มีแค่แรงเดียวที่กระทำกับวัตถุ</li>
+                <li>การเคลื่อนที่เป็นเส้นตรง</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="interaction recap-check">
+          <h3>🎯 คำถามชวนคิด: แรงและงาน</h3>
+          <div class="card">
+            
+            <p><b>ข้อที่ 1: </b>แรงที่เราออกกับการเคลื่อนที่ของวัตถุสัมพันธ์กันอย่างไร?</p>
+            <div class="options" data-quiz data-answer="c">
+              <button class="option-btn" data-choice="a">แรงกับการเคลื่อนที่จะต้องไปทางเดียวกันเสมอ</button>
+              <button class="option-btn" data-choice="b">แรงกับการเคลื่อนที่จะต้องไปทางตรงข้ามเสมอ</button>
+              <button class="option-btn" data-choice="c">แรงกับการเคลื่อนที่อาจจะไปทางเดียวกันหรือตรงข้ามก็ได้</button>
+            </div>
+            <p data-feedback></p>
+          </div>
+          <div class="card">
+            <p><b>ข้อที่ 2: </b>เมื่อออกแรงแล้ววัตถุต้องเคลื่อนที่เสมอหรือไม่?</p>
+            <div class="options" data-quiz data-answer="a">
+              <button class="option-btn" data-choice="a">ไม่จำเป็น</button>
+              <button class="option-btn" data-choice="b">ต้องเคลื่อนที่เสมอ</button>
+            </div>
+            <p data-feedback></p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📈 1.2 งานจากแรงไม่คงที่</h3>
+          <p class="lead">
+            ในกรณีที่แรงไม่คงที่และเปลี่ยนแปลงตามตำแหน่ง
+            งานที่แรงกระทำในช่วงระยะทางที่วัตถุเคลื่อนที่ไปยังคงหาได้จากพื้นที่ใต้กราฟแรง–ตำแหน่ง
+          </p>
+
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">
+                \(W =\) พื้นที่ใต้กราฟ \(F-x\) ในช่วง \(x_0\) ถึง \(x\)
+              </div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+
+          <div class="interaction">
+            <h3>🧩 งาน = พื้นที่ใต้กราฟแรง–ตำแหน่ง (เมื่อแรงไม่คงที่)</h3>
+
+            <p>สถานการณ์สมมติ ออกแรงไม่คงที่กระทำกับวัตถุในหนึ่งมิติ
+              <br>ในช่วงระยะทางที่ 1 แรงมีค่า \(F_1\)
+              ในช่วงระยะทางที่ 2 แรงมีค่า \(F_2\) และในช่วงระยะทางที่ 3 แรงมีค่า \(F_3\)</p>
+            </p>
+
+            <div class="grid">
+              <div>
+                <label
+                  >แรงช่วงที่ 1: \(F_1\) = <span id="ex3F1Val">4</span> N</label
+                >
+                <input
+                  id="ex3F1"
+                  type="range"
+                  min="-10"
+                  max="10"
+                  step="1"
+                  value="4"
+                  oninput="updateExample3Graph()"
+                />
+              </div>
+
+              <div>
+                <label
+                  >แรงช่วงที่ 2: \(F_2\) = <span id="ex3F2Val">8</span> N</label
+                >
+                <input
+                  id="ex3F2"
+                  type="range"
+                  min="-10"
+                  max="10"
+                  step="1"
+                  value="8"
+                  oninput="updateExample3Graph()"
+                />
+              </div>
+
+              <div>
+                <label
+                  >แรงช่วงที่ 3: \(F_3\) = <span id="ex3F3Val">-3</span> N</label
+                >
+                <input
+                  id="ex3F3"
+                  type="range"
+                  min="-10"
+                  max="10"
+                  step="1"
+                  value="-3"
+                  oninput="updateExample3Graph()"
+                />
+              </div>
+            </div>
+
+            <div class="grid">
+              <div>
+                <label>ตำแหน่ง \(x_1\) = <span id="ex3X1Val">2</span> m</label>
+                <input
+                  id="ex3X1"
+                  type="range"
+                  min="1"
+                  max="4"
+                  step="0.5"
+                  value="2"
+                  oninput="updateExample3Graph()"
+                />
+              </div>
+
+              <div>
+                <label>ตำแหน่ง \(x_2\) = <span id="ex3X2Val">4</span> m</label>
+                <input
+                  id="ex3X2"
+                  type="range"
+                  min="3"
+                  max="7"
+                  step="0.5"
+                  value="4"
+                  oninput="updateExample3Graph()"
+                />
+              </div>
+
+              <div>
+                <label>ตำแหน่ง \(x_3\) = <span id="ex3X3Val">6</span> m</label>
+                <input
+                  id="ex3X3"
+                  type="range"
+                  min="5"
+                  max="10"
+                  step="0.5"
+                  value="6"
+                  oninput="updateExample3Graph()"
+                />
+              </div>
+            </div>
+
+            <svg
+              viewBox="0 0 920 460" class="svg-panel"
+            >
+              <!-- axes -->
+              <line
+                x1="100"
+                y1="230"
+                x2="850"
+                y2="230"
+                stroke="#111827"
+                stroke-width="3"
+              ></line>
+              <line
+                x1="120"
+                y1="390"
+                x2="120"
+                y2="50"
+                stroke="#111827"
+                stroke-width="3"
+              ></line>
+
+              <text x="858" y="235" font-size="18">x (m)</text>
+              <text x="110" y="45" font-size="18">F (N)</text>
+
+              <g id="ex3Grid"></g>
+
+              <!-- shaded areas -->
+              <rect
+                id="ex3Area1"
+                fill="#dbeafe"
+                stroke="#2563eb"
+                stroke-width="2"
+                opacity="0.85"
+              ></rect>
+              <rect
+                id="ex3Area2"
+                fill="#dcfce7"
+                stroke="#16a34a"
+                stroke-width="2"
+                opacity="0.85"
+              ></rect>
+              <rect
+                id="ex3Area3"
+                fill="#fee2e2"
+                stroke="#dc2626"
+                stroke-width="2"
+                opacity="0.85"
+              ></rect>
+
+              <!-- force graph -->
+              <polyline
+                id="ex3GraphLine"
+                fill="none"
+                stroke="#111827"
+                stroke-width="5"
+                stroke-linejoin="round"
+                stroke-linecap="round"
+              ></polyline>
+
+              <!-- vertical guides -->
+              <g id="ex3Guides"></g>
+
+              <!-- point labels -->
+              <g id="ex3PointLabels"></g>
+            </svg>
+
+            <div class="grid">
+              <div class="card">
+                <strong>พื้นที่ช่วงที่ 1</strong>
+                <p id="ex3W1Text">กำลังคำนวณ...</p>
+              </div>
+
+              <div class="card">
+                <strong>พื้นที่ช่วงที่ 2</strong>
+                <p id="ex3W2Text">กำลังคำนวณ...</p>
+              </div>
+
+              <div class="card">
+                <strong>พื้นที่ช่วงที่ 3</strong>
+                <p id="ex3W3Text">กำลังคำนวณ...</p>
+              </div>
+            </div>
+
+            <p id="ex3Feedback" class="formula">\[ W=W_1+W_2+W_3 \]</p>
+          </div>
+
+        </div>
+
+        <p class="lead">
+          ถ้าแรง \(F(x)\) ไม่คงที่และเปลี่ยนแปลงตามตำแหน่งอย่างต่อเนื่องและราบเรียบ
+          (Continous and Smooth) งานในช่วง \(x_0\) ถึง \(x\)
+          หาได้จากการอินทิเกรตฟังก์ชันของแรงเทียบกับระยะทาง
+          \[W=\int_{x_0}^{x}F(x)\,dx\] พื้นที่เหนือแกน x เป็นบวก
+        </p>
+
+        <div class="interaction">
+          <h3>🧮 Riemann Sum Demonstration</h3>
+          <p>
+            สมมติให้แรงเป็นฟังก์ชันของตำแหน่ง \(F(x)=2+0.4x^2\)
+            ใช้สี่เหลี่ยมประมาณพื้นที่ใต้กราฟแรงไม่คงที่
+            แล้วเพิ่มจำนวนช่วงเพื่อเห็นแนวคิดของอินทิกรัล
+          </p>
+          <div>
+            <label>จำนวนช่วงย่อย = <span id="w5RiemannNVal">8</span></label
+            ><input
+              id="w5RiemannN"
+              type="range"
+              min="2"
+              max="40"
+              step="1"
+              value="8"
+              oninput="updateW5Riemann()"
+            />
+          </div>
+          <svg viewBox="0 0 920 390" class="w5-svg">
+            <line
+              x1="90"
+              y1="330"
+              x2="840"
+              y2="330"
+              stroke="#111827"
+              stroke-width="3"
+            />
+            <line
+              x1="90"
+              y1="330"
+              x2="90"
+              y2="40"
+              stroke="#111827"
+              stroke-width="3"
+            />
+            <text x="845" y="335" font-size="18">x</text>
+            <text x="85" y="35" font-size="18">F(x)</text>
+            <g id="w5RiemannRects"></g>
+            <path
+              id="w5RiemannCurve"
+              d=""
+              fill="none"
+              stroke="#dc2626"
+              stroke-width="5"
+            />
+          </svg>
+          <p id="w5RiemannFeedback" class="formula">กำลังคำนวณ...</p>
+        </div>
+
+        <div class="warning-box">
+          <div class="warning-icon">⚠️</div>
+          <div class="warning-content">
+            <strong>ข้อจำกัดของการพิจารณานี้</strong>
+            <ul>
+              <li><del>แรงคงที่</del></li>
+              <li>แรงกระทำในแนวเดียวกับการเคลื่อนที่</li>
+              <li>มีแค่แรงเดียวที่กระทำกับวัตถุ</li>
+              <li>การเคลื่อนที่เป็นเส้นตรง</li>
+            </ul>
+          </div>
+        </div>
+        <div class="interaction recap-check">
+          <h3>🎯 ทบทวนท้ายบท: งานและกราฟ \(F-x\)</h3>
+          <p><strong>ข้อ 1 เลือกตอบ:</strong> ถ้าแรงเปลี่ยนแปลงตามตำแหน่ง งานในช่วงการเคลื่อนที่ควรตีความจากอะไร?</p>
+          <div class="options" data-quiz data-answer="a">
+            <button class="option-btn" data-choice="a">พื้นที่ใต้กราฟแรง–ตำแหน่ง</button>
+            <button class="option-btn" data-choice="b">ความชันของกราฟตำแหน่ง–เวลา</button>
+            <button class="option-btn" data-choice="c">มวลของวัตถุเพียงอย่างเดียว</button>
+          </div>
+          <p data-feedback></p>
+          <hr />
+          <div data-text-check data-accept="ลบ|ติดลบ|negative">
+            <p><strong>ข้อ 2 เติมคำ:</strong> ถ้าพื้นที่กราฟอยู่ใต้แกน \(x\) งานมีเครื่องหมายอะไร?</p>
+            <input type="text"/><br><br>
+            <button class="secondary">ตรวจคำตอบ</button>
+            <p data-text-feedback></p>
+          </div>
+          <hr />
+          <p><strong>ข้อ 3 ถูก/ผิด:</strong> เลือกข้อความที่ถูกต้อง</p>
+          <div class="options" data-multi>
+            <button class="option-btn" data-correct="true">แรงคงที่: \(W=FΔx\)</button>
+            <button class="option-btn" data-correct="true">แรงไม่คงที่: แบ่งพื้นที่ย่อยแล้วรวมกันได้</button>
+            <button class="option-btn" data-correct="false">พื้นที่ใต้กราฟไม่มีหน่วย</button>
+          </div>
+        </div>
+
+      </section>
+
+      <div class="lesson-bridge">
+        <strong>🔗 เชื่อมโยงสู่บทเรียนถัดไป</strong>
+        <p>จากข้อจำกัดของการพิจารณานี้ โดยปกติแล้วแรงที่กระทำกับวัตถุในโลกจริงมักจะไม่อยู่ในแนวเดียวกับการเคลื่อนที่ของวัตถุเสมอไป
+          ดังนั้นเราจำเป็นต้องมีเครื่องมือทางคณิตศาสตร์เพิ่มเติมในการอธิบายปรากฏการณ์เหล่านี้
+          ซึ่งบทต่อไปเราจะศึกษาการคูณแบบดอท เพื่ออธิบายงานของแรงที่กระทำในทิศต่าง ๆ จากทิศทางการเคลื่อนที่ของวัตถุ
+        </p>
+      </div>
+
+      <section class="lesson" id="dot-product">
+        <h2>🧭 2. การคูณแบบดอท</h2>
+        <div class="card">
+          <h3>🔎 2.1 นิยามการคูณแบบดอท</h3>
+          <p class="lead">
+            &nbsp;&nbsp;&nbsp;ในสัปดาห์ที่ 3 เราได้ศึกษาเกี่ยวกับการคูณเวกเตอร์ด้วยสเกลาร์
+            ในบทนี้เราจะศึกษาการคูณเวกเตอร์ที่เรียกว่า <b>การผลคูณแบบดอท (Dot Product)</b>
+            การผลคูณแบบดอทของเวกเตอร์สองตัว \(\vec A \) และ \( \vec B\) ผลลัพธ์ที่ได้เป็นปริมาณสเกลาร์
+            ที่เขียนแทนด้วย \(\vec A\cdot \vec B\)
+            ซึ่งมีค่าเท่ากับผลคูณระหว่างขนาดของเวกเตอร์หนึ่ง \(A\) กับการฉายของอีกเวกเตอร์หนึ่งบนเวกเตอร์นั้น \(B \cos\theta\)
+          </p>
+          <div class="formula conversion-formula">
+            \[\vec A\cdot \vec B=AB\cos\theta\]
+          </div>
+          <p class="math-xl">เมื่อ \(\theta\) คือมุมที่เล็กที่สุดระหว่างเวกเตอร์ \(\vec A\) และ \(\vec B\)</p>
+        </div>
+        <div class="interaction">
+          <h3>🎮 Dot Product Explorer</h3>
+          <div class="grid">
+            <div>
+              <label>ขนาด A = <span id="w5DotAVal">5.0</span></label
+              ><input
+                id="w5DotA"
+                type="range"
+                min="1"
+                max="8"
+                step="0.5"
+                value="5"
+                oninput="updateW5Dot()"
+              />
+            </div>
+            <div>
+              <label>ขนาด B = <span id="w5DotBVal">4.0</span></label
+              ><input
+                id="w5DotB"
+                type="range"
+                min="1"
+                max="8"
+                step="0.5"
+                value="4"
+                oninput="updateW5Dot()"
+              />
+            </div>
+            <div>
+              <label>มุม θ = <span id="w5DotThetaVal">45</span>°</label
+              ><input
+                id="w5DotTheta"
+                type="range"
+                min="0"
+                max="180"
+                step="1"
+                value="45"
+                oninput="updateW5Dot()"
+              />
+            </div>
+          </div>
+          <div class="options">
+            <button class="secondary" onclick="setW5DotAngle(0)">↔️ ขนาน</button>
+            <button class="secondary" onclick="setW5DotAngle(90)">
+              ⟂ ตั้งฉาก
+            </button>
+            <button class="secondary" onclick="setW5DotAngle(180)">
+              ↩️ ตรงข้าม
+            </button>
+          </div>
+          <svg viewBox="0 0 920 500" class="w5-svg">
+            <line
+              x1="80"
+              y1="250"
+              x2="850"
+              y2="250"
+              stroke="#111827"
+              stroke-width="3"
+            />
+            <line
+              x1="460"
+              y1="450"
+              x2="460"
+              y2="60"
+              stroke="#111827"
+              stroke-width="3"
+            />
+            <g id="w5DotGrid"></g>
+            <g id="w5DotScale"></g>
+            <path
+              id="w5DotArc"
+              d=""
+              fill="none"
+              stroke="#f59e0b"
+              stroke-width="6"
+            />
+            <line
+              id="w5DotALine"
+              x1="460"
+              y1="250"
+              x2="650"
+              y2="250"
+              stroke="#2563eb"
+              stroke-width="7"
+              marker-end="url(#w5ArrowBlue)"
+            />
+            <line
+              id="w5DotBLine"
+              x1="460"
+              y1="250"
+              x2="560"
+              y2="150"
+              stroke="#16a34a"
+              stroke-width="7"
+              marker-end="url(#w5ArrowGreen)"
+            />
+            <line
+              id="w5DotProj"
+              x1="460"
+              y1="285"
+              x2="560"
+              y2="285"
+              stroke="#7c3aed"
+              stroke-width="6"
+              marker-end="url(#w5ArrowPurple)"
+            />
+            <line
+              id="w5DotGuide"
+              x1="560"
+              y1="285"
+              x2="560"
+              y2="150"
+              stroke="#94a3b8"
+              stroke-width="3"
+              stroke-dasharray="8 6"
+            />
+            <text
+              id="w5DotALabel"
+              x="665"
+              y="245"
+              font-size="20"
+              font-weight="800"
+              fill="#1e40af"
+            >
+              A
+            </text>
+            <text
+              id="w5DotBLabel"
+              x="570"
+              y="140"
+              font-size="20"
+              font-weight="800"
+              fill="#166534"
+            >
+              B
+            </text>
+            <text
+              id="w5DotProjLabel"
+              x="480"
+              y="322"
+              font-size="18"
+              font-weight="800"
+              fill="#5b21b6"
+            >
+              projection
+            </text>
+          </svg>
+          <p id="w5DotFeedback" class="formula">กำลังคำนวณ...</p>
+        </div>
+        <div class="card">
+          <h3>🧩 2.2 สมบัติบางประการของการคูณแบบดอท</h3>
+          <div class="grid">
+            <div class="card">
+              <strong>ตั้งฉากกัน</strong><br />ถ้า \(\theta=90^\circ\) แล้ว \(\vec
+              A\cdot\vec B=0\)
+            </div>
+            <div class="card">
+              <strong>ขนานกัน</strong><br />ถ้า \(\theta=0^\circ\) แล้ว \(\vec
+              A\cdot\vec B=AB\)
+            </div>
+          </div>
+          <div class="grid">
+            <div class="card">
+              <strong>ดอทกับตัวเอง</strong><br />\(\vec A\cdot\vec A=A^2\)
+            </div>
+            <div class="card">
+              <strong>สลับที่และกระจายได้</strong><br />
+              \(\vec A\cdot\vec B=\vec B\cdot\vec A\)<br>
+              \(\vec A\cdot(\vec B+\vec C)=\vec A\cdot\vec B+\vec A\cdot\vec C\)
+            </div>
+          </div>
+          <div class="grid">
+            <div class="card">
+              <h3>🧭 เวกเตอร์หนึ่งหน่วย</h3>
+              <p>\[\hat i\cdot\hat i=\hat j\cdot\hat j=1\] \[\hat i\cdot\hat j=\hat j\cdot\hat i=0\]</p>
+            </div>
+            <div class="card">
+              <h3>🧮 การแสดงองค์ประกอบของเวกเตอร์</h3>
+              <p>\[\vec A\cdot\vec B=(A_x\hat i+A_y\hat j)\cdot(B_x\hat i+B_y\hat j)=A_xB_x+A_yB_y\]</p>
+            </div>
+          </div>
+        </div><br>
+
+        <div class="interaction">
+          <h3>🧮 Component Dot Product Calculator</h3>
+          <div class="grid">
+            <div>
+              <label>Ax</label
+              ><input
+                id="w5Uax"
+                type="number"
+                value="3"
+                step="1"
+                oninput="updateW5UnitDot()"
+              />
+            </div>
+            <div>
+              <label>Ay</label
+              ><input
+                id="w5Uay"
+                type="number"
+                value="4"
+                step="1"
+                oninput="updateW5UnitDot()"
+              />
+            </div>
+          </div>
+          <div class="grid">
+            <div>
+              <label>Bx</label
+              ><input
+                id="w5Ubx"
+                type="number"
+                value="5"
+                step="1"
+                oninput="updateW5UnitDot()"
+              />
+            </div>
+            <div>
+              <label>By</label
+              ><input
+                id="w5Uby"
+                type="number"
+                value="-2"
+                step="1"
+                oninput="updateW5UnitDot()"
+              />
+            </div>
+          </div>
+          <p id="w5UnitDotFeedback" class="formula">กำลังคำนวณ...</p>
+        </div>
+
+        <div class="card">
+          <h3>🛠️ 2.3 ประยุกต์ใช้การคูณแบบดอทในการคำนวณหางาน</h3>
+          <p class="lead">
+            สำหรับกรณีที่แรงไม่ได้อยู่ในแนวเดียวกับการเคลื่อนที่ของวัตถุ เราสามารถใช้การคูณแบบดอทเพื่อคำนวณหางานที่แรงกระทำกับวัตถุได้
+          </p>
+
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">\[W=\vec F\cdot\Delta \vec x=F\Delta x\cos\theta\]</div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+      
+          <p class="math-lg">โดย \(\vec F\) คือเวกเตอร์แรง \(\Delta \vec x\) คือเวกเตอร์การกระจัด และ \(\theta\) คือมุมที่เล็กที่สุดระหว่างแรงและเวกเตอร์การกระจัด</p>
+
+          <div class="warning-box">
+            <div class="warning-icon">⚠️</div>
+            <div class="warning-content">
+              <strong>ข้อจำกัดของการพิจารณานี้</strong>
+              <ul>
+                <li>แรงคงที่</li>
+                <li><del>แรงกระทำในแนวเดียวกับการเคลื่อนที่</del></li>
+                <li>มีแค่แรงเดียวที่กระทำกับวัตถุ</li>
+                <li>การเคลื่อนที่เป็นเส้นตรง</li>
+              </ul>
+          </div>
+        </div>
+
+        </div>
+
+        <div class="interaction">
+          <h3>🎮 Force Angle Explorer: งานเมื่อแรงไม่ขนานกับการเคลื่อนที่</h3>
+
+          <p>
+            ปรับขนาดแรง มุม และระยะทาง แล้วกด Play เพื่อดูว่า
+            เฉพาะองค์ประกอบของแรงในทิศการกระจัดเท่านั้นที่ทำงาน
+          </p>
+
+          <div class="grid">
+            <div>
+              <label>แรง \(F\) = <span id="angleForceVal">35</span> N</label>
+              <input id="angleForce" type="range" min="0" max="80" step="1" value="35" oninput="updateForceAngleDemo()">
+            </div>
+
+            <div>
+              <label>มุม \(\theta\) = <span id="angleThetaVal">25</span>°</label>
+              <input id="angleTheta" type="range" min="0" max="90" step="1" value="25" oninput="updateForceAngleDemo()">
+            </div>
+
+            <div>
+              <label>ระยะทาง \(\Delta x\) = <span id="angleDistanceVal">50</span> m</label>
+              <input id="angleDistance" type="range" min="5" max="80" step="1" value="50" oninput="updateForceAngleDemo()">
+            </div>
+          </div>
+
+          <div class="options">
+            <button onclick="playForceAngleAnimation()">▶️ Play</button>
+            <button class="secondary" onclick="resetForceAngleAnimation()">🔄 Reset</button>
+          </div>
+
+          <svg viewBox="0 0 920 360" class="svg-panel svg-panel-spaced">
+            <defs>
+              <marker id="faForceArrow" markerWidth="4" markerHeight="4" refX="4" refY="1.5" orient="auto">
+                <path d="M0,0 L0,3 L4,1.5 z" fill="#2563eb"></path>
+              </marker>
+
+              <marker id="faComponentArrow" markerWidth="4" markerHeight="4" refX="4" refY="1.5" orient="auto">
+                <path d="M0,0 L0,3 L4,1.5 z" fill="#16a34a"></path>
+              </marker>
+
+              <marker id="faDistanceArrow" markerWidth="4" markerHeight="4" refX="4" refY="1.5" orient="auto">
+                <path d="M0,0 L0,3 L4,1.5 z" fill="#f59e0b"></path>
+              </marker>
+            </defs>
+
+            <!-- ground -->
+            <line x1="80" y1="260" x2="840" y2="260" stroke="#111827" stroke-width="5" stroke-linecap="round"></line>
+            <g id="faTicks"></g>
+
+            <!-- distance guide -->
+            <line id="faDistanceVector" x1="150" y1="300" x2="720" y2="300"
+              stroke="#f59e0b" stroke-width="5" marker-end="url(#faDistanceArrow)"></line>
+
+            <text id="faDistanceLabel" x="435" y="325" text-anchor="middle"
+              font-size="17" font-weight="700" fill="#92400e">
+              s = 50 m
+            </text>
+
+            <!-- cart -->
+            <g id="faCart" transform="translate(130,205)">
+              <rect x="0" y="18" width="110" height="45" rx="10"
+                fill="#f59e0b" stroke="#92400e" stroke-width="3"></rect>
+              <line x1="18" y1="18" x2="6" y2="0" stroke="#92400e" stroke-width="5" stroke-linecap="round"></line>
+              <line x1="92" y1="18" x2="108" y2="0" stroke="#92400e" stroke-width="5" stroke-linecap="round"></line>
+              <circle cx="25" cy="70" r="10" fill="#111827"></circle>
+              <circle cx="85" cy="70" r="10" fill="#111827"></circle>
+            </g>
+
+            <!-- force vectors anchored to cart -->
+            <line id="faForceVector" x1="220" y1="190" x2="318" y2="144"
+              stroke="#2563eb" stroke-width="7" marker-end="url(#faForceArrow)"></line>
+
+            <line id="faFxVector" x1="220" y1="190" x2="318" y2="190"
+              stroke="#16a34a" stroke-width="6" marker-end="url(#faComponentArrow)"></line>
+
+            <line id="faFyGuide" x1="318" y1="190" x2="318" y2="144"
+              stroke="#94a3b8" stroke-width="3" stroke-dasharray="7 6"></line>
+
+            <path id="faAngleArc" d="" fill="none" stroke="#dc2626" stroke-width="4"></path>
+
+            <text id="faForceLabel" x="326" y="136" font-size="17" font-weight="700" fill="#1e40af">
+              F
+            </text>
+
+            <text id="faFxLabel" x="269" y="214" text-anchor="middle" font-size="16" font-weight="700" fill="#166534">
+              Fcosθ
+            </text>
+
+            <text id="faThetaLabel" x="255" y="168" font-size="15" font-weight="700" fill="#b91c1c">
+              θ
+            </text>
+          </svg>
+
+          <p id="forceAngleFeedback" class="formula">
+            \[
+              W = Fs\cos\theta
+            \]
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>🧲 2.4 งานจากแรงหลายแรงที่ไม่จำเป็นต้องอยู่แนวเดียวกับการเคลื่อนที่
+          </h3>
+          <p class="lead">
+            ในกรณีที่มีแรงคงที่หลายแรงกระทำกับวัตถุ เราสามารถแยกคิดงานที่แต่ละแรงกระทำกับวัตถุได้โดยสมการ (2)
+            แล้วนำผลลัพธ์ที่ได้มารวมกันเพื่อหางานลัพธ์ที่กระทำกับวัตถุได้
+          </p>
+
+          <p class="formula conversion-formula">
+            \[
+              W_{total} = W_1 + W_2 + \ldots + W_n
+            \]
+            \[
+              W_{total} = \vec F_1\cdot\Delta \vec x + \vec F_2\cdot\Delta \vec x + \ldots + \vec F_n\cdot\Delta \vec x
+            \]
+          </p>
+
+        <figure class="figure-card">
+          <img
+            src="asset/week%205/image 2.png"
+            alt="ภาพจำลองวัตถุมวล \(m\) ถูกแรงคงที่ \(\vec F_n\) หลายแรงกระทำขณะเคลื่อนที่เป็นระยะ
+            \(\Delta \vec x\)"
+          />
+          <figcaption class="caption">
+            ภาพจำลองวัตถุมวล \(m\) ถูกแรงคงที่ \(\vec F_n\) หลายแรงกระทำขณะเคลื่อนที่เป็นระยะ
+            \(\Delta \vec x\)
+          </figcaption>
+        </figure>
+
+          <div class="warning-box">
+            <div class="warning-icon">⚠️</div>
+            <div class="warning-content">
+              <strong>ข้อจำกัดของการพิจารณานี้</strong>
+              <ul>
+                <li>แรงคงที่</li>
+                <li><del>แรงกระทำในแนวเดียวกับการเคลื่อนที่</del></li>
+                <li><del>มีแค่แรงเดียวที่กระทำกับวัตถุ</del></li>
+                <li>การเคลื่อนที่เป็นเส้นตรง</li>
+              </ul>
+          </div>
+
+        </div>
+
+        <div class="interaction recap-check">
+          <h3>🎯 ทบทวนท้ายบท: ดอทโปรดักต์กับงาน</h3>
+          <p><strong>ข้อ 1 เลือกตอบ:</strong> เมื่อแรงทำมุม \(\theta\) กับการกระจัด ส่วนใดของแรงที่ทำงาน?</p>
+          <div class="options" data-quiz data-answer="b">
+            <button class="option-btn" data-choice="a">องค์ประกอบตั้งฉาก \(F\sin\theta\)</button>
+            <button class="option-btn" data-choice="b">องค์ประกอบขนาน \(F\cos\theta\)</button>
+            <button class="option-btn" data-choice="c">แรงทั้งหมดเสมอ ไม่ขึ้นกับมุม</button>
+          </div>
+          <p data-feedback></p>
+          <hr />
+          <p><strong>ข้อ 2 ถูก/ผิด:</strong> เลือกข้อความที่ถูกต้องเกี่ยวกับการคูณแบบดอท</p>
+          <div class="options" data-multi>
+            <button class="option-btn" data-correct="true">ถ้าเวกเตอร์ตั้งฉากกัน การคูณแบบดอทเป็นศูนย์</button>
+            <button class="option-btn" data-correct="true">การคูณแบบดอทให้ผลลัพธ์เป็นสเกลาร์</button>
+            <button class="option-btn" data-correct="false">การคูณแบบดอทให้ผลลัพธ์เป็นเวกเตอร์ใหม่เสมอ</button>
+          </div>
+          <hr />
+          <div data-text-check data-accept="0|ศูนย์">
+            <p><strong>ข้อ 3 คำนวณเร็ว:</strong> ถ้า \(\theta=90^\circ\) แล้ว \(\vec A\cdot\vec B\) มีค่าเท่าใด?</p>
+            <input type="text"/><br><br>
+            <button class="secondary">ตรวจคำตอบ</button>
+            <p data-text-feedback></p>
+          </div>
+        </div>
+        <p class="card text-center math-lg"><strong>สำหรับการพิจารณกรณีที่ทั่วไปที่สุด กล่าวคือ มีหลายแรงที่ไม่คงที่กระทำคนละแนวกับการเคลื่อนที่ที่ไม่เป็นเส้นตรง
+          นักศึกษาจะต้องมีความรู้เกี่ยวกับ Vector Calculus จึงจะสามารถทำความเข้าใจได้อย่างลึกซึ้งและครบถ้วน ซึ่งเราจะไม่พูดถึงในวิชานี้</strong>
+        </p>
+      </section>
+
+      <div class="lesson-bridge">
+        <strong>🔗 เชื่อมโยงสู่บทเรียนถัดไป</strong>
+        <p> จากกฎการเคลื่อนที่ของนิวตันข้อที่ 2 และแนวคิดเรื่องงาน เราสามารถแสดงได้ว่า
+          งานลัพธ์ที่กระทำกับวัตถุใด ๆ
+          จะมีค่าเท่ากับผลต่างของปริมาณบางอย่างที่น่าสนใจและสำคัญเป็นอย่างมากในทางฟิสิกส์
+          \[W_{total} = \frac{1}{2}mv^2 - \frac{1}{2}mv_0^2\]
+        </p>
+      </div>
+
+      <section class="lesson" id="kinetic">
+        <h2>⚡ 3. พลังงานจลน์และทฤษฎีบทงาน-พลังงาน</h2>
+
+        <p class="card math-xl">
+          เราเรียกปริมาณทางฟิสิกส์ที่อธิบายถึง “ความสามารถในการทำงาน” ของสิ่งใดก็ตาม ว่า <b>พลังงาน (energy)</b>
+          ซึ่งพลังงานเป็นคุณสมบัติพื้นฐานของสิ่งต่าง ๆ ที่ขึ้นกับการเคลื่อนที่หรือตำแหน่งของสิ่งเหล่านั้น
+        </p>
+
+        <p class="lead">
+          จากสมการ
+          \[W_{total} = \frac{1}{2}mv^2 - \frac{1}{2}mv_0^2\]
+          พิจารณาต่อเพิ่มเติมพจน์ทางด้านขวามือ
+          เราจะนิยามปริมาณทางฟิสิกส์ใหม่ที่เรียกว่า พลังงานจลน์ เป็น
+        </p>
+        <div class="formula conversion-formula">\[KE\equiv\frac{1}{2}mv^2\]</div>
+        <p class="lead">
+          <b>พลังงานจลน์ (Kinetic energy)</b> คือ
+          พลังงานที่วัตถุมีอยู่เนื่องจากการเคลื่อนที่ของมัน
+          <br />ในระบบหน่วย SI พลังงานมีหน่วยเดียวกับงาน คือ จูล (J)
+        </p>
+
+        <div class="interaction">
+          <h3>🎮 Kinetic Energy Explorer</h3>
+          <div class="grid">
+            <div>
+              <label>มวล \(m\) = <span id="w5KeMVal">1.00</span> kg</label
+              ><input
+                id="w5KeM"
+                type="range"
+                min="0.0"
+                max="10.0"
+                step="0.1"
+                value="1.0"
+                oninput="updateW5KE()"
+              />
+            </div>
+            <div>
+              <label>ความเร็ว \(v\) = <span id="w5KeVVal">10.0</span> m/s</label
+              ><input
+                id="w5KeV"
+                type="range"
+                min="0"
+                max="40"
+                step="0.5"
+                value="10"
+                oninput="updateW5KE()"
+              />
+            </div>
+          </div>
+          <p id="w5KeFeedback" class="formula">กำลังคำนวณ...</p>
+        </div>
+
+        <div class="interaction">
+          <h3>🚗 อัตราเร็วกับพลังงานจลน์</h3>
+
+          <p>
+            รถยนต์มวล \(m\) เคลื่อนที่จากความเร็วต้น \(v_0\)
+            ไปยังความเร็วสุดท้าย \(v\) โดยแต่ละขณะจะแสดงค่าพลังงานจลน์ \(KE =
+            \frac{1}{2}mv^2 \)
+          </p>
+
+          <div class="grid">
+            <div>
+              <label
+                >มวลรถยนต์ \(m\) = <span id="ex1MassVal">1000</span> kg</label
+              >
+              <input
+                id="ex1Mass"
+                type="range"
+                min="500"
+                max="2000"
+                step="100"
+                value="1000"
+              />
+            </div>
+
+            <div>
+              <label
+                >ความเร็วต้น \(v_0\) = <span id="ex1ViVal">10</span> m/s</label
+              >
+              <input
+                id="ex1Vi"
+                type="range"
+                min="0"
+                max="40"
+                step="0.1"
+                value="10.0"
+              />
+            </div>
+
+            <div>
+              <label
+                >ความเร็วสุดท้าย \(v\) =
+                <span id="ex1VfVal">20</span> m/s</label
+              >
+              <input
+                id="ex1Vf"
+                type="range"
+                min="0"
+                max="40"
+                step="1"
+                value="20"
+              />
+            </div>
+          </div>
+
+          <div class="options">
+            <button onclick="playExample1Animation()">▶️ Play</button>
+            <button class="secondary" onclick="resetExample1Animation()">
+              🔄 Reset
+            </button>
+          </div>
+
+          <svg
+            viewBox="0 0 920 300" class="svg-panel svg-panel-spaced"
+          >
+            <defs>
+              <marker
+                id="ex1VelocityArrow"
+                markerWidth="4"
+                markerHeight="4"
+                refX="0"
+                refY="1.5"
+                orient="auto"
+              >
+                <path d="M0,0 L0,3 L4,1.5 z" fill="#2563eb"></path>
+              </marker>
+            </defs>
+
+            <!-- road -->
+            <line
+              x1="80"
+              y1="210"
+              x2="840"
+              y2="210"
+              stroke="#111827"
+              stroke-width="5"
+              stroke-linecap="round"
+            ></line>
+
+            <!-- ticks -->
+            <g id="ex1Ticks"></g>
+
+            <!-- car -->
+            <g id="ex1Car" transform="translate(120,165)">
+              <rect
+                x="0"
+                y="20"
+                width="110"
+                height="38"
+                rx="10"
+                fill="#f59e0b"
+                stroke="#92400e"
+                stroke-width="3"
+              ></rect>
+              <path
+                d="M25 20 L45 0 H78 L98 20 Z"
+                fill="#fde68a"
+                stroke="#92400e"
+                stroke-width="3"
+              ></path>
+              <circle cx="25" cy="62" r="11" fill="#111827"></circle>
+              <circle cx="86" cy="62" r="11" fill="#111827"></circle>
+            </g>
+
+            <!-- velocity arrow -->
+            <line
+              id="ex1VelocityVector"
+              x1="240"
+              y1="150"
+              x2="330"
+              y2="150"
+              stroke="#2563eb"
+              stroke-width="6"
+              marker-end="url(#ex1VelocityArrow)"
+            ></line>
+
+            <text
+              id="ex1VelocityLabel"
+              x="285"
+              y="132"
+              text-anchor="middle"
+              font-size="18"
+              font-weight="700"
+              fill="#1e40af"
+            >
+              v = 10 m/s
+            </text>
+
+            <!-- KE label -->
+            <rect
+              id="ex1KEBox"
+              x="255"
+              y="55"
+              width="260"
+              height="50"
+              rx="14"
+              fill="#eff6ff"
+              stroke="#bfdbfe"
+              stroke-width="2"
+            ></rect>
+
+            <text
+              id="ex1KELabel"
+              x="385"
+              y="87"
+              text-anchor="middle"
+              font-size="20"
+              font-weight="700"
+              fill="#1e3a8a"
+            >
+              KE = 50,000 J
+            </text>
+          </svg>
+
+          <p id="ex1Feedback" class="formula">
+            \[ KE_0 = 50{,}000\ \mathrm{J},\qquad KE = 200{,}000\
+            \mathrm{J},\qquad \Delta KE = 150{,}000\ \mathrm{J} \]
+          </p>
+        </div>
+
+        <p class="lead">
+          จากนิยามนี้ เราจะได้ว่า
+          งานลัพธ์ที่กระทำกับวัตถุจะเท่ากับผลต่างของพลังงานจลน์สุดท้ายลบพลังงานจลน์เริ่มต้น \(W_{total}
+          = KE-KE_0\) หรือ
+        </p>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">\[W_{total} = \Delta KE\]</div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+        <p class="lead">
+          สมการ (3) มีชื่อเรียกว่า <b>ทฤษฎีบทงาน–พลังงาน (Work-Energy Theorem)</b>
+          <br>ทฤษฎีบทนี้เป็นผลลัพธ์ที่ได้พิสูจน์ได้จากกฎการเคลื่อนที่ของนิวตันข้อที่ 2
+          และเป็นการเปลี่ยนมุมการอธิบายปรากฏการณ์ทางฟิสิกส์ จากการใช้แรงและความเร่ง มาเป็นการใช้งานและพลังงานในการอธิบายปรากฏการณ์เหล่านั้นแทน
+        </p>
+        <div class="interaction recap-check">
+          <h3>🎯 ทบทวนท้ายบท: พลังงานจลน์และงานสุทธิ</h3>
+          <p><strong>ข้อ 1 เลือกตอบ:</strong> ถ้างานสุทธิที่กระทำต่อวัตถุเป็นบวก พลังงานจลน์ของวัตถุจะเป็นอย่างไร?</p>
+          <div class="options" data-quiz data-answer="a">
+            <button class="option-btn" data-choice="a">เพิ่มขึ้น</button>
+            <button class="option-btn" data-choice="b">ลดลงเสมอ</button>
+            <button class="option-btn" data-choice="c">คงที่เสมอ</button>
+          </div>
+          <p data-feedback></p>
+          <hr />
+          <div data-text-check data-accept="4|สี่">
+            <p><strong>ข้อ 2 เติมคำ:</strong> ถ้าความเร็วเพิ่มเป็น 2 เท่า พลังงานจลน์เพิ่มเป็นกี่เท่า?</p>
+            <input type="text"/><br><br>
+            <button class="secondary">ตรวจคำตอบ</button>
+            <p data-text-feedback></p>
+          </div>
+          <hr />
+          <p><strong>ข้อ 3 อธิบายสั้น:</strong> \(W_{total}=\Delta KE\) บอกอะไรกับเรา?</p>
+          <button class="secondary" data-reveal>ดูแนวคำตอบ</button>
+          <p data-reveal-answer hidden>
+            งานสุทธิจากแรงทั้งหมดเท่ากับการเปลี่ยนแปลงพลังงานจลน์ของวัตถุ
+          </p>
+        </div>
+      </section>
+
+      <div class="interaction">
+          <h3>ตัวอย่าง: การประยุกต์ใช้ทฤษฎีบทงาน–พลังงาน</h3>
+
+          <p>
+              กล่องมวล 6.0 กิโลกรัม ซึ่งเริ่มต้นจากหยุดนิ่ง
+              ถูกดึงไปทางขวาบนพื้นราบที่ไม่มีแรงเสียดทานด้วยแรงแนวนอนคงที่ขนาด 𝐹=12 N
+              จงหาความเร็วของกล่องหลังจากที่มันเคลื่อนที่ไปในแนวนอนเป็นระยะทาง Δ𝑥=3.0 m
+          </p>
+          <figure class="figure-card ">
+              <img src="asset/week%205/image 3.png" alt="รูปแสดงแผนภาพประกอบตัวอย่าง">
+              <figcaption class="caption">รูปแสดงแผนภาพประกอบตัวอย่าง</figcaption>
+          </figure>
+      </div>
+
+      <section class="lesson" id="summary">
+        <h2>🎯 สรุปท้ายคาบ และ Final Quiz</h2>
+        <p class="lead">
+          ใจหลักของคาบนี้คือ การทำความรู้จักปริมาณฟิสิกส์ใหม่ ได้แก่ งานและพลังงานจลน์ และเปลี่ยนมุมมองในการอธิบาย
+          ปรากฎการณ์ธรรมชาติ จากการใช้แรง ความเร่ง และกฎการเคลื่อนที่ของนิวตันข้อที่ 2 มาเป็นการใช้งาน พลังงานจลน์ และทฤษฎีบทงาน-พลังงาน แทน
+        </p>
+        <div class="grid">
+          <div class="card">
+            <strong>1. การคูณแบบดอท</strong><br />
+            \(\vec A\cdot\vec B=AB\cos\theta\) ใช้หาส่วนของเวกเตอร์หนึ่งที่อยู่ในแนวของอีกเวกเตอร์หนึ่ง
+          </div>
+          <div class="card">
+            <strong>2. งานขึ้นกับแรงในทิศการเคลื่อนที่</strong><br />
+            งานไม่ได้ขึ้นกับขนาดแรงอย่างเดียว แต่ขึ้นกับมุมระหว่างแรงกับการกระจัด:
+            \(W=Fs\cos\theta\)
+          </div>
+          <div class="card">
+            <strong>3. พื้นที่ใต้กราฟ \(F-x\) คือ งาน</strong><br />
+            ถ้าแรงชี้ในแนวเดียวกับการเคลื่อนที่และคงที่ใช้ \(W=F\Delta x\) ถ้าแรงเปลี่ยนตามตำแหน่ง งาน คือ ผลรวมพื้นที่ย่อย หรือ \(W=\int F(x)\,dx\)
+          </div>
+          <div class="card">
+            <strong>4. พลังงานจลน์ขึ้นกับกำลังสองของอัตราเร็ว</strong><br />
+            \(K=\frac12mv^2\) ดังนั้นเมื่อความเร็วเพิ่ม 2 เท่า พลังงานจลน์เพิ่ม 4 เท่า
+          </div>
+          <div class="card">
+            <strong>5. งานสุทธิบอกการเปลี่ยนพลังงานจลน์</strong><br />
+            งานจากแรงทั้งหมดรวมกันเป็น \(W_{total}\) และสัมพันธ์กับพลังงานจลน์ด้วย \(W_{total}=\Delta KE\)
+          </div>
+        </div>
+        <div class="interaction">
+          <h3>🧩 กิจกรรมลากวาง: จับคู่แนวคิดสำคัญ</h3>
+          <p>
+            ลากการ์ดแนวคิดด้านล่างไปวางในช่องความหมายที่ตรงกัน แล้วกดตรวจคำตอบ
+          </p>
+          <div class="drag-items">
+            <span class="drag-item" draggable="true" data-type="angle-work">\(W=Fs\cos\theta\)</span>
+            <span class="drag-item" draggable="true" data-type="area-work">พื้นที่ใต้กราฟ \(F-x\)</span>
+            <span class="drag-item" draggable="true" data-type="kinetic">\(K=\frac12mv^2\)</span>
+            <span class="drag-item" draggable="true" data-type="work-energy">\(W_{total}=\Delta KE\)</span>
+          </div>
+          <div class="dropzone-wrap">
+            <div class="dropzone" data-accept="angle-work">
+              <strong>งานเมื่อแรงทำมุมกับการกระจัด</strong>
+            </div>
+            <div class="dropzone" data-accept="area-work">
+              <strong>งานจากแรงที่เปลี่ยนตามตำแหน่ง</strong>
+            </div>
+            <div class="dropzone" data-accept="kinetic">
+              <strong>พลังงานจากการเคลื่อนที่</strong>
+            </div>
+            <div class="dropzone" data-accept="work-energy">
+              <strong>งานสุทธิกับการเปลี่ยนพลังงานจลน์</strong>
+            </div>
+          </div>
+          <div class="options">
+            <button onclick="checkDropzones(this)">ตรวจคำตอบ</button>
+            <button class="secondary" onclick="resetDropzones(this)">🔄 เริ่มใหม่</button>
+          </div>
+          <p data-feedback></p>
+        </div>
+        <div class="interaction">
+          <h3>✅ Exit Quiz</h3>
+          <p>
+            <strong>ข้อ 1:</strong> ถ้าแรงตั้งฉากกับการกระจัด งานมีค่าเท่าใด?
+          </p>
+          <div class="options" data-quiz data-answer="b">
+            <button class="option-btn" data-choice="a">มากที่สุด</button>
+            <button class="option-btn" data-choice="b">ศูนย์</button>
+            <button class="option-btn" data-choice="c">ติดลบเสมอ</button>
+          </div>
+          <p data-feedback></p>
+          <hr />
+          <p><strong>ข้อ 2:</strong> พื้นที่ใต้กราฟ \(F-x\) หมายถึงอะไร?</p>
+          <div class="options" data-quiz data-answer="c">
+            <button class="option-btn" data-choice="a">มวล</button>
+            <button class="option-btn" data-choice="b">ความเร่ง</button>
+            <button class="option-btn" data-choice="c">งาน</button>
+          </div>
+          <p data-feedback></p>
+          <hr />
+          <p>
+            <strong>ข้อ 3:</strong> ถ้าความเร็วเพิ่มเป็น 2 เท่า
+            พลังงานจลน์เปลี่ยนอย่างไร?
+          </p>
+          <div class="options" data-quiz data-answer="d">
+            <button class="option-btn" data-choice="a">เท่าเดิม</button>
+            <button class="option-btn" data-choice="b">เพิ่ม 2 เท่า</button>
+            <button class="option-btn" data-choice="c">เพิ่ม 3 เท่า</button>
+            <button class="option-btn" data-choice="d">เพิ่ม 4 เท่า</button>
+          </div>
+          <p data-feedback></p>
+        </div>
+      </section>
+    </main>
+
+    <footer>FUNSC115 · Fundamental of Physics for Engineers · Week 5 · Work and Energy</footer>
+  </body>
+</html>

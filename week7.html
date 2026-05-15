@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>สัปดาห์ที่ 7 หน่วยที่ 4 โมเมนตัมและการชน</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/week7.css" />
+    <script src="js/mathjax-config.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <script defer src="script.js"></script>
+    <script defer src="js/week7.js"></script>
+  </head>
+  <body>
+    <svg
+      width="0"
+      height="0"
+      class="svg-defs"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <marker
+          id="w7ArrowBlue"
+          markerWidth="4"
+          markerHeight="4"
+          refX="3.5"
+          refY="2"
+          orient="auto"
+          markerUnits="strokeWidth"
+        >
+          <path d="M0,0 L4,2 L0,4 z" fill="#2563eb" />
+        </marker>
+        <marker
+          id="w7ArrowGreen"
+          markerWidth="4"
+          markerHeight="4"
+          refX="3.5"
+          refY="2"
+          orient="auto"
+          markerUnits="strokeWidth"
+        >
+          <path d="M0,0 L4,2 L0,4 z" fill="#16a34a" />
+        </marker>
+        <marker
+          id="w7ArrowOrange"
+          markerWidth="4"
+          markerHeight="4"
+          refX="3.5"
+          refY="2"
+          orient="auto"
+          markerUnits="strokeWidth"
+        >
+          <path d="M0,0 L4,2 L0,4 z" fill="#f59e0b" />
+        </marker>
+        <marker
+          id="w7ArrowRed"
+          markerWidth="4"
+          markerHeight="4"
+          refX="3.5"
+          refY="2"
+          orient="auto"
+          markerUnits="strokeWidth"
+        >
+          <path d="M0,0 L4,2 L0,4 z" fill="#dc2626" />
+        </marker>
+        <marker
+          id="w7ArrowPurple"
+          markerWidth="4"
+          markerHeight="4"
+          refX="3.5"
+          refY="2"
+          orient="auto"
+          markerUnits="strokeWidth"
+        >
+          <path d="M0,0 L4,2 L0,4 z" fill="#7c3aed" />
+        </marker>
+      </defs>
+    </svg>
+
+    <header>
+      <div class="hero">
+        <h1>สัปดาห์ที่ 7: โมเมนตัมและการชน</h1>
+        <p>
+          เว็บไซต์ประกอบการเรียนการสอนรายวิชา Fundamental of Physics for
+          Engineers (FUNSC115)
+        </p>
+      </div>
+    </header>
+
+    <div class="topbar">
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <nav class="nav" id="nav">
+        <a href="index.html#content-table">🏠 หน้าแรก</a>
+        <a href="#opening">🚀 เปิดคาบ</a>
+        <a href="#momentum">🧭 โมเมนตัม</a>
+        <a href="#conservation1d">⚖️ อนุรักษ์ 1 มิติ</a>
+        <a href="#twod">🧩 อนุรักษ์ 2 มิติ</a>
+        <a href="#general">🔢 หลายอนุภาค</a>
+        <a href="#impulse">💥 การดล</a>
+        <a href="#ImpulseMomentumTheorem">🏌️ทฤษฎีบทการดล-โมเมนตัม</a>
+        <a href="#collision">🚗 การชน</a>
+        <a href="#summary">✅ สรุป</a>
+      </nav>
+    </div>
+
+    <main>
+      <section class="lesson" id="opening">
+        <h2>🚀 เปิดบทเรียน</h2>
+        <p class="lead">
+          สัปดาห์นี้ศึกษาปริมาณที่ช่วยอธิบายการเคลื่อนที่ของระบบอนุภาค ได้แก่
+          โมเมนตัมเชิงเส้น กฎการอนุรักษ์โมเมนตัม การดล และการชนแบบต่าง ๆ
+          โดยเชื่อมโยงจากกฎการเคลื่อนที่ของนิวตันไปสู่สถานการณ์จริง เช่น
+          การยิงธนู กล่องที่ดีดออกจากกัน รถชน และกราฟแรง–เวลา
+        </p>
+        <div class="grid">
+          <div class="card">
+            <strong>🎯 เป้าหมายวันนี้</strong>
+            <ul>
+              <li>อธิบายความหมายของโมเมนตัมและคำนวณโมเมนตัมของวัตถุ</li>
+              <li>ใช้กฎการอนุรักษ์โมเมนตัมในหนึ่งมิติและสองมิติ</li>
+              <li>
+                ตีความการดลจากแรงที่กระทำในช่วงเวลาและพื้นที่ใต้กราฟแรง–เวลา
+              </li>
+              <li>จำแนกการชนแบบยืดหยุ่น ไม่ยืดหยุ่น และไม่ยืดหยุ่นสมบูรณ์</li>
+            </ul>
+          </div>
+          <div class="card">
+            <strong>🗺️ ภาพรวม</strong
+            ><br />เริ่มจากระบบโดดเดี่ยวสองอนุภาคและนิยามโมเมนตัม
+            จากนั้นใช้การอนุรักษ์โมเมนตัมแก้ตัวอย่างหนึ่งมิติ สองมิติ
+            และหลายวัตถุ ต่อด้วยทฤษฎีบทการดล–โมเมนตัม
+            และจบด้วยการชนกับสัมประสิทธิ์การคืนตัว
+          </div>
+          <div class="card">
+            <strong>🧭 วิธีเรียน</strong><br />เรียนผ่านคำถาม ทดลองคิด ทำกิจกรรม
+            และตอบ quiz ระหว่างสอน
+          </div>
+        </div>
+        <div class="interaction">
+          <h3>📊 Poll เปิดคาบ: อะไรทำให้วัตถุหยุดยาก?</h3>
+          <p>
+            ถ้าต้องหยุดวัตถุที่กำลังเคลื่อนที่
+            ปัจจัยใดทำให้วัตถุนั้นหยุดยากขึ้น?
+          </p>
+          <div class="options" data-quiz data-answer="c">
+            <button class="option-btn" data-choice="a">มวลมากเท่านั้น</button>
+            <button class="option-btn" data-choice="b">
+              ความเร็วมากเท่านั้น
+            </button>
+            <button class="option-btn" data-choice="c">
+              ทั้งมวลและความเร็ว
+            </button>
+            <button class="option-btn" data-choice="d">สีของวัตถุ</button>
+          </div>
+          <p data-feedback></p>
+        </div>
+      </section>
+
+      <section class="lesson" id="momentum">
+        <h2>🧭 1. โมเมนตัม</h2>
+        <div class="card">
+          <h3>1.1 พิจารณากฎการเคลื่อนที่ของนิวตันสำหรับระบบโดดเดี่ยว</h3>
+          <div class="grid">
+            <figure class="figure-card">
+              <img
+                src="asset/week%207/Figure-1.png"
+                alt="ภาพแสดงสองวัตถุออกแรงซึ่งกันและกัน"
+              />
+              <figcaption class="caption">
+                ภาพแสดงสองวัตถุออกแรงซึ่งกันและกัน
+              </figcaption>
+            </figure>
+            <p class="lead">
+              ในคาบที่แล้ว เราพิจารณากฎการเคลื่อนที่ของนิวตันข้อที่ 2 ใหม่
+              ซึ่งนำไปสู่แนวคิดของพลังงานและกฎการอนุรักษ์พลังงานกลรวม
+              ในคาบนี้เราจะพิจารณากฎการเคลื่อนที่ของนิวตันข้อที่ 3 ใหม่
+              เพื่อนำไปสู่แนวคิดของปริมาณอนุรักษ์และกฎการอนุรักษ์อื่น
+              โดยเริ่มพิจารณาจากระบบโดดเดี่ยวที่มีเพียงสองอนุภาคซึ่งออกแรงกระทำซึ่งกันและกัน
+              ดังภาพ จากกฎการเคลื่อนที่ข้อที่ 3 ของนิวตัน แรงที่อนุภาค 2
+              กระทำต่ออนุภาค 1 มีขนาดเท่ากันแต่มีทิศตรงข้ามกับแรงที่อนุภาค 1
+              กระทำต่ออนุภาค 2 ดังนั้น เมื่อรวมแรงทั้งสองเข้าด้วยกัน
+              แรงภายในนี้ของระบบจะหักล้างกันพอดี \[\vec F_{12} + \vec F_{21}=0\]
+            </p>
+          </div>
+          <p class="text-muted-sm">
+            <b>หมายเหตุ: </b>
+            <ul>
+              <li><b>ระบบ (System)</b> หมายถึง สิ่งที่กำลังสนใจและพิจารณาอยู่ สิ่งอื่น ๆ จะเรียกว่า <b>สิ่งแวดล้อม (Environment)</b></li>
+              <li><b>แรงภายใน (Internal Force)</b> หมายถึง แรงที่สิ่งที่อยู่ในระบบกระทำกันเอง ส่วน <b>แรงภายนอก (External Force)</b> หมายถึง แรงที่สิ่งแวดล้อมกระทำกับระบบ</li>
+              <li><b>ระบบโดดเดี่ยว (Isolated system)</b> ณ ที่นี้ หมายถึง ระบบที่ไม่มีแรงภายนอกมากระทำกับระบบ</li>
+            </ul>
+          </p>
+
+          <p class="lead">
+            จากกฎการเคลื่อนที่ของนิวตันข้อที่ 2 กรณีที่มีแรงเพียงแรงเดียวกระทำกับวัตถุ \(\vec F = m\frac{d\vec
+            v}{dt}\) และเมื่อพิจารณาเฉพาะกรณีที่มวลคงที่
+            จะพบว่าสมการด้านบนจะเขียนได้เป็น
+          </p>
+          <div class="w7-formula-box">
+            \[\frac{d}{dt}(m_1\vec v_1+m_2\vec v_2)=0\]
+          </div>
+          <p class="lead">
+            ซึ่งหมายความว่าปริมาณในวงเล็บสำหรับระบบนี้จะไม่เปลี่ยนแปลงไปตามเวลา
+            หรือ เป็นปริมาณอนุรักษ์ นั่นเอง เราเรียกปริมาณดังกล่าวว่า
+            <strong>โมเมนตัมรวมของระบบ</strong>
+            ซึ่งเป็นตัวอย่างสำคัญของกฎการอนุรักษ์โมเมนตัม
+          </p>
+        <div class="warning-box">
+          <div class="warning-icon">⚠️</div>
+          <div class="warning-content">
+            <strong>ข้อจำกัดของการพิจารณานี้</strong>
+            <ul>
+              <li>ระบบโดดเดี่ยวที่ประกอบด้วยสองอนุภาคเท่านั้น</li>
+            </ul>
+          </div>
+        </div>
+        </div>
+        <br />
+
+        <div class="card">
+          <h3>1.2 นิยามของโมเมนตัม</h3>
+          <p class="lead">
+            <strong>โมเมนตัม (Momentum)</strong> คือ ปริมาณเวกเตอร์ที่บ่งบอกถึง
+            <strong>ปริมาณการเคลื่อนที่ (quantity of motion)</strong> ของวัตถุ
+            โดยมักใช้สัญลักษณ์ \(\vec p\) แทน โมเมนตัมของวัตถุใด ๆ คำนวณได้จาก
+            มวลคูณกับความเร็วของวัตถุนั้น
+          </p>
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">\[\vec p \equiv m\vec v\]</div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+          <p class="lead">
+            โดยที่ \(m\) คือมวลของวัตถุ และ \(\vec v\) คือความเร็ว
+            ดังนั้นโมเมนตัมจะมีทิศทางเดียวกับความเร็ว แต่อาจมีขนาดที่ต่างกัน
+            ในระบบหน่วย SI โมเมนตัมมีหน่วยเป็น kg·m/s
+          </p>
+        </div>
+        <div class="interaction">
+          <h3>🧮 Momentum Vector Calculator</h3>
+          <div class="grid">
+            <div>
+              <label>มวล \(m\) = <span id="w7MomMassVal">2.0</span> kg</label
+              ><input
+                id="w7MomMass"
+                type="range"
+                min="0.5"
+                max="10"
+                step="0.1"
+                value="2"
+                oninput="updateW7MomentumCalc()"
+              />
+            </div>
+            <div>
+              <label
+                >ความเร็ว \(\vec v\) = <span id="w7MomVelVal">4.0</span> \(\hat{i}\) m/s</label><input
+                id="w7MomVel"
+                type="range"
+                min="-6"
+                max="6"
+                step="0.1"
+                value="4"
+                oninput="updateW7MomentumCalc()"
+              />
+            </div>
+          </div>
+          <p id="w7MomFeedback" class="formula">กำลังคำนวณ...</p>
+          <svg viewBox="0 0 920 270" class="w7-svg">
+            <line
+              x1="110"
+              y1="150"
+              x2="810"
+              y2="150"
+              stroke="#cbd5e1"
+              stroke-width="4"
+            />
+            <line
+              id="w7MomVelArrow"
+              x1="460"
+              y1="150"
+              x2="600"
+              y2="150"
+              stroke="#2563eb"
+              stroke-width="6"
+              marker-end="url(#w7ArrowBlue)"
+            />
+            <line
+              id="w7MomPArrow"
+              x1="460"
+              y1="205"
+              x2="600"
+              y2="205"
+              stroke="#16a34a"
+              stroke-width="7"
+              marker-end="url(#w7ArrowGreen)"
+            />
+            <circle
+              cx="460"
+              cy="150"
+              r="24"
+              fill="#f59e0b"
+              stroke="#92400e"
+              stroke-width="3"
+            />
+            <text
+              id="w7MomVelLabel"
+              x="610"
+              y="138"
+              class="w7-vector-label"
+              fill="#1e40af"
+            >
+              v = 4.00 m/s
+            </text>
+            <text
+              id="w7MomPLabel"
+              x="610"
+              y="225"
+              class="w7-vector-label"
+              fill="#166534"
+            >
+              p = 8.00 kg m/s
+            </text>
+          </svg>
+        </div>
+
+        <div class="card">
+          <h3 id="conservation1d">⚖️ 1.3 กฎการอนุรักษ์โมเมนตัมในหนึ่งมิติ</h3>
+          <div class="grid">
+            <div>
+            <p class="lead">
+              จากการพิจารณาระบบโดดเดี่ยวที่มีสองอนุภาค เราได้ข้อสรุปสำคัญว่า
+              \(\frac{d}{dt}(\vec p_1+\vec p_2)=0\) หรือ 
+              ผลรวมของโมเมนตัมของระบบจะไม่เปลี่ยนแปลงไปตามเวลา กล่าวอีกนัยหนึ่ง คือ 
+              ผลรวมของโมเมนตัมของระบบโดดเดี่ยวสองอนุภาคจะคงที่เสมอ
+              ไม่ว่าจะเกิดอะไรขึ้นระหว่างอนุภาคทั้งสอง ดังนั้น
+              หากพิจารณาสองเหตุการณ์ใด ๆ ที่เกิดขึ้นภายในระบบนี้ และเรียกว่า
+              เหตุการณ์เริ่มต้น (Initial event) และเหตุการณ์สุดท้าย (Final event)
+              จะได้ว่า</p>
+            <div class="card w7-highlight-card"><strong>โมเมนตัมรวม (Total Momentum) ก่อนเหตุการณ์เท่ากับโมเมนตัมรวมหลังเหตุการณ์</strong></div>
+            </div>
+            <figure class="figure-card">
+            <img
+              src="asset/week%207/Figure-2.png"
+              alt="ภาพแสดงวัตถุเคลื่อนที่เป็นเส้นตรงขณะที่มีน้ำหนักกระทำอยู่"
+            />
+            <figcaption class="caption">
+              ภาพแสดงวัตถุเคลื่อนที่เป็นเส้นตรงขณะที่มีน้ำหนักกระทำอยู่
+            </figcaption>
+          </figure>
+          </div>
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">
+                \[\vec p_{1,i}+\vec p_{2,i}=\vec p_{1,f}+\vec p_{2,f}\]
+              </div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+
+          <p class="text-muted-sm">
+            ตัวห้อย \(i\) และ \(f\) บ่งบอกว่าเป็นตัวแปรในสถานะเริ่มต้นและสุดท้าย ตามลำดับ
+          </p>
+
+          <p class="lead">
+            สมมติให้อนุภาคทั้งสองเคลื่อนที่ไปตามแกน x โดยมีมวล \(𝑚_1\) และ \(𝑚_2\)
+            ตามลำดับ กำหนดให้ความเร็วของอนุภาคก่อนเหตุการณ์ คือ \(v_{1,i}\),
+            \(v_{2,i}\) และความเร็วหลังเหตุการณ์ คือ \(v_{1,f}\), \(v_{2,f}\)
+            ดังนั้นจากสมการข้างต้นจะได้ว่า
+          </p>
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">
+                \[m_1v_{1i}+m_2v_{2i}=m_1v_{1f}+m_2v_{2f}\]
+              </div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+
+          <div class="warning-box">
+            <div class="warning-icon">⚠️</div>
+            <div class="warning-content">
+              <strong>ข้อจำกัดของสมการ (3)</strong>
+              <ul>
+                <li>ใช้ได้กับปัญหาสองวัตถุเท่านั้น</li>
+                <li>ต้องไม่มีแรงภายนอกมากระทำกับทั้งสองวัตถุ</li>
+                <li>ต้องเป็นการเคลื่อนที่แบบหนึ่งมิติ</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="interaction">
+            <h3>🎯 ตัวอย่างที่ 1: นักธนูยิงลูกธนู</h3>
+            <div class="grid">
+              <figure class="figure-card figure-wide">
+                <img
+                  src="asset/week%207/Figure-3.png"
+                  alt="ภาพแสดงนักธนูยืนนิ่งอยู่บนพื้นลื่นไร้แรงเสียดทานและถือคันธนู"
+                />
+                <figcaption class="caption">
+                  ภาพแสดงนักธนูยืนนิ่งอยู่บนพื้นลื่นไร้แรงเสียดทานและถือคันธนู
+                </figcaption>
+              </figure>
+              <div class="grid">
+                <div>
+                  <p class="w7-example-text">
+                    นักธนูมวล 55 kg ยืนนิ่งอยู่บนพื้นลื่นไร้แรงเสียดทาน
+                    เขาถือคันธนูมวล 5 kg ที่มีลูกธนูมวล 0.030 kg อยู่
+                    จงหาความเร็วของนักธนูและคันธนูหลังจากยิงลูกธนูนี้ออกไปด้วยความเร็ว
+                    85 m/s
+                  </p>
+                  <div class="options">
+                    <button
+                      type="button"
+                      class="secondary"
+                      aria-expanded="false"
+                      aria-controls="w7Example1Solution"
+                      onclick="toggleW7Solution(this, 'w7Example1Solution')"
+                    >
+                      แสดงเฉลย/วิธีทำ
+                    </button>
+                  </div>
+                </div>
+                <div id="w7Example1Solution" class="w7-solution-box" hidden>
+                  <h4>เฉลยและวิธีทำ</h4>
+                  <p>
+                    กำหนดทิศที่ลูกธนูพุ่งออกไปเป็นทิศบวก
+                    และถือว่าพื้นลื่นไร้แรงเสียดทาน จึงไม่มีแรงภายนอกในแนวราบ
+                    ทำให้โมเมนตัมรวมคงตัว
+                  </p>
+                  <div class="formula">
+                    \[m_1v_{1i}+m_2v_{2i}=m_1v_{1f}+m_2v_{2f}\]
+                  </div>
+                  <div class="formula">
+                    \[0=(m_\mathrm{archer}+m_\mathrm{bow})v+m_\mathrm{arrow}v_\mathrm{arrow}\]
+                  </div>
+                  <p>
+                    แทนค่า \(m_\mathrm{archer}+m_\mathrm{bow}=55+5=60\
+                    \mathrm{kg}\), \(m_\mathrm{arrow}=0.030\ \mathrm{kg}\), และ
+                    \(v_\mathrm{arrow}=85\ \mathrm{m/s}\)
+                  </p>
+                  <div class="formula">\[0=(60)v+(0.030)(85)\]</div>
+                  <div class="formula">
+                    \[v=-\frac{(0.030)(85)}{60}=-0.0425\ \mathrm{m/s}\]
+                  </div>
+                  <p>
+                    <strong>ตอบ:</strong>
+                    นักธนูและคันธนูเคลื่อนที่ถอยหลังด้วยอัตราเร็วประมาณ \(0.043\
+                    \mathrm{m/s}\)
+                    โดยเครื่องหมายลบแสดงว่ามีทิศตรงข้ามกับทิศที่ลูกธนูพุ่งออกไป
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="interaction">
+            <h3>🌀 ตัวอย่างที่ 2: กล่องสองใบกับสปริง</h3>
+            <div class="grid">
+              <figure class="figure-card figure-wide">
+                <img
+                  src="asset/week%207/Figure-4.png"
+                  alt="ภาพประกอบตัวอย่างที่ 2"
+                />
+                <figcaption class="caption">
+                  ภาพประกอบตัวอย่างที่ 2
+                </figcaption>
+              </figure>
+              <div class="grid">
+                <div>
+                  <p class="w7-example-text">
+                    กล่องมวล 𝑚 และ 3𝑚 วางนิ่งอยู่บนพื้นราบเรียบไร้แรงเสียดทาน
+                    กล่องทั้งสองถูกดันเข้าหากันโดยมีสปริงเบากั้นอยู่ระหว่างกลางและรั้งกล่องทั้งสองไว้ด้วยเชือกเบาดังภาพ
+                    หากเชือกถูกตัดขาด แล้วกล่องทั้งสองเคลื่อนที่ออกจากกัน
+                    โดยที่มีกล่องใหญ่เคลื่อนไปทางขวาด้วยความเร็ว 2.00 m/s
+                    จงหาความเร็วของกล่องเล็ก
+                  </p>
+                  <div class="options">
+                    <button
+                      type="button"
+                      class="secondary"
+                      aria-expanded="false"
+                      aria-controls="w7Example2Solution"
+                      onclick="toggleW7Solution(this, 'w7Example2Solution')"
+                    >
+                      แสดงเฉลย/วิธีทำ
+                    </button>
+                  </div>
+                </div>
+                <div id="w7Example2Solution" class="w7-solution-box" hidden>
+                  <h4>เฉลยและวิธีทำ</h4>
+                  <p>
+                    กำหนดทิศไปทางขวาเป็นทิศบวก ระบบเริ่มจากหยุดนิ่ง
+                    และพื้นราบเรียบไร้แรงเสียดทาน จึงไม่มีแรงภายนอกในแนวราบ
+                    โมเมนตัมรวมก่อนและหลังตัดเชือกจึงเท่ากัน
+                  </p>
+                  <div class="formula">
+                    \[m_1v_{1i}+m_2v_{2i}=m_1v_{1f}+m_2v_{2f}\]
+                  </div>
+                  <div class="formula">
+                    \[0=mv_\mathrm{small}+3m v_\mathrm{big}\]
+                  </div>
+                  <p>
+                    กล่องใหญ่เคลื่อนไปทางขวา ดังนั้น \(v_\mathrm{big}=+2.00\
+                    \mathrm{m/s}\)
+                  </p>
+                  <div class="formula">\[0=mv_\mathrm{small}+3m(2.00)\]</div>
+                  <div class="formula">
+                    \[v_\mathrm{small}=-6.00\ \mathrm{m/s}\]
+                  </div>
+                  <p>
+                    <strong>ตอบ:</strong>
+                    กล่องเล็กเคลื่อนที่ไปทางซ้ายด้วยอัตราเร็ว \(6.00\
+                    \mathrm{m/s}\) โดยเครื่องหมายลบแสดงว่าทิศตรงข้ามกับกล่องใหญ่
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><br>
+
+        <div class="card">
+          <h3 id="twod">🧩 1.4 กฎการอนุรักษ์โมเมนตัมในสองมิติ</h3>
+          <p class="lead">
+            สำหรับระบบโดดเดี่ยวที่มีอนุภาคสองตัวและการเคลื่อนที่เกิดขึ้นในสองมิติ
+            ความสัมพันธ์ทางคณิตศาสตร์สามารถเขียนใหม่ได้โดยแยกองค์ประกอบตามแกน
+            \(x\)และแกน \(y\) สมมติให้อนุภาคทั้งสองเคลื่อนที่ไปในระนาบ \(xy\)
+            โดยมีมวล \(m_1\) และ \(m_2\) ตามลำดับ
+          </p>
+          <div class="grid">
+            <figure class="figure-card figure-wide">
+              <img
+                src="asset/week%207/Figure-5.png"
+                alt="ภาพแสดงสองวัตถุออกแรงกระทำซึ่งกันและกันในสองมิติ"
+              />
+              <figcaption class="caption">
+                ภาพแสดงสองวัตถุออกแรงกระทำซึ่งกันและกันในสองมิติ
+              </figcaption>
+            </figure>
+            <p class="lead">
+              จากสมการ (2) จะได้ว่า \[m_1 \vec v_{1,i}+ m_2 \vec v_{2,i}=m_1 \vec
+              v_{1,f}+ m_2 \vec v_{2,f}\] หรือ \[m_1
+              (v_{1x,i}\hat{i}+v_{1y,i}\hat{j}) + m_2
+              (v_{2x,i}\hat{i}+v_{2y,i}\hat{j})\] \[=m_1
+              (v_{1x,f}\hat{i}+v_{1y,f}\hat{j}) + m_2
+              (v_{2x,f}\hat{i}+v_{2y,f}\hat{j})\]
+              เมื่อกระจายมวลเข้าไปในแต่ละวงเล็บและจัดรูปให้องค์ประกอบเดียวกันอยู่ด้วยกัน
+              จะได้ว่าองค์ประกอบแต่ละแกนต้องเท่ากัน กล่าวคือ
+              ผลรวมขององค์ประกอบโมเมนตัมแต่ละแกนจะมีค่าคงที่เสมอ
+            </p>
+          </div>
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="card">
+                <strong>แกน x</strong>
+                <div class="formula w7-axis-formula">
+                  \[m_1 v_{1x,i} + m_2 v_{2x,i} =m_1 v_{1x,f} + m_2 v_{2x,f} \]
+                </div>
+              </div>
+              <p>&nbsp;</p>
+              <div class="card">
+                <strong>แกน y</strong>
+                <div class="formula w7-axis-formula">
+                  \[m_1 v_{1y,i} + m_2 v_{2y,i} =m_1 v_{1y,f} + m_2 v_{2y,f} \]
+                </div>
+              </div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+
+          <div class="warning-box">
+            <div class="warning-icon">⚠️</div>
+            <div class="warning-content">
+              <strong>ข้อจำกัดของสมการ (4)</strong>
+              <ul>
+                <li>ใช้ได้กับปัญหาสองวัตถุเท่านั้น</li>
+                <li>ต้องไม่มีแรงภายนอกมากระทำกับทั้งสองวัตถุ</li>
+                <li>ต้องเป็นการเคลื่อนที่แบบน้อยกว่าหรือเท่ากับสองมิติ</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="interaction">
+            <h3>🚗 ตัวอย่างที่ 3: รถยนต์ชนรถบรรทุกที่สี่แยก</h3>
+            <div class="grid">
+              <figure class="figure-card figure-wide">
+                <img
+                  src="asset/week%207/Figure-6.png"
+                  alt="ภาพแสดงรถสองคันชนกัน"
+                />
+                <figcaption class="caption">
+                  ภาพแสดงรถสองคันชนกัน
+                </figcaption>
+              </figure>
+              <div>
+                <p class="w7-example-text">
+                  รถยนต์มวล 1500 kg กำลังเคลื่อนที่ไปทางตะวันออกด้วยความเร็ว 25.0
+                  m/s ชนกับรถบรรทุกมวล 2500 kg
+                  ที่กำลังเคลื่อนที่ไปทางเหนือด้วยความเร็ว 20.0 m/s
+                  ที่สี่แยกตามภาพที่กำหนด
+                  จงหาทิศทางและขนาดของความเร็วของซากรถหลังการชนทันที
+                  โดยสมมติว่ารถทั้งสองติดกันหลังชน
+                </p>
+                <div class="options">
+                  <button
+                    type="button"
+                    class="secondary"
+                    aria-expanded="false"
+                    aria-controls="w7Example3Solution"
+                    onclick="toggleW7Solution(this, 'w7Example3Solution')"
+                  >
+                    แสดงเฉลย/วิธีทำ
+                  </button>
+                </div>
+                <div id="w7Example3Solution" class="w7-solution-box" hidden>
+                  <h4>เฉลยและวิธีทำ</h4>
+                  <p>
+                    กำหนดแกน \(x\) ไปทางตะวันออก และแกน \(y\) ไปทางเหนือ
+                    ใช้กฎการอนุรักษ์โมเมนตัมแยกตามแกน
+                  </p>
+                  <p>
+                    พิจารณาแกน \(x\): รถยนต์เท่านั้นที่มีโมเมนตัมในแนวตะวันออก
+                  </p>
+                  <div class="formula">
+                    \[v_{x,f}=\frac{m_1v_{1x,i}}{m_1+m_2}=\frac{(1500)(25.0)}{1500+2500}=9.38\
+                    \mathrm{m/s}\]
+                  </div>
+                  <p>พิจารณาแกน \(y\): รถบรรทุกเท่านั้นที่มีโมเมนตัมในแนวเหนือ</p>
+                  <div class="formula">
+                    \[v_{y,f}=\frac{m_2v_{2y,i}}{m_1+m_2}=\frac{(2500)(20.0)}{1500+2500}=12.50\
+                    \mathrm{m/s}\]
+                  </div>
+                  <p>หาขนาดของความเร็วลัพธ์จากองค์ประกอบทั้งสองแกน</p>
+                  <div class="formula">
+                    \[v_f=\sqrt{v_{x,f}^2+v_{y,f}^2}=\sqrt{(9.38)^2+(12.50)^2}=15.63\
+                    \mathrm{m/s}\]
+                  </div>
+                  <p>หาทิศทางของความเร็วลัพธ์วัดจากทิศตะวันออกไปทางเหนือ</p>
+                  <div class="formula">
+                    \[\theta=\tan^{-1}\left(\frac{v_{y,f}}{v_{x,f}}\right)=\tan^{-1}\left(\frac{12.50}{9.38}\right)=53.1^\circ\]
+                  </div>
+                  <p>
+                    <strong>ตอบ:</strong> ซากรถเคลื่อนที่ด้วยอัตราเร็วประมาณ
+                    \(15.63\ \mathrm{m/s}\) ในทิศ \(53.1^\circ\) เหนือทิศตะวันออก
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><br>
+
+        <div class="card">
+          <h3 id="general">🔢 1.5 กฎการอนุรักษ์โมเมนตัม</h3>
+          <p class="lead">
+            เราสามารถแสดงได้ว่า เมื่อพิจารณาระบบที่ประกอบด้วยอนุภาคจำนวน \(N\) ตัว
+            หากแรงลัพธ์ภายนอกที่กระทำต่อระบบมีค่าเท่ากับศูนย์
+            โมเมนตัมรวมของระบบจะคงที่เสมอ กล่าวอีกนัยหนึ่ง สำหรับสองเหตุการณ์ใด ๆ
+            ที่เกิดขึ้นภายในระบบ ซึ่งระหว่างสองเหตุการณ์นี้แรงลัพธ์ภายนอกเป็นศูนย์
+            จะได้ว่า
+            โมเมนตัมรวมก่อนเกิดเหตุการณ์มีค่าเท่ากับโมเมนตัมรวมหลังเกิดเหตุการณ์
+          </p>
+          <div class="w7-formula-box">
+            \[\left(\sum_{n=1}^{N}{\vec{p}}_n\right)_i=\left(\sum_{n=1}^{N}{\vec{p}}_n\right)_f\]
+          </div>
+
+          <div class="warning-box">
+            <div class="warning-icon">⚠️</div>
+            <div class="warning-content">
+              <strong>ข้อจำกัดของสมการ (4)</strong>
+              <ul>
+                <li><del>ใช้ได้กับปัญหาสองวัตถุเท่านั้น</del></li>
+                <li>ต้องไม่มีแรงภายนอกมากระทำ<del>กับทั้งสองวัตถุ</del></li>
+                <li><del>ต้องเป็นการเคลื่อนที่แบบน้อยกว่าหรือเท่ากับสองมิติ</del></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="interaction" id="impulse-graph">
+            <h3>📦 ตัวอย่างที่ 4: กล่องสามใบชนแล้วติดกัน</h3>
+            <p class="w7-example-text">
+              กล่องสามใบเคลื่อนที่บนรางแนวนอนที่ไม่มีแรงเสียดทาน
+              โดยกล่องบางใบเคลื่อนที่ไปทางขวาและบางใบเคลื่อนที่ไปทางซ้าย
+              ตัวเชื่อมแบบตีนตุ๊กแกทำให้กล่องติดกันหลังการชนกัน
+            </p>
+            <div class="grid">
+              <div>
+                <label>\(m_1 =\) <span id="w7MObj1Val">2.0</span> kg</label
+                ><input
+                  id="w7MObj1"
+                  type="range"
+                  min="0.5"
+                  max="10"
+                  step="0.5"
+                  value="2"
+                  oninput="updateW7MultiObject()"
+                />
+              </div>
+              <div>
+                <label>\(v_{1x,i} =\) <span id="w7VObj1Val">4.0</span> m/s</label
+                ><input
+                  id="w7VObj1"
+                  type="range"
+                  min="0"
+                  max="8"
+                  step="0.5"
+                  value="4"
+                  oninput="updateW7MultiObject()"
+                />
+              </div>
+            </div>
+            <div class="grid">
+              <div>
+                <label>\(m_2 =\) <span id="w7MObj2Val">3.0</span> kg</label
+                ><input
+                  id="w7MObj2"
+                  type="range"
+                  min="0.5"
+                  max="10"
+                  step="0.5"
+                  value="3"
+                  oninput="updateW7MultiObject()"
+                />
+              </div>
+              <div>
+                <label>\(v_{2x,i} =\) <span id="w7VObj2Val">2.0</span> m/s</label
+                ><input
+                  id="w7VObj2"
+                  type="range"
+                  min="0"
+                  max="8"
+                  step="0.5"
+                  value="2"
+                  oninput="updateW7MultiObject()"
+                />
+              </div>
+            </div>
+            <div class="grid">
+              <div>
+                <label>\(m_3 =\) <span id="w7MObj3Val">5.0</span> kg</label
+                ><input
+                  id="w7MObj3"
+                  type="range"
+                  min="0.5"
+                  max="10"
+                  step="0.5"
+                  value="5"
+                  oninput="updateW7MultiObject()"
+                />
+              </div>
+              <div>
+                <label>\(v_{3x,i} =\) <span id="w7VObj3Val">-1.0</span> m/s</label
+                ><input
+                  id="w7VObj3"
+                  type="range"
+                  min="-8"
+                  max="0"
+                  step="0.5"
+                  value="-1"
+                  oninput="updateW7MultiObject()"
+                />
+              </div>
+            </div>
+            <div class="w7-mini-controls">
+              <button type="button" onclick="w7PlayMultiAnimation()">
+                เล่น Animation
+              </button>
+              <button
+                type="button"
+                class="secondary"
+                onclick="w7PauseMultiAnimation()"
+              >
+                หยุดชั่วคราว
+              </button>
+              <button
+                type="button"
+                class="secondary"
+                onclick="w7ResetMultiAnimation()"
+              >
+                เริ่มใหม่
+              </button>
+            </div>
+            <div class="grid">
+              <div>
+                <svg
+                  viewBox="0 0 920 320"
+                  class="w7-svg w7-multi-scene"
+                  role="img"
+                  aria-labelledby="w7MultiAnimTitle w7MultiAnimDesc"
+                >
+                  <title id="w7MultiAnimTitle">
+                    Animation กล่องสามใบชนแล้วติดกัน
+                  </title>
+                  <desc id="w7MultiAnimDesc">
+                    กล่องสามใบเคลื่อนที่เข้าหากันบนรางไร้แรงเสียดทาน ชนแล้วติดกัน
+                    จากนั้นเคลื่อนที่ต่อด้วยความเร็วสุดท้ายร่วมกัน
+                  </desc>
+                  <line x1="80" y1="218" x2="840" y2="218" class="w7-track" />
+                  <g id="w7MultiArrow1" class="w7-motion-arrow">
+                    <line y1="108" y2="108" marker-end="url(#w7ArrowBlue)" />
+                    <text y="96"></text>
+                  </g>
+                  <g id="w7MultiArrow2" class="w7-motion-arrow">
+                    <line y1="108" y2="108" marker-end="url(#w7ArrowGreen)" />
+                    <text y="96"></text>
+                  </g>
+                  <g id="w7MultiArrow3" class="w7-motion-arrow">
+                    <line y1="108" y2="108" marker-end="url(#w7ArrowOrange)" />
+                    <text y="96"></text>
+                  </g>
+                  <g id="w7MultiFinalArrow" class="w7-motion-arrow w7-final-arrow">
+                    <line y1="260" y2="260" marker-end="url(#w7ArrowPurple)" />
+                    <text y="286"></text>
+                  </g>
+                  <g id="w7Box1" class="w7-box w7-box-one">
+                    <rect rx="8" />
+                    <text text-anchor="middle"></text>
+                  </g>
+                  <g id="w7Box2" class="w7-box w7-box-two">
+                    <rect rx="8" />
+                    <text text-anchor="middle"></text>
+                  </g>
+                  <g id="w7Box3" class="w7-box w7-box-three">
+                    <rect rx="8" />
+                    <text text-anchor="middle"></text>
+                  </g>
+                  <text
+                    id="w7MultiAnimStatus"
+                    x="460"
+                    y="30"
+                    text-anchor="middle"
+                    class="w7-scene-label"
+                  >
+                    ก่อนชน: กล่องแต่ละใบมีโมเมนตัมของตัวเอง
+                  </text>
+                </svg><p class="text-muted-sm">การสาธิตนี้ยังมีข้อบกพร่องในหลายกรณี</p>
+              </div>
+              <p id="w7MultiFeedback" class="formula">กำลังคำนวณ...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="lesson-bridge">
+        <strong>🔗 เชื่อมโยง</strong>
+        <p>
+          ในหัวข้อก่อนหน้า เราศึกษาโมเมนตัมของระบบเมื่อแรงภายนอกเป็นศูนย์
+          ต่อไปจะพิจารณาว่าถ้ามีแรงภายนอกกระทำในช่วงเวลาหนึ่ง
+          โมเมนตัมของวัตถุเปลี่ยนไปอย่างไร
+        </p>
+      </div>
+
+      <section class="lesson" id="impulse">
+        <h2>💥 2. ทฤษฎีบทการดลและโมเมนตัม</h2>
+        <div class="card">
+          <h3>
+            2.1 จากกฎการเคลื่อนที่ของนิวตันข้อที่ 2 สู่นิยามของการดล
+            (สำหรับแรงคงที่)
+          </h3>
+          <div class="grid">
+            <figure class="figure-card">
+              <img
+                src="asset/week%207/Figure-7.png"
+                alt="ภาพแสดงแรงคงที่กระทำกับวัตถุที่เคลื่อนที่เป็นเส้นตรง ในช่วงเวลาหนึ่ง"
+              />
+              <figcaption class="caption">
+                ภาพแสดงแรงคงที่กระทำกับวัตถุที่เคลื่อนที่เป็นเส้นตรง ในช่วงเวลาหนึ่ง
+              </figcaption>
+            </figure>
+            <p class="lead">
+              พิจารณากฎการเคลื่อนที่ข้อที่ 2 ของนิวตันอีกครั้ง โดยพิจารณากรณีพิเศษ
+              คือ
+              ระบบมีเพียงหนึ่งอนุภาคและมีแรงคงที่เพียงแรงเดียวที่กระทำกับอนุภาค
+              ทำให้วัตถุเคลื่อนที่ด้วยความเร่งคงที่ \(\vec F=m\frac{\Delta \vec
+              v}{\Delta t}\) เมื่อจัดรูปสมการใหม่
+              จะได้ว่าผลคูณระหว่างแรงกับช่วงเวลาเท่ากับการเปลี่ยนแปลงโมเมนตัมของอนุภาค
+            \[\vec F \Delta t = \Delta \vec p\]
+              ด้านขวาของสมการนี้คือการเปลี่ยนแปลงโมเมนตัมของอนุภาค
+              จากการถูกแรงกระทำระหว่างเวลาเริ่มต้นและเวลาสุดท้าย
+              ส่วนด้านซ้ายของสมการ คือ สิ่งที่เรียกว่า การดล
+              สำหรับกรณีแรงคงที่ สำหรับกรณีที่แรงไม่คงที่จะพิจารณาในบทต่อไป
+            </p>
+          </div>
+        </div>
+        <br>
+
+        <div class="card">
+          <h3>2.2 นิยามของการดล (สำหรับกรณีทั่วไป)</h3>
+          <div class="grid">
+            <figure class="figure-card figure-wide">
+              <img
+                src="asset/week%207/Figure-8.png"
+                alt="ภาพแสดงแรงไม่คงที่กระทำต่อวัตถุในช่วงเวลาหนึ่ง"
+              />
+              <figcaption class="caption">
+                ภาพแสดงแรงไม่คงที่กระทำต่อวัตถุในช่วงเวลาหนึ่ง
+              </figcaption>
+            </figure>
+            <div>
+              <p class="lead">
+                พิจารณากฎการเคลื่อนที่ของนิวตันข้อที่ 2
+                กรณีแรงไม่คงที่กระทำกับอนุภาค
+                จากนิยามทั่วไปของความเร่ง \(\vec a = \frac{d \vec v}{dt}\) ดังนั้น
+                \(\vec F = m\frac{d \vec v}{dt}\) ทำการอินทิเกรตทั้งสองข้างของสมการ
+                จะได้ว่า
+                \(\int\nolimits_{t_i}^{t_f}{\vec{F}\left(t\right)dt}=m\left({\vec{v}}_f-{\vec{v}}_i\right)\)
+                หรือ
+              </p>
+              <div class="equation-card">
+                <div class="equation-wrapper">
+                  <div class="equation">
+                    \[\int\nolimits_{t_i}^{t_f}{\vec{F}\left(t\right)dt}=\Delta \vec
+                    p \]
+                  </div>
+                  <div class="equation-label"></div>
+                </div>
+              </div>
+              <p class="lead">
+                ด้านขวาของสมการนี้ ยังคงเท่ากับ การเปลี่ยนแปลงโมเมนตัมของอนุภาค
+                จากการถูกแรงไม่คงที่กระทำระหว่าง \(𝑡_𝑖\) และ \(𝑡_𝑓\)
+                ด้านซ้ายเป็นรูปทั่วไปของนิยามการดลสำหรับแรงไม่คงที่ใด ๆ
+                ที่กระทำกับวัตถุระหว่าง \(𝑡_𝑖\) และ \(𝑡_𝑓\)
+              </p>
+            </div>
+          </div>
+          <p class="lead">
+            ในทางฟิสิกส์ <b>การดล (Impulse)</b>
+            เป็นปริมาณเวกเตอร์ที่ใช้บ่งบอกถึงผลของแรงหนึ่ง ๆ
+            ที่กระทำต่อวัตถุในช่วงเวลาหนึ่ง เช่น ระหว่างเวลา \(𝑡_𝑖\) ถึง \(𝑡_𝑓\)
+            ซึ่งมักจะแทนการดลด้วยสัญลักษณ์ \(\vec I\) และสามารถคำนวณได้จาก
+          </p>
+          <div class="w7-formula-box">
+            \[\vec{I}=\int\nolimits_{t_i}^{t_f}{\vec{F}\left(t\right)dt}\]
+          </div>
+          <p class="lead">
+            ในระบบหน่วย SI หน่วยของการดลคือ N.s <br>สำหรับกรณีที่แรงคงที่ ความสัมพันธ์นี้จะลดรูปเหลือเพียง
+            แรงคูณด้วยช่วงเวลา
+          </p>
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">
+                \[\vec{I}=\vec{F}\left(t_f-t_i\right)\]
+              </div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+        </div>
+        <br />
+
+        <div class="card">
+          <h3>2.3 การดลสำหรับหนึ่งมิติ</h3>
+          <p class="lead">
+            สำหรับปัญหาแบบหนึ่งมิติ
+            ขนาดของการดลสามารถคำนวณได้จากพื้นที่ใต้กราฟของแรงในช่วงเวลาที่สนใจ
+          </p>
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">\[I=Area\]</div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+          <p class="lead">
+            จากทฤษฎีบทของแคลคูลัส
+            ขนาดของการดลยังสามารถเขียนได้เป็นผลคูณระหว่างค่าแรงเฉลี่ยกับช่วงเวลา
+            ส่วนทิศทางของการดลจะมีทิศเดียวกันกับทิศของแรงเฉลี่ย
+          </p>
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">\[\vec 𝐼=\vec 𝐹_{avg} Δt\]</div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+        </div>
+        <br />
+
+        <div class="interaction">
+          <h3>📊 Interactive activity: แรงไม่คงที่แบบ Normal curve</h3>
+          <p>
+            ปรับรูปร่างของแรง
+            \(F(t)=F_{max}e^{-\frac{1}{2}\left(\frac{t-\mu}{\sigma}\right)^2}\)
+            แล้วสังเกตพื้นที่ใต้กราฟซึ่งเท่ากับการดล และเส้นแรงเฉลี่ย
+            \(F_{avg}=I/\Delta t\)
+          </p>
+          <div class="grid">
+            <div>
+              <label
+                >แรงสูงสุด \(F_{max}\) =
+                <span id="w7GPeakVal">100</span> N</label
+              ><input
+                id="w7GPeak"
+                type="range"
+                min="20"
+                max="180"
+                step="1"
+                value="100"
+                oninput="updateW7ImpulseGraph()"
+              />
+            </div>
+            <div>
+              <label
+                >เวลาที่แรงมากสุด \(\mu\) =
+                <span id="w7GMuVal">3.0</span> s</label
+              ><input
+                id="w7GMu"
+                type="range"
+                min="0.5"
+                max="5.5"
+                step="0.1"
+                value="3"
+                oninput="updateW7ImpulseGraph()"
+              />
+            </div>
+          </div>
+          <div class="grid">
+            <div>
+              <label
+                >ความกว้างของกราฟ \(\sigma\) =
+                <span id="w7GSigmaVal">0.80</span> s</label
+              ><input
+                id="w7GSigma"
+                type="range"
+                min="0.25"
+                max="1.8"
+                step="0.05"
+                value="0.8"
+                oninput="updateW7ImpulseGraph()"
+              />
+            </div>
+            <div>
+              <label
+                >ช่วงเวลา \(\Delta t\) =
+                <span id="w7GDurationVal">6.0</span> s</label
+              ><input
+                id="w7GDuration"
+                type="range"
+                min="2"
+                max="8"
+                step="0.1"
+                value="6"
+                oninput="updateW7ImpulseGraph()"
+              />
+            </div>
+          </div>
+          <div class="w7-readout">
+            <div class="w7-pill">
+              พื้นที่ใต้กราฟ การดล \(I\) =
+              <span id="w7GraphImpulseVal">0.00</span> N·s
+            </div>
+            <div class="w7-pill">
+              แรงเฉลี่ย \(F_{avg}=I/\Delta t\) =
+              <span id="w7GraphAvgVal">0.00</span> N
+            </div>
+            <div class="w7-pill">
+              พื้นที่สี่เหลี่ยม \(F_{avg}\Delta t\) =
+              <span id="w7GraphRectVal">0.00</span> N·s
+            </div>
+          </div>
+          <svg
+            viewBox="0 0 920 430"
+            class="w7-svg w7-normal-graph"
+            role="img"
+            aria-labelledby="w7NormalGraphTitle"
+          >
+            <title id="w7NormalGraphTitle">
+              กราฟแรงไม่คงที่กับเวลาและเส้นแรงเฉลี่ย
+            </title>
+            <line
+              x1="110"
+              y1="330"
+              x2="840"
+              y2="330"
+              stroke="#111827"
+              stroke-width="3"
+            />
+            <line
+              x1="110"
+              y1="330"
+              x2="110"
+              y2="50"
+              stroke="#111827"
+              stroke-width="3"
+            />
+            <g class="w7-grid-lines">
+              <line x1="110" y1="260" x2="840" y2="260" />
+              <line x1="110" y1="190" x2="840" y2="190" />
+              <line x1="110" y1="120" x2="840" y2="120" />
+              <line x1="292.5" y1="330" x2="292.5" y2="50" />
+              <line x1="475" y1="330" x2="475" y2="50" />
+              <line x1="657.5" y1="330" x2="657.5" y2="50" />
+            </g>
+            <text x="850" y="335" class="w7-axis-label">t (s)</text>
+            <text x="78" y="46" class="w7-axis-label">F (N)</text>
+            <path id="w7NormalAvgArea" d="" fill="#fef3c7" opacity=".72" />
+            <path id="w7NormalArea" d="" fill="#dbeafe" opacity=".82" />
+            <path
+              id="w7NormalCurve"
+              d=""
+              fill="none"
+              stroke="#dc2626"
+              stroke-width="5"
+              stroke-linecap="round"
+            />
+            <line
+              id="w7NormalAvgLine"
+              x1="110"
+              y1="260"
+              x2="840"
+              y2="260"
+              stroke="#16a34a"
+              stroke-width="4"
+              stroke-dasharray="10 8"
+            />
+            <line
+              id="w7NormalMuLine"
+              x1="475"
+              y1="330"
+              x2="475"
+              y2="50"
+              stroke="#7c3aed"
+              stroke-width="3"
+              stroke-dasharray="6 8"
+            />
+            <text id="w7NormalPeakLabel" x="520" y="96" class="w7-graph-label">
+              Fmax
+            </text>
+            <text
+              id="w7NormalAvgLabel"
+              x="650"
+              y="252"
+              class="w7-graph-label w7-avg-label"
+            >
+              Favg
+            </text>
+            <text id="w7NormalTimeLabel" x="475" y="365" class="w7-graph-label">
+              0 ถึง 6.0 s
+            </text>
+          </svg>
+        </div>
+
+        <div class="card" id="ImpulseMomentumTheorem">
+          <h3>2.4 ทฤษฎีบทการดลและโมเมนตัม</h3>
+          <p class="lead">
+            จากการพิจารณาก่อนหน้านี้และสมการ (5) พบว่า
+            สำหรับกรณีที่มีแรงเพียงแรงเดียวกระทำต่อวัตถุหนึ่งชิ้น
+            การดลจะมีค่าเท่ากับการเปลี่ยนแปลงของโมเมนตัมเสมอ กฎนี้เรียกว่า
+            ทฤษฎีการดล-โมเมนตัม (สำหรับกรณีแรงเดียวกระทำต่อวัตถุหนึ่งชิ้น)
+          </p>
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">\[\vec I=\Delta\vec p\]</div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <div class="warning-icon">⚠️</div>
+          <div class="warning-content">
+            <strong>ข้อจำกัดของสมการ (9)</strong>
+            <ul>
+              <li>มีการดลจากแรงเพียงแรงเดียว</li>
+              <li>มีวัตถุเพียงหนึ่งวัตถุ</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="interaction" id="w7Stepper">
+          <h3>🧩 ตัวอย่างที่ 5: กราฟแรงกับเวลา</h3>
+          <p id="w7Example5Prompt">กำลังสร้างโจทย์...</p>
+          <div class="grid">
+            <div>
+              <label>มวล \(m\) = <span id="w7Ex5MassVal">2.50</span> kg</label
+              ><input
+                id="w7Ex5Mass"
+                type="range"
+                min="0.5"
+                max="8"
+                step="0.1"
+                value="2.5"
+                oninput="updateW7Example5()"
+              />
+            </div>
+            <div>
+              <label
+                >ความเร็วต้น \(v_i\) =
+                <span id="w7Ex5ViVal">3.00</span> m/s</label
+              ><input
+                id="w7Ex5Vi"
+                type="range"
+                min="-10"
+                max="15"
+                step="0.5"
+                value="3"
+                oninput="updateW7Example5()"
+              />
+            </div>
+            <div>
+              <label
+                >ช่วงเวลา \(\Delta t\) =
+                <span id="w7Ex5DtVal">5.00</span> s</label
+              ><input
+                id="w7Ex5Dt"
+                type="range"
+                min="1"
+                max="8"
+                step="0.25"
+                value="5"
+                oninput="updateW7Example5()"
+              />
+            </div>
+            <div>
+              <label
+                >แรงที่ \(t=0\), \(F_1\) =
+                <span id="w7Ex5F1Val">40</span> N</label
+              ><input
+                id="w7Ex5F1"
+                type="range"
+                min="0"
+                max="150"
+                step="5"
+                value="40"
+                oninput="updateW7Example5()"
+              />
+            </div>
+            <div>
+              <label
+                >แรงที่ \(t=\Delta t\), \(F_2\) =
+                <span id="w7Ex5F2Val">100</span> N</label
+              ><input
+                id="w7Ex5F2"
+                type="range"
+                min="0"
+                max="180"
+                step="5"
+                value="100"
+                oninput="updateW7Example5()"
+              />
+            </div>
+          </div>
+          <svg
+            viewBox="0 0 920 400"
+            class="w7-svg w7-trapezoid-graph"
+            role="img"
+            aria-labelledby="w7Ex5GraphTitle"
+          >
+            <title id="w7Ex5GraphTitle">
+              กราฟแรงกับเวลาแบบสี่เหลี่ยมคางหมูสำหรับตัวอย่างที่ 5
+            </title>
+            <line
+              x1="110"
+              y1="310"
+              x2="840"
+              y2="310"
+              stroke="#111827"
+              stroke-width="3"
+            />
+            <line
+              x1="110"
+              y1="310"
+              x2="110"
+              y2="50"
+              stroke="#111827"
+              stroke-width="3"
+            />
+            <g class="w7-grid-lines">
+              <line x1="110" y1="250" x2="840" y2="250" />
+              <line x1="110" y1="190" x2="840" y2="190" />
+              <line x1="110" y1="130" x2="840" y2="130" />
+              <line x1="292.5" y1="310" x2="292.5" y2="50" />
+              <line x1="475" y1="310" x2="475" y2="50" />
+              <line x1="657.5" y1="310" x2="657.5" y2="50" />
+            </g>
+            <text x="850" y="315" class="w7-axis-label">t (s)</text>
+            <text x="78" y="46" class="w7-axis-label">F (N)</text>
+            <polygon
+              id="w7Ex5Area"
+              points=""
+              fill="#dbeafe"
+              stroke="#2563eb"
+              stroke-width="3"
+              opacity=".86"
+            />
+            <polyline
+              id="w7Ex5TopLine"
+              points=""
+              fill="none"
+              stroke="#dc2626"
+              stroke-width="5"
+              stroke-linecap="round"
+            />
+            <line
+              id="w7Ex5AvgLine"
+              x1="110"
+              y1="210"
+              x2="840"
+              y2="210"
+              stroke="#16a34a"
+              stroke-width="4"
+              stroke-dasharray="10 8"
+            />
+            <text id="w7Ex5F1Label" x="130" y="170" class="w7-graph-label">
+              F1
+            </text>
+            <text id="w7Ex5F2Label" x="700" y="110" class="w7-graph-label">
+              F2
+            </text>
+            <text
+              id="w7Ex5AvgLabel"
+              x="610"
+              y="205"
+              class="w7-graph-label w7-avg-label"
+            >
+              Favg
+            </text>
+            <text id="w7Ex5DtLabel" x="430" y="350" class="w7-graph-label">
+              Δt
+            </text>
+          </svg>
+          <div class="options">
+            <button
+              type="button"
+              class="secondary"
+              aria-expanded="false"
+              aria-controls="w7Example5Solution"
+              onclick="toggleW7Solution(this, 'w7Example5Solution')"
+            >
+              แสดงเฉลย/วิธีทำ
+            </button>
+          </div>
+          <div id="w7Example5Solution" class="w7-solution-box" hidden>
+            <h4>เฉลยและวิธีทำ</h4>
+            <p id="w7Ex5SolutionText">กำลังคำนวณ...</p>
+            <div id="w7Ex5SolutionMath" class="formula"></div>
+          </div>
+        </div>
+        <div class="interaction">
+          <h3>🚘 ตัวอย่างที่ 6: รถชนกำแพง</h3>
+          <div class="grid">
+            <figure class="figure-card figure-wide">
+              <img
+                src="asset/week%207/Figure-9.png"
+                alt="ภาพแสดงการทดสอบการชนของรถ"
+              />
+              <figcaption class="caption">
+                ภาพแสดงการทดสอบการชนของรถ
+              </figcaption>
+            </figure>
+            <div class="card">
+              <p class="w7-example-text">
+                ในการทดสอบการชนครั้งหนึ่ง รถยนต์มวล 1500 kg ชนกับกำแพงดังแสดงในรูป
+                โดยความเร็วต้นและความเร็วสุดท้ายของรถเป็น \({\vec{v}}_i=-15.0\hat{i}
+                \ \mathrm{m/s}\) \({\vec{v}}_f=2.60 \hat{i} \ \mathrm{m/s}\) และ
+                ตามลำดับ หากการชนใช้เวลา 0.150 s จงหา 1.
+                การดลที่กระทำต่อรถระหว่างการชน 2. แรงเฉลี่ยที่กระทำต่อรถระหว่างการชน
+              </p>
+              <div class="options">
+                <button
+                  type="button"
+                  class="secondary"
+                  aria-expanded="false"
+                  aria-controls="w7Example6Solution"
+                  onclick="toggleW7Solution(this, 'w7Example6Solution')"
+                >
+                  แสดงเฉลย/วิธีทำ
+                </button>
+              </div>
+              <div id="w7Example6Solution" class="w7-solution-box" hidden>
+                <h4>เฉลยและวิธีทำ</h4>
+                <p>
+                  กำหนดทิศ \(+\hat{i}\) ตามเครื่องหมายในโจทย์ ใช้ทฤษฎีบทการดล-โมเมนตัม
+                  โดยการดลที่กระทำต่อรถเท่ากับการเปลี่ยนแปลงโมเมนตัมของรถ
+                </p>
+                <div class="formula">
+                  \[\vec I=\Delta\vec p=m(\vec v_f-\vec v_i)\]
+                </div>
+                <p>แทนค่า \(m=1500\ \mathrm{kg}\), \(\vec v_i=-15.0\hat{i}\ \mathrm{m/s}\), และ \(\vec v_f=2.60\hat{i}\ \mathrm{m/s}\)</p>
+                <div class="formula">
+                  \[\vec I=(1500)\left[2.60-(-15.0)\right]\hat{i}=2.64\times10^4\hat{i}\ \mathrm{N\cdot s}\]
+                </div>
+                <p>หาแรงเฉลี่ยจากนิยามการดล \(\vec I=\vec F_{avg}\Delta t\)</p>
+                <div class="formula">
+                  \[\vec F_{avg}=\frac{\vec I}{\Delta t}=\frac{2.64\times10^4\hat{i}}{0.150}=1.76\times10^5\hat{i}\ \mathrm{N}\]
+                </div>
+                <p>
+                  <strong>ตอบ:</strong> การดลที่กระทำต่อรถคือ
+                  \(2.64\times10^4\hat{i}\ \mathrm{N\cdot s}\)
+                  และแรงเฉลี่ยที่กระทำต่อรถคือ
+                  \(1.76\times10^5\hat{i}\ \mathrm{N}\)
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <details class="card w7-collapsible-card">
+          <summary class="w7-collapsible-summary">
+            <h3>2.5 ทฤษฎีบทการดล–โมเมนตัมสำหรับกรณีทั่วไป</h3>
+          </summary>
+          <div class="w7-collapsible-content">
+            <p>
+              หากมีวัตถุ \(N\) ชิ้นที่ออกแรงกระทำซึ่งกันและกัน โดยที่
+              \(\vec{F}_{ij}\) คือ แรงที่วัตถุ \(j\) กระทำต่อวัตถุ \(i\)
+              และมีแรงลัพธ์ภายนอก \(\vec{F}_i\) กระทำกับวัตถุ \(i\)
+              <br>
+              จากกฎการเคลื่อนที่ข้อที่ 2 ของนิวตัน
+              เราสามารถเขียนสมการสำหรับวัตถุได้ว่า
+            </p>
+
+            <p>
+              \[
+              \left(\sum \vec{F}\right)_i = m_i \vec{a}_i
+              \]
+              \[
+              \sum_{j=1}^{N} \vec{F}_{ij} + \vec{F}_i
+              =
+              m_i \vec{a}_i
+              \]
+            </p>
+
+            <p>
+              จากกฎการเคลื่อนที่ข้อที่ 3 ของนิวตัน
+              หากเรารวมสมการของทุกวัตถุเข้าด้วยกัน
+              แรงภายในระหว่างวัตถุจะหักล้างกัน
+              เหลือเพียงแรงภายนอก
+
+              \[
+              \sum_{i=1}^{N} \sum_{j=1}^{N} \vec{F}_{ij}
+              +
+              \sum_{i=1}^{N} \vec{F}_i
+              =
+              \sum_{i=1}^{N} m_i \vec{a}_i
+              \]
+              \[
+              \sum_{i=1}^{N} \vec{F}_i
+              =
+              \sum_{i=1}^{N} m_i \vec{a}_i
+              \]
+            </p>
+
+            <p>
+              จากนิยามของความเร่งสามารถเขียนใหม่ได้เป็น
+              \[
+              \sum_{i=1}^{N} \vec{F}_i
+              =
+              \sum_{i=1}^{N}
+              m_i \frac{d\vec{v}_i}{dt}
+              \]
+              \[
+              \sum_{i=1}^{N} \vec{F}_i
+              =
+              \frac{d}{dt}
+              \left(
+              \sum_{i=1}^{N} m_i \vec{v}_i
+              \right)
+              \]
+            </p>
+
+            <p>
+              จากนิยามของโมเมนตัมและการดล จะได้ว่า
+              </p>
+              <div class="formula">
+              \[
+              \sum_{i=1}^{N} \vec{I}_i
+              =
+              \Delta
+              \left(
+              \sum_{i=1}^{N} \vec{P}_i
+              \right)
+              \]
+              </div>
+            
+            <p>
+              โดยที่ \(\vec{I}_i\) และ \(\vec{P}_i\)
+              เป็นการดลภายนอกที่กระทำต่อวัตถุ \(i\)
+              และเป็นโมเมนตัมของวัตถุ \(i\) ตามลำดับ
+              นี้คือ ทฤษฎีการดล–โมเมนตัม สำหรับกรณีทั่วไป
+            </p>
+            <p>
+              หากการดลภายนอกที่กระทำต่อระบบเป็นศูนย์
+              \[
+              \sum_{i=1}^{N} \vec{I}_i = 0
+              \]
+            </p>
+
+            <p>
+              โมเมนตัมรวมของระบบจะคงอยู่
+              \[
+              \sum_{n=1}^{N} \vec{P}_n
+              =
+              \text{constat}
+              \]
+            </p>
+
+            <p>
+              กล่าวคือ โมเมนตัมรวมเริ่มต้นเท่ากับโมเมนตัมรวมสุดท้าย
+               <div class="formula">
+              \[
+              \left(
+              \sum_{n=1}^{N} m_n \vec{v}_n
+              \right)_i
+              =
+              \left(
+              \sum_{n=1}^{N} m_n \vec{v}_n
+              \right)_f
+              \]
+              </div>
+            </p>
+          </div>
+        </details>
+
+      </section>
+
+      <section class="lesson" id="collision">
+        <h2>🚗 3. การชน</h2>
+        <p class="lead">
+          ในทางฟิสิกส์ <b>การชน (Collision)</b>
+          คือ เหตุการณ์ที่วัตถุสองชิ้นหรือมากกว่านั้นออกแรงกระทำซึ่งกันและกันในช่วงเวลาที่สั้นมาก
+          ส่งผลให้การเคลื่อนที่ของวัตถุเหล่านั้น เช่น ความเร็ว โมเมนตัม
+          และอาจรวมถึงพลังงาน เปลี่ยนแปลงไป
+          หัวข้อนี้จึงเป็นการนำกฎอนุรักษ์โมเมนตัมและทฤษฎีบทการดล-โมเมนตัมมาใช้กับเหตุการณ์จริง
+          โดยพิจารณาว่า “โมเมนตัมรวม” คงอยู่หรือไม่ และ “พลังงานจลน์” สูญเสียไปมากน้อยเพียงใด
+        </p>
+        <div class="card">
+          <h3>สัมประสิทธิ์การคืนตัว</h3>
+          <p class="lead">
+            หนึ่งในตัวแปรสำคัญในการอธิบายการชนกันของสองอนุภาค คือ
+            <strong>สัมประสิทธิ์การคืนตัว (Coefficient of Restitution)</strong>
+            ที่นิยามให้เท่ากับสัดส่วนระหว่างอัตราเร็วสัมพัทธ์หลังชนและก่อนชนของสองอนุภาค
+          </p>
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">\[e\equiv\frac{\left|{\vec{v}}_{1,i}-{\vec{v}}_{2,i}\right|}{\left|{\vec{v}}_{1,f}-{\vec{v}}_{2,f}\right|}\]</div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+        </div>
+        <div class="interaction">
+          <h3>⚡ Elastic vs Inelastic Collision</h3>
+          <p>
+            ปรับค่ามวล ความเร็วเริ่มต้น และกำหนดความเร็วสุดท้ายของวัตถุที่ 1
+            จากนั้นให้ระบบคำนวณ \(v_{2f}\) ตามกฎอนุรักษ์โมเมนตัม
+            แล้วดูค่าสัมประสิทธิ์การคืนตัว \(e\) ที่คำนวณจากความเร็วสัมพัทธ์
+            พร้อมเปรียบเทียบพลังงานจลน์ก่อนและหลังการชน
+          </p>
+          <div class="grid">
+            <div>
+              <label>\(m_1 = \)<span id="w7ColM1Val">2.0</span> kg</label
+              ><input
+                id="w7ColM1"
+                type="range"
+                min="0.5"
+                max="10"
+                step="0.5"
+                value="2"
+                oninput="updateW7CollisionEnergy()"
+              />
+            </div>
+            <div>
+              <label>\(m_2 = \)<span id="w7ColM2Val">3.0</span> kg</label
+              ><input
+                id="w7ColM2"
+                type="range"
+                min="0.5"
+                max="10"
+                step="0.5"
+                value="3"
+                oninput="updateW7CollisionEnergy()"
+              />
+            </div>
+          </div>
+          <div class="grid">
+            <div>
+              <label>\(v_{1,i} = \)<span id="w7ColV1Val">5.0</span> m/s</label
+              ><input
+                id="w7ColV1"
+                type="range"
+                min="-8"
+                max="8"
+                step="0.5"
+                value="5"
+                oninput="updateW7CollisionEnergy()"
+              />
+            </div>
+            <div>
+              <label>\(v_{2,i} = \)<span id="w7ColV2Val">-1.0</span> m/s</label
+              ><input
+                id="w7ColV2"
+                type="range"
+                min="-8"
+                max="8"
+                step="0.5"
+                value="-1"
+                oninput="updateW7CollisionEnergy()"
+              />
+            </div>
+          </div>
+          <div class="grid">
+            <div>
+              <label>\(v_{1,f} = \)<span id="w7ColV1fInputVal">1.4</span> m/s</label
+              ><input
+                id="w7ColV1fInput"
+                type="range"
+                min="-10"
+                max="10"
+                step="0.1"
+                value="1.4"
+                oninput="updateW7CollisionEnergy()"
+              />
+            </div>
+            <div>
+              <label>\(v_{2,f} =\)<span id="w7ColV2fCalcInputVal">1.40</span> m/s</label>
+            </div>
+          </div>
+          <svg viewBox="0 0 920 310" class="w7-svg w7-collision-scene" role="img" aria-labelledby="w7CollisionSceneTitle">
+            <title id="w7CollisionSceneTitle">animation การชนหนึ่งมิติระหว่างวัตถุสองก้อน</title>
+            <line x1="90" y1="220" x2="830" y2="220" class="w7-track" />
+            <line x1="460" y1="70" x2="460" y2="235" class="w7-collision-line" />
+            <g id="w7ColObj1" class="w7-col-object w7-col-object-one">
+              <circle cx="250" cy="175" r="34" />
+              <text x="250" y="180">m₁</text>
+            </g>
+            <g id="w7ColObj2" class="w7-col-object w7-col-object-two">
+              <circle cx="610" cy="175" r="42" />
+              <text x="610" y="180">m₂</text>
+            </g>
+            <g id="w7ColArrow1" class="w7-motion-arrow">
+              <line x1="250" y1="110" x2="340" y2="110" marker-end="url(#w7ArrowBlue)" />
+              <text x="350" y="98">v₁</text>
+            </g>
+            <g id="w7ColArrow2" class="w7-motion-arrow">
+              <line x1="610" y1="110" x2="570" y2="110" marker-end="url(#w7ArrowGreen)" />
+              <text x="560" y="98" text-anchor="end">v₂</text>
+            </g>
+            <text id="w7CollisionAnimStatus" x="460" y="272" class="w7-scene-label" text-anchor="middle">ก่อนชน</text>
+          </svg>
+          <div class="options">
+            <button type="button" onclick="w7PlayCollisionAnimation()">เล่น animation</button>
+            <button type="button" class="secondary" onclick="w7ResetCollisionAnimation()">รีเซ็ต</button>
+          </div>
+          <div class="grid">
+            <div class="w7-pill">สัมประสิทธิ์การคืนตัว \(e\) = <span id="w7ColEReadout">0.00</span></div>
+            <div class="w7-pill">พลังงานจลน์ก่อนชน = <span id="w7ColKiVal">0.00</span> J</div>
+            <div class="w7-pill">พลังงานจลน์หลังชน = <span id="w7ColKfVal">0.00</span> J</div>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <strong>การชนแบบยืดหยุ่น (Elastic Collision)</strong
+            ><br />การชนที่อนุรักษ์พลังงานจลน์รวมของระบบ กล่าวคือ
+            พลังงานจลน์รวมระหว่างสองอนุภาคก่อนชนและหลังชนเท่ากัน
+            สามารถพิสูจน์ได้ว่าสัมประสิทธิ์การคืนตัวมีค่าเท่ากับ \(e=1\)
+          </div>
+          <div class="card">
+            <strong>การชนแบบไม่ยืดหยุ่น (Inelastic Collision)</strong
+            ><br />การชนที่ไม่อนุรักษ์พลังงานจลน์รวมของระบบ กล่าวคือ
+            พลังงานจลน์รวมระหว่างสองอนุภาคก่อนชนและหลังชนไม่เท่ากัน
+            โดยทั่วไปสัมประสิทธิ์การคืนตัวมีค่าน้อยกว่า \(e<1\)
+          </div>
+          <div class="card">
+            <strong>การชนแบบไม่ยืดหยุ่นสมบูรณ์ (Perfectly Inelastic Collision)</strong
+            ><br />การชนแบบไม่ยืดหยุ่นที่สัมประสิทธิ์การคืนตัวเท่ากับศูนย์
+            \((e=0)\) เรียกว่า การชนแบบไม่ยืดหยุ่นสมบูรณ์
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson" id="summary">
+        <h2>🎯 สรุปท้ายคาบ และ Final Quiz</h2>
+        <p class="lead">
+          สัปดาห์นี้เราเชื่อมภาพรวมจากโมเมนตัมของวัตถุเดี่ยว ไปสู่โมเมนตัมรวมของระบบ
+          การดลจากแรงที่กระทำในช่วงเวลาสั้น ๆ และการชนที่อาจอนุรักษ์หรือไม่อนุรักษ์พลังงานจลน์
+          เมื่อแก้โจทย์ให้เริ่มจากกำหนดระบบและทิศบวกก่อนเสมอ จากนั้นเลือกสมการให้เหมาะกับข้อมูลที่โจทย์ให้
+          เช่น ใช้ \(\vec p=m\vec v\), \(\vec I=\Delta\vec p\), พื้นที่ใต้กราฟ \(F-t\)
+          หรือกฎอนุรักษ์โมเมนตัมตามแกนที่ต้องการ
+        </p>
+        <div class="grid">
+          <div class="card">
+            <strong>โมเมนตัม</strong><br />\(\vec p=m\vec v\) เป็นเวกเตอร์
+            มีทิศเดียวกับความเร็ว
+          </div>
+          <div class="card">
+            <strong>อนุรักษ์โมเมนตัม</strong><br />ถ้าแรงลัพธ์ภายนอกเป็นศูนย์
+            โมเมนตัมรวมของระบบคงที่ \((\sum_{n=1}^{N} \vec p)_i=(\sum_{n=1}^{N} \vec p)_f\)
+          </div>
+          <div class="card">
+            <strong>การดล</strong><br />\(\vec I=\vec F_{avg}\Delta t\)
+          </div>
+          <div class="card">
+            <strong>ทฤษฎีบทการดล-โมเมนตัม</strong><br />\(
+              \sum_{i=1}^{N} \vec{I}_i
+              =
+              \Delta
+              \left(
+              \sum_{i=1}^{N} \vec{P}_i
+              \right)\)
+          </div>
+          <div class="card">
+            <strong>การชน</strong><br />ประเภทของการชนแบ่งได้ด้วยค่าสัมประสิทธิ์การคืนตัว \(e\)
+          </div>
+        </div>
+        <div class="interaction">
+          <h3>✅ Final Quiz</h3>
+          <p>
+            ใช้คำถามชุดนี้ทบทวนแนวคิดหลักก่อนจบคาบ
+            แต่ละข้อเน้นการเลือกหลักการให้ถูกก่อนแทนค่าตัวเลข
+          </p>
+          <div class="card">
+            <p><b>ข้อ 1:</b> โมเมนตัมของวัตถุขึ้นกับปริมาณใด?</p>
+            <div class="options" data-quiz data-answer="c">
+              <button class="option-btn" data-choice="a">มวลเท่านั้น</button
+              ><button class="option-btn" data-choice="b">
+                ความเร็วเท่านั้น</button
+              ><button class="option-btn" data-choice="c">
+                มวลและความเร็ว
+              </button>
+            </div>
+            <p data-feedback></p>
+          </div>
+          <div class="card">
+            <p><b>ข้อ 2:</b> เงื่อนไขสำคัญของการอนุรักษ์โมเมนตัมคืออะไร?</p>
+            <div class="options" data-quiz data-answer="b">
+              <button class="option-btn" data-choice="a">
+                พลังงานจลน์ต้องคงที่เสมอ</button
+              ><button class="option-btn" data-choice="b">
+                แรงลัพธ์ภายนอกเป็นศูนย์</button
+              ><button class="option-btn" data-choice="c">
+                วัตถุต้องมีมวลเท่ากัน
+              </button>
+            </div>
+            <p data-feedback></p>
+          </div>
+          <div class="card">
+            <p><b>ข้อ 3:</b> พื้นที่ใต้กราฟแรง–เวลาหมายถึงอะไร?</p>
+            <div class="options" data-quiz data-answer="a">
+              <button class="option-btn" data-choice="a">การดล</button
+              ><button class="option-btn" data-choice="b">พลังงานศักย์</button
+              ><button class="option-btn" data-choice="c">ระยะทาง</button>
+            </div>
+            <p data-feedback></p>
+          </div>
+          <div class="card">
+            <p><b>ข้อ 4:</b> การชนแบบไม่ยืดหยุ่นสมบูรณ์มีลักษณะสำคัญอย่างไร?</p>
+            <div class="options" data-quiz data-answer="c">
+              <button class="option-btn" data-choice="a">
+                พลังงานจลน์คงที่เสมอ</button
+              ><button class="option-btn" data-choice="b">
+                วัตถุเด้งกลับด้วยความเร็วเท่าเดิม</button
+              ><button class="option-btn" data-choice="c">
+                วัตถุติดกันหลังชน
+              </button>
+            </div>
+            <p data-feedback></p>
+          </div>
+          <div class="card">
+            <p><b>ข้อ 5:</b> ถ้าวัตถุได้รับการดล \(\vec I\) ทิศเดียวกับความเร็วเดิม จะเกิดผลอย่างไรกับโมเมนตัม?</p>
+            <div class="options" data-quiz data-answer="a">
+              <button class="option-btn" data-choice="a">
+                โมเมนตัมเพิ่มขึ้นในทิศเดิม</button
+              ><button class="option-btn" data-choice="b">
+                โมเมนตัมต้องเป็นศูนย์ทันที</button
+              ><button class="option-btn" data-choice="c">
+                โมเมนตัมเปลี่ยนทิศเสมอ
+              </button>
+            </div>
+            <p data-feedback></p>
+          </div>
+          <div class="card">
+            <p><b>ข้อ 6:</b> การชนแบบยืดหยุ่นสมบูรณ์มีเงื่อนไขสำคัญข้อใด?</p>
+            <div class="options" data-quiz data-answer="b">
+              <button class="option-btn" data-choice="a">
+                โมเมนตัมไม่จำเป็นต้องคงที่</button
+              ><button class="option-btn" data-choice="b">
+                โมเมนตัมรวมและพลังงานจลน์รวมคงที่</button
+              ><button class="option-btn" data-choice="c">
+                วัตถุต้องติดกันหลังชน
+              </button>
+            </div>
+            <p data-feedback></p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>FUNSC115 · Fundamental of Physics for Engineers · Week 7 · Momentum and Collisions</footer>
+  </body>
+</html>
