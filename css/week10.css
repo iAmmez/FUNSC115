@@ -1,0 +1,661 @@
+
+.w10-two-col{display:grid;grid-template-columns:minmax(280px,0.92fr) minmax(320px,1.08fr);gap:18px;align-items:center}.w10-svg{width:100%;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 22px rgba(15,23,42,.06)}.w10-flow-toggle button,.reveal-btn{border:0;border-radius:999px;background:var(--primary);color:#fff;padding:10px 16px;margin:6px 6px 12px 0;cursor:pointer;font-weight:700}.reveal-btn{background:var(--accent);color:#111827}.reveal-box{display:none;margin-top:14px;padding:16px;border-radius:16px;background:#fffbeb;border:1px solid #fde68a}.example-card{border-left:8px solid var(--accent)}.slide-card{margin:18px 0;padding:14px;background:#f8fafc;border:1px solid #e5e7eb;border-radius:18px;text-align:center}.slide-card img{max-width:100%;height:auto;border-radius:12px;box-shadow:0 10px 24px rgba(15,23,42,.08)}.caption{font-size:.92rem;color:var(--muted);margin-top:8px}.formula{font-size:1.1rem;font-weight:800;color:#1e40af;background:#eff6ff;border:1px solid #bfdbfe;border-radius:14px;padding:12px}.interaction details{background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;margin:10px 0;padding:12px}.interaction summary{font-weight:800;cursor:pointer}.w10-water{fill:#dbeafe;stroke:#60a5fa;stroke-width:2}.w10-particle{fill:#2563eb;opacity:.75}.w10-stream{fill:none;stroke:#2563eb;stroke-width:4;stroke-linecap:round}.w10-dash{stroke-dasharray:8 8}.w10-bar-label{font-weight:700;font-size:16px;fill:#1f2937}.w10-value{font-size:15px;fill:#475569}.w10-force{stroke-width:5;stroke-linecap:round}.w10-layer{opacity:.15}.w10-axis{stroke:#111827;stroke-width:2}.w10-grid{stroke:#e5e7eb;stroke-width:1}@media(max-width:820px){.w10-two-col{grid-template-columns:1fr}.slide-card{padding:8px}}
+.flow-rate-calculator {
+  background: #f8fafc;
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.w10-cont-water {
+  fill: rgba(219, 234, 254, .78);
+  stroke: none;
+}
+
+.w10-cont-wall {
+  fill: none;
+  stroke: #2563eb;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.w10-cont-section {
+  stroke: #f97316;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 9 8;
+}
+
+.w10-cont-volume {
+  stroke-width: 3;
+  opacity: .45;
+}
+
+.w10-cont-volume.left {
+  fill: #bbf7d0;
+  stroke: #16a34a;
+}
+
+.w10-cont-volume.right {
+  fill: #fecaca;
+  stroke: #dc2626;
+}
+
+.w10-cont-arrow {
+  stroke-linecap: round;
+}
+
+.w10-cont-arrow.v1 {
+  stroke: #16a34a;
+}
+
+.w10-cont-arrow.v2 {
+  stroke: #dc2626;
+}
+
+.w10-cont-moving-volume {
+  fill: rgba(20, 184, 166, .68);
+  stroke: #0f766e;
+  stroke-width: 4;
+  filter: drop-shadow(0 7px 10px rgba(15, 118, 110, .24));
+}
+
+.w10-cont-summary {
+  fill: #1e40af;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.flow-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(360px, 1.35fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.flow-controls,
+.flow-visual,
+.flow-note-grid .card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, .06);
+}
+
+.flow-controls {
+  padding: 20px;
+}
+
+.flow-controls h3 {
+  margin-top: 0;
+}
+
+.flow-controls label {
+  display: block;
+  margin: 18px 0 8px;
+  color: #111827;
+  font-weight: 800;
+}
+
+.flow-controls input[type="range"] {
+  width: 100%;
+  accent-color: #0f766e;
+}
+
+.flow-result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 20px 0 14px;
+}
+
+.flow-result-grid div {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid #99f6e4;
+  border-radius: 8px;
+  background: #f0fdfa;
+}
+
+.flow-result-grid span {
+  display: block;
+  color: #475569;
+  font-size: .92rem;
+  font-weight: 700;
+}
+
+.flow-result-grid strong {
+  display: block;
+  margin-top: 6px;
+  color: #0f766e;
+  font-size: 1.18rem;
+}
+
+.flow-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.flow-actions button,
+.flow-note-grid button {
+  border: 0;
+  border-radius: 8px;
+  background: #0f766e;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 800;
+  padding: 11px 16px;
+}
+
+.flow-actions button.secondary {
+  background: #334155;
+}
+
+.flow-visual {
+  padding: 12px;
+}
+
+.flow-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 300px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #ffffff 0%, #eff6ff 100%);
+}
+
+.flow-visual .hint {
+  margin: 12px 6px 4px;
+  color: #475569;
+  font-size: .95rem;
+}
+
+.flow-pipe-water {
+  fill: rgba(191, 219, 254, .58);
+}
+
+.flow-pipe-wall {
+  stroke: #2563eb;
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+
+.flow-pipe-rim {
+  fill: none;
+  stroke: #1d4ed8;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.flow-section-line {
+  stroke: #f97316;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 10 9;
+}
+
+.flow-volume-wrap {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.flow-volume {
+  fill: rgba(20, 184, 166, .58);
+  stroke: #0f766e;
+  stroke-width: 3;
+  filter: drop-shadow(0 8px 12px rgba(15, 118, 110, .2));
+}
+
+.flow-volume.is-animating {
+  animation: flow-volume-pass var(--flow-duration, 2.2s) ease-in-out 1;
+}
+
+.flow-velocity-arrow {
+  stroke: #0f766e;
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+
+.flow-distance-line {
+  stroke: #7c3aed;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 8 8;
+}
+
+.flow-svg-label {
+  fill: #334155;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.flow-svg-total {
+  fill: #1e3a8a;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.flow-note-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, .95fr) minmax(300px, 1.05fr);
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.flow-note-grid .card {
+  margin: 0;
+  padding: 18px;
+}
+
+#flowPracticeAnswer {
+  display: block;
+  margin-top: 12px;
+  color: #047857;
+  font-size: 1.08rem;
+}
+
+@keyframes flow-volume-pass {
+  0% { transform: translateX(0); opacity: .45; }
+  18% { opacity: .86; }
+  78% { opacity: .86; }
+  100% { transform: translateX(var(--flow-distance, 270px)); opacity: .18; }
+}
+
+@media (max-width: 900px) {
+  .flow-rate-calculator {
+    padding: 16px;
+  }
+
+  .flow-layout,
+  .flow-note-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .flow-result-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.bernoulli-energy-section {
+  margin: 32px 0;
+}
+
+.bernoulli-card {
+  background: #ffffff;
+  border: 1px solid #bfdbfe;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+}
+
+.bernoulli-header {
+  padding: 16px 22px;
+  background: linear-gradient(135deg, #0f2f57, #1e3a8a);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.bernoulli-header h2 {
+  margin: 0 0 4px;
+  font-size: 1.55rem;
+}
+
+.bernoulli-header p {
+  margin: 0;
+  opacity: 0.9;
+}
+
+.bernoulli-reset-btn {
+  border: 1px solid rgba(255,255,255,0.45);
+  background: rgba(255,255,255,0.15);
+  color: white;
+  padding: 9px 16px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.bernoulli-formula-strip {
+  margin: 14px 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.bernoulli-formula-strip .formula-box {
+  padding: 9px 14px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.18rem;
+  font-family: "Times New Roman", serif;
+  color: #111827;
+}
+
+.bernoulli-layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.5fr;
+  gap: 14px;
+  padding: 0 16px 16px;
+}
+
+.bernoulli-controls,
+.bernoulli-visual,
+.energy-compare {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.bernoulli-controls h3,
+.bernoulli-visual h3,
+.energy-compare h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.bernoulli-visual-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.bernoulli-visual-heading h3 {
+  margin: 0;
+}
+
+.bernoulli-anim-btn {
+  border: 1px solid #0f766e;
+  background: #0f766e;
+  color: white;
+  border-radius: 10px;
+  padding: 7px 12px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.bernoulli-anim-btn:hover {
+  background: #115e59;
+}
+
+.terminal-controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.bernoulli-anim-btn.secondary {
+  background: #475569;
+  border-color: #475569;
+}
+
+.bernoulli-anim-btn.secondary:hover {
+  background: #334155;
+}
+
+.bernoulli-controls label {
+  margin: 8px 0 4px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-weight: 700;
+  font-size: .9rem;
+  color: #111827;
+}
+
+.bernoulli-controls input[type="range"] {
+  width: 100%;
+  accent-color: #14b8a6;
+  margin: 0;
+}
+
+.bernoulli-svg {
+  width: 100%;
+  height: clamp(190px, 30vh, 275px);
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+#beFluidPacket {
+  animation: beFlowMove 4s ease-in-out infinite;
+  offset-anchor: center;
+  offset-rotate: 0deg;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.bernoulli-svg.is-paused #beFluidPacket {
+  animation-play-state: paused;
+}
+
+#bePipeShadow1,
+#bePipeShadow2,
+#bePipeLine,
+#beArrow1,
+#beArrow2,
+#bePoint1,
+#bePoint2,
+#beY1Guide,
+#beY2Guide,
+#beV1Label,
+#beV2Label,
+#beY1Label,
+#beY2Label,
+#beP1VisualLabel,
+#beP2VisualLabel {
+  transition: all .25s ease;
+}
+
+@keyframes beFlowMove {
+  0% {
+    offset-distance: 0%;
+    transform: scale(1, 1);
+  }
+  45% {
+    offset-distance: 50%;
+    transform: scale(var(--be-packet-mid-scale-x, .84), var(--be-packet-mid-scale-y, .84));
+  }
+  100% {
+    offset-distance: 100%;
+    transform: scale(var(--be-packet-scale-x, .65), var(--be-packet-scale-y, .65));
+  }
+}
+
+.dependent-box {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background: #f0fdfa;
+  border: 1px solid #5eead4;
+}
+
+.dependent-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.dependent-grid div {
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #ccfbf1;
+  text-align: center;
+}
+
+.dependent-grid span {
+  display: block;
+  color: #475569;
+  margin-bottom: 4px;
+  font-size: .86rem;
+}
+
+.dependent-grid strong {
+  color: #047857;
+  font-size: 1.08rem;
+}
+
+.energy-compare {
+  margin: 0 16px 16px;
+}
+
+.energy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.energy-point-card {
+  padding: 12px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.energy-point-card h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.04rem;
+  color: #1e3a8a;
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 74px 1fr 78px;
+  align-items: center;
+  gap: 8px;
+  margin: 9px 0;
+}
+
+.bar-row span {
+  font-weight: 700;
+  font-size: .9rem;
+  color: #334155;
+}
+
+.bar-row strong {
+  text-align: right;
+  font-size: 0.82rem;
+  color: #111827;
+}
+
+.bar-track {
+  height: 16px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  transition: width 0.35s ease;
+}
+
+.bar-fill.pressure {
+  background: #2563eb;
+}
+
+.bar-fill.kinetic {
+  background: #f59e0b;
+}
+
+.bar-fill.potential {
+  background: #10b981;
+}
+
+.energy-total {
+  margin-top: 10px;
+  padding: 9px;
+  border-radius: 10px;
+  background: white;
+  border: 1px solid #cbd5e1;
+  text-align: center;
+  font-size: .95rem;
+}
+
+.energy-total strong {
+  color: #047857;
+}
+
+.bernoulli-message {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #ecfdf5;
+  border: 1px solid #6ee7b7;
+  color: #047857;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media (min-width: 1180px) {
+  .bernoulli-card {
+    display: grid;
+    grid-template-columns: minmax(560px, 1.55fr) minmax(360px, 1fr);
+    grid-template-areas:
+      "header header"
+      "formula formula"
+      "main energy";
+  }
+
+  .bernoulli-header {
+    grid-area: header;
+  }
+
+  .bernoulli-formula-strip {
+    grid-area: formula;
+  }
+
+  .bernoulli-layout {
+    grid-area: main;
+    grid-template-columns: minmax(230px, .82fr) minmax(320px, 1.18fr);
+    padding-right: 0;
+  }
+
+  .energy-compare {
+    grid-area: energy;
+    align-self: stretch;
+    margin-left: 14px;
+  }
+
+  .energy-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 950px) {
+  .bernoulli-layout,
+  .energy-grid,
+  .bernoulli-formula-strip,
+  .dependent-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bernoulli-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .bernoulli-visual-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>สัปดาห์ที่ 6 หน่วยที่ 3 พลังงานกล</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="css/week6.css" />
+  <script src="js/mathjax-config.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script defer src="script.js"></script>
+  <script defer src="js/week6.js"></script>
+</head>
+<body>
+  <svg width="0" height="0" class="svg-defs" aria-hidden="true" focusable="false">
+    <defs>
+      <marker id="w6ArrowBlue" markerWidth="4" markerHeight="4" refX="3.5" refY="2" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L4,2 L0,4 z" fill="#2563eb" /></marker>
+      <marker id="w6ArrowGreen" markerWidth="4" markerHeight="4" refX="3.5" refY="2" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L4,2 L0,4 z" fill="#16a34a" /></marker>
+      <marker id="w6ArrowOrange" markerWidth="4" markerHeight="4" refX="3.5" refY="2" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L4,2 L0,4 z" fill="#f59e0b" /></marker>
+      <marker id="w6ArrowRed" markerWidth="4" markerHeight="4" refX="3.5" refY="2" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L4,2 L0,4 z" fill="#dc2626" /></marker>
+      <marker id="w6ArrowPurple" markerWidth="4" markerHeight="4" refX="3.5" refY="2" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L4,2 L0,4 z" fill="#7c3aed" /></marker>
+    </defs>
+  </svg>
+
+  <header>
+    <div class="hero">
+      <h1>สัปดาห์ที่ 6: พลังงานกล</h1>
+      <p>เว็บไซต์ประกอบการเรียนการสอนรายวิชา Fundamental of Physics for Engineers (FUNSC115)</p>
+    </div>
+  </header>
+
+  <div class="topbar">
+    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    <nav class="nav" id="nav">
+      <a href="index.html#content-table">🏠 หน้าแรก</a>
+      <a href="#opening">🚀 เปิดคาบ</a>
+      <a href="#works">⚖️ น้ำหนัก</a>
+      <a href="#spring">🌀 แรงสปริง</a>
+      <a href="#friction">🧱 แรงเสียดทาน</a>
+      <a href="#conservative">♻️ แรงอนุรักษ์/ไม่อนุรักษ์</a>
+      <a href="#work-energy-system">🧮 พลังงานกลรวม</a>
+      <a href="#examples">🧩 ตัวอย่าง</a>
+      <a href="#summary">🎯 สรุปและ Quiz</a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="lesson" id="opening">
+      <h2>🚀 เปิดบทเรียน</h2>
+      <p class="lead">สัปดาห์นี้ต่อยอดจากแนวคิดเรื่องงานและพลังงานจลน์ ไปดูว่าแรงโน้มถ่วง แรงสปริง และแรงเสียดทานทำงานกับวัตถุอย่างไร แล้วค่อยเชื่อมไปสู่แนวคิดเรื่องพลังงานในระบบเชิงกล</p>
+      <div class="grid">
+        <div class="card"><strong>🎯 เป้าหมายวันนี้</strong>
+          <ul>
+            <li>คำนวณงานจากน้ำหนัก แรงสปริง และแรงเสียดทาน</li>
+            <li>อธิบายความสัมพันธ์ระหว่างตำแหน่ง การยืดหรืออัดของสปริง และพลังงานของระบบ</li>
+            <li>แยกแยะแรงอนุรักษ์และแรงไม่อนุรักษ์จากการขึ้นกับเส้นทาง</li>
+            <li>ใช้กฎการอนุรักษ์พลังงานกลและทฤษฎีบทงาน–พลังงานสำหรับระบบเชิงกล</li>
+          </ul>
+        </div>
+        <div class="card"><strong>🗺️ ภาพรวม</strong><br>เริ่มจากการทบทวนว่างานของแรงเปลี่ยนพลังงานจลน์ได้อย่างไร จากนั้นศึกษางานของน้ำหนัก งานของแรงสปริง และงานของแรงเสียดทาน แล้วค่อยสรุปเป็นแนวคิดเรื่องแรงอนุรักษ์ และกฎการอนุรักษ์พลังงานกลรวม</div>
+        <div class="card"><strong>🧭 วิธีเรียน</strong><br>เรียนผ่านคำถาม ทดลองคิด ทำกิจกรรม และตอบ quiz ระหว่างสอน</div>
+      </div>
+      <div class="interaction">
+        <h3>📊 Poll เปิดคาบ: จากงานสู่การเคลื่อนที่</h3>
+        <p>จากคาบก่อน เรารู้ว่างานของแรงทำให้พลังงานจลน์เปลี่ยนได้ ถ้าปล่อยลูกบอลจากหยุดนิ่ง แล้วแรงโน้มถ่วงทำงานระหว่างที่ลูกบอลตก นักศึกษาคาดว่าพลังงานจลน์ของลูกบอลจะเป็นอย่างไร?</p>
+        <div class="options" data-quiz data-answer="b">
+          <button class="option-btn" data-choice="a">ลดลง เพราะลูกบอลกำลังตกลง</button>
+          <button class="option-btn" data-choice="b">เพิ่มขึ้น เพราะแรงโน้มถ่วงทำงานในทิศเดียวกับการเคลื่อนที่</button>
+          <button class="option-btn" data-choice="c">ไม่เปลี่ยน เพราะมวลของลูกบอลคงเดิม</button>
+          <button class="option-btn" data-choice="d">เป็นศูนย์เสมอ เพราะไม่มีแรงผลักจากมือแล้ว</button>
+        </div>
+        <p data-feedback></p>
+      </div>
+    </section>
+
+    <h1 class="text-center">งานจากแรงต่าง ๆ และพลังงานศักย์</h1>
+    <section class="lesson" id="works">
+      <h2>⚖️ 1. น้ำหนัก</h2>
+      <div class="card">
+        <h3>1.1 งานจากน้ำหนัก</h3>
+        <p class="review"> <b>น้ำหนัก (Weight)</b> คือ แรงโน้มถ่วงที่ดาวเคราะห์กระทำต่อวัตถุใกล้พื้นผิวโลก มีทิศชี้ลงตามแนวดิ่ง ในระบบพิกัดฉากเขียนได้เป็น \(\vec W=-mg\hat{j}\)</p>
+        <div class="interaction">
+          <h3>🧩 ตัวอย่างที่ 1: หากวัตถุเคลื่อนที่ตามเส้นทางตามภาพด้านล่าง งานที่เกิดจากน้ำหนักมีค่าเท่าใด ?</h3>
+          <figure class="figure-card figure-wide"><img src="asset/week%206/figure-1.png" alt="ภาพแสดงวัตถุเคลื่อนที่เป็นเส้นตรงขณะที่มีน้ำหนักกระทำอยู่"><figcaption class="caption">ภาพแสดงวัตถุเคลื่อนที่เป็นเส้นตรงขณะที่มีน้ำหนักกระทำอยู่</figcaption></figure>
+        </div>
+        <p><strong>คำตอบสุดท้าย</strong></p>
+
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">\[W_g=mg(y_0-y)\]</div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+
+        <p><b>เมื่อวัตถุเคลื่อนที่ลง ⬇️ งานจากน้ำหนักเป็นบวก ➕ เมื่อวัตถุเคลื่อนที่ขึ้น ⬆️ งานจากน้ำหนักเป็นลบ ➖</b></p>
+        <div class="warning-box">
+          <div class="warning-icon">⚠️</div>
+          <div class="warning-content">
+            <strong>สำคัญ</strong>
+            <p>เราสามารถพิสูจน์ด้วย Vector calculus ว่าสมการ (1) ยังเป็นจริง แม้เส้นทางการเคลื่อนที่จะไม่ใช่เส้นตรง</p>
+            <figure class="figure-card figure-wide"><img src="asset/week%206/figure-2.png" alt="ภาพแสดงเส้นทางการเคลื่อนที่แบบต่าง ๆ โดยจุดเริ่มต้นและจุดสุดท้ายของทุกเส้นทางคือจุดเดียวกัน"><figcaption class="caption">ภาพแสดงเส้นทางการเคลื่อนที่แบบต่าง ๆ โดยจุดเริ่มต้นและจุดสุดท้ายของทุกเส้นทางคือจุดเดียวกัน</figcaption></figure>
+          </div>
+        </div>
+      </div>
+
+      <div class="interaction">
+        <h3>🧠 Quick Check</h3>
+        <p>ถ้าวัตถุที่อยู่ใกล้พื้นโลกลอยขึ้นฟ้า งานจากน้ำหนักมีค่าเป็นอย่างไร?</p>
+        <div class="options" data-quiz data-answer="b">
+          <button class="option-btn" data-choice="a">บวก</button>
+          <button class="option-btn" data-choice="b">ลบ</button>
+          <button class="option-btn" data-choice="c">ศูนย์</button>
+        </div>
+        <p data-feedback></p>
+      </div>
+
+      <div class="card">
+        <h3>1.2 พลังงานศักย์โน้มถ่วง</h3>
+        <p class="lead">จากสมการ (1) เราจะนิยาม <b>พลังงานศักย์โน้มถ่วง (Gravitational Potential Energy)</b> ว่า </p>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">\[PE_g\equiv mgy\]</div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+        <p class="lead">จากนิยามนี้ เราสามารถเขียนงานที่เกิดจากน้ำหนักในรูปของผลต่างพลังงานศักย์โน้มถ่วง ได้ดังนี้</p>  
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">\[W_g=-\Delta PE_g=-(PE_g-PE_{g,0})\]</div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+      </div><br>
+
+      <div class="card">
+        <h3>1.3 ประยุกต์ทฤษฎีบทงาน-พลังงาน</h3>
+        <p class="lead">จากทฤษฎีบทงาน-พลังงาน \(W_{total}=\Delta KE\)
+          <u>ถ้ามีเพียงแรงจากน้ำหนักที่กระทำกับวัตถุ</u>เราจะได้ว่า \(W_g=KE-KE_0\) หรือ
+          \(-(PE_g-PE_{g,0})=KE-KE_0\) หรือ
+        </p>
+        <div class="formula conversion-formula">\[PE_{g,0}+KE_0=PE_g+KE\]</div>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">\[mgy_0+\frac12 m v_0^2=mgy+\frac12 m v^2\]</div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+        <div class="warning-box">
+          <div class="warning-icon">⚠️</div>
+          <div class="warning-content">
+            <p><b>ข้อจำกัด</b> แรงจากน้ำหนักเท่านั้นที่กระทำกับวัตถุ</p>
+          </div>
+        </div>
+        <p class="lead">ซึ่งหมายความว่า เมื่อมีเพียงแรงจากน้ำหนักที่กระทำกับวัตถุ</p>
+        <div class="formula conversion-formula">ผลรวมระหว่างพลังงานศักย์และพลังงานจลน์(พลังงานกลรวม)จะคงที่เสมอ</div>
+      </div>
+
+      <div class="interaction">
+        <h3>⚖️ Work and Energy of Weight</h3>
+        <div class="grid">
+          <div><label>มวล \(m\) = <span id="w6MassVal">2.0</span> kg</label><input id="w6Mass" type="range" min="0.5" max="10" step="0.1" value="2" oninput="updateW6Gravity()"></div>
+          <div><label>\(g\) = <span id="w6GVal">9.8</span> m/s²</label><input id="w6G" type="range" min="1" max="12" step="0.1" value="9.8" oninput="updateW6Gravity()"></div>
+        </div>
+        <div class="grid">
+          <div><label>ความสูงเริ่มต้น \(y_0\) = <span id="w6YiVal">1.40</span> m</label><input id="w6Yi" type="range" min="0" max="5" step="0.05" value="1.4" oninput="updateW6Gravity()"></div>
+          <div><label>ความสูงสุดท้าย \(y\) = <span id="w6YfVal">0.05</span> m</label><input id="w6Yf" type="range" min="0" max="5" step="0.05" value="0.05" oninput="updateW6Gravity()"></div>
+        </div>
+        <div class="w6-animation-controls">
+          <button type="button" id="w6GravityPlayBtn" onclick="w6PlayGravityAnimation()">เล่น animation</button>
+          <button type="button" onclick="w6ResetGravityAnimation()">กลับไปจุดเริ่มต้น</button>
+          <label>เวลา <span id="w6GravityProgressVal">0</span>%</label>
+          <input id="w6GravityProgress" type="range" min="0" max="100" step="1" value="0" oninput="w6SetGravityProgress(Number(this.value) / 100)">
+        </div>
+          <svg viewBox="0 0 920 420" class="w6-svg">
+            <line x1="100" y1="350" x2="840" y2="350" stroke="#111827" stroke-width="4" />
+            <line x1="140" y1="350" x2="140" y2="60" stroke="#111827" stroke-width="3" />
+            <text x="112" y="55" font-size="18">y</text><text x="850" y="355" font-size="18">พื้น</text>
+            <g id="w6GravityTicks"></g>
+            <line id="w6GravityPath" x1="470" y1="270" x2="470" y2="346" stroke="#93c5fd" stroke-width="10" stroke-linecap="round" opacity="0.42" />
+            <line id="w6YiGuide" x1="140" y1="270" x2="720" y2="270" stroke="#2563eb" stroke-width="2" stroke-dasharray="8 6" />
+            <line id="w6YfGuide" x1="140" y1="346" x2="720" y2="346" stroke="#f59e0b" stroke-width="2" stroke-dasharray="8 6" />
+            <line id="w6YNowGuide" x1="140" y1="270" x2="720" y2="270" stroke="#16a34a" stroke-width="2" stroke-dasharray="4 5" />
+            <circle id="w6GravityObj" cx="470" cy="270" r="25" fill="#f59e0b" stroke="#92400e" stroke-width="3" />
+            <line id="w6WeightArrow" x1="470" y1="250" x2="470" y2="320" stroke="#dc2626" stroke-width="7" marker-end="url(#w6ArrowRed)" />
+            <line id="w6DispArrow" x1="600" y1="270" x2="600" y2="346" stroke="#16a34a" stroke-width="5" marker-end="url(#w6ArrowGreen)" />
+            <text id="w6GravityObjLabel" x="510" y="265" font-size="18" font-weight="700">วัตถุ</text>
+            <text id="w6UgLiveLabel" x="310" y="292" font-size="18" font-weight="700" fill="#166534">PEg = 27.44 J</text>
+            <text id="w6HeightLiveLabel" x="310" y="318" font-size="16" fill="#334155">y = 1.40 m</text>
+            <text id="w6KeLiveLabel" x="310" y="342" font-size="18" font-weight="700" fill="#1d4ed8">KE = 0.00 J</text>
+            <text id="w6WeightLabel" x="480" y="335" font-size="18" font-weight="700" fill="#991b1b">W = mg</text>
+            <text id="w6DispLabel" x="620" y="315" font-size="18" font-weight="700" fill="#166534">การเคลื่อนที่</text>
+          </svg>
+        <div class="w6-energy-readout">
+          <div class="w6-energy-meter-group">
+            <div class="w6-energy-meter">
+              <div id="w6UgLiveBar" class="w6-energy-fill"></div>
+            </div>
+            <span>\(PE_g\)</span>
+            <small id="w6UgLiveBarText">27.44 J</small>
+          </div>
+          <div class="w6-energy-meter-group">
+            <div class="w6-energy-meter">
+              <div id="w6KeLiveBar" class="w6-energy-fill kinetic"></div>
+            </div>
+            <span>\(KE\)</span>
+            <small id="w6KeLiveBarText">0.00 J</small>
+          </div>
+          <div class="w6-energy-meter-group">
+            <div class="w6-energy-meter total">
+              <div id="w6TotalEnergyBar" class="w6-energy-fill total"></div>
+            </div>
+            <span>\(E\)</span>
+            <small id="w6TotalEnergyText">27.44 J</small>
+          </div>
+          <div>
+            <strong>พลังงานขณะนี้</strong>
+            <p id="w6GravityCurrentEnergy">PE_g=27.44 J</p>
+            <p id="w6GravityCurrentKinetic">KE=0.00 J/p>
+            <p id="w6GravityTotalEnergy">E=PE_g+KE=27.44 J</p>
+            <p id="w6GravityCurrentWork">งานจากน้ำหนักถึงขณะนี้ = 0.00 J</p>
+          </div>
+        </div>
+        <p id="w6GravityFeedback" class="formula">กำลังคำนวณ...</p>
+      </div>
+
+      <div class="interaction">
+        <h3>🧩 ตัวอย่างที่ 2: ถ้วยรางวัลตกจากมือ</h3>
+        <p>ถ้วยรางวัลมวล 2.00 kg หลุดจากมือที่สูงจากพื้น 1.40 m ไปยังเท้าที่สูงจากพื้น 0.05 m จงหางานจากแรงโน้มถ่วงและการเปลี่ยนแปลงพลังงานศักย์โน้มถ่วง</p>
+        <div class="options"><button onclick="w6RevealSteps('w6TrophySteps')">แสดง/ซ่อน วิธีทำทีละขั้น</button></div>
+        <div id="w6TrophySteps" class="step-box" hidden>
+          <p>1) กำหนด \(m=2.00\ \mathrm{kg}\), \(y_0=1.40\ \mathrm{m}\), \(y=0.05\ \mathrm{m}\)</p>
+          <p>2) \(W_g=mg(y_0-y)=2.00(9.8)(1.40-0.05)\)</p>
+          <p>3) \(W_g=26.5\ \mathrm{J}\)</p>
+          <p>4) \(\Delta PE_g=PE_{g}-PE_{g,0}=-26.5\ \mathrm{J}\)</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="lesson-bridge"><strong>🔗 เชื่อมโยง</strong><p>แรงโน้มถ่วงเป็นแรงคงที่ใกล้พื้นโลก ส่วนแรงสปริงเป็นแรงที่เปลี่ยนตามตำแหน่ง จึงเหมาะมากสำหรับทบทวนแนวคิด “งาน = พื้นที่ใต้กราฟแรง–ตำแหน่ง”</p></div>
+
+    <section class="lesson" id="spring">
+      <h2>🌀 2. แรงสปริง</h2>
+      <div class="card">
+        <h3>2.1 แรงสปริง</h3>
+        
+        <p class="review"><b>แรงสปริง (Spring force)</b> คือ แรงคืนรูปที่มีทิศตรงข้ามกับการกระจัดจากตำแหน่งสมดุล เมื่อสปริงยืดหรืออัดตามแกน X จะเขียนได้เป็น \(\vec F_s=-k\Delta x \hat{i}\)</p>
+        
+        <div class="interaction">
+          <h3>🌀 Spring Stretch/Compress Simulator</h3>
+          <div class="grid">
+            <div><label>ตำแหน่ง \(x\) = <span id="w6XVal">0.10</span> m</label><input id="w6X" type="range" min="-0.30" max="0.30" step="0.01" value="0.10" oninput="updateW6Spring()"></div>
+            <div><label>ค่าคงที่สปริง \(k\) = <span id="w6KVal">200</span> N/m</label><input id="w6K" type="range" min="20" max="500" step="10" value="200" oninput="updateW6Spring()"></div>
+          </div>
+          <svg viewBox="0 0 920 320" class="w6-svg">
+            <line x1="100" y1="220" x2="840" y2="220" stroke="#111827" stroke-width="4" />
+            <line x1="460" y1="245" x2="460" y2="170" stroke="#94a3b8" stroke-width="3" stroke-dasharray="8 6" />
+            <text x="450" y="265" font-size="16">0</text>
+            <rect x="120" y="130" width="35" height="90" fill="#334155" />
+            <path id="w6SpringPath" d="" fill="none" stroke="#111827" stroke-width="5" />
+            <rect id="w6SpringBlock" x="510" y="175" width="90" height="45" rx="10" fill="#f59e0b" stroke="#92400e" stroke-width="3" />
+            <line id="w6SpringForceArrow" x1="510" y1="155" x2="430" y2="155" stroke="#dc2626" stroke-width="7" marker-end="url(#w6ArrowRed)" />
+            <line id="w6SpringXArrow" x1="460" y1="100" x2="560" y2="100" stroke="#16a34a" stroke-width="5" marker-end="url(#w6ArrowGreen)" />
+            <text id="w6SpringForceLabel" x="440" y="140" font-size="18" font-weight="700" fill="#991b1b">Fs</text>
+            <text id="w6SpringXLabel" x="500" y="90" font-size="18" font-weight="700" fill="#166534">Δx</text>
+          </svg>
+          <p id="w6SpringFeedback" class="formula">กำลังคำนวณ...</p>
+        </div>
+
+        <p class="lead">เนื่องจากแรงสปริงไม่คงที่และเปลี่ยนแปลงตามตำแหน่ง ดังนั้นเราสามารถหางานได้จากพื้นที่ใต้กราฟ \(F_s-x\)</p>
+
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">\[W_s=\frac{1}{2}kx_0^2-\frac{1}{2}kx^2\]</div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+
+        <div class="interaction">
+          <h3>📈 Spring Force Graph Explorer</h3>
+          <p>พื้นที่ใต้กราฟ \(F_s-x\) ระหว่าง \(x_i\) ถึง \(x_f\) คือ งานของแรงสปริง</p>
+
+          <div class="grid">
+            <div><label>ตำแหน่งเริ่มต้น \(x_0\) = <span id="w6XiVal">0.00</span> m</label><input id="w6Xi" type="range" min="-0.30" max="0.30" step="0.01" value="0.00" oninput="updateW6Spring()"></div>
+            <div><label>ตำแหน่งสุดท้าย \(x\) = <span id="w6XfVal">0.10</span> m</label><input id="w6Xf" type="range" min="-0.30" max="0.30" step="0.01" value="0.10" oninput="updateW6Spring()"></div>
+          </div>
+          <svg viewBox="0 0 920 440" class="w6-svg">
+            <line x1="90" y1="220" x2="850" y2="220" stroke="#111827" stroke-width="3" />
+            <line x1="460" y1="370" x2="460" y2="60" stroke="#111827" stroke-width="3" />
+            <text x="858" y="225" font-size="18">x</text><text x="466" y="55" font-size="18">F</text>
+            <text x="116" y="244" font-size="14" fill="#64748b">-0.30 m</text>
+            <text x="774" y="244" font-size="14" fill="#64748b">+0.30 m</text>
+            <text x="470" y="82" font-size="14" fill="#64748b">+150 N</text>
+            <text x="470" y="365" font-size="14" fill="#64748b">-150 N</text>
+            <g id="w6SpringGrid"></g>
+            <polygon id="w6SpringArea" points="" fill="#dbeafe" stroke="#2563eb" stroke-width="2" opacity="0.85"></polygon>
+            <line id="w6SpringGraphLine" x1="120" y1="" x2="800" y2="" stroke="#dc2626" stroke-width="5" />
+            <line id="w6SpringXiLine" x1="" y1="60" x2="" y2="370" stroke="#64748b" stroke-width="2" stroke-dasharray="8 6" />
+            <line id="w6SpringXfLine" x1="" y1="60" x2="" y2="370" stroke="#64748b" stroke-width="2" stroke-dasharray="8 6" />
+            <text id="w6SpringXiLabel" x="" y="395" font-size="16" font-weight="700" fill="#334155">x0</text>
+            <text id="w6SpringXfLabel" x="" y="415" font-size="16" font-weight="700" fill="#334155">x</text>
+          </svg>
+          <p id="w6SpringWorkFeedback" class="formula">กำลังคำนวณ...</p>
+        </div>
+
+        <p><b>เมื่อสปริงเคลื่อนที่ออกจากสมดุล งานจากสปริงเป็นบวก ➖ เมื่อสปริงเคลื่อนที่กลับสู่สมดุล งานจากสปริงเป็นบวก ➕</b></p>
+        <div class="warning-box">
+          <div class="warning-icon">⚠️</div>
+          <div class="warning-content">
+            <strong>สำคัญ</strong>
+            <p>เราสามารถพิสูจน์ด้วย Vector calculus ว่าสมการ (5) ยังเป็นจริง แม้เส้นทางการเคลื่อนที่จะไม่ใช่เส้นตรง</p>
+          </div>
+        </div>
+      </div><br>
+
+     <div class="card">
+        <h3>2.2 พลังงานศักย์ยืดหยุ่น</h3>
+        <p class="lead">จากสมการ (5) เราจะนิยาม <b>พลังงานศักย์ยืดหยุ่น (Elastic Potential Energy)</b> ว่า </p>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">\[PE_s\equiv \frac{1}{2}kx^2\]</div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+        
+        <p class="lead">จากนิยามนี้ เราสามารถเขียนงานที่เกิดจากแรงสปริงในรูปของผลต่างพลังงานศักย์ยืดหยุ่น ได้ดังนี้</p>  
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">\[W_s=-\Delta PE_s=-(PE_s-PE_{s,0})\]</div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+      </div><br>
+
+      <div class="card">
+        <h3>2.3 ประยุกต์ทฤษฎีบทงาน-พลังงาน</h3>
+        <p class="lead">จากทฤษฎีบทงาน-พลังงาน \(W_{total}=\Delta KE\)
+          <u>ถ้ามีเพียงแรงจากสปริงที่กระทำกับวัตถุ</u>เราจะได้ว่า \(W_s=KE-KE_0\) หรือ
+          \(-(PE_s-PE_{s,0})=KE-KE_0\) หรือ
+        </p>
+        <div class="formula conversion-formula">\[PE_{s,0}+KE_0=PE_s+KE\]</div>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">\[\frac12 k x_0^2+\frac12 m v_0^2=\frac12 k x^2+\frac12 m v^2\]</div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+        <div class="warning-box">
+          <div class="warning-icon">⚠️</div>
+          <div class="warning-content">
+            <p><b>ข้อจำกัด</b> แรงจากสปริงเท่านั้นที่กระทำกับวัตถุ</p>
+          </div>
+        </div>
+        <p class="lead">ซึ่งหมายความว่า เมื่อมีเพียงแรงจากสปริงที่กระทำกับวัตถุ</p>
+        <div class="formula conversion-formula">ผลรวมระหว่างพลังงานศักย์และพลังงานจลน์(พลังงานกลรวม)จะคงที่เสมอ</div>
+      </div>
+
+      <div class="interaction">
+        <h3>📊 Spring Energy Simulation</h3>
+        <p>จำลองมวลติดสปริงเมื่อไม่มีแรงเสียดทาน: พลังงานรวมคงที่ แต่พลังงานศักย์ยืดหยุ่นและพลังงานจลน์เปลี่ยนสลับกันระหว่างการเคลื่อนที่</p>
+        <div class="grid">
+          <div><label>มวล \(m\) = <span id="w6SpringMassVal">1.00</span> kg</label><input id="w6SpringMass" type="range" min="0.2" max="5" step="0.1" value="1" oninput="updateW6SpringEnergy()"></div>
+          <div><label>ค่าคงที่สปริง \(k\) = <span id="w6SpringEnergyKVal">200</span> N/m</label><input id="w6SpringEnergyK" type="range" min="20" max="500" step="10" value="200" oninput="updateW6SpringEnergy()"></div>
+          <div><label>แอมพลิจูด \(A\) = <span id="w6SpringAmpVal">0.20</span> m</label><input id="w6SpringAmp" type="range" min="0.05" max="0.30" step="0.01" value="0.20" oninput="updateW6SpringEnergy()"></div>
+        </div>
+        <div class="w6-animation-controls">
+          <button type="button" id="w6SpringEnergyPlayBtn" onclick="w6PlaySpringEnergyAnimation()">เล่น animation</button>
+          <button type="button" onclick="w6ResetSpringEnergyAnimation()">กลับไปจุดเริ่มต้น</button>
+          <label>เวลา <span id="w6SpringEnergyProgressVal">0</span>%</label>
+          <input id="w6SpringEnergyProgress" type="range" min="0" max="100" step="1" value="0" oninput="w6SetSpringEnergyProgress(Number(this.value) / 100)">
+        </div>
+        <svg viewBox="0 0 920 320" class="w6-svg">
+          <line x1="100" y1="220" x2="840" y2="220" stroke="#111827" stroke-width="4" />
+          <line x1="460" y1="245" x2="460" y2="170" stroke="#94a3b8" stroke-width="3" stroke-dasharray="8 6" />
+          <line x1="180" y1="245" x2="180" y2="170" stroke="#bfdbfe" stroke-width="2" stroke-dasharray="6 6" />
+          <line x1="740" y1="245" x2="740" y2="170" stroke="#bfdbfe" stroke-width="2" stroke-dasharray="6 6" />
+          <text x="448" y="265" font-size="16">0</text>
+          <text x="154" y="265" font-size="16">-A</text>
+          <text x="728" y="265" font-size="16">+A</text>
+          <rect x="120" y="130" width="35" height="90" fill="#334155" />
+          <path id="w6SpringEnergyPath" d="" fill="none" stroke="#111827" stroke-width="5" />
+          <rect id="w6SpringEnergyBlock" x="695" y="175" width="90" height="45" rx="10" fill="#f59e0b" stroke="#92400e" stroke-width="3" />
+          <line id="w6SpringEnergyXArrow" x1="460" y1="105" x2="740" y2="105" stroke="#16a34a" stroke-width="5" marker-end="url(#w6ArrowGreen)" />
+          <text id="w6SpringEnergyXLabel" x="580" y="92" font-size="18" font-weight="700" fill="#166534">x = 0.20 m</text>
+          <text id="w6SpringEnergyUsLabel" x="565" y="150" font-size="18" font-weight="700" fill="#166534">PEs = 4.00 J</text>
+          <text id="w6SpringEnergyKLabel" x="565" y="174" font-size="18" font-weight="700" fill="#1d4ed8">KE = 0.00 J</text>
+        </svg>
+        <div class="w6-energy-readout">
+          <div class="w6-energy-meter-group">
+            <div class="w6-energy-meter">
+              <div id="w6SpringUsBar" class="w6-energy-fill"></div>
+            </div>
+            <span>\(PE_s\)</span>
+            <small id="w6SpringUsText">4.00 J</small>
+          </div>
+          <div class="w6-energy-meter-group">
+            <div class="w6-energy-meter">
+              <div id="w6SpringKBar" class="w6-energy-fill kinetic"></div>
+            </div>
+            <span>\(KE\)</span>
+            <small id="w6SpringKText">0.00 J</small>
+          </div>
+          <div class="w6-energy-meter-group">
+            <div class="w6-energy-meter total">
+              <div id="w6SpringTotalBar" class="w6-energy-fill total"></div>
+            </div>
+            <span>\(E\)</span>
+            <small id="w6SpringTotalText">4.00 J</small>
+          </div>
+          <div>
+            <strong>พลังงานขณะนี้</strong>
+            <p id="w6SpringEnergyCurrentUs">PEs=4.00 J</p>
+            <p id="w6SpringEnergyCurrentK">KE=0.00 J</p>
+            <p id="w6SpringEnergyTotal">E=PEs+KE=4.00 J</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="interaction">
+        <h3>🧩 ตัวอย่างที่ 3: สปริง \(k=200\) N/m ถูกยืด \(0.100\) m
+        <br>จงหา 1. งานที่สปริงทำ และ 2. พลังงานศักย์ยืดหยุ่นที่เปลี่ยนแปลงไป</h3>
+        <div class="options"><button onclick="w6RevealSteps('w6SpringExampleSteps')">แสดง/ซ่อน วิธีทำ</button></div>
+        <div id="w6SpringExampleSteps" class="step-box" hidden>
+          <p>1) งานที่สปริงทำจาก \(x_0=0\) ถึง \(x=0.100\) คือ \(W_s=\frac12k x_0^2-\frac12k x^2 = 0-\frac12(200)(0.100)^2=-1.00\ \mathrm{J}\)</p>
+          <p>2) \(\Delta PE_s=+1.00\ \mathrm{J}\)</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson" id="friction">
+      <h2>🧱 3. แรงเสียดทาน</h2>
+      <div class="card">
+        <p class="review">เมื่อวัตถุเคลื่อนที่บนพื้นขรุขระ แรงเสียดทานจลน์มีทิศตรงข้ามกับการเคลื่อนที่ และมีขนาด \(f_k=\mu_k N\) งานของแรงเสียดทานจึงเป็นลบเสมอ</p>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">\[W_f=-f_k ℓ=-\mu_kNℓ\]</div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+        <p class="math-lg">เมื่อ ℓ คือ ระยะการเคลื่อนที่</p>
+      </div>
+
+      <div class="interaction">
+        <h3>🧩 ตัวอย่างที่ 4: กล่องมวล 1.0 kg เคลื่อนที่บนพื้นขรุขระที่มีค่าสัมประสิทธิ์เสียดทานจลน์เท่ากับ
+          0.50 ไปทางขวาเป็นระยะทางเท่ากับ \(x_1 = 5.0\ \mathrm{m}\) หลังจากนั้นเคลื่อนที่ไปทางซ้ายเป็นระยะทาง
+          \(x_2 = 3.0\ \mathrm{m}\) จงหางานทั้งหมดที่แรงเสียดทานกระทำกับกล่อง</h3>
+        
+          <figure class="figure-card figure-wide"><img src="asset/week%206/figure-3.png" alt="ภาพแสดงวัตถุเคลื่อนที่เป็นเส้นตรงขณะที่มีน้ำหนักกระทำอยู่"><figcaption class="caption">ภาพแสดงวัตถุเคลื่อนที่เป็นเส้นตรงขณะที่มีน้ำหนักกระทำอยู่</figcaption></figure>
+      </div>
+
+      <div class="card">
+        <h3>ประยุกต์ทฤษฎีบทงาน-พลังงาน</h3>
+        <p class="lead">จากทฤษฎีบทงาน-พลังงาน \(W_{total}=\Delta KE\)
+          <u>ถ้ามีน้ำหนักและแรงเสียดทานที่กระทำกับวัตถุ</u>เราจะได้ว่า \(W_g+W_f=KE-KE_0\) หรือ
+          \(-(PE_s-PE_{s,0})+W_f=KE-KE_0\) หรือ
+        </p>
+        <div class="formula conversion-formula">\[PE_{g,0}+KE_0-|W_f|=PE_g+KE\]</div>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">\[mgy_0+\frac12 m v_0^2-\mu_kNℓ=mgy+\frac12 m v^2\]</div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+        <div class="warning-box">
+          <div class="warning-icon">⚠️</div>
+          <div class="warning-content">
+            <p><b>ข้อจำกัด</b> มีเพียงน้ำหนักและแรงเสียดทานที่กระทำกับวัตถุ</p>
+          </div>
+        </div>
+        <p class="lead">ซึ่งหมายความว่า เมื่อมีน้ำหนักและแรงเสียดทานที่กระทำกับวัตถุ \((mgy+\frac12 m v^2)-(mgy_0+\frac12 m v_0^2)=-\mu_kNℓ\) หรือ</p>
+        <div class="formula conversion-formula">
+          <p>\[ E-E_0=W_f\]</p>
+          <p>ผลต่างของผลรวมระหว่างพลังงานศักย์และพลังงานจลน์(พลังงานกลรวม)จะเท่ากับงานที่ทำโดยแรงเสียดทาน</p>
+        </div>
+      </div>
+      
+      <div class="interaction">
+        <h3>🛤️ Path Independence Demonstration</h3>
+        <p>สมมติสถานการณ์ที่วัตถุเคลื่อนที่ผ่านจุด A ด้วยอัตราเร็วเริ่มต้นที่ไม่เป็นศูนย์ ไปหยุดที่จุด B</p>
+        <p>เลือกเส้นทางจาก A ไป B เพื่อเปรียบเทียบงานของน้ำหนักกับงานของแรงเสียดทาน</p>
+        <div class="grid">
+          <div><label>มวล \(m\) = <span id="w6PathMassVal">1.0</span> kg</label><input id="w6PathMass" type="range" min="0.2" max="10" step="0.1" value="1" oninput="updateW6Path()"></div>
+          <div><label>สัมประสิทธิ์เสียดทานจลน์ \(\mu_k\) = <span id="w6PathMuVal">0.30</span></label><input id="w6PathMu" type="range" min="0" max="1" step="0.01" value="0.30" oninput="updateW6Path()"></div>
+        </div>
+        <div class="options">
+          <button id="w6PathBtn1" class="secondary" onclick="setW6Path(1)">เส้นทางตรง</button>
+          <button id="w6PathBtn2" class="secondary" onclick="setW6Path(2)">เส้นทางโค้ง</button>
+          <button id="w6PathBtn3" class="secondary" onclick="setW6Path(3)">เส้นทางยาวมาก</button>
+          <button type="button" id="w6PathPlayBtn" onclick="w6PlayPathAnimation()">เล่น animation</button>
+        </div>
+        <svg viewBox="0 0 920 320" class="w6-svg">
+          <line x1="100" y1="260" x2="850" y2="260" stroke="#cbd5e1" stroke-width="3" />
+          <text x="820" y="300" font-size="16" fill="#64748b">พื้นอ้างอิง</text>
+          <circle cx="170" cy="220" r="14" fill="#2563eb" /><text x="145" y="250" font-size="18">A</text>
+          <circle cx="760" cy="100" r="14" fill="#f59e0b" /><text x="780" y="105" font-size="18">B</text>
+          <line x1="805" y1="220" x2="805" y2="100" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8 6" />
+          <text x="812" y="120" font-size="12" fill="#475569">ความสูงที่เปลี่ยนไป</text>
+          <path id="w6PathCurve" d="M170,220 C360,220 560,100 760,100" fill="none" stroke="#16a34a" stroke-width="7" stroke-linecap="round" />
+          <circle id="w6PathObject" cx="170" cy="220" r="16" fill="#f59e0b" stroke="#92400e" stroke-width="3" />
+          <line id="w6PathWeightArrow" x1="170" y1="220" x2="170" y2="282" stroke="#7c3aed" stroke-width="6" marker-end="url(#w6ArrowPurple)" />
+          <line id="w6PathMotionArrow" x1="190" y1="215" x2="250" y2="205" stroke="#16a34a" stroke-width="6" marker-end="url(#w6ArrowGreen)" />
+          <line id="w6PathFrictionArrow" x1="190" y1="238" x2="130" y2="248" stroke="#dc2626" stroke-width="6" marker-end="url(#w6ArrowRed)" />
+          <text id="w6PathWeightText" x="182" y="285" font-size="16" font-weight="700" fill="#6d28d9">น้ำหนัก</text>
+          <text id="w6PathMotionText" x="250" y="198" font-size="16" font-weight="700" fill="#166534">การเคลื่อนที่</text>
+          <text id="w6PathFrictionText" x="72" y="270" font-size="16" font-weight="700" fill="#991b1b">แรงเสียดทาน</text>
+        </svg>
+        <div class="w6-work-bars">
+          <div class="w6-work-bar-card">
+            <strong>\(W_f\)</strong>
+            <div class="w6-signed-bar"><span class="zero"></span><span id="w6PathWfBar" class="fill negative"></span></div>
+            <small id="w6PathWfText">-17.64 J</small>
+          </div>
+          <div class="w6-work-bar-card">
+            <strong>\(KE\)</strong>
+            <div class="w6-signed-bar positive-only"><span id="w6PathKineticBar" class="fill positive"></span></div>
+            <small id="w6PathKineticText">37.24 J</small>
+          </div>
+          <div class="w6-work-bar-card">
+            <strong>\(PE_g\)</strong>
+            <div class="w6-signed-bar positive-only"><span id="w6PathUgBar" class="fill positive"></span></div>
+            <small id="w6PathUgText">0.00 J</small>
+          </div>
+          <div class="w6-work-bar-card">
+            <strong>\(E=PE_g+KE\)</strong>
+            <div class="w6-signed-bar positive-only"><span id="w6PathMechanicalBar" class="fill positive"></span></div>
+            <small id="w6PathMechanicalText">80.00 J</small>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="card"><strong>ข้อมูลเส้นทาง</strong><p id="w6PathInfo">กำลังคำนวณ...</p></div>
+          <div class="card"><strong>งานจากแรงเสียดทาน</strong><p id="w6PathFrictionWork">กำลังคำนวณ...</p></div>
+          <div class="card"><strong>การเปลี่ยนแปลงพลังงาน</strong><p id="w6PathGravityWork">กำลังคำนวณ...</p></div>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="lesson" id="conservative">
+      <h2>♻️ 4. แรงอนุรักษ์และแรงไม่อนุรักษ์</h2>
+      <div class="grid">
+        <div class="card"><strong>แรงอนุรักษ์ (Conservative forces)</strong><br>คือ แรงที่งานของมัน \(W_c\) ขึ้นกับแค่ตำแหน่งเริ่มต้นและตำแหน่งสุดท้ายเท่านั้น
+          โดยไม่ขึ้นกับเส้นทางการเคลื่อนที่ระหว่างตำแหน่งเริ่มต้นและตำแหน่งสุดท้าย
+          และสามารถเขียนงานให้อยู่ในรูปค่าลบของผลต่างของพลังงานศักย์ได้ \[W_c=-\Delta PE\]</div>
+        <div class="card"><strong>แรงไม่อนุรักษ์ (Non-Conservative forces)</strong><br>คือ แรงที่งานของมัน \(W_{nc}\) ขึ้นอยู่กับเส้นทางการเคลื่อนที่ทั้งหมด
+          และไม่สามารถเขียนงานให้อยู่ในรูปค่าลบของผลต่างของพลังงานศักย์ได้</div>
+      </div>
+      <div class="interaction">
+        <h3>🃏 Conservative or Non-Conservative Sorting Game</h3>
+        <p>ลากชื่อแรงไปใส่กลุ่มให้ถูกต้อง</p>
+        <div class="drag-items">
+          <span class="drag-item" draggable="true" data-type="conservative">น้ำหนัก</span>
+          <span class="drag-item" draggable="true" data-type="conservative">แรงสปริง</span>
+          <span class="drag-item" draggable="true" data-type="nonconservative">แรงเสียดทาน</span>
+        </div>
+        <div class="dropzone-wrap">
+          <div class="dropzone" data-accept="conservative"><strong>แรงอนุรักษ์</strong></div>
+          <div class="dropzone" data-accept="nonconservative"><strong>แรงไม่อนุรักษ์</strong></div>
+        </div>
+        <button onclick="checkDropzones(this)">ตรวจคำตอบ</button>
+        <button class="secondary" onclick="resetDropzones(this)">รีเซ็ต</button>
+        <p data-feedback></p>
+      </div>
+    </section>
+
+    <section class="lesson" id="work-energy-system">
+      <h2>🧮 5. ทฤษฎีบทงาน–พลังงานในรูปพลังงานกล</h2>
+
+      <div class="card">
+        <p class="lead">พิจารณาทฤษฎีบทงาน-พลังงานอีกครั้ง
+          \[W_{total}=\Delta KE\]
+          พิจาณาสถานการณ์ทั่วไปที่สุด กล่าวคือ มีแรงหลายแรงกระทำกับวัตถุที่กำลังพิจารณา
+          ซึ่งอาจจะมีทั้งแรงอนุรักษ์และแรงรักไม่อนุรักษ์ ดังนั้นเราสามารถเขียน
+          งานลัพธ์ให้อยู่ในรูปของงานลัพธ์จากแรงอนุรักษ์บวกกับงานลัพธ์จากแรงไม่อนุรักษ์ได้
+          \[W_{total}=W_c+W_{nc}\]
+          จากนิยามของแรงอนุรักษ์ เราสามารถเขียนงานลัพธ์ให้อยู่ในรูปของผลต่างพลังงานศักย์ลัพธ์ได้
+          \[W_{total}=-\Delta PE +W_{nc}\]
+          เมื่อแทนงานลัพธ์นี้ในทฤษฎีบทงาน-พลังงาน เราจะได้ว่า
+          \(-\Delta PE +W_{nc}=\Delta KE\) หรือ
+        </p>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">\[\Delta PE+\Delta KE =W_{nc}\]</div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+
+        <h3>🔎 สมการนี้สมมูลกับทฤษฎีบทงาน-พลังงาน เพียงแต่เขียนให้ในรูปพลังงานกลเท่านั้น</h3>
+      </div><br>
+      
+      <div class="card">
+        <h2>กฎการอนุรักษ์พลังงานกลรวม <br>(Conservation of Mechanical Energy)</h2>
+        <div class="warning-box">
+          <div class="warning-icon">⚠️</div>
+          <div class="warning-content">
+            <p><b>ข้อจำกัด</b> ถ้าสถานการณ์ที่พิจารณา งานลัพธ์จากแรงไม่อนุรักษ์มีค่าเป็นศูนย์ (\(W_{nc}=0\))
+            สมการ (11) สามารถเขียนใหม่ได้เป็น \(\Delta PE+\Delta KE =0\) หรือ พลังงานกลเริ่มต้นเท่ากับพลังงานกลสุดท้ายเสมอ</p>
+          </div>
+        </div>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">\[PE_0+KE_0 =PE+KE\]</div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+        <p class="lead">สมการ (12) มีชื่อเรียกว่า กฎการอนุรักษ์พลังงานกลรวม ซึ่งเป็นกรณีพิเศษของทฤษฎีบทงาน-พลังงาน</p>
+      </div>
+    </section>
+
+    <section class="lesson" id="examples">
+      <h2>🧩 ตัวอย่างการประยุกต์ใช้</h2>
+      <div class="interaction">
+        <h3>🏀 ตัวอย่างที่ 5: ลูกบอลตกจากที่สูง</h3>
+        <div class="grid">
+          <figure class="figure-card figure-wide"><img src="asset/week%206/figure-4.png" alt="ภาพแสดงวัตถุเคลื่อนที่เป็นเส้นตรงขณะที่มีน้ำหนักกระทำอยู่"><figcaption class="caption">ภาพแสดงวัตถุเคลื่อนที่เป็นเส้นตรงขณะที่มีน้ำหนักกระทำอยู่</figcaption></figure>
+          <p>ลูกบอลมวล \(𝑚\) ถูกปล่อยจากตำแหน่งที่สูงจากพื้นเป็ระยะตามแนวดิ่ง \(ℎ\) ดังภาพซ้ายมือ
+            จงหาอัตราเร็วของลูกบอล \(𝑣_𝑓\) เมื่ออยู่สูงจากพื้น \(𝑦\) เมตร โดยไม่ต้องคำนึงถึงแรงต้านอากาศ</p>
+        </div>
+      </div>
+
+      <div class="interaction">
+        <h3>📦 ตัวอย่างที่ 6: กล่องชนสปริง</h3>
+        <div class="grid">
+          <figure class="figure-card figure-wide"><img src="asset/week%206/figure-5.png" alt="ภาพแสดงวัตถุเคลื่อนที่เป็นเส้นตรงขณะที่มีน้ำหนักกระทำอยู่"><figcaption class="caption">ภาพแสดงวัตถุเคลื่อนที่เป็นเส้นตรงขณะที่มีน้ำหนักกระทำอยู่</figcaption></figure>
+          <p>กล่องใบหนึ่งมวล 0.80 kg กำลังเคลื่อนที่ไปทางขวาด้วยความเร็วต้น 1.2 m/s หลังจากนั้นชนเข้ากับสปริงเบาที่มีค่าคงที่สปริงเท่ากับ 50 N/m ดังภาพด้านซ้าย จงตอบคำถามต่อไปนี้
+          <br>a. คำนวณหาระยะสูงสุดที่สปริงถูกอัดโดยกล่อง โดยที่ไม่ต้องคำนึงถึงแรงเสียดแทนของพื้น
+          <br>b. คำนวณหาระยะสูงสุดที่สปริงถูกอัดโดยกล่อง โดยสมมติให้พื้นมีสัมประสิทธิ์แรงเสียดจลน์ทานเท่ากับ \(𝜇_𝑘=0.50\)
+        </p>
+      </div>
+    </section>
+
+    <section class="lesson" id="summary">
+      <h2>🎯 สรุปท้ายคาบ และ Final Quiz</h2>
+        <p class="lead">
+          ใจหลักของคาบนี้คือ ค้นพบว่าปรากฎการณ์ต่าง ๆ ในธรรมชาติเป็นไปตาม ทฤษฎีบทงาน-พลังงาน
+          ซึ่งสามารถเขียนให้อยู่ในรูปของพลังงานกลได้ \[\Delta PE+\Delta KE =W_{nc}\] และสำหรับกรณีพิเศษที่เมื่อไม่มีแรงไม่อนุรักษ์กระทำต่อวัตถุ
+          ผลรวมระหว่างพลังงานจลน์และพลังงานศักย์หรือที่เรียกว่า พลังงานกลรวม จะคงที่ไม่เปลี่ยนแปลงตามเวลา
+          (ซึ่งในทางฟิสิกส์เราจะเรียกปริมาณที่ไม่เปลี่ยนแปลงตามเวลาว่า ปริมาณอนุรักษ์) เกิดเป็น กฎอนุรักษ์พลังงานกลรวม ขึ้นมา
+          \[PE_0+KE_0 =PE+KE\]
+          <br>ในสัปดาห์หน้า เราจะศึกษาปริมาณอนุรักษ์และกฎการอนุรักษ์อื่น ต่อไป
+          
+        </p>
+      <h3>📋 ตารางสูตรงานและพลังงานกล</h3>
+      <div class="card">
+        <table class="mini-table">
+          <thead>
+            <tr>
+              <th>หัวข้อ</th>
+              <th>สูตรสำคัญ</th>
+              <th>ความหมาย/เงื่อนไข</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>งานจากน้ำหนัก</td>
+              <td>\(W_g=mg(y_0-y)=-\Delta PE_g\)</td>
+              <td>ขึ้นกับความสูงต้นและปลายเท่านั้น ไม่ขึ้นกับเส้นทาง</td>
+            </tr>
+            <tr>
+              <td>พลังงานศักย์โน้มถ่วง</td>
+              <td>\(PE_g=mgy\)</td>
+              <td>เลือกพื้นอ้างอิง \(y=0\) ก่อนคำนวณ</td>
+            </tr>
+            <tr>
+              <td>แรงสปริง</td>
+              <td>\(F_s=-k\Delta x\)</td>
+              <td>ทิศของแรงสปริงตรงข้ามกับการกระจัดจากสมดุล</td>
+            </tr>
+            <tr>
+              <td>งานจากแรงสปริง</td>
+              <td>\(W_s=\frac12kx_0^2-\frac12kx^2=-\Delta PE_s\)</td>
+              <td>เป็นแรงอนุรักษ์ งานขึ้นกับตำแหน่งต้นและปลาย</td>
+            </tr>
+            <tr>
+              <td>พลังงานศักย์ยืดหยุ่น</td>
+              <td>\(PE_s=\frac12kx^2\)</td>
+              <td>มีค่าเป็นบวกทั้งตอนยืดและอัด เพราะขึ้นกับ \(x^2\)</td>
+            </tr>
+            <tr>
+              <td>พลังงานจลน์</td>
+              <td>\(KE=\frac12mv^2\)</td>
+              <td>ใช้บอกพลังงานจากการเคลื่อนที่ของวัตถุ</td>
+            </tr>
+            <tr>
+              <td>งานจากแรงเสียดทานจลน์</td>
+              <td>\(W_f=-f_k\ell=-\mu_kN\ell\)</td>
+              <td>ขึ้นกับความยาวเส้นทาง \(\ell\) และเป็นลบเสมอ</td>
+            </tr>
+            <tr>
+              <td>ทฤษฎีบทงาน-พลังงาน</td>
+              <td>\(W_{total}=\Delta KE\)</td>
+              <td>ใช้ได้ทั่วไปกับงานลัพธ์จากแรงทั้งหมด</td>
+            </tr>
+            <tr>
+              <td>พลังงานกลรวม</td>
+              <td>\(E=PE+KE\)</td>
+              <td>รวมพลังงานศักย์ทั้งหมดของระบบกับพลังงานจลน์</td>
+            </tr>
+            <tr>
+              <td>รูปพลังงานกล</td>
+              <td>\(\Delta PE+\Delta KE=W_{nc}\)</td>
+              <td>งานจากแรงไม่อนุรักษ์ทำให้พลังงานกลเปลี่ยน</td>
+            </tr>
+            <tr>
+              <td>อนุรักษ์พลังงานกล</td>
+              <td>\(PE_0+KE_0=PE+KE\)</td>
+              <td>ใช้เมื่อ \(W_{nc}=0\)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="interaction">
+        <h3>✅ Exit Quiz</h3>
+        <div class="card"><p><b>ข้อ 1:</b> แรงเสียดทานเป็นแรงประเภทใด?</p><div class="options" data-quiz data-answer="b"><button class="option-btn" data-choice="a">แรงอนุรักษ์</button><button class="option-btn" data-choice="b">แรงไม่อนุรักษ์</button></div><p data-feedback></p></div>
+        <div class="card"><p><b>ข้อ 2:</b> ถ้าลูกบอลตกลงมา \(PE_g\) จะเป็นอย่างไร?</p><div class="options" data-quiz data-answer="a"><button class="option-btn" data-choice="a">ลดลง</button><button class="option-btn" data-choice="b">เพิ่มขึ้น</button><button class="option-btn" data-choice="c">คงที่เสมอ</button></div><p data-feedback></p></div>
+        <div class="card"><p><b>ข้อ 3:</b> เมื่อไม่มีแรงภายนอกและมีเฉพาะแรงอนุรักษ์ ความสัมพันธ์ใดถูกต้อง?</p><div class="options" data-quiz data-answer="c"><button class="option-btn" data-choice="a">\(W_f\ne0\)</button><button class="option-btn" data-choice="b">\(KE_0=KE\)</button><button class="option-btn" data-choice="c">\(E_0=E\)</button></div><p data-feedback></p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>FUNSC115 · Fundamental of Physics for Engineers · Week 6 · Mechanical Energy</footer>
+</body>
+</html>

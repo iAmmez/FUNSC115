@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>สัปดาห์ที่ 9 กลศาสตร์ของไหลสถิต</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="css/week9.css" />
+  <script src="js/mathjax-config.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script defer src="script.js"></script>
+  <script defer src="js/week9.js"></script>
+</head>
+<body>
+  <svg width="0" height="0" class="svg-defs" aria-hidden="true" focusable="false">
+    <defs>
+      <marker id="w9ArrowBlue" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L5,2.5 L0,5 z" fill="#2563eb" /></marker>
+      <marker id="w9ArrowRed" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L5,2.5 L0,5 z" fill="#dc2626" /></marker>
+      <marker id="w9ArrowGreen" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L5,2.5 L0,5 z" fill="#16a34a" /></marker>
+      <marker id="w9ArrowOrange" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L5,2.5 L0,5 z" fill="#f59e0b" /></marker>
+      <marker id="w9ArrowPurple" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L5,2.5 L0,5 z" fill="#7c3aed" /></marker>
+    </defs>
+  </svg>
+
+  <header>
+    <div class="hero">
+      <h1>สัปดาห์ที่ 9: กลศาสตร์ของไหลสถิต</h1>
+      <p>เว็บไซต์ประกอบการเรียนการสอนรายวิชา Fundamental of Physics for Engineers (FUNSC115)</p>
+    </div>
+  </header>
+
+  <div class="topbar">
+    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    <nav class="nav" id="nav">
+      <a href="index.html#content-table">🏠 หน้าแรก</a>
+      <a href="#opening">🚀 เปิดบทเรียน</a>
+      <a href="#fluid">🌊 ของไหล</a>
+      <a href="#pressure-density">⚖️ ความดัน/ความหนาแน่น</a>
+      <a href="#depth">⬇️ ความลึก</a>
+      <a href="#examples">🧮 ตัวอย่าง</a>
+      <a href="#pascal">🔧 ปาสคาล</a>
+      <a href="#archimedes">🪵 อาร์คิมิดีส</a>
+      <a href="#summary">✅ สรุป</a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="lesson" id="opening">
+      <h2>🚀 เปิดบทเรียน</h2>
+      <p class="lead">คาบนี้ศึกษาพฤติกรรมของระบบหลายอนุภาคที่เรียกว่า ของไหล เราจะศึกษาของไหลที่หยุดนิ่ง โดยเน้นความสัมพันธ์ระหว่างความดัน ความหนาแน่น ความลึก กฎของปาสคาล และแรงลอยตัว</p>
+      <div class="grid">
+        <div class="card"><strong>🎯 เป้าหมายวันนี้</strong><ul><li>อธิบายความหมายของของไหลและของไหลอุดมคติ</li><li>คำนวณความดัน ความหนาแน่น และความดันตามความลึก</li><li>อธิบายการส่งผ่านความดันตามกฎของปาสคาล</li><li>วิเคราะห์แรงลอยตัวและเงื่อนไขการลอยหรือจม</li></ul></div>
+        <div class="card"><strong>🗺️ ภาพรวม</strong><br>เริ่มจากความหมายของของไหลและของไหลอุดมคติ จากนั้นศึกษาความดัน ความหนาแน่น และการเปลี่ยนแปลงความดันตามความลึก รวมถึงความแตกต่างระหว่างความดันเกจและความดันสมบูรณ์ แล้วค่อยเชื่อมไปสู่กฎของปาสคาล แรงลอยตัว และหลักของอาร์คิมิดีส</div>
+        <div class="card"><strong>🧭 วิธีเรียน</strong><br>เรียนผ่านคำถาม ทดลองคิด ทำกิจกรรม และตอบ quiz ระหว่างสอน</div>
+      </div>
+      <div class="interaction">
+        <h3>📊 Poll เปิดคาบ: ทำไมเรือเหล็กจึงลอยน้ำได้?</h3>
+        <p>เหล็กชิ้นเล็ก ๆ มักจมน้ำ แต่เรือเหล็กขนาดใหญ่มากกลับลอยอยู่บนผิวน้ำได้ นักศึกษาคิดว่าอะไรเป็นเหตุผลสำคัญที่สุด?</p>
+        <div class="options" data-poll>
+          <button class="option-btn">เพราะเรือมีมวลมาก จึงกดน้ำให้ช่วยพยุงได้มาก</button>
+          <button class="option-btn">เพราะรูปทรงเรือแทนที่น้ำได้มากพอ</button>
+          <button class="option-btn">เพราะเหล็กเมื่อทำเป็นเรือจะมีความหนาแน่นลดลง</button>
+          <button class="option-btn">เพราะน้ำดันเฉพาะวัตถุที่มีพื้นที่ผิวมากเท่านั้น</button>
+        </div>
+        <p class="hint">เก็บคำตอบไว้ก่อน แล้วระหว่างหน่วยเรียนเราจะค่อย ๆ ใช้แนวคิดของของไหลที่หยุดนิ่ง ความดัน และแรงลอยตัวมาอธิบายปรากฏการณ์นี้</p>
+      </div>
+    </section>
+
+    <section class="lesson" id="fluid">
+      <h2>🌊 1. กลศาสตร์ของไหล</h2>
+      <div class="card">
+        <h3>1.1 ของไหลคืออะไร?</h3>
+        <p class="lead">
+          <b>ของไหล (Liquid)</b> คือ กลุ่มของอนุภาคที่มีพันธะกันแบบหลวม ๆ และมีการจัดเรียงตัวแบบไม่เป็นระเบียบ
+          จึงทำให้อนุภาคสามารถเคลื่อนที่ได้ง่าย ของไหลจึงสามารถเปลี่ยนรูปร่างตามภาชนะและสามารถไหลได้
+          ดังนั้นของเหลวและก๊าซจึงถือว่าเป็นของไหล
+        </p>
+        <div class="slide-card">
+          <img src="asset/week%209/figure-1.png" alt="รูปแสดงลักษณะการจัดเรียงตัวของสสารในสถานะต่าง ๆ">
+          <figcaption class="caption">รูปแสดงลักษณะการจัดเรียงตัวของสสารในสถานะต่าง ๆ</figcaption>
+        </div>
+      
+        <div class="lead">
+          <h3>ของไหลอุดมคติ</h3>
+          <p> โดยทั่วไป พฤติกรรมของของไหลในสภาวะจริงมีความซับซ้อนสูงและยากต่อการวิเคราะห์ทางทฤษฎี
+            อย่างไรก็ตาม ในหลายกรณีสามารถศึกษาพฤติกรรมของของไหลได้โดยอาศัยการสมมติให้ของไหลมีสมบัติเฉพาะ ดังนี้
+            <br>1. มีความสม่ำเสมอ (homogeneous)
+            <br>2. ไม่สามารถบีบอัดได้ (incompressible)
+            <br>3. ปราศจากแรงเสียดทานภายใน (frictionless)
+            <br>ของไหลที่มีสมบัติตามสมมติฐานดังกล่าวเรียกว่า <b>ของไหลอุดมคติ (ideal fluid)</b>
+            ซึ่งใช้เป็นแบบจำลองทางทฤษฎีเพื่ออธิบายและวิเคราะห์ปัญหาทางกลศาสตร์ของไหลในระดับพื้นฐาน
+            <br><br>ในบทนี้และบทถัดไป เราจะมุ่งเน้นการศึกษาพฤติกรรมของของไหลอุดมคติ
+          </p>
+        </div>
+        <div class="slide-card grid">
+          <img src="asset/week%209/figure-3.jpg" alt="Homogeneous vs Heterogeneous">
+          <img src="asset/week%209/figure-2.png" alt="Compressible vs Incompressible" style="transform: translateY(20%);">
+          <img src="asset/week%209/figure-4.png" alt="Frictionless vs Friction" style="transform: translateY(50%);">
+        </div>
+        <figcaption class="caption">รูปแสดงการเปรียบเทียบสมบัติสำคัญของของไหลอุดมคติ</figcaption>
+      </div><br>
+
+      <div class="card">
+        <h3>1.2 กลศาสตร์ของไหลคืออะไร?</h3>
+        <div class="grid">
+          <p class="lead"><b>กลศาสตร์ของไหล (Fluid Mechanics)</b> คือ การศึกษาเกี่ยวกับพฤติกรรมของของไหลทั้งในขณะหยุดนิ่งหรือกำลังเคลื่อนที่
+            <br><br>หากพิจารณาจากการไหลของของไหล เราสามารถแบ่งประเภทการศึกษาของไหลออกเป็นสองประเภท
+            คือ ของไหลสถิตและพลศาสตร์ของไหล
+            <br><br>โดยที่ <b>ของไหลสถิต (Fluid Statics)</b> คือ การศึกษาพฤติกรรมของของไหลที่หยุดนิ่ง
+            <br>ในขณะที่ <b>พลศาสตร์ของไหล (Fluid Dynamics)</b> ศึกษาเกี่ยวกับของไหลที่เคลื่อนที่
+          </p>
+          <div>
+            <div class="slide-card grid" style="width: 15vw; min-width: 100px;" >
+                <img src="asset/week%209/figure-5.jpg" alt="รูปแสดงตัวอย่างของไหลสถิต">
+                <figcaption class="caption" style="text-align: left;">รูปแสดงสถานการณ์ที่ของไหลอยู่นิ่งในภาชนะรูปทรงต่าง ๆ ซึ่งเป็นตัวอย่างสถานการณ์ที่สามารถอธิบายได้ด้วย</figcaption>
+                <img src="asset/week%209/figure-6.jpg" alt="รูปแสดงตัวอย่างพลศาสตร์ของไหล">
+                <figcaption class="caption" style="text-align: left;">รูปแสดงสถานการณ์ที่ของไหลกำลังไหลออกจากภาชนะ ซึ่งเป็นตัวอย่างสถานการณ์ที่สามารถอธิบายได้ด้วยจลน์ศาสตร์ของไหล</figcaption>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="lesson" id="pressure-density">
+      <h2>⚖️ 2. ความดันและความหนาแน่น</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>2.1 ความดัน</h3>
+          <p class="lead">
+            ความจริงข้อหนึ่งที่สำคัญเกี่ยวกับของไหลสถิต คือ
+            <br><strong>“ของไหลสถิตจะออกแรงกระทำที่ตั้งฉากกับผิวของวัตถุที่แช่อยู่และผิวของผนังภาชนะบรรจุเสมอ”</strong>
+            <br>จากความจริงข้อนี้ <b>ความดัน (pressure)</b> จึงถูกนิยามเป็น ขนาดของแรงตั้งฉากที่ของไหลกระทำต่อพื้นที่หนึ่งหน่วย
+          </p>
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">\[P=\frac{F}{A}\]</div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+          <p>หน่วย SI คือ นิวตันต่อตารางเมตร \((\mathrm{N/m^2})\) หรือ ปาสคาล \((\mathrm{Pa})\)</p>
+        </div>
+        <figure class="figure-card ">
+          <img src="asset/week%209/figure-7.jpg" alt="รูปแสดงทิศทางของแรงที่ของไหลกระทำต่อพื้นผิวต่าง ๆ">
+          <figcaption class="caption">รูปแสดงทิศทางของแรงที่ของไหลกระทำต่อพื้นผิวต่าง ๆ</figcaption><br>
+        </figure>
+      </div>
+
+      <div class="interaction w9-two-col">
+        <div>
+          <h3>🧮 Pressure Calculator</h3>
+          <label>แรงที่กระทำ \(F\) = <span id="w9FVal">100</span> N</label><input type="range" id="w9F" min="10" max="1000" value="100" step="10" oninput="updateW9Pressure()">
+          <label>มุมระหว่างแรงกับพื้นผิว \(\theta\) = <span id="w9ThetaVal">90</span>°</label><input type="range" id="w9Theta" min="0" max="90" value="90" step="1" oninput="updateW9Pressure()">
+          <label>พื้นที่ \(A\) = <span id="w9AVal">0.10</span> m²</label><input type="range" id="w9A" min="0.01" max="1" value="0.10" step="0.01" oninput="updateW9Pressure()">
+          <p id="w9PressureFeedback" class="formula"></p>
+        </div>
+        <svg class="w9-svg w9-pressure-3d" viewBox="0 0 560 360" role="img" aria-label="ภาพสามมิติแสดงแรงทำมุมกับพื้นผิวและแรงตั้งฉาก">
+          <defs>
+            <linearGradient id="w9SurfaceGrad" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="#dbeafe"/>
+              <stop offset="1" stop-color="#93c5fd"/>
+            </linearGradient>
+            <linearGradient id="w9BlockGrad" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="#bfdbfe"/>
+              <stop offset="1" stop-color="#2563eb"/>
+            </linearGradient>
+          </defs>
+          <polygon id="w9SurfaceShadow" points="92,235 382,235 472,285 182,285" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+          <polygon id="w9AreaBlock" points="218,174 342,174 392,207 268,207" fill="url(#w9SurfaceGrad)" stroke="#2563eb" stroke-width="3"/>
+          <polygon id="w9PressureFace" points="268,207 392,207 392,247 268,247" fill="#60a5fa" opacity=".38" stroke="#2563eb"/>
+          <polygon id="w9PressureSide" points="342,174 392,207 392,247 342,214" fill="#1d4ed8" opacity=".20" stroke="#2563eb"/>
+          <line id="w9ParallelArrow" x1="205" y1="110" x2="292" y2="110" stroke="#7c3aed" stroke-width="4" stroke-dasharray="8 7" marker-end="url(#w9ArrowPurple)"/>
+          <line id="w9ForceArrow" x1="205" y1="110" x2="292" y2="183" stroke="#dc2626" stroke-width="6" marker-end="url(#w9ArrowRed)"/>
+          <line id="w9NormalArrow" x1="292" y1="110" x2="292" y2="183" stroke="#16a34a" stroke-width="5" stroke-dasharray="8 7" marker-end="url(#w9ArrowGreen)"/>
+          <path id="w9AngleArc" d="M 250 183 A 42 42 0 0 1 292 141" fill="none" stroke="#f59e0b" stroke-width="4"/>
+          <text id="w9ForceLabel" x="230" y="82" fill="#dc2626" font-size="20" font-weight="700">F</text>
+          <text id="w9NormalLabel" x="306" y="130" fill="#15803d" font-size="18" font-weight="700">F⊥</text>
+          <text id="w9ParallelLabel" x="235" y="101" fill="#6d28d9" font-size="18" font-weight="700">F∥</text>
+          <text id="w9ThetaLabel" x="238" y="275" fill="#b45309" font-size="18" font-weight="700">θ</text>
+          <text x="285" y="324" text-anchor="middle" fill="#475569">พื้นที่สัมผัส A และองค์ประกอบแรงตั้งฉากกับพื้นผิว</text>
+        </svg>
+      </div>
+
+      <div class="card">
+        <h3>2.2 ความหนาแน่น</h3>
+        <p class="lead">
+          <b>ความหนาแน่น (Density)</b> คือ ปริมาณทางฟิสิกส์ที่ใช้บอกปริมาณสสารต่อหนึ่งหน่วยปริมาตรของสสาร
+          ซึ่งสสารต่างชนิดกันมักมีค่าความหนาแน่นแตกต่างกัน
+          สำหรับสสารสม่ำเสมอ (homogeneous substance) ความหนาแน่นสามารถคำนวณได้จาก
+
+        </p>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">\[\rho=\frac{m}{V}\]</div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+        <p>โดยที่ \(M\) คือมวลของสสาร และ \(V\) คือปริมาตรของสสาร
+          ดังนั้นในระบบหน่วย SI คือ กิโลกรัมต่อลูกบาศก์เมตร \((\mathrm{kg/m^3})\)</p>
+      </div>
+      <div class="interaction w9-two-col">
+        <div>
+          <h3>🧱 Density Explorer</h3>
+          <label>มวล \(m\) = <span id="w9MassVal">4.0</span> kg</label><input type="range" id="w9Mass" min="0.1" max="20" value="4" step="0.1" oninput="updateW9Density()">
+          <label>ปริมาตร \(V\) = <span id="w9VolVal">0.004</span> m³</label><input type="range" id="w9Vol" min="0.001" max="0.02" value="0.004" step="0.001" oninput="updateW9Density()">
+          <p id="w9DensityFeedback" class="formula"></p>
+        </div>
+        <div class="card">
+          <strong>ตัวอย่างความหนาแน่น</strong>
+          <table class="mini-table"><tbody><tr><th>น้ำที่ 4°C</th><td>1,000 kg/m³</td></tr><tr><th>น้ำทะเล</th><td>1,030 kg/m³</td></tr><tr><th>เหล็ก</th><td>7,800 kg/m³</td></tr><tr><th>ปรอท</th><td>13,600 kg/m³</td></tr><tr><th>ทอง</th><td>19,300 kg/m³</td></tr></tbody></table>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson" id="depth">
+      <h2>⬇️ 2.3 การเปลี่ยนแปลงความดันตามความลึก</h2>
+      <div class="card">
+        <div class="grid">
+          <p class="lead">
+            พิจารณาส่วนหนึ่งของของไหลสถิต(เส้นประ)ที่มีความหนาแน่นคงที่ \(\rho\) ดังแสดงในรูปขวามือ
+            เนื่องจากของไหลอยู่ในสภาพหยุดนิ่ง ทุกส่วนของของไหลจึงต้องอยู่ในสภาวะสมดุลของแรง \(\sum \vec F=0\)
+            <br>หากพิจารณาเฉพาะแรงในทิศตั้งฉากกับผิวของของไหลส่วนนี้ จะมีแรงกระทำหลัก 2 แรง คือ
+            <br>1. น้ำหนักของของไหล ที่กระทำในทิศลง \(\vec W=m\vec g\) และ
+            <br>2. แรงดันจากของไหลด้านล่าง ที่กระทำในทิศขึ้น \(\vec F_h\)
+            <br>ดังนั้น สมดุลของแรงในแนวดิ่งเขียนได้เป็น \[F_h-mg=0\]
+            จากนิยามของความหนาแน่น \(\rho=\frac{m}{V}\) และปริมาตร \(V=Ah\)
+            จะได้ว่า \(𝑚=\rho Ah\) แทนค่า \(𝑚\) ในสมการสมดุลของแรง จะได้ว่า \(F_h=\rho Ahg\)
+            หารทั้งสองข้างด้วยพื้นที่ฐานของส่วนที่พิจารณาจะได้ว่า \(F_h/A=\rho hg\) จากนิยามของ ความดัน \(P=F_⊥/A\) เราจึงได้ความสัมพันธ์ว่า
+          </p>
+        <figure class="figure-card ">
+          <img src="asset/week%209/figure-8.png" alt="สไลด์ 7.1 กลศาสตร์ของไหล">
+          <figcaption class="caption">รูปแสดงลักษณะการจัดเรียงตัวของสสารในสถานะต่าง ๆ</figcaption>
+        </figure>
+        </div>
+
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">\[P=\rho g h\]</div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+
+        <p class="lead">
+          <b>สรุป:</b> ความดันของของไหลอุดมคติที่หยุดนิ่งแปรผันตรงกับความลึก \(h\)จากผิวหน้าของของไหล
+          โดยค่าคงตัวของการแปรผันเท่ากับผลคูณของความหนาแน่นของไหลกับความเร่งแรงโน้มถ่วง \(\rho g\)
+        </p>
+
+        <figure class="figure-card ">
+          <img src="asset/week%209/figure-9.jpg" alt="รูปแสดงค่าความดันของของไหลชนิดเดียวกัน ณ ตำแหน่งความลึกเท่ากัน ซึ่งจะมีค่าเท่ากันแม้อยู่ในภาชนะต่างกัน">
+          <figcaption class="caption">รูปแสดงค่าความดันของของไหลชนิดเดียวกัน
+            ณ ตำแหน่งความลึกเท่ากัน ซึ่งจะมีค่าเท่ากันแม้อยู่ในภาชนะต่างกัน</figcaption>
+        </figure>
+
+        <p class="lead">
+          จากการวิเคราะห์ข้างต้น ข้อสรุปหนึ่งที่น่าสนใจคือ 
+          <br><b>“สำหรับของไหลชนิดเดียวกัน ที่ความลึกจากผิวบนเท่ากัน จะมีความดันของของไหลที่เท่ากัน
+            โดยที่ไม่ขึ้นกับรูปทรงของภาชนะ”</b>
+        </p>
+      </div>
+
+      <div class="interaction w9-two-col">
+        <div>
+          <h3>🌊 Hydrostatic Pressure Simulator</h3>
+          <label>ความลึก \(h\) = <span id="w9DepthVal">2.0</span> m</label><input type="range" id="w9Depth" min="0" max="10" value="2" step="0.1" oninput="updateW9Hydro()">
+          <label>ความหนาแน่น \(\rho\) = <span id="w9RhoVal">1000</span> kg/m³</label><input type="range" id="w9Rho" min="500" max="13600" value="1000" step="100" oninput="updateW9Hydro()">
+          <label>ความเร่งโน้มถ่วง \(g\) = <span id="w9GVal">9.81</span> m/s²</label><input type="range" id="w9G" min="1" max="12" value="9.81" step="0.01" oninput="updateW9Hydro()">
+          <p id="w9HydroFeedback" class="formula"></p>
+        </div>
+        <svg class="w9-svg" viewBox="0 0 500 430">
+          <rect x="130" y="60" width="240" height="320" rx="18" fill="#f8fafc" stroke="#64748b" stroke-width="3"/>
+          <rect id="w9WaterColumn" x="132" y="90" width="236" height="290" rx="14" fill="#bae6fd"/>
+          <line x1="95" y1="90" x2="405" y2="90" stroke="#0284c7" stroke-width="3" stroke-dasharray="8 8"/>
+          <circle id="w9DepthPoint" cx="250" cy="148" r="12" fill="#f59e0b"/>
+          <line id="w9DepthLine" x1="390" y1="90" x2="390" y2="148" stroke="#dc2626" stroke-width="4" marker-end="url(#w9ArrowRed)"/>
+          <text id="w9DepthLabel" x="405" y="125" fill="#dc2626" font-size="18">h</text>
+          <text x="250" y="410" text-anchor="middle" fill="#475569">ความดันเพิ่มขึ้นเมื่อจุดอยู่ลึกลง</text>
+        </svg>
+      </div>
+    </section>
+
+    <section class="lesson">
+      <h2>2.4 ของไหลไม่สม่ำเสมอ</h2>
+      <div class="grid">
+        <div class="card">
+          <p class="lead">สำหรับของไหลที่มีเนื้อสารที่ไม่สม่ำเสมอและแยกเป็นชั้น ๆ ความดัน ณ จุดใด ๆ สามารถหาจากได้</p>
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">\[P=P_{ref}+\rho g h\]</div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+          <p>โดยที่ \(P_{ref}\) คือ ความดัน ณ รอยต่อระหว่างสองของไหล
+          <br>\(\rho\) คือ ความหนาแน่นของของไหล ณ บริเวณที่สนใจ
+          <br>\(h\) คือ ความลึกจากผิวรอยต่อ
+          </p>
+        </div>
+        <figure class="figure-card ">
+          <img src="asset/week%209/figure-10.png" alt="รูปแสดงแผนภาพประกอบการพิจารณาความดัน ณ จุดใด ๆ สำหรับของไหลที่มีเนื้อสารที่ไม่สม่ำเสมอและแยกเป็นชั้น ๆ">
+          <figcaption class="caption">รูปแสดงแผนภาพประกอบการพิจารณาความดัน ณ จุดใด ๆ สำหรับของไหลที่มีเนื้อสารที่ไม่สม่ำเสมอและแยกเป็นชั้น ๆ</figcaption><br>
+        </figure>
+      </div>
+
+      <div class="interaction w9-two-col">
+        <div>
+          <h3>🧪 Layered Fluid Pressure Builder</h3>
+          <label>ชั้นน้ำมัน \(h_1\) = <span id="w9H1Val">0.5</span> m</label><input type="range" id="w9H1" min="0" max="3" value="0.5" step="0.1" oninput="updateW9Layered()">
+          <label>ชั้นน้ำ \(h_2\) = <span id="w9H2Val">1.0</span> m</label><input type="range" id="w9H2" min="0" max="3" value="1" step="0.1" oninput="updateW9Layered()">
+          <label>ชั้นปรอท \(h_3\) = <span id="w9H3Val">0.2</span> m</label><input type="range" id="w9H3" min="0" max="1" value="0.2" step="0.05" oninput="updateW9Layered()">
+          <label>ตำแหน่งที่ต้องการคำนวณ \(d\) = <span id="w9ProbeDepthVal">1.70</span> m จากผิวบน</label><input type="range" id="w9ProbeDepth" min="0" max="1.7" value="1.7" step="0.05" oninput="updateW9Layered()">
+        </div>
+        <svg class="w9-svg" viewBox="0 0 500 390">
+          <rect x="150" y="45" width="200" height="310" rx="18" fill="white" stroke="#334155" stroke-width="3"/>
+          <g id="w9LayerVisual"></g>
+          <line id="w9LayerProbeLine" x1="116" y1="340" x2="382" y2="340" stroke="#dc2626" stroke-width="4" stroke-dasharray="8 6"/>
+          <circle id="w9LayerProbePoint" cx="250" cy="340" r="10" fill="#dc2626" stroke="white" stroke-width="3"/>
+          <text id="w9LayerProbeLabel" x="390" y="346" fill="#dc2626" font-size="17" font-weight="700">d=1.70 m</text>
+        </svg>
+      </div>
+      <p id="w9LayerFeedback" class="formula conversion-formula"></p>
+    </section>
+
+    <section class="lesson" id="examples">
+      <h2>🧮 2.5 ตัวอย่างและคำศัพท์เฉพาะ</h2>
+      <div class="card">
+        <ul>
+          <li>
+            <b>ความดันบรรยากาศ \(P_0\) (atmospheric pressure)</b> คือ ความดันที่ชั้นบรรยากาศโลกกระทำกับพื้นผิวที่มันสัมผัสอยู่
+            <br>ที่ระดับน้ำทะเล ความดันบรรยากาศมีค่าเท่ากับ \(P_0=1.013\times10^5 \ \mathrm{Pa}\)
+              ซึ่งเท่ากับ 1 atm หรือ 1.013 bar หรือ 14.70 PSI
+          </li>
+          <li>
+            <b>ความดันสมบูรณ์ \(P\) (absolute pressure)</b> คือ ความดันรวม ณ จุดใด ๆ ในของไหล 
+          </li>
+          <li>
+            <b>ความดันเกจ \(P_g\) (gauge pressure)</b> คือ ความดันส่วนเกินจากค่าความดันบรรยากาศ
+            \(P_g=P-P_0\)
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="interaction">
+      <h2>ตัวอย่างที่ 1</h2>
+      <div class="grid">
+        <div>
+          <p class="lead">
+            ภาชนะทรงกระบอกถูกเติมน้ำจนมีระดับความสูง \(h = 2.0\) เมตร
+            หากผิวบนของน้ำเปิดสู่บรรยากาศ จงหาความดันสมบูรณ์และความดันเกจที่ก้นภาชนะ
+          </p>
+          <button class="option-btn" data-reveal data-reveal-open="ดูวิธีทำ" data-reveal-close="ซ่อนวิธีทำ">ดูวิธีทำ</button>
+          <div class="step-box" data-reveal-answer hidden>
+            <p><strong>วิธีทำ</strong></p>
+            <p>น้ำเปิดสู่บรรยากาศ ดังนั้นความดันที่ก้นภาชนะประกอบด้วยความดันบรรยากาศและความดันจากคอลัมน์น้ำ</p>
+            <p>\[
+              P_g=\rho gh=(1000)(9.81)(2.0)=1.962\times10^4\ \mathrm{Pa}
+            \]</p>
+            <p>\[
+              P=P_0+P_g=1.013\times10^5+1.962\times10^4
+              =1.209\times10^5\ \mathrm{Pa}
+            \]</p>
+            <p><strong>ตอบ:</strong> ความดันเกจ \(=1.96\times10^4\ \mathrm{Pa}\) หรือ \(19.6\ \mathrm{kPa}\) และความดันสมบูรณ์ \(=1.21\times10^5\ \mathrm{Pa}\) หรือ \(121\ \mathrm{kPa}\)</p>
+          </div>
+        </div>
+        <figure class="figure-card ">
+          <img src="asset/week%209/figure-11.png" alt="รูปแสดงภาพประกอบตัวย่างที่ 1">
+          <figcaption class="caption">รูปแสดงภาพประกอบตัวย่างที่ 1</figcaption><br>
+        </figure>
+      </div>
+    </div>
+    <div class="interaction">
+      <h2>ตัวอย่างที่ 2</h2>
+      <div class="grid">
+        <div>
+          <p class="lead">
+            ภาชนะทรงกระบอกเส้นผ่านศูนย์กลาง \(d = 10.0\) cm
+            ถูกเติมด้วยน้ำจนมีระดับความสูงเท่ากับ \(h = 2.0\) m
+            หากผิวบนของน้ำเปิดสู่ชั้นบรรยากาศจงคำนวณหาขนาดของแรงดันที่น้ำกระทำกับก้นภาชนะ
+          </p>
+          <button class="option-btn" data-reveal data-reveal-open="ดูวิธีทำ" data-reveal-close="ซ่อนวิธีทำ">ดูวิธีทำ</button>
+          <div class="step-box" data-reveal-answer hidden>
+            <p><strong>วิธีทำ</strong></p>
+            <p>แปลงเส้นผ่านศูนย์กลางเป็นเมตร \(d=10.0\ \mathrm{cm}=0.100\ \mathrm{m}\) แล้วหาพื้นที่ก้นภาชนะ</p>
+            <p>\[
+              A=\frac{\pi d^2}{4}=\frac{\pi(0.100)^2}{4}=7.85\times10^{-3}\ \mathrm{m^2}
+            \]</p>
+            <p>ความดันเกจที่ก้นภาชนะคือ</p>
+            <p>\[
+              P_g=\rho gh=(1000)(9.81)(2.0)=1.962\times10^4\ \mathrm{Pa}
+            \]</p>
+            <p>ถ้าต้องการแรงจากความดันรวมที่ก้นภาชนะ ใช้ \(P=P_0+P_g=1.209\times10^5\ \mathrm{Pa}\)</p>
+            <p>\[
+              F=PA=(1.209\times10^5)(7.85\times10^{-3})
+              \approx950\ \mathrm{N}
+            \]</p>
+            <p><strong>ตอบ:</strong> แรงดันรวมที่ก้นภาชนะประมาณ \(950\ \mathrm{N}\)</p>
+          </div>
+        </div>
+        <figure class="figure-card ">
+          <img src="asset/week%209/figure-12.png" alt="รูปแสดงภาพประกอบตัวย่างที่ 2">
+          <figcaption class="caption">รูปแสดงภาพประกอบตัวย่างที่ 2</figcaption><br>
+        </figure>
+      </div>
+    </div>
+    <div class="interaction">
+      <h2>ตัวอย่างที่ 3</h2>
+      <div class="grid">
+        <div>
+          <p class="lead">
+            เอวานเจลิสตา ทอร์ริเชลลี ได้ทำการทดลองเพื่อวัดความดันบรรยากาศโดยใช้หลอดแก้วปิดสนิทด้านหนึ่ง
+            เติมปรอทลงไปจนเต็ม แล้วคว่ำหลอดลงในอ่างปรอท พบว่าระดับปรอทในหลอดสูงประมาณ 760 mm
+            จากผิวปรอทในอ่าง ถ้าความหนาแน่นของปรอทเท่ากับ \(\rho = 13,600 \ \mathrm{kg/m^3}\) 
+            และค่าความเร่งเนื่องจากแรงโน้มถ่วง \(g = 9.81 \ \mathrm{m/s^2}\)  จงคำนวณความดันบรรยากาศเป็นหน่วย \(\mathrm{Pa}\)
+          </p>
+          <button class="option-btn" data-reveal data-reveal-open="ดูวิธีทำ" data-reveal-close="ซ่อนวิธีทำ">ดูวิธีทำ</button>
+          <div class="step-box" data-reveal-answer hidden>
+            <p><strong>วิธีทำ</strong></p>
+            <p>ในบารอมิเตอร์ของทอร์ริเชลลี ความดันบรรยากาศสมดุลกับความดันเกจของคอลัมน์ปรอท</p>
+            <p>แปลง \(h=760\ \mathrm{mm}=0.760\ \mathrm{m}\)</p>
+            <p>\[
+              P_0=\rho gh=(13600)(9.81)(0.760)
+              =1.01\times10^5\ \mathrm{Pa}
+            \]</p>
+            <p><strong>ตอบ:</strong> ความดันบรรยากาศประมาณ \(1.01\times10^5\ \mathrm{Pa}\)</p>
+          </div>
+        </div>
+        <figure class="figure-card ">
+          <img src="asset/week%209/figure-13.jpg" alt="รูปแสดงภาพจำลองการทดลองของเอวานเจลิสตา ทอร์ริเชลลี ">
+          <figcaption class="caption">รูปแสดงภาพจำลองการทดลองของเอวานเจลิสตา ทอร์ริเชลลี</figcaption><br>
+        </figure>
+      </div>
+    </div>
+    <div class="interaction">
+      <h2>ตัวอย่างที่ 4</h2>
+      <div class="grid">
+        <div>
+          <p>
+            ในหลอดรูปตัวยูที่บรรจุปรอท ด้านหนึ่งสัมผัสกับก๊าซที่ไม่ทราบชนิดและความดัน
+            ส่วนปลายอีกด้านเปิดสู่บรรยากาศ จงหาความดันของก๊าซนี้
+            โดยกำหนดให้ความสูงของคอลัมน์ปรอท \(h=30 \ \mathrm{cm}\)
+          </p>
+          <button class="option-btn" data-reveal data-reveal-open="ดูวิธีทำ" data-reveal-close="ซ่อนวิธีทำ">ดูวิธีทำ</button>
+          <div class="step-box" data-reveal-answer hidden>
+            <p><strong>วิธีทำ</strong></p>
+            <p>กำหนดให้ระดับปรอทด้านก๊าซต่ำกว่าด้านที่เปิดสู่บรรยากาศตามรูป แสดงว่าความดันก๊าซมากกว่าความดันบรรยากาศ</p>
+            <p>แปลง \(h=30\ \mathrm{cm}=0.30\ \mathrm{m}\)</p>
+            <p>\[
+              P_g=\rho_{\text{Hg}}gh=(13600)(9.81)(0.30)=4.00\times10^4\ \mathrm{Pa}
+            \]</p>
+            <p>\[
+              P_{\text{gas}}=P_0+P_g=1.013\times10^5+4.00\times10^4
+              =1.41\times10^5\ \mathrm{Pa}
+            \]</p>
+            <p><strong>ตอบ:</strong> ความดันเกจของก๊าซประมาณ \(4.00\times10^4\ \mathrm{Pa}\) และความดันสมบูรณ์ของก๊าซประมาณ \(1.41\times10^5\ \mathrm{Pa}\)</p>
+          </div>
+        </div>
+        <figure class="figure-card ">
+          <img src="asset/week%209/figure-14.png" alt="รูปแสดงภาพหลอดรูปตัวยูที่บรรจุปรอท ด้านหนึ่งสัมผัสกับก๊าซที่ไม่ทราบชนิดและความดัน ส่วนปลายอีกด้านเปิดสู่บรรยากาศ">
+          <figcaption class="caption">รูปแสดงภาพหลอดรูปตัวยูที่บรรจุปรอท ด้านหนึ่งสัมผัสกับก๊าซที่ไม่ทราบชนิดและความดัน ส่วนปลายอีกด้านเปิดสู่บรรยากาศ</figcaption><br>
+        </figure>
+      </div>
+    </div>
+
+    <section class="lesson" id="pascal">
+      <h2>🔧 3. กฎของปาสคาล</h2>
+      <div class="grid card">
+        <div>
+          <p class="lead">
+            กฎของปาสคาล กล่าวว่า
+            <br><strong>“สำหรับของไหลอุดมคติที่หยุดนิ่งอยู่ในภาชนะปิด การเปลี่ยนแปลงความดัน ณ จุดใด ๆ
+            จะถูกส่งผ่านไปยังทุกจุดของของไหลโดยไม่มีการสูญเสีย และมีค่าที่เท่ากันในทุกทิศทุกทาง
+            แรงดันที่กระทำต่อผนังภาชนะจากการเปลี่ยนแปลงความดันนี้จะทำมุมตั้งฉากกับผนังภาชนะเสมอ”</strong>
+          </p>
+          <figure class="figure-card ">
+            <img src="asset/week%209/figure-15.jpg" alt="รูปแสดงภาพวาดแบลซ ปาสกาล">
+            <figcaption class="caption">รูปแสดงภาพวาดแบลซ ปาสกาล</figcaption><br>
+          </figure>
+        </div>
+
+        <figure class="figure-card ">
+          <img src="asset/week%209/figure-21.png" alt="รูปแสดงแผนภาพประกอบคำอธิบายกฎของปาสคาล">
+          <figcaption class="caption">รูปแสดงแผนภาพประกอบคำอธิบายกฎของปาสคาล</figcaption><br>
+        </figure>
+      </div>
+
+      <div class="card">
+        <h2>ระบบไฮดรอลิก</h2>
+        <div class="grid">
+          <p class="lead">กระบอกสูบอันที่ 1 มีพื้นที่หน้าตัดเท่ากับ \(A_1\)
+            ออกแรงตั้งฉาก \(\vec F_1\) กระทำกับของไหลอุดมคติ
+            ซึ่งทำให้เกิดความดันส่วนเกินเท่ากับ \(\Delta P_1\)
+            ซึ่งเท่ากับ \(F_1/A_1\) จากกฏของปาสคาล
+            การเปลี่ยนแปลงความดันนี้จะถูกส่งผ่านไปยังกระบอกสูบอันที่ 2
+            ที่มีพื้นที่หน้าตัดเท่ากับ \(A_2\) ซึ่งการเปลี่ยนแปลงความดันส่วนเกินที่กระบอกสูบนี้จะเท่ากับ
+            \(\Delta P_2=\Delta P_1\) ดังนั้นจะได้ว่า
+          </p>
+          <figure class="figure-card ">
+            <img src="asset/week%209/figure-16.png" alt="รูปแสดงกระบอกสูบสองขนาดที่เชื่อมต่อกัน และภายในบรรจุของไหล">
+            <figcaption class="caption">รูปแสดงกระบอกสูบสองขนาดที่เชื่อมต่อกัน และภายในบรรจุของไหล</figcaption><br>
+          </figure>
+        </div>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">
+              \[\frac{F_1}{A_1}=\frac{F_2}{A_2}\]
+            </div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+        <p>
+          โดย \(F_2\) คือขนาดของแรงที่เกิดจากความดันส่วนเกินบริเวณกระบอกสูบอันที่ 2
+          และ \(A_2\) คือพื้นที่หน้าตัดของกระบอกสูบอันที่ 2
+        </p>
+      </div>
+
+      <div class="interaction">
+        <h2>ตัวอย่างที่ 5</h2>
+        <div class="grid">
+          <div>
+            <p class="lead">
+              ระบบไฮดรอลิกประกอบด้วยกระบอกสูบขนาดเล็กที่มีเส้นผ่านศูนย์กลาง
+              \(d_1 = 3.0 \ \mathrm{cm}\) และกระบอกสูบขนาดใหญ่ที่มีเส้นผ่านศูนย์กลาง
+              \(d_2 = 45.0 \ \mathrm{cm}\) ดังภาพ หากออกแรง \(500 \ \mathrm{N}\) กับกระบอกสูบขนาดเล็ก จงหาน้ำหนักสูงสุดที่กระบอกสูบขนาดใหญ่สามารถยกได้
+            </p>
+            <button class="option-btn" data-reveal data-reveal-open="ดูวิธีทำ" data-reveal-close="ซ่อนวิธีทำ">ดูวิธีทำ</button>
+            <div class="step-box" data-reveal-answer hidden>
+              <p><strong>วิธีทำ</strong></p>
+              <p>จากกฎของปาสคาล ความดันที่ส่งผ่านในของไหลปิดมีค่าเท่ากัน ดังนั้น</p>
+              <p>\[
+                \frac{F_1}{A_1}=\frac{F_2}{A_2}
+              \]</p>
+              <p>พื้นที่หน้าตัดของกระบอกสูบเป็นวงกลม \(A=\frac{\pi d^2}{4}\) จึงได้อัตราส่วนพื้นที่เป็น</p>
+              <p>\[
+                \frac{A_2}{A_1}
+                =\frac{\pi d_2^2/4}{\pi d_1^2/4}
+                =\left(\frac{d_2}{d_1}\right)^2
+                =\left(\frac{45.0}{3.0}\right)^2
+                =225
+              \]</p>
+              <p>ดังนั้นแรงที่กระบอกสูบใหญ่กระทำได้คือ</p>
+              <p>\[
+                F_2=F_1\frac{A_2}{A_1}
+                =(500)(225)
+                =112{,}500\ \mathrm{N}
+              \]</p>
+              <p>ถ้าต้องการเทียบเป็นมวลที่ยกได้โดยประมาณ</p>
+              <p>\[
+                m=\frac{W}{g}=\frac{112{,}500}{9.81}
+                \approx 1.15\times10^4\ \mathrm{kg}
+              \]</p>
+              <p><strong>ตอบ:</strong> กระบอกสูบใหญ่สามารถยกน้ำหนักได้สูงสุดประมาณ \(1.13\times10^5\ \mathrm{N}\) หรือเทียบเท่ามวลประมาณ \(1.15\times10^4\ \mathrm{kg}\)</p>
+            </div>
+          </div>
+          <figure class="figure-card ">
+            <img src="asset/week%209/figure-17.png" alt="รูปแสดงระบบไฮดรอลิกประกอบตัวอย่างที่ 5">
+            <figcaption class="caption">รูปแสดงระบบไฮดรอลิกประกอบตัวอย่างที่ 5</figcaption><br>
+          </figure>
+        </div>
+      </div>
+
+      <div class="interaction w9-two-col">
+        <div>
+          <h3>🏗️ Hydraulic Lift Simulator</h3>
+          <label>แรงที่กระบอกเล็ก \(F_1\) = <span id="w9F1Val">500</span> N</label><input type="range" id="w9F1" min="50" max="2000" value="500" step="50" oninput="updateW9Hydraulic()">
+          <label>เส้นผ่านศูนย์กลางเล็ก \(d_1\) = <span id="w9D1Val">3.0</span> cm</label><input type="range" id="w9D1" min="1" max="20" value="3" step="0.5" oninput="updateW9Hydraulic()">
+          <label>เส้นผ่านศูนย์กลางใหญ่ \(d_2\) = <span id="w9D2Val">45.0</span> cm</label><input type="range" id="w9D2" min="5" max="80" value="45" step="0.5" oninput="updateW9Hydraulic()">
+        </div>
+        <svg class="w9-svg" viewBox="0 0 560 380" role="img" aria-label="ภาพจำลองระบบไฮดรอลิกที่ขนาดลูกสูบและแรงเปลี่ยนตามตัวแปร">
+          <path id="w9HydraulicPipe" d="M185 275 H335" stroke="#2563eb" stroke-width="24" fill="none"/>
+          <rect id="w9SmallCylinder" x="75" y="135" width="110" height="170" rx="18" fill="#bfdbfe" stroke="#2563eb" stroke-width="3"/>
+          <rect id="w9LargeCylinder" x="335" y="95" width="150" height="210" rx="18" fill="#bfdbfe" stroke="#2563eb" stroke-width="3"/>
+          <rect id="w9SmallPiston" x="75" y="140" width="110" height="20" fill="#94a3b8"/>
+          <rect id="w9BigPiston" x="335" y="100" width="150" height="20" fill="#94a3b8"/>
+          <line id="w9F1Arrow" x1="130" y1="60" x2="130" y2="132" stroke="#dc2626" stroke-width="5" marker-end="url(#w9ArrowRed)"/>
+          <line id="w9F2Arrow" x1="410" y1="165" x2="410" y2="95" stroke="#16a34a" stroke-width="6" marker-end="url(#w9ArrowGreen)"/>
+          <line id="w9D1Line" x1="75" y1="326" x2="185" y2="326" stroke="#475569" stroke-width="3" marker-start="url(#w9ArrowBlue)" marker-end="url(#w9ArrowBlue)"/>
+          <line id="w9D2Line" x1="335" y1="326" x2="485" y2="326" stroke="#475569" stroke-width="3" marker-start="url(#w9ArrowBlue)" marker-end="url(#w9ArrowBlue)"/>
+          <text id="w9F1Label" x="130" y="50" text-anchor="middle" fill="#dc2626" font-weight="700">F₁</text>
+          <text id="w9F2Label" x="410" y="65" text-anchor="middle" fill="#16a34a" font-weight="700">F₂</text>
+          <text id="w9D1Label" x="130" y="350" text-anchor="middle" fill="#475569" font-weight="700">d₁</text>
+          <text id="w9D2Label" x="410" y="350" text-anchor="middle" fill="#475569" font-weight="700">d₂</text>
+        </svg>
+      </div>
+      <p id="w9HydraulicFeedback" class="formula"></p>
+    </section>
+
+    <section class="lesson" id="archimedes">
+      <h2>🪵 4. หลักการของอาร์คิมิดีส</h2>
+      <div class="card">
+        <div class="grid">
+          <p class="lead">
+            หลักการของอาร์คิมิดีส กล่าวว่า
+            <b>“แรงจากของไหลที่กระทำต่อวัตถุซึ่งแช่หรือจมอยู่ในของไหล
+              มีค่าเท่ากับน้ำหนักของของไหลที่วัตถุนั้นแทนที่ 
+              โดยแรงนี้กระทำที่จุดศูนย์กลางมวลของของไหลที่ถูกแทนที่
+              และมีทิศทางชี้ขึ้น แรงนี้เรียกว่า แรงลอยตัว (Buoyant force) และมักแทนด้วย \(\vec F_B\)”</b>
+          </p>
+          <figure class="figure-card ">
+            <img src="asset/week%209/figure-18.jpg" alt="สไลด์ 7.1 กลศาสตร์ของไหล">
+            <figcaption class="caption">รูปแสดงลักษณะการจัดเรียงตัวของสสารในสถานะต่าง ๆ</figcaption><br>
+          </figure>
+        </div>
+        <div class="grid">
+          <figure class="figure-card ">
+            <img src="asset/week%209/figure-19.png" alt="สไลด์ 7.1 กลศาสตร์ของไหล">
+            <figcaption class="caption">รูปแสดงลักษณะการจัดเรียงตัวของสสารในสถานะต่าง ๆ</figcaption>
+          </figure>
+          <div>
+            <p class="lead">
+              จากหลักการของอาร์คิมิดีส เราสามารถเขียนแรงลอยตัวเป็น
+              \(\vec F_B=𝑚𝑔 \hat{j}\) โดย \(m\) คือ มวลของของไหลที่ถูกแทนที่ด้วยวัตถุ
+              และ \(g\) คือ ความเร่งเนื่องจากแรงโน้มถ่วง
+              จากนิยามของความหนาแน่น \(\rho=𝑚∕𝑉\) เราสามารถเขียนสมการของแรงลอยตัวใหม่ได้เป็น
+            </p>
+            <div class="equation-card">
+              <div class="equation-wrapper">
+                <div class="equation">
+                  \[F_B=\rho gV\]
+                </div>
+                <div class="equation-label"></div>
+              </div>
+            </div>
+            <p>
+              โดย \(\rho\) คือ ความหนาแน่นของของไหล และ \(V\) คือ ปริมาตรของของไหลที่ถูกแทนที่
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="interaction">
+        <h2>ตัวอย่างที่ 6</h2>
+        <div class="grid">
+          <div>
+            <p class="lead">
+              แท่งไม้รูปทรงสี่เหลี่ยมผืนผ้าที่มีขนาด
+              \(30 \ \mathrm{cm} \times 20 \ \mathrm{cm} \times 10 \ \mathrm{cm}\)
+              (กว้าง × ยาว × สูง)
+              และมีมวล \(4.0 \ \mathrm{kg}\) ลอยอยู่บนผิวน้ำในทะเลสาบ โดยน้ำในทะเลสาบมีความหนาแน่น
+              \(1,000 \ \mathrm{kg/m^3}\) จงคำนวณความลึกของส่วนที่จมอยู่ในน้ำ และแรงลอยตัวที่กระทำต่อแท่งไม้
+            </p>
+            <button class="option-btn" data-reveal data-reveal-open="ดูวิธีทำ" data-reveal-close="ซ่อนวิธีทำ">ดูวิธีทำ</button>
+            <div class="step-box" data-reveal-answer hidden>
+              <p><strong>1.</strong> แปลงหน่วยขนาดแท่งไม้เป็นเมตร: \(0.30 \ \mathrm{m} \times 0.20 \ \mathrm{m} \times 0.10 \ \mathrm{m}\)</p>
+              <p><strong>2.</strong> พื้นที่ฐานที่สัมผัสผิวน้ำคือ \(A=0.30 \times 0.20=0.060 \ \mathrm{m^2}\)</p>
+              <p><strong>3.</strong> เมื่อแท่งไม้ลอยนิ่ง แรงลอยตัวเท่ากับน้ำหนักของแท่งไม้ \[F_B=mg\]</p>
+              <p><strong>4.</strong> จากหลักของอาร์คิมิดีส \[F_B=\rho_w gV_{sub}\] ดังนั้น \[\rho_w gV_{sub}=mg\Rightarrow V_{sub}=\frac{m}{\rho_w}=\frac{4.0}{1000}=0.0040 \ \mathrm{m^3}\]</p>
+              <p><strong>5.</strong> หาความลึกของส่วนที่จม \[h_{sub}=\frac{V_{sub}}{A}=\frac{0.0040}{0.060}=0.0667 \ \mathrm{m}\approx 6.7 \ \mathrm{cm}\]</p>
+              <p><strong>6.</strong> แรงลอยตัวที่กระทำต่อแท่งไม้ \[F_B=mg=(4.0)(9.81)=39.24 \ \mathrm{N}\approx 39 \ \mathrm{N}\]</p>
+              <p><strong>ตอบ:</strong> ส่วนที่จมลึกประมาณ \(6.7 \ \mathrm{cm}\) และแรงลอยตัวมีค่าประมาณ \(39 \ \mathrm{N}\) ทิศขึ้น</p>
+            </div>
+          </div>
+          <figure class="figure-card ">
+            <img src="asset/week%209/figure-20.png" alt="รูปแสดงภาพประกอบตัวอย่างที่ 6">
+            <figcaption class="caption">รูปแสดงภาพประกอบตัวอย่างที่ 6</figcaption><br>
+          </figure>
+        </div>
+      </div>
+
+      <div class="interaction w9-two-col">
+        <div>
+          <h3>🛟 Buoyant Force Visualizer</h3>
+          <label>ปริมาตรวัตถุ \(V\) = <span id="w9VdispVal">0.004</span> m³</label><input type="range" id="w9Vdisp" min="0.001" max="0.02" value="0.004" step="0.001" oninput="updateW9Buoyancy()">
+          <label>ความหนาแน่นของของไหล \(\rho\) = <span id="w9FluidRhoVal">1000</span> kg/m³</label><input type="range" id="w9FluidRho" min="500" max="13600" value="1000" step="100" oninput="updateW9Buoyancy()">
+          <label>มวลวัตถุ \(m\) = <span id="w9ObjMassVal">4.0</span> kg</label><input type="range" id="w9ObjMass" min="0.1" max="20" value="4" step="0.1" oninput="updateW9Buoyancy()">
+          <button class="option-btn" onclick="animateW9Buoyancy()">ปล่อยวัตถุ</button>
+          <button class="option-btn" onclick="resetW9BuoyancyAnimation()">Reset Animation</button>
+        </div>
+        <svg id="w9BuoyancySvg" class="w9-svg" viewBox="0 0 500 390" role="img" aria-label="ภาพจำลองแรงลอยตัวและสัดส่วนวัตถุที่จมในของไหล">
+          <rect x="90" y="120" width="320" height="220" rx="18" fill="#bae6fd" stroke="#0284c7" stroke-width="3"/>
+          <rect x="90" y="170" width="320" height="170" fill="#7dd3fc" opacity=".72"/>
+          <line id="w9WaterSurface" x1="90" y1="170" x2="410" y2="170" stroke="#0284c7" stroke-width="4"/>
+          <text x="105" y="158" fill="#0369a1" font-weight="700">ผิวของเหลว</text>
+          <rect id="w9SubmergedPart" x="205" y="170" width="90" height="50" fill="#d97706" opacity=".35"/>
+          <rect id="w9FloatBlock" x="205" y="130" width="90" height="90" rx="10" fill="#fbbf24" stroke="#92400e" stroke-width="3"/>
+          <line id="w9BuoyArrow" x1="250" y1="220" x2="250" y2="155" stroke="#16a34a" stroke-width="6" marker-end="url(#w9ArrowGreen)"/>
+          <line id="w9WeightArrow" x1="250" y1="170" x2="250" y2="245" stroke="#dc2626" stroke-width="6" marker-end="url(#w9ArrowRed)"/>
+          <text id="w9BuoyLabel" x="270" y="155" fill="#16a34a" font-weight="700">F_B</text>
+          <text id="w9WeightLabel" x="270" y="245" fill="#dc2626" font-weight="700">W</text>
+          
+        </svg>
+      </div>
+      <p id="w9BuoyancyFeedback" class="formula"></p>
+      <div class="warning-box">
+        <div class="warning-icon">⚠️</div>
+        <div class="warning-content">
+          <strong>ข้อสังเกต:</strong> วัตถุจะลอยหรือจมขึ้นอยู่กับผลต่างระหว่างขนาดของแรงลอยตัวและน้ำหนักของวัตถุ
+          <ul>
+            <li>ถ้า \(\rho Vg-Mg > 0\) วัตถุจะลอยขึ้นด้วยความเร่ง</li>
+            <li>ถ้า \(\rho Vg-Mg = 0\) วัตถุจะลอยอยู่กับที่ (หรือเคลื่อนที่ขึ้นหรือลงด้วยอัตราเร็วคงที่)</li>
+            <li>ถ้า \(\rho Vg-Mg < 0\) วัตถุจะจมลงด้วยความเร่ง </li>
+          </ul>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="lesson" id="summary">
+      <h2>🎯 สรุปท้ายคาบ และ Final Quiz</h2>
+      <p class="lead">
+        ใจหลักของสัปดาห์นี้คือ การมองของไหลที่หยุดนิ่งผ่านสมดุลของแรงและความดัน
+        เริ่มจากนิยามของความดันและความหนาแน่น แล้วใช้ความสัมพันธ์ \(P=\rho gh\)
+        เพื่ออธิบายความดันตามความลึก ความดันเกจและความดันสมบูรณ์ จากนั้นขยายไปสู่กฎของปาสคาล
+        ที่บอกว่าความดันส่วนเพิ่มในของไหลปิดส่งผ่านเท่ากันทุกทิศทาง และหลักของอาร์คิมิดีส
+        ที่อธิบายแรงลอยตัวจากน้ำหนักของของไหลที่ถูกแทนที่
+      </p>
+      <div class="grid">
+        <div class="card"><strong>1. ของไหลและของไหลอุดมคติ</strong><br>ของเหลวและก๊าซเป็นของไหล เพราะเปลี่ยนรูปร่างตามภาชนะและไหลได้ แบบจำลองของไหลอุดมคติถือว่าของไหลสม่ำเสมอ ไม่อัดตัว และไม่มีแรงเสียดทานภายใน</div>
+        <div class="card"><strong>2. ความดัน</strong><br>ความดันคือแรงตั้งฉากต่อหนึ่งหน่วยพื้นที่ \(P=F_\perp/A\) แรงดันจากของไหลต่อผนังภาชนะจะตั้งฉากกับผิวเสมอ</div>
+        <div class="card"><strong>3. ความหนาแน่น</strong><br>\(\rho=m/V\) ใช้บอกมวลต่อปริมาตร และเป็นตัวแปรสำคัญทั้งในความดันตามความลึกและแรงลอยตัว</div>
+        <div class="card"><strong>4. ความดันตามความลึก</strong><br>สำหรับของไหลสม่ำเสมอที่หยุดนิ่ง ความดันสมบูรณ์คือ \(P=P_{\text{ref}}+\rho g h\)</div>
+        <div class="card"><strong>5. กฎของปาสคาล</strong><br>เมื่อเพิ่มความดันให้ของไหลอุดมคติในภาชนะปิด ความดันส่วนเพิ่มจะส่งผ่านไปทุกจุดโดยไม่สูญเสีย และมีค่าเท่ากันทุกทิศทาง</div>
+        <div class="card"><strong>6. หลักของอาร์คิมิดีส</strong><br>แรงลอยตัวมีค่า \(F_B=\rho_{\text{fluid}}gV_{\text{displaced}}\) และวัตถุจะลอยเมื่อความหนาแน่นเฉลี่ยของวัตถุไม่มากกว่าความหนาแน่นของของไหล</div>
+      </div>
+
+      <h3>📋 ตารางสูตรสำคัญของของไหลสถิต</h3>
+      <div class="card">
+        <table class="mini-table">
+          <thead>
+            <tr><th>หัวข้อ</th><th>สูตร</th><th>ความหมาย/เงื่อนไข</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>ความหนาแน่น</td><td>\(\rho=\frac{m}{V}\)</td><td>มวลต่อหนึ่งหน่วยปริมาตร</td></tr>
+            <tr><td>ความดัน</td><td>\(P=\frac{F_\perp}{A}\)</td><td>ใช้เฉพาะองค์ประกอบของแรงที่ตั้งฉากกับพื้นผิว</td></tr>
+            <tr><td>ความดันเกจตามความลึก</td><td>\(P=\rho gh\)</td><td>ใช้กับของไหลสม่ำเสมอที่หยุดนิ่ง</td></tr>
+            <tr><td>ความดันสมบูรณ์</td><td>\(P=P_{\text{ref}}+\rho gh\)</td><td>รวมความดันบรรยากาศกับความดันเกจ</td></tr>
+            <tr><td>ระบบไฮดรอลิก</td><td>\(\frac{F_1}{A_1}=\frac{F_2}{A_2}\)</td><td>ผลจากกฎของปาสคาลในของไหลปิด</td></tr>
+            <tr><td>แรงลอยตัว</td><td>\(F_B=\rho_{\text{fluid}}gV_{\text{displaced}}\)</td><td>เท่ากับน้ำหนักของของไหลที่ถูกแทนที่</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="interaction">
+        <h3>✅ Quick Quiz: เลือกคำตอบที่ถูกที่สุด</h3>
+        <p><strong>ข้อ 1:</strong> ภาชนะเปิดบรรจุน้ำลึก \(2.0\ \mathrm{m}\) ปัจจัยใดทำให้ความดันเกจที่ก้นภาชนะเพิ่มขึ้นโดยตรง?</p>
+        <div class="options" data-quiz data-answer="b">
+          <button class="option-btn" data-choice="a">เพิ่มพื้นที่ก้นภาชนะ</button>
+          <button class="option-btn" data-choice="b">เพิ่มความลึกของน้ำ</button>
+          <button class="option-btn" data-choice="c">เปลี่ยนภาชนะให้กว้างขึ้นแต่ระดับน้ำเท่าเดิม</button>
+          <button class="option-btn" data-choice="d">ลดความดันบรรยากาศภายนอก</button>
+        </div>
+        <p data-feedback></p>
+      </div>
+
+      <div class="interaction">
+        <h3>☑️ Quick Quiz: เลือกได้หลายคำตอบ</h3>
+        <p><strong>ข้อ 2:</strong> ข้อใดเป็นข้อความที่ถูกต้องเกี่ยวกับของไหลสถิต? เลือกทุกข้อที่ถูกต้อง</p>
+        <div class="options" data-multi>
+          <button class="option-btn" data-correct="true">ความดันเกจในของไหลสม่ำเสมอเพิ่มตามความลึก</button>
+          <button class="option-btn" data-correct="true">แรงดันของของไหลต่อผนังภาชนะตั้งฉากกับผนัง</button>
+          <button class="option-btn" data-correct="false">ความดันที่ระดับความลึกเดียวกันขึ้นกับรูปร่างภาชนะเสมอ</button>
+          <button class="option-btn" data-correct="true">แรงลอยตัวเท่ากับน้ำหนักของของไหลที่ถูกแทนที่</button>
+          <button class="option-btn" data-correct="false">วัตถุจะลอยได้เฉพาะเมื่อมวลของวัตถุน้อยกว่ามวลของของไหลทั้งหมดในภาชนะ</button>
+        </div>
+      </div>
+
+      <div class="interaction">
+        <h3>🧩 Drag & Drop: จับคู่สูตรกับความหมาย</h3>
+        <p>ลากการ์ดสูตรไปวางในช่องความหมายที่ตรงกัน แล้วกดตรวจคำตอบ</p>
+        <div class="drag-items">
+          <span class="drag-item" draggable="true" data-type="density">\(\rho=\frac{m}{V}\)</span>
+          <span class="drag-item" draggable="true" data-type="pressure">\(P=\frac{F_\perp}{A}\)</span>
+          <span class="drag-item" draggable="true" data-type="hydrostatic">\(P_g=\rho gh\)</span>
+          <span class="drag-item" draggable="true" data-type="pascal">\(\frac{F_1}{A_1}=\frac{F_2}{A_2}\)</span>
+          <span class="drag-item" draggable="true" data-type="buoyancy">\(F_B=\rho_{\text{fluid}}gV_{\text{displaced}}\)</span>
+        </div>
+        <div class="dropzone-wrap">
+          <div class="dropzone" data-accept="density"><strong>มวลต่อหนึ่งหน่วยปริมาตร</strong></div>
+          <div class="dropzone" data-accept="pressure"><strong>แรงตั้งฉากต่อพื้นที่สัมผัส</strong></div>
+          <div class="dropzone" data-accept="hydrostatic"><strong>ความดันเกจจากความลึกของของไหล</strong></div>
+          <div class="dropzone" data-accept="pascal"><strong>ความดันส่งผ่านในระบบไฮดรอลิก</strong></div>
+          <div class="dropzone" data-accept="buoyancy"><strong>แรงลอยตัวจากของไหลที่ถูกแทนที่</strong></div>
+        </div>
+        <div class="options">
+          <button onclick="checkDropzones(this)">ตรวจคำตอบ</button>
+          <button class="secondary" onclick="resetDropzones(this)">รีเซ็ต</button>
+        </div>
+        <p data-feedback></p>
+      </div>
+
+
+    </section>
+  </main>
+
+  <footer>FUNSC115 · Fundamental of Physics for Engineers · Week 9 · Fluid Statics</footer>
+</body>
+</html>

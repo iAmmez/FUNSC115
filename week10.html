@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>สัปดาห์ที่ 10 จลน์ศาสตร์ของไหล</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="css/week10.css" />
+  <script src="js/mathjax-config.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script defer src="script.js"></script>
+  <script defer src="js/week10.js"></script>
+</head>
+<body>
+  <svg width="0" height="0" class="svg-defs" aria-hidden="true" focusable="false">
+    <defs>
+      <marker id="w10ArrowBlue" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L5,2.5 L0,5 z" fill="#2563eb" /></marker>
+      <marker id="w10ArrowRed" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L5,2.5 L0,5 z" fill="#dc2626" /></marker>
+      <marker id="w10ArrowGreen" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L5,2.5 L0,5 z" fill="#16a34a" /></marker>
+      <marker id="w10ArrowOrange" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L5,2.5 L0,5 z" fill="#f59e0b" /></marker>
+    </defs>
+  </svg>
+
+  <header>
+    <div class="hero">
+      <h1>สัปดาห์ที่ 10: จลน์ศาสตร์ของไหล</h1>
+      <p>เว็บไซต์ประกอบการเรียนการสอนรายวิชา Fundamental of Physics for Engineers (FUNSC115)</p>
+    </div>
+  </header>
+
+  <div class="topbar">
+    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    <nav class="nav" id="nav">
+      <a href="index.html#content-table">🏠 หน้าแรก</a>
+      <a href="#opening">🚀 เปิดบทเรียน</a>
+      <a href="#ideal-flow">🌊 ไหลอุดมคติ</a>
+      <a href="#continuity">🔁 ความต่อเนื่อง</a>
+      <a href="#bernoulli">⚡ แบร์นูลลี</a>
+      <a href="#lift">✈️ แรงยก</a>
+      <a href="#viscosity">🍯 ความหนืด</a>
+      <a href="#stokes">⚪ สโตกส์</a>
+      <a href="#terminal">📉 ความเร็วสุดท้าย</a>
+      <a href="#summary">✅ สรุป</a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="lesson" id="opening">
+      <h2>🚀 เปิดบทเรียน</h2>
+      <p class="lead">จากสัปดาห์ที่แล้ว เราศึกษาของไหลสถิต ซึ่งเป็นของไหลที่หยุดนิ่ง คาบนี้จะเปลี่ยนมุมมองไปสู่ของไหลที่กำลังเคลื่อนที่ โดยเริ่มจากแบบจำลองของไหลอุดมคติ แล้วเชื่อมโยงไปสู่สมการความต่อเนื่อง สมการแบร์นูลลี แรงยก ความหนืด กฎของสโตกส์ และความเร็วสุดท้าย</p>
+      <div class="grid">
+        <div class="card"><strong>🎯 เป้าหมายวันนี้</strong><ul><li>อธิบายการไหลอุดมคติและเส้นกระแส</li><li>คำนวณอัตราการไหลและใช้สมการความต่อเนื่อง</li><li>วิเคราะห์ความสัมพันธ์ระหว่างความดัน ความเร็ว และระดับด้วยสมการแบร์นูลลี</li><li>อธิบายแรงยก ความหนืด แรงฉุด และความเร็วสุดท้าย</li></ul></div>
+        <div class="card"><strong>🗺️ ภาพรวม</strong><br>เริ่มจากการมองของไหลที่กำลังเคลื่อนที่ผ่านแบบจำลองของไหลอุดมคติและเส้นกระแส จากนั้นใช้แนวคิดอัตราการไหลและสมการความต่อเนื่องเพื่อเชื่อมพื้นที่หน้าตัดกับความเร็วของของไหล แล้วขยายไปสู่สมการแบร์นูลลีที่อธิบายความสัมพันธ์ระหว่างความดัน ความเร็ว และระดับ ก่อนปิดท้ายด้วยตัวอย่างแรงยก ความหนืด แรงฉุด กฎของสโตกส์ และความเร็วสุดท้ายของวัตถุในของไหล</div>
+        <div class="card"><strong>🧭 วิธีเรียน</strong><br>เรียนผ่านคำถาม ทดลองคิด ทำกิจกรรม และตอบ quiz ระหว่างสอน</div>
+      </div>
+      <div class="interaction">
+        <h3>📊 Poll เปิดคาบ: เมื่อท่อแคบลง ความเร็วของน้ำจะเป็นอย่างไร?</h3>
+        <div class="options" data-poll>
+          <button class="option-btn">ลดลง</button>
+          <button class="option-btn">เพิ่มขึ้น</button>
+          <button class="option-btn">เท่าเดิมเสมอ</button>
+          <button class="option-btn">ขึ้นอยู่กับสีของของไหล</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson" id="ideal-flow">
+      <h2>🌊 1. การไหลของของไหลอุดมคติ</h2>
+      <div class="card">
+        <h3>1.1 การไหลอุดมคติ</h3>
+        <div class="grid">
+          <p class="lead">
+            <b>การไหลอุดมคติ (Ideal Flow)</b> คือ การไหลของของไหลเชิงทฤษฎี ที่ ณ
+            แต่ละตำแหน่งของของไหลจะเคลื่อนที่ไปในแบบที่ไม่ถูกบีบอัด ไม่มีการหมุนวน
+            และไม่มีการเปลี่ยนแปลงตามเวลา แต่อาจจะมีการเปลี่ยนแปลงตามตำแหน่ง
+          </p>
+          <figure class="figure-card ">
+            <img src="asset/week%2010/figure-1.jpg" alt="รูปแสดงตัวอย่างการไหลแบบอุดมคติ (บน) และการไหลแบบไม่อุดมคติ (ล่าง)">
+            <figcaption class="caption">รูปแสดงตัวอย่างการไหลแบบอุดมคติ (บน) และการไหลแบบไม่อุดมคติ (ล่าง)</figcaption>
+          </figure>
+        </div>
+
+        <h3>1.2 เส้นกระแส</h3>
+        <div class="grid">
+          <p class="lead">
+            ของไหลประกอบด้วยอนุภาคจำนวนมาก
+            การเคลื่อนที่ของของไหลจึงเป็นผลมาจากการเคลื่อนที่ของอนุภาคเหล่านี้
+            สำหรับการไหลแบบอุดมคติ อนุภาคที่ตำแหน่งใด ๆ จะมีความเร็วคงที่
+            แต่ค่าความเร็วของอนุภาค ณ ตำแหน่งที่ต่างกัน อาจไม่เท่ากัน ดังแสดงในรูป
+            <br>เส้นที่ลากผ่านจุดต่าง ๆ ในของไหล โดยมีทิศทางสัมผัสกับเวกเตอร์ความเร็วในแต่ละตำแหน่ง
+            เรียกว่า <b>เส้นกระแส (streamline)</b> ซึ่งแสดงแนวทางการเคลื่อนที่ของอนุภาคแต่ละตัว ณ ตำแหน่งนั้น
+            และเมื่อเส้นกระแสมารวมกัน จะบ่งบอกลักษณะการไหลของของไหลโดยรวม
+          </p>
+          <figure class="figure-card ">
+            <img src="asset/week%2010/figure-2.png" alt="รูปแสดงความสัมพันธ์ระหว่างความเร็วของอนุภาคแต่ละตำแหน่ของของไหลที่ไหลในท่องและเส้นกระแส">
+            <figcaption class="caption">รูปแสดงความสัมพันธ์ระหว่างความเร็วของอนุภาคแต่ละตำแหน่ของของไหลที่ไหลในท่อและเส้นกระแส</figcaption>
+          </figure>
+        </div>
+
+        <h3>1.3 อัตราการไหลของของไหลอุดมคติ</h3>
+        <p class="lead">อัตราการไหล คือ ปริมาตรของของไหลที่ไหลผ่านพื้นที่หนึ่ง ๆ
+          ต่อหนึ่งหน่วยเวลา หน่วยในระบบ SI คือ ลูกบาศก์เมตรต่อวินาที หรือ \(\mathrm{m^3/s}\)
+          เขียนแทนด้วย
+        </p>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">
+              \[Q=\frac{\Delta V}{\Delta t}\]
+            </div>
+            <div class="equation-label">
+            </div>
+          </div>
+        </div>
+        
+        <div class="grid">
+          <div>
+            <p class="lead">พิจารณาของไหลอุดมคติที่มีความหนาแน่น \(\rho\)
+              ไหลอยู่ในท่อ ดังภาพขวามือ</p>
+            <ol>
+              <li>พิจารณาส่วนเล็ก ๆ ของของไหลซึ่งมีมวล \(m\)</li>
+              <li>เมื่อเวลาผ่านไป \(\Delta t\) ของไหลก้อนนี้ทั้งหมดจะไหลผ่านพื้นที่หน้าตัด \(A\) โดยที่ปลายด้านซ้ายเคลื่อนที่เป็นระยะทาง Δ𝑥 เช่นเดียวกับปลายด้านขวา</li>
+              <li>จากนิยามความหนาแน่น \(\rho = m/V\)
+                <br> เมื่อปริมาตร \(V=A\Delta x\)
+                และ \(\Delta x=v\Delta t\) จะได้ว่า
+                \(\rho=\frac{𝑚}{Av\Delta t}\) หรือสามารถเขียนใหม่ได้ว่า
+                \(Av=\frac{m}{\rho \Delta 𝑡}=\frac{V}{Δ𝑡}\)</li>
+              <li>
+                จากนิยามของอัตราการไหล จะได้ว่า
+              อัตราการไหลมีค่าเท่ากับผลคูณระหว่างพื้นที่หน้าตัดที่ของไหลไหลผ่านกับอัตราเร็วของอนุภาคของไหล ณ ตำแหน่งนั้น
+              </li>
+            </ol>
+            </div>
+          
+          <figure class="figure-card ">
+            <img src="asset/week%2010/figure-3.png" alt="รูปแสดงภาพประกอบการพิจารณาอัตราการไหล">
+            <figcaption class="caption">รูปแสดงภาพประกอบการพิจารณาอัตราการไหล</figcaption>
+          </figure>
+        </div>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">
+              \[Q=Av\]
+            </div>
+            <div class="equation-label">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="lesson flow-rate-calculator" id="flow-rate-calculator">
+      <h2>🧮 Flow Rate Calculator</h2>
+      <p class="lead">กิจกรรมนี้ใช้ความสัมพันธ์ \(Q=Av\) เพื่อดูว่าพื้นที่หน้าตัดของท่อและอัตราเร็วของของไหลกำหนด “ปริมาตรของของไหลที่ผ่านหน้าตัดใน 1 วินาที” อย่างไร</p>
+
+      <div class="flow-layout">
+        <div class="flow-controls">
+          <h3>กำหนดค่า</h3>
+
+          <label>พื้นที่หน้าตัด \(A\) = <span id="flowAreaValue">0.020</span> m²</label>
+          <input id="flowArea" type="range" min="0.001" max="0.100" step="0.001" value="0.020" oninput="updateFlowRate()">
+
+          <label>อัตราเร็ว \(v\) = <span id="flowVelocityValue">3.00</span> m/s</label>
+          <input id="flowVelocity" type="range" min="0.10" max="10.00" step="0.10" value="3.00" oninput="updateFlowRate()">
+
+          <div class="flow-result-grid">
+            <div>
+              <span>อัตราการไหล</span>
+              <strong id="flowRateResult">0.0600 m³/s</strong>
+            </div>
+            <div>
+              <span>ปริมาตรใน 1 s</span>
+              <strong id="flowVolumeResult">0.0600 m³</strong>
+            </div>
+          </div>
+
+          <p id="flowRateFormula" class="formula" style="font-size: 16px;"></p>
+        </div>
+
+        <div class="flow-visual">
+          <svg id="flowRateSvg" class="flow-svg" viewBox="0 0 900 430" role="img" aria-label="ภาพจำลองอัตราการไหลของของไหลผ่านพื้นที่หน้าตัด"></svg>
+          <p class="hint">ความสูงของท่อและก้อนของไหลแทนพื้นที่หน้าตัด \(A\) ส่วนความยาวก้อนของไหลแทนระยะทางที่ของไหลเคลื่อนที่ใน 1 วินาที \((v\Delta t)\)</p>
+          <div class="flow-actions">
+            <button onclick="playFlowRateAnimation()">เล่น animation</button>
+            <button class="secondary" onclick="resetFlowRate()">รีเซ็ต</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-note-grid">
+        <div class="card">
+          <strong>ความหมายของภาพ</strong>
+          <p>ในเวลา \(\Delta t=1\,\mathrm{s}\) ของไหลเคลื่อนที่ได้ระยะ \(v\Delta t\) ดังนั้นปริมาตรที่ผ่านหน้าตัดคือ \(V=A(v\Delta t)\) และเมื่อหารด้วยเวลา จะได้ \(Q=Av\)</p>
+        </div>
+        <div class="card">
+          <strong>ลองฝึกทำ</strong>
+          <p>ถ้า \(A=0.015\,\mathrm{m^2}\) และ \(v=4.50\,\mathrm{m/s}\) อัตราการไหล \(Q\) มีค่าเท่าไร?</p>
+          <button onclick="showFlowPracticeAnswer()">ตรวจคำตอบ</button>
+          <strong id="flowPracticeAnswer"></strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson" id="continuity">
+      <h2>🔁 2. สมการความต่อเนื่อง</h2>
+      <div class="card">
+        <div class="grid">
+          <p class="lead">
+            พิจารณาอัตราการไหลในช่วงเวลาสั้น \(\Delta t\)
+            ณ สองตำแหน่งที่แตกต่างกัน
+            โดยให้อัตราการไหลผ่านพื้นที่หน้าตัด \(A_1\)
+            เป็น \(Q_1=V_1/\Delta t\)
+            และอัตราการไหลผ่านพื้นที่หน้าตัด \(A_2\)
+            เป็น \(Q_2=V_2/\Delta t\)
+            สำหรับของไหลอุดมคติที่ไม่สามารถบีบอัดได้และมีความหนาแน่นคงที่
+            เมื่อเขียนปริมาตรในรูปของมวลและความหนาแน่น
+            จะได้ว่า \(Q_1=\frac{1}{\rho}\frac{𝑚_1}{Δ𝑡}\) และ
+            \(Q_2=\frac{1}{\rho}\frac{𝑚_2}{Δ𝑡}\) โดยที่ \(\frac{𝑚}{\Delta t}\)
+            คืออัตราการส่งผ่านมวล <u>จากกฎการอนุรักษ์ของมวล (The Law of Conservation of Mass)</u> (มวลไม่สามารถสร้างหรือทำลายได้)
+            จะได้ว่าในช่วงเวลาเดียวกัน
+            อัตราการส่งผ่านมวลที่ผ่านพื้นที่ \(A_1\) และ \(A_2\) ต้องเท่ากัน ดังนั้น \(Q_1=Q_2\) หรือ
+          </p>
+          <figure class="figure-card ">
+            <img src="asset/week%2010/figure-4.png" alt="รูปแสดงอัตราการไหลที่คงที่ของของไหลอุดมคติ">
+            <figcaption class="caption">รูปแสดงอัตราการไหลที่คงที่ของของไหลอุดมคติ</figcaption><br>
+          </figure>
+        </div>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">
+              \[A_1v_1=A_2v_2\]
+            </div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+        <p class="lead">สมการนี้เรียกว่า <b>สมการความต่อเนื่อง (Continuity Equation)</b> ของของไหลอุดมคติ</p>
+        <div class="warning-box">
+          <div class="warning-icon">⚠️</div>
+          <div class="warning-content">
+            <p><b>โดยสรุป:</b> สำหรับของไหลอุดมคติ อัตราการไหลจะมีค่าเท่ากันในทุกตำแหน่งของท่อ</p>
+          </div>
+        </div>
+      </div>
+      <div class="interaction w10-two-col">
+        <div>
+          <h3>🚰 Continuity Pipe Simulator</h3>
+          <label>พื้นที่ \(A_1\) = <span id="w10A1Val">0.20</span> m²</label><input id="w10A1" type="range" min="0.05" max="0.5" value="0.20" step="0.01" oninput="updateW10Continuity()">
+          <label>พื้นที่ \(A_2\) = <span id="w10A2Val">0.10</span> m²</label><input id="w10A2" type="range" min="0.02" max="0.45" value="0.10" step="0.01" oninput="updateW10Continuity()">
+          <label>ความเร็ว \(v_1\) = <span id="w10V1Val">2.0</span> m/s</label><input id="w10V1" type="range" min="0.5" max="8" value="2" step="0.1" oninput="updateW10Continuity()">
+          <p id="w10ContFeedback" class="formula" style="font-size: 16px;"></p>
+          <button id="w10ContPlay" class="reveal-btn" onclick="toggleW10ContinuityAnimation()">เล่น animation</button>
+        </div>
+        <svg id="w10ContSvg" viewBox="0 0 680 310" class="w10-svg"></svg>
+      </div>
+      <div class="card example-card">
+        <h2>ตัวอย่างที่ 1</h2>
+        <p class="lead">ของไหลไหลด้วยความเร็ว 2.0 m/s ในท่อแนวนอนเส้นผ่านศูนย์กลาง 0.20 m ที่ต่อกับท่อเล็กกว่าเส้นผ่านศูนย์กลาง 0.10 m จงหาความเร็วของของไหลในท่อเล็ก โดยสมมติว่าเป็นของไหลอุดมคติ</p>
+        <button class="reveal-btn" onclick="toggleReveal('w10ex1')">แสดง/ซ่อนวิธีทำ</button>
+        <div id="w10ex1" class="reveal-box"><p>จากสมการความต่อเนื่อง \(A_1v_1=A_2v_2\) และ \(A\propto d^2\) ดังนั้น \(v_2=(d_1/d_2)^2v_1=(0.20/0.10)^2(2.0)=8.0\ \mathrm{m/s}\)</p></div>
+      </div>
+    </section>
+
+    <section class="lesson" id="bernoulli">
+      <h2>⚡ 3. สมการแบร์นูลลี</h2>
+      <div class="card">
+        <p class="lead">
+            จากหัวข้อที่ 2 เราได้เห็นว่า สมการความต่อเนื่อง
+            สามารถพิสูจน์ได้จากสมบัติของไหลอุดมคติและ<u>กฎการอนุรักษ์ของมวล</u>
+            <br><br>ในทำนองเดียวกัน เราสามารถพิสูจน์สมการที่เรียกว่า <b>สมการแบร์นูลลี (Bernoulli's equation)</b>
+            ซึ่งเป็นสมการสำคัญและมีประโยชน์อย่างยิ่งในการศึกษาจลนศาสตร์ของไหล
+            ได้จากสมบัติของไหลอุดมคติและ<u>ทฤษฎีบทงาน–พลังงาน</u>
+        </p>
+        <div class="grid">
+          <p class="lead">
+            พิจารณาการไหลของของไหลอุดมคติ ณ ตำแหน่ง 1 และ 2 ดังภาพขวามือ
+            สมการแบร์นูลลี ระบุว่า ปริมาณทางฟิสิกส์ <b>\(P+\rho g y+\frac{1}{2} \rho v^2\) จะมีค่าคงที่</b>
+            <br>โดยที่ \(P\) คือ ความดันของของไหล ณ ตำแหน่งนั้น
+            <br>\(\rho\) คือ ความหนาแน่น
+            <br>\(g\) คือ ค่าความเร่งเนื่องจากแรงโน้มถ่วง
+            <br>และ \(v\) คือ อัตราเร็วของของไหล ณ จุดนั้น
+            
+            <br><br>หรือกล่าวอีกในหนึ่ง สำหรับสองจุดใด ๆ ในของไหลอุดมคติ
+          </p>
+          <figure class="figure-card ">
+            <img src="asset/week%2010/figure-5.png" alt="รูปแสดงภาพประกอบการพิจารณาสมการแบร์นูลลี">
+            <figcaption class="caption">รูปแสดงภาพประกอบการพิจารณาสมการแบร์นูลลี</figcaption><br>
+          </figure>
+        </div>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">
+              \[P_1+\frac{1}{2}\rho v_1^2+\rho gy_1=P_2+\frac{1}{2}\rho v_2^2+\rho gy_2\]
+            </div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+      </div><br>
+
+      <div class="card">
+        <h2>แนวคิดการพิสูจน์ สมการแบร์นูลลี</h2>
+        <button class="reveal-btn" onclick="toggleReveal('w10BernoulliProof')">แสดง/ซ่อนแนวคิดการพิสูจน์</button>
+        <div id="w10BernoulliProof" class="grid" data-display="grid" style="display: none;">
+            <ul>
+              <li>พิจารณาระบบที่ประกอบด้วยของไหลในบริเวณระหว่างจุดที่ 1 และ 2 ดังภาพ</li>
+              <li>จากทฤษฎีบทงาน–พลังงาน \(\Delta E = W_{\text{external}}\)
+              โดยที่ งานรวมจากแรงภายนอก (ซึ่งเกิดจากแรงดันของของไหลส่วนอื่น) มีค่าเท่ากับ
+              \(W_{\text{external}}=\vec{F}_1 \cdot \Delta \vec{x}_1+\vec{F}_2 \cdot \Delta \vec{x}_2\)</li>
+              <li>ถ้าเขียนแรงให้อยู่ในรูปของความดัน และปริมาตรในรูป \(V = A \Delta x\)
+              จะได้ว่า \(W_{\text{external}}=(P_1 - P_2)V\)</li>
+              <li>จากสมบัติของของไหลอุดมคติและกฎการอนุรักษ์ของมวล
+              ปริมาตรการเปลี่ยนแปลงที่ตำแหน่งทั้งสองต้องเท่ากัน คือ \(V = V_1 = V_2\) ดังนั้น
+              \(W_{\text{external}}=(P_1 - P_2)V\)</li>
+              <li>สำหรับการเปลี่ยนแปลงพลังงานรวมของระบบ จะได้ว่า
+              \[\Delta E =\left(\frac{1}{2}m_2 v_2^2 + m_2 g y_2\right)-\left(\frac{1}{2}m_1 v_1^2 + m_1 g y_1\right)\]</li>
+              <li>จากสมบัติของของไหลอุดมคติและกฎการอนุรักษ์ของมวล \(m_1 = m_2 = \rho V\) จะได้ว่า
+              \[\Delta E = \left( \frac{1}{2}\rho V v_2^2 + \rho V g y_2 \right) - \left( \frac{1}{2}\rho V v_1^2 + \rho V g y_1 \right)\]</li>
+              <li>เมื่อนำไปแทนในสมการทฤษฎีบทงาน–พลังงาน จะได้ว่า
+              \[(P_1 - P_2)V=\left(\frac{1}{2}\rho V v_2^2 + \rho V g y_2\right)-\left(\frac{1}{2}\rho V v_1^2 + \rho V g y_1\right)\]</li>
+              <li>หารตลอดด้วย \(V\) และจัดรูปสมการ จะได้สมการแบร์นูลลี
+              \[P_1 + \rho g y_1 + \frac{1}{2}\rho v_1^2=P_2 + \rho g y_2 + \frac{1}{2}\rho v_2^2\]</li>
+            </ul>
+          <figure class="figure-card ">
+            <img src="asset/week%2010/figure-6.png" alt="รูปแสดงภาพประกอบการพิสูจน์สมการแบร์นูลลี">
+            <figcaption class="caption">รูปแสดงภาพประกอบการพิสูจน์สมการแบร์นูลลี</figcaption><br>
+          </figure>
+        </div>
+      </div><br>
+
+      <div class="card example-card">
+        <h2>ตัวอย่างที่ 2</h2>
+        <p class="lead">
+          ของไหลอุดมคติไหลผ่านท่อแนวนอนที่มีพื้นที่หน้าตัดใหญ่ \(A_1=0.10\,\mathrm{m^2}\)
+          เชื่อมต่อกับท่อที่มีพื้นที่หน้าตัดเล็กกว่า \(A_2=0.050\,\mathrm{m^2}\)
+          ของไหลมีความเร็ว \(v_1=4.0\,\mathrm{m/s}\) ในท่อส่วนใหญ่
+          จงหาความดันในท่อส่วนเล็ก หาก \(P_1=200,000 \ \,\mathrm{Pa}\)
+          และ \(\rho=1,000\,\mathrm{kg/m^3}\)</p>
+        <div class="interaction"><h4>คาดการณ์ก่อนคำนวณ</h4><div class="options" data-poll><button class="option-btn">ความดันในท่อเล็กมากขึ้น</button><button class="option-btn">ความดันในท่อเล็กลดลง</button><button class="option-btn">ความดันเท่าเดิม</button></div></div>
+        <button class="reveal-btn" onclick="toggleReveal('w10ex2')">แสดง/ซ่อนวิธีทำ</button>
+        <div id="w10ex2" class="reveal-box">
+          <p>
+            จาก \(A_1v_1=A_2v_2\) ได้ \(v_2=8.0\,\mathrm{m/s}\)
+            สำหรับท่อแนวนอน \(P_1+\frac12\rho v_1^2=P_2+\frac12\rho v_2^2\)
+            ดังนั้น \(P_2=200000+\frac12(1000)(4^2-8^2)=176000\,\mathrm{Pa}\)
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson-section bernoulli-energy-section" id="bernoulli-energy-bar">
+      <div class="bernoulli-card">
+        <div class="bernoulli-header">
+          <div>
+            <h2>📊 Bernoulli Energy Bar</h2>
+            <p>ศึกษาสมการแบร์นูลลีร่วมกับสมการความต่อเนื่อง</p>
+          </div>
+          <button class="bernoulli-reset-btn" onclick="resetBernoulliEnergy()">↻ รีเซ็ต</button>
+        </div>
+
+        <div class="bernoulli-formula-strip">
+          <div class="formula-box">\(P + \frac{1}{2}\rho v^2 + \rho gy =\) ค่าคงที่</div>
+          <div class="formula-box">\(A_1 v_1 = A_2 v_2\)</div>
+        </div>
+
+        <div class="bernoulli-layout">
+          <div class="bernoulli-controls">
+            <h3>1) กำหนดตัวแปรอิสระ</h3>
+
+            <label> \(A_1=\) <span id="beA1Val">0.080</span> m²</label>
+            <input id="beA1" type="range" min="0.020" max="0.120" step="0.005" value="0.080" oninput="updateBernoulliEnergy()">
+
+            <label> \(A_2=\) <span id="beA2Val">0.040</span> m²</label>
+            <input id="beA2" type="range" min="0.020" max="0.120" step="0.005" value="0.040" oninput="updateBernoulliEnergy()">
+
+            <label> \(v_1=\) <span id="beV1Val">3.00</span> m/s</label>
+            <input id="beV1" type="range" min="0.50" max="8.00" step="0.10" value="3.00" oninput="updateBernoulliEnergy()">
+
+            <label> \(y_1=\) <span id="beY1Val">1.00</span> m</label>
+            <input id="beY1" type="range" min="0.00" max="5.00" step="0.10" value="1.00" oninput="updateBernoulliEnergy()">
+
+            <label> \(y_2=\) <span id="beY2Val">2.00</span> m</label>
+            <input id="beY2" type="range" min="0.00" max="5.00" step="0.10" value="2.00" oninput="updateBernoulliEnergy()">
+
+            <label> \(P_1=\) <span id="beP1Val">200000</span> Pa</label>
+            <input id="beP1" type="range" min="50000" max="300000" step="5000" value="200000" oninput="updateBernoulliEnergy()">
+
+            <label> \(\rho=\) <span id="beRhoVal">1000</span> kg/m³</label>
+            <input id="beRho" type="range" min="500" max="1400" step="50" value="1000" oninput="updateBernoulliEnergy()">
+          </div>
+
+          <div class="bernoulli-visual">
+            <div class="bernoulli-visual-heading">
+              <h3>2) ภาพเคลื่อนไหว</h3>
+              <button id="beAnimationToggle" class="bernoulli-anim-btn" type="button" onclick="toggleBernoulliAnimation()">เริ่ม Animation</button>
+            </div>
+
+            <svg class="bernoulli-svg is-paused" viewBox="0 0 900 420">
+              <defs>
+                <marker id="beArrow" markerWidth="6" markerHeight="6" refX="0" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#0f3b7a"></path>
+                </marker>
+              </defs>
+
+              <!-- pipe -->
+              <path id="bePipeShadow1" d="M60 290 C210 290 280 290 380 250 C500 200 570 145 760 145"
+                    fill="none" stroke="#006b68" stroke-width="90" stroke-linecap="round" opacity="0.20"/>
+              <path id="bePipeShadow2" d="M60 290 C210 290 280 290 380 250 C500 200 570 145 760 145"
+                    fill="none" stroke="#006b68" stroke-width="90" stroke-linecap="round" opacity="0.20"/>
+              <path id="bePipeLine" d="M60 290 C210 290 280 290 380 250 C500 200 570 145 760 145"
+                    fill="none" stroke="#00796b" stroke-width="4" stroke-linecap="round" opacity="0.55"/>
+
+              <!-- fluid packet -->
+              <rect id="beFluidPacket" x="85" y="245" width="90" height="90" rx="10"
+                    fill="#14b8a6" opacity="0.75" stroke="#006b68" stroke-width="4"/>
+
+              <!-- velocity arrows -->
+              <line id="beArrow1" x1="120" y1="220" x2="210" y2="220" stroke="#0f3b7a" stroke-width="5" marker-end="url(#beArrow)"/>
+              <text id="beV1Label" x="120" y="205" font-size="28" fill="#0f3b7a">v₁</text>
+
+              <line id="beArrow2" x1="620" y1="105" x2="760" y2="105" stroke="#0f3b7a" stroke-width="5" marker-end="url(#beArrow)"/>
+              <text id="beV2Label" x="620" y="90" font-size="28" fill="#0f3b7a">v₂</text>
+
+              <!-- point labels -->
+              <circle id="bePoint1" cx="120" cy="290" r="12" fill="#1d4ed8"/>
+              <text id="bePoint1Label" x="95" y="365" font-size="26" fill="#111827">จุดที่ 1</text>
+              <text id="beP1VisualLabel" x="88" y="333" font-size="18" fill="#1d4ed8">P₁</text>
+
+              <circle id="bePoint2" cx="700" cy="145" r="12" fill="#dc2626"/>
+              <text id="bePoint2Label" x="670" y="210" font-size="26" fill="#111827">จุดที่ 2</text>
+              <text id="beP2VisualLabel" x="668" y="178" font-size="18" fill="#dc2626">P₂</text>
+
+              <!-- height guides -->
+              <line id="beY1Guide" x1="120" y1="290" x2="120" y2="370" stroke="#64748b" stroke-width="3" stroke-dasharray="8 6"/>
+              <line id="beY2Guide" x1="700" y1="145" x2="700" y2="370" stroke="#64748b" stroke-width="3" stroke-dasharray="8 6"/>
+              <line x1="60" y1="370" x2="780" y2="370" stroke="#334155" stroke-width="3"/>
+
+              <text id="beY1Label" x="130" y="350" font-size="22" fill="#334155">y₁</text>
+              <text id="beY2Label" x="710" y="260" font-size="22" fill="#334155">y₂</text>
+            </svg>
+
+            <div class="dependent-box">
+              <h3>3) ตัวแปรตามที่คำนวณได้</h3>
+              <div class="dependent-grid">
+                <div>
+                  <span>ความเร็วท่อที่ 2</span>
+                  <strong id="beV2Result">6.00 m/s</strong>
+                </div>
+                <div>
+                  <span>ความดันท่อที่ 2</span>
+                  <strong id="beP2Result">182340 Pa</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="energy-compare">
+          <h3>4) เปรียบเทียบปริมาณต่าง ๆ ทั้งสองจุด</h3>
+
+          <div class="energy-grid">
+            <div class="energy-point-card">
+              <h4>จุดที่ 1</h4>
+
+              <div class="bar-row">
+                <span>\(P_1\)</span>
+                <div class="bar-track"><div id="beP1Bar" class="bar-fill pressure"></div></div>
+                <strong id="beP1Term">200000</strong>
+              </div>
+
+              <div class="bar-row">
+                <span>\(\frac{1}{2} \rho v_1^2\)</span>
+                <div class="bar-track"><div id="beK1Bar" class="bar-fill kinetic"></div></div>
+                <strong id="beK1Term">4500</strong>
+              </div>
+
+              <div class="bar-row">
+                <span>\(\rho g y_1\)</span>
+                <div class="bar-track"><div id="beG1Bar" class="bar-fill potential"></div></div>
+                <strong id="beG1Term">9810</strong>
+              </div>
+
+              <div class="energy-total">
+                \(P_1+\frac{1}{2} \rho v_1^2+\rho g y_1\) = <strong id="beTotal1">214310 Pa</strong>
+              </div>
+            </div>
+
+            <div class="energy-point-card">
+              <h4>จุดที่ 2</h4>
+
+              <div class="bar-row">
+                <span>\(P_2\)</span>
+                <div class="bar-track"><div id="beP2Bar" class="bar-fill pressure"></div></div>
+                <strong id="beP2Term">182340</strong>
+              </div>
+
+              <div class="bar-row">
+                <span>\(\frac{1}{2} \rho v_2^2\)</span>
+                <div class="bar-track"><div id="beK2Bar" class="bar-fill kinetic"></div></div>
+                <strong id="beK2Term">18000</strong>
+              </div>
+
+              <div class="bar-row">
+                <span>\(\rho g y_2\)</span>
+                <div class="bar-track"><div id="beG2Bar" class="bar-fill potential"></div></div>
+                <strong id="beG2Term">19620</strong>
+              </div>
+
+              <div class="energy-total">
+                \(P_2+\frac{1}{2} \rho v_2^2+\rho g y_2\) = <strong id="beTotal2">214310 Pa</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="bernoulli-message">
+            ปริมาณ \(P+\frac{1}{2} \rho v^2+\rho g y\) ของทั้งสองจุดเท่ากัน ตามสมการแบร์นูลลี
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson" id="lift">
+      <h2>✈️ 4. แรงยก</h2>
+      <div class="card">
+        <div class="grid">
+          <div>
+            <p class="lead"> หนึ่งในผลลัพธ์ที่สำคัญจากการประยุกต์ใช้สมการแบร์นูลลี คือ <b>แรงยก (Lift)</b></p>
+            <ul>
+              <li>พิจารณากรณีที่พื้นผิวแข็ง เช่น ปีกเครื่องบิน เคลื่อนที่ผ่านอากาศที่หยุดนิ่ง ด้วยความเร็ว \(\vec v\) </li>
+              <li>พิจารณาในกรอบอ้างอิงของปีก จะเห็นว่าปีกหยุดนิ่ง แต่อากาศไหลผ่านไปทางขวา ดังรูปขวามือ</li>
+              <li>เนื่องจากการไหลของอากาศเหนือปีกและใต้ปีกแตกต่างกัน
+                จึงเกิดแรงลัพธ์ในแนวดิ่งที่พยายามยกปีกขึ้น กล่าวคือ
+                แรงยกเท่ากับผลต่างของแรงใต้ปีกลบแรงบนปีก
+                \(F_{\text{lift}}=F_{\text{down}}-F_{\text{up}}\)</li>
+              <li>จากสมการแบร์นูลลีและการประมาณที่เหมาะสม จะได้ว่า</li>
+            </ul>
+          </div>
+          <figure class="figure-card ">
+            <img src="asset/week%2010/figure-7.png" alt="รูปแสดงหน้าตัดของปีกเครื่องบิน (บน) และเส้นกระแส ความดัน และแรงดันจากอากาศบนปีกและใต้ปีก (ล่าง)">
+            <figcaption class="caption">รูปแสดงหน้าตัดของปีกเครื่องบิน (บน) และเส้นกระแส ความดัน และแรงดันจากอากาศบนปีกและใต้ปีก (ล่าง)</figcaption><br>
+          </figure>
+        </div>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">
+              \[F_{\text{lift}}=\frac{1}{2}K\rho Av^2\]
+            </div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+        <p>โดย \(K\) คือ สัมประสิทธิ์แรงยก
+          \(\rho\) คือ ความหนาแน่นของอากาศ
+          \(A\) คือ พื้นที่ผิวบนปีกและล่างปีกเฉลี่ย
+          และ \(v\) คืออัตราเร็วสัมพัทธ์ระหว่างปีกกับอากาศ</p>
+      </div><br>
+
+      <div class="card">
+        <h2>แนวคิดการพิสูจน์สมการแรงยก</h2>
+        <button class="reveal-btn" onclick="toggleReveal('w10LiftProof')">แสดง/ซ่อนแนวคิดการพิสูจน์</button>
+        <div id="w10LiftProof" class="grid" data-display="grid" style="display: none;">
+          <p class="card">
+            ใช้สมการแบร์นูลลีสำหรับการไหลจากจุดที่ 1 ไปจุดที่ 2 บนปีก
+            \[P_1+\rho g y_1+\frac{1}{2}\rho v^2=P_{\text{up}}+\rho g y_{\text{up}}+\frac{1}{2}\rho v_{\text{up}}^2\]
+            
+            และใช้สมการแบร์นูลลีสำหรับการไหลจากจุดที่ 1 ไปจุดที่ 2 ใต้ปีก
+            \[P_1+\rho g y_1+\frac{1}{2}\rho v^2
+            =
+            P_{\text{down}}+\rho g y_{\text{down}}+\frac{1}{2}\rho v_{\text{down}}^2\]
+
+            เนื่องจากไม่มีการเปลี่ยนระดับความสูงและหน้าตัดการไหลเท่าเดิม 
+            จะได้ว่า \(y_{\text{down}}=y_1\) และ \(v_{\text{down}}=v\) 
+            ดังนั้นจะได้ว่า ความดันที่จุด 1 และจุดที่ 2 ใต้ปีกมีความดันเท่ากัน
+            \(P_{\text{down}}=P_1\)
+            
+            รวมผลลัพธ์ข้างต้นเข้าด้วยกัน จะได้ว่า
+            
+            \[P_{\text{down}}+\rho g y_{\text{down}}+\frac{1}{2}\rho v_{\text{down}}^2=P_{\text{up}}+\rho g y_{\text{up}}+\frac{1}{2}\rho v_{\text{up}}^2\]
+            
+            หลังจากจัดรูปสมการนี้ จะได้ว่า ผลต่างความดันใต้ปีกและความดันบนปีกเท่ากับ
+            \[P_{\text{down}}-P_{\text{up}}=\rho g(y_{\text{up}}-y_{\text{down}})+\frac{1}{2}\rho(v_{\text{up}}^2-v^2)\]
+          </p>
+          <div>
+          <p class="card">
+            หากพิจารณากรณีที่ผลต่างระหว่างตำแหน่งบนปีกและใต้ปีกไม่มีผลกับการพิจารณา 
+            \(y_{\text{up}}-y_{\text{down}}\approx 0\) 
+            และอัตราเร็วบนปีกแปรผันตรงกับอัตราเร็วล่างปีก
+            \(v_{\text{up}}=\sqrt{K+1}\,v\)
+            จะได้ว่า ผลต่างความดันใต้ปีกและความดันบนปีกเท่ากับ
+            \[P_{\text{down}}-P_{\text{up}}=\frac{1}{2}K\rho v^2\]
+            หากพื้นที่ผิวบนปีกและล่างปีกเฉลี่ยเท่ากับ \(A\) 
+            ผลต่างแรงใต้ปีกและบนปีกเท่ากับ
+            \[F_{\text{lift}}=\frac{1}{2}KA\rho v^2\]
+          </p>
+            <figure class="figure-card ">
+              <img src="asset/week%2010/figure-8.png" alt="รูปแสดงแผนภาพประกอบการพิสูจน์สมการแรงยก">
+              <figcaption class="caption">รูปแสดงแผนภาพประกอบการพิสูจน์สมการแรงยก</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div><br>
+
+      <div class="card example-card">
+        <h2>ตัวอย่างที่ 3</h2>
+        <p class="lead">สมมติว่าพื้นที่ผิวปีกด้านบนและด้านล่างอย่างละ 10.0 m² เครื่องบินมีความเร็ว 100 m/s จงหามวลสูงสุดที่เครื่องบินลำนี้บรรทุกได้ หากความหนาแน่นของอากาศเท่ากับ 1.30 kg/m³ และสัมประสิทธิ์แรงยกมีค่า 0.7546</p>
+        <button class="reveal-btn" onclick="toggleReveal('w10ex3')">แสดง/ซ่อนวิธีทำ</button>
+        <div id="w10ex3" class="reveal-box">
+          <p>พื้นที่รวมที่ใช้ในสมการประมาณเป็น \(A=20.0\,\mathrm{m^2}\)
+          ดังนั้น \(F_{\text{lift}}=\frac12(0.7546)(1.30)(20.0)(100)^2\approx 98100\,\mathrm{N}\)
+          มวลสูงสุด \(m=F_{\text{lift}}/g\approx 10000\,\mathrm{kg}\)
+        </p></div>
+      </div>
+    </section>
+
+    <section class="lesson" id="viscosity">
+      <h2>🍯 5. ความหนืด</h2>
+      <div class="card">
+        <p class="lead">
+          <b>ความหนืด (viscosity)</b> เป็นสมบัติพื้นฐานของของไหลที่ใช้ในการอธิบายการต้านทานต่อการเลื่อนผ่านกันของชั้นของไหล
+          สมบัตินี้มีความสำคัญอย่างยิ่งในจลนศาสตร์ของไหล เนื่องจากเป็นปัจจัยที่กำหนดลักษณะการไหลของของไหล
+          ตลอดจนมีอิทธิพลต่อการปฏิสัมพันธ์ระหว่างของไหลกับผิวของแข็ง
+        </p>
+        <div class="grid">
+          <p class="lead">
+            พิจารณาระบบที่มีของไหลอยู่ระหว่างผิวของแข็งสองผิวที่มีพื้นที่เป็นรูปสี่เหลี่ยมจัตุรัสขนาดใหญ่
+            พื้นที่เท่ากับ \(A\) และมีระยะห่างกัน \(d\) เมื่อออกแรง \(\vec F\)
+            เพื่อเคลื่อนผิวของแข็งด้านบนให้มีความเร็ว \(\vec v\)
+            ชั้นของไหลที่อยู่ติดกับผิวนี้จะถูกลากไปด้วยความเร็วเดียวกัน ส่วนชั้นของไหลถัดไปจะออกแรง
+            ที่เรียกว่า <b>แรงฉุด (Drag force)</b> และแทนด้วยสัญลักษณ์ \(\vec F_{\text{drag}}\)
+            ซึ่งมีทิศทางตรงข้ามกับการเคลื่อนที่ของผิว และมีขนาดแปรผันตรงกับความเร็วของผิวบน
+            โดยมีค่าเท่ากับ
+          </p>
+          <figure class="figure-card ">
+            <img src="asset/week%2010/figure-9.png" alt="รูปแสดงแผนภาพประกอบการอธิบายแรงฉุดและความหนืด">
+            <figcaption class="caption">รูปแสดงแผนภาพประกอบการอธิบายแรงฉุดและความหนืด</figcaption>
+          </figure>
+          </div>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">
+              \[F_{\text{drag}}=\mu \left(\frac{A}{d}\right) v\]
+            </div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+        <p>โดย \(\mu\) คือ ความหนืดของของไหล หน่วย SI คือ \(\mathrm{Pa\cdot s}\)</p>
+      </div>
+
+      <h3>ตารางแสดงตัวอย่างความหนืดของของไหลชนิดต่าง ๆ</h3>
+      <figure class="figure-card ">
+        <img src="asset/week%2010/figure-10.png" alt="รูปแสดงค่าความหนืดของของไหลหลากหลายชนิด">
+        <figcaption class="caption">รูปแสดงค่าความหนืดของของไหลหลากหลายชนิด</figcaption>
+      </figure>
+    </section>
+
+      <div class="interaction">
+        <h2>💭 คำถามชวนคิด</h2>
+        <p class="lead"><b>ข้อที่ 1 : </b>ถ้าปล่อยวัตถุแข็งชิ้นหนึ่งลงไปในของไหล วัตถุมีแรงดึงลงจากแรงโน้มถ่วง ขณะเดียวกันพื้นผิวของวัตถุลากชั้นของไหลที่อยู่ติดกันให้เคลื่อนที่ด้วย ชั้นของไหลถัดไปจึงออกแรงฉุดต้านการเคลื่อนที่ ค่าคงที่ที่บอกลักษณะของแรงฉุดควรขึ้นกับอะไร?</p>
+        <div class="options" data-multi><button class="option-btn" data-correct="true">รูปร่างและขนาดของวัตถุ</button><button class="option-btn" data-correct="true">ความเร็วของวัตถุ</button><button class="option-btn" data-correct="true">ความหนืดของของไหล</button><button class="option-btn" data-correct="false">สีของวัตถุ</button></div>
+        <div class="grid">
+          <p class="lead"><b>ข้อที่ 2 : </b>
+            เนื่องจากรูปร่างและขนาดของวัตถุอาจแตกต่างกันไป ค่าคงที่ (หรือสัมประสิทธิ์)
+            ที่อยู่ในวงเล็บซึ่งบอกลักษณะของแรงฉุดในกรณีนี้ควรมีค่าเป็นเท่าไร?
+            \[F_{\text{drag}}=𝜇(?)v\]
+          </p>
+        <figure class="figure-card ">
+          <img src="asset/week%2010/figure-11.png" alt="รูปแสดงแผนภาพประกอบคำถามชวนคิด">
+          <figcaption class="caption">รูปแสดงแผนภาพประกอบคำถามชวนคิด</figcaption>
+        </figure>
+        </div>
+      </div><br>
+
+    <section class="lesson" id="stokes">
+      <h2>⚪ 6. กฎของสโตกส์</h2>
+      <div class="card">
+        <div class="grid">
+          <p class="lead">
+            หากวัตถุที่ปล่อยเป็นทรงกลม และอยู่ห่างจากขอบภาชนะที่บรรจุของไหล
+            Sir George Gabriel Stokes ได้พิสูจน์หาค่าคงที่ที่เหมาะสมสำหรับสถานการณ์นี้
+            จนได้เป็น กฎของสโตกส์ ซึ่งกล่าวว่า
+            <br><br><b>“แรงฉุดที่กระทำต่ออนุภาคทรงกลมซึ่งเคลื่อนที่ผ่านของไหล
+              มีค่าแปรผันตรงกับรัศมี \(r\) ของอนุภาค อัตราเร็วของการเคลื่อนที่ \(v\)
+              และความหนืดของของไหล \(\mu\)”</b>
+            <br><br>หรือ
+          </p>
+          <figure class="figure-card ">
+            <img src="asset/week%2010/figure-12.png" alt="รูปแสดงแผนภาพประกอบกฎของสโตกส์">
+            <figcaption class="caption">รูปแสดงแผนภาพประกอบกฎของสโตกส์</figcaption>
+          </figure>
+        </div>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">
+              \[F_{\text{drag}}=6\pi\mu rv\]
+            </div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+      </div>
+      <div class="interaction w10-two-col">
+        <div>
+          <h3>⚙️ Stokes’ Law Explorer</h3>
+          <label>รัศมี \(r\) = <span id="w10RVal">2.0</span> mm</label><input id="w10R" type="range" min="0.2" max="10" value="2" step="0.1" oninput="updateW10Stokes()">
+          <label>ความหนืด \(\mu\) = <span id="w10SEtaVal">1.00</span> Pa·s</label><input id="w10SEta" type="range" min="0.01" max="5" value="1" step="0.01" oninput="updateW10Stokes()">
+          <label>อัตราเร็ว \(v\) = <span id="w10SVVal">0.50</span> m/s</label><input id="w10SV" type="range" min="0.05" max="3" value="0.5" step="0.05" oninput="updateW10Stokes()">
+          <p id="w10StokesFeedback" class="formula"></p>
+        </div>
+        <svg id="w10StokesSvg" viewBox="0 0 620 340" class="w10-svg"></svg>
+      </div>
+    </section>
+
+    <section class="lesson" id="terminal">
+      <h2>📉 7. ความเร็วสุดท้าย</h2>
+      <div class="card">
+        <div class="grid">
+          <p class="lead">
+            พิจารณาการเคลื่อนที่ของวัตถุทรงกลมในของไหลซึ่งบรรจุอยู่ในภาชนะขนาดใหญ่ 
+            ในสถานการณ์นี้มีแรงกระทำต่อวัตถุ 3 แรง ได้แก่ 
+            น้ำหนัก \(\vec{W}\) แรงลอยตัว \(\vec{F}_B\) 
+            และแรงฉุด \(\vec{F}_{\text{drag}}\)
+            ตามกฎการเคลื่อนที่ข้อที่ 2 ของนิวตัน
+            \(\sum \vec{F}=m\vec{a}\)
+            เมื่อพิจารณาเฉพาะในแนวดิ่ง จะได้ว่า
+            \[F_{\text{drag}}+F_B-W=ma\]
+            แทนค่าขนาดของแต่ละแรง จะได้
+            \[6\pi \mu r v+\rho V g-mg=ma\]
+            หากปล่อยวัตถุจากสภาวะหยุดนิ่ง 
+            อัตราเร็วของวัตถุจะเพิ่มขึ้นเรื่อย ๆ ดังที่แสดงในกราฟ 
+            จนกระทั่งแรงทั้ง 3 สมดุลกัน 
+            ซึ่งเป็นสภาวะที่ความเร่งเป็นศูนย์
+            \[6\pi \mu r v_t+\rho V g-mg=0\]
+            ดังนั้น <b>ความเร็วสุดท้าย(terminal velocity) </b> \(v_t\) จะมีค่าเป็น
+          </p>
+
+          <figure class="figure-card ">
+            <img src="asset/week%2010/figure-13.png" alt="รูปแสดงภาพประกอบการพิจารณาอัตราการไหล">
+            <figcaption class="caption">รูปแสดงภาพประกอบการพิจารณาอัตราการไหล</figcaption>
+          </figure>
+          </div>
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">
+                \[v_t=\frac{mg-\rho V g}{6\pi \mu r}\]
+              </div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+
+      </div>
+      <div class="interaction">
+        <div class="bernoulli-visual-heading">
+            <h3>📉 Terminal Velocity Simulator</h3>
+        </div>
+        <div class="w10-two-col">
+          <div>
+            <label>รัศมี \(r\) = <span id="w10TRVal">2.0</span> mm</label><input id="w10TR" type="range" min="0.2" max="10" value="2" step="0.1" oninput="updateW10Terminal()">
+            <label>มวล \(m\) = <span id="w10MassVal">0.084</span> g <small>(ขั้นต่ำ <span id="w10MassMinVal">0.034</span> g)</small></label><input id="w10Mass" type="range" min="0.034" max="10" value="0.084" step="0.001" oninput="updateW10Terminal()">
+            <label>ความหนาแน่นของไหล \(\rho\) = <span id="w10RhoFVal">1000</span> kg/m³</label><input id="w10RhoF" type="range" min="10" max="2000" value="1000" step="10" oninput="updateW10Terminal()">
+            <label>ความหนืด \(\mu\) = <span id="w10TEtaVal">0.001</span> Pa·s</label><input id="w10TEta" type="range" min="0.001" max="0.02" value="0.001" step="0.001" oninput="updateW10Terminal()">
+          </div>
+          <div>
+            <svg id="w10TerminalSvg" viewBox="0 0 680 620" class="w10-svg"></svg>
+            <div class="terminal-controls">
+              <button id="w10TerminalToggle" class="bernoulli-anim-btn" type="button" onclick="toggleW10TerminalAnimation()">เริ่ม Animation</button>
+              <button class="bernoulli-anim-btn secondary" type="button" onclick="resetW10TerminalAnimation()">รีเซ็ต</button>
+            </div>
+          </div>
+        </div>
+        <p id="w10TerminalFeedback" class="formula"></p>
+      </div>
+    </section>
+
+    <section class="lesson" id="summary">
+      <h2>🎯 สรุปท้ายคาบ และ Final Quiz</h2>
+      <p class="lead">
+        ใจหลักของสัปดาห์นี้คือการมองของไหลที่กำลังเคลื่อนที่ผ่านปริมาณสำคัญ 3 กลุ่ม ได้แก่ อัตราการไหลและสมการความต่อเนื่อง
+        สมดุลพลังงานของของไหลอุดมคติผ่านสมการแบร์นูลลี และผลของความหนืดที่ทำให้เกิดแรงฉุดและความเร็วปลาย
+        เมื่อเชื่อมแนวคิดเหล่านี้เข้าด้วยกัน เราจะอธิบายได้ว่าทำไมท่อแคบทำให้ของไหลเร็วขึ้น ทำไมความดันลดลงเมื่อความเร็วเพิ่ม
+        และทำไมวัตถุในของไหลจึงเข้าใกล้ความเร็วคงที่ในที่สุด
+      </p>
+      <div class="grid">
+        <div class="card"><strong>1. การไหลอุดมคติ</strong><br>ของไหลอุดมคติใช้แบบจำลองว่าไหลคงตัว ไม่หนืด ไม่อัดตัว และไม่หมุนวน เพื่อให้วิเคราะห์การเคลื่อนที่ของของไหลได้ด้วยสมการพื้นฐาน</div>
+        <div class="card"><strong>2. อัตราการไหล</strong><br>\(Q=Av\) บอกปริมาตรของของไหลที่ผ่านพื้นที่หน้าตัดต่อหนึ่งหน่วยเวลา</div>
+        <div class="card"><strong>3. สมการความต่อเนื่อง</strong><br>\(A_1v_1=A_2v_2\) สำหรับของไหลอุดมคติไม่อัดตัวในท่อเดียวกัน พื้นที่เล็กลงทำให้ความเร็วเพิ่มขึ้น</div>
+        <div class="card"><strong>4. สมการแบร์นูลลี</strong><br>\(P+\frac12\rho v^2+\rho gy=\mathrm{constant}\) คือการอนุรักษ์พลังงานต่อปริมาตรตามเส้นกระแส</div>
+        <div class="card"><strong>5. แรงยก</strong><br>ความเร็วอากาศที่ต่างกันเหนือและใต้ปีกทำให้ความดันต่างกัน จึงเกิดแรงลัพธ์ยกปีกขึ้น</div>
+        <div class="card"><strong>6. ความหนืดและแรงฉุด</strong><br>ความหนืดทำให้เกิดแรงต้านการเคลื่อนที่ เช่น \(F_{\text{drag}}=6\pi\mu rv\) สำหรับทรงกลมเล็กในช่วง Stokes</div>
+        <div class="card"><strong>7. ความเร็วปลาย</strong><br>เมื่อ \(W=F_B+F_{\text{drag}}\) แรงลัพธ์เป็นศูนย์ วัตถุจึงเคลื่อนที่ด้วยความเร็วคงที่ \(v_t\)</div>
+      </div>
+
+      <h3>📋 ตารางสูตรสำคัญของพลศาสตร์ของไหล</h3>
+      <div class="card">
+        <table class="mini-table">
+          <thead>
+            <tr><th>หัวข้อ</th><th>สูตร</th><th>ความหมาย/เงื่อนไข</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>อัตราการไหล</td><td>\(Q=\frac{\Delta V}{\Delta t}=Av\)</td><td>ปริมาตรของไหลที่ผ่านพื้นที่หน้าตัดต่อเวลา</td></tr>
+            <tr><td>ความต่อเนื่อง</td><td>\(A_1v_1=A_2v_2\)</td><td>ใช้กับของไหลอุดมคติไม่อัดตัวในท่อเดียวกัน</td></tr>
+            <tr><td>แบร์นูลลี</td><td>\(P+\frac12\rho v^2+\rho gy=\mathrm{constant}\)</td><td>พลังงานต่อปริมาตรคงที่ตามเส้นกระแส</td></tr>
+            <tr><td>แรงยกโดยประมาณ</td><td>\(F_{\text{lift}}=\frac12K\rho Av^2\)</td><td>แรงยกเพิ่มตามกำลังสองของความเร็วสัมพัทธ์</td></tr>
+            <tr><td>แรงฉุดแบบ Stokes</td><td>\(F_{\text{drag}}=6\pi\mu rv\)</td><td>ทรงกลมเล็ก เคลื่อนที่ช้า ในของไหลหนืด</td></tr>
+            <tr><td>ความเร็วปลาย</td><td>\(v_t=\frac{mg-\rho Vg}{6\pi\mu r}\)</td><td>สำหรับทรงกลมภายใต้แรงน้ำหนัก แรงลอยตัว และแรงฉุด Stokes</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="interaction">
+        <h3>✅ Quick Quiz: เลือกคำตอบที่ถูกที่สุด</h3>
+        <p><strong>ข้อ 1:</strong> ของไหลไม่อัดตัวไหลจากท่อกว้างเข้าสู่ท่อแคบ ถ้าไม่มีการรั่ว อะไรจะเกิดขึ้นกับความเร็วในท่อแคบ?</p>
+        <div class="options" data-quiz data-answer="b">
+          <button class="option-btn" data-choice="a">ลดลง เพราะพื้นที่หน้าตัดเล็กลง</button>
+          <button class="option-btn" data-choice="b">เพิ่มขึ้น เพื่อให้อัตราการไหลคงเดิม</button>
+          <button class="option-btn" data-choice="c">เท่าเดิมเสมอ เพราะเป็นของไหลชนิดเดียวกัน</button>
+          <button class="option-btn" data-choice="d">เป็นศูนย์ เพราะของไหลถูกบีบอัดไม่ได้</button>
+        </div>
+        <p data-feedback></p>
+      </div>
+
+      <div class="interaction">
+        <h3>☑️ Quick Quiz: เลือกได้หลายคำตอบ</h3>
+        <p><strong>ข้อ 2:</strong> ข้อใดเป็นข้อความที่ถูกต้องเกี่ยวกับพลศาสตร์ของไหลอุดมคติและผลของความหนืด?</p>
+        <div class="options" data-multi>
+          <button class="option-btn" data-correct="true">ในท่อแนวนอน เมื่อความเร็วเพิ่ม ความดันสถิตมีแนวโน้มลดลงตามสมการแบร์นูลลี</button>
+          <button class="option-btn" data-correct="true">สมการความต่อเนื่องสะท้อนการอนุรักษ์มวลของของไหล</button>
+          <button class="option-btn" data-correct="false">แรงฉุดแบบ Stokes ไม่ขึ้นกับความหนืดของของไหล</button>
+          <button class="option-btn" data-correct="true">วัตถุถึงความเร็วสุดท้ายเมื่อแรงลัพธ์ในแนวดิ่งเป็นศูนย์</button>
+          <button class="option-btn" data-correct="false">สมการแบร์นูลลีใช้ได้โดยตรงกับการไหลหนืดปั่นป่วนทุกกรณีโดยไม่ต้องแก้ไข</button>
+        </div>
+      </div>
+
+      <div class="interaction">
+        <h3>🧩 Drag & Drop: จับคู่สูตรกับความหมาย</h3>
+        <p>ลากการ์ดสูตรไปวางในช่องความหมายที่ตรงกัน แล้วกดตรวจคำตอบ</p>
+        <div class="drag-items">
+          <span class="drag-item" draggable="true" data-type="flow-rate">\(Q=Av\)</span>
+          <span class="drag-item" draggable="true" data-type="continuity">\(A_1v_1=A_2v_2\)</span>
+          <span class="drag-item" draggable="true" data-type="bernoulli">\(P+\frac12\rho v^2+\rho gy=\mathrm{constant}\)</span>
+          <span class="drag-item" draggable="true" data-type="stokes">\(F_d=6\pi\mu rv\)</span>
+          <span class="drag-item" draggable="true" data-type="terminal">\(v_t=\frac{mg-\rho Vg}{6\pi\mu r}\)</span>
+        </div>
+        <div class="dropzone-wrap">
+          <div class="dropzone" data-accept="flow-rate"><strong>อัตราการไหลผ่านพื้นที่หน้าตัด</strong></div>
+          <div class="dropzone" data-accept="continuity"><strong>มวลของของไหลไม่สะสมหรือหายไประหว่างท่อ</strong></div>
+          <div class="dropzone" data-accept="bernoulli"><strong>พลังงานต่อปริมาตรคงที่ตามเส้นกระแส</strong></div>
+          <div class="dropzone" data-accept="stokes"><strong>แรงฉุดของทรงกลมเล็กในของไหลหนืด</strong></div>
+          <div class="dropzone" data-accept="terminal"><strong>ความเร็วคงที่เมื่อแรงลัพธ์เป็นศูนย์</strong></div>
+        </div>
+        <div class="options">
+          <button onclick="checkDropzones(this)">ตรวจคำตอบ</button>
+          <button class="secondary" onclick="resetDropzones(this)">รีเซ็ต</button>
+        </div>
+        <p data-feedback></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>FUNSC115 · Fundamental of Physics for Engineers · Week 10 · Fluid Kinematics</footer>
+</body>
+</html>

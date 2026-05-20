@@ -1,0 +1,114 @@
+.w9-svg {
+    width: 100%;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, .05);
+}
+
+.w9-two-col {
+    display: grid;
+    grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+}
+
+.slide-card {
+    margin: 12px 0;
+    padding: 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: var(--shadow);
+}
+
+.slide-card img {
+    display: block;
+    width: 100%;
+    border-radius: 12px;
+}
+
+.slide-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.slide-grid img {
+    width: 100%;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 6px 18px rgba(15, 23, 42, .08);
+}
+
+.w9-pressure-3d {
+    background: linear-gradient(180deg, #fff 0%, #f8fafc 100%);
+}
+
+.w9BuoyFloatAnim .w9BuoyMove {
+    animation: w9FloatSettle 1.35s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.w9BuoySinkAnim .w9BuoyMove {
+    animation: w9SinkSettle 1.2s cubic-bezier(.2, .7, .15, 1) both;
+}
+
+#w9FloatBlock,
+#w9SubmergedPart,
+#w9BuoyArrow,
+#w9WeightArrow,
+#w9BuoyLabel,
+#w9WeightLabel,
+#w9FloatFractionLabel,
+#w9BigPiston,
+#w9SmallCylinder,
+#w9LargeCylinder,
+#w9SmallPiston,
+#w9HydraulicPipe,
+#w9F1Arrow,
+#w9F2Arrow,
+#w9D1Line,
+#w9D2Line,
+#w9F1Label,
+#w9F2Label,
+#w9D1Label,
+#w9D2Label,
+#w9SurfaceShadow,
+#w9AreaBlock,
+#w9PressureFace,
+#w9PressureSide,
+#w9ForceArrow,
+#w9NormalArrow,
+#w9ParallelArrow,
+#w9AngleArc,
+#w9ForceLabel,
+#w9NormalLabel,
+#w9ParallelLabel,
+#w9ThetaLabel,
+#w9DepthPoint,
+#w9DepthLine,
+#w9LayerProbeLine,
+#w9LayerProbePoint,
+#w9LayerProbeLabel {
+    transition: all .25s ease;
+}
+
+@keyframes w9FloatSettle {
+    0% { transform: translateY(var(--w9-buoy-dy)); }
+    62% { transform: translateY(calc(var(--w9-buoy-dy) * -.10)); }
+    82% { transform: translateY(calc(var(--w9-buoy-dy) * .04)); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes w9SinkSettle {
+    0% { transform: translateY(var(--w9-buoy-dy)); opacity: .96; }
+    78% { transform: translateY(calc(var(--w9-buoy-dy) * -.04)); opacity: 1; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 860px) {
+    .w9-two-col {
+        grid-template-columns: 1fr;
+    }
+}
