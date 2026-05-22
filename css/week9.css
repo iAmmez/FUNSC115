@@ -13,21 +13,6 @@
     align-items: start;
 }
 
-.slide-card {
-    margin: 12px 0;
-    padding: 10px;
-    border: 1px solid #e5e7eb;
-    border-radius: 18px;
-    background: #fff;
-    box-shadow: var(--shadow);
-}
-
-.slide-card img {
-    display: block;
-    width: 100%;
-    border-radius: 12px;
-}
-
 .slide-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));

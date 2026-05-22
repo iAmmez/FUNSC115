@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>สัปดาห์ที่ 12 โมเมนตัมเชิงมุม พลังงานการหมุน และสมบัติยืดหยุ่น</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="css/week12.css" />
+  <script src="js/mathjax-config.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script defer src="script.js"></script>
+  <script defer src="js/week12.js"></script>
+</head>
+<body>
+  <svg width="0" height="0" class="svg-defs" aria-hidden="true" focusable="false">
+    <defs>
+      <marker id="w12ArrowBlue" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L5,2.5 L0,5 z" fill="#2563eb" /></marker>
+      <marker id="w12ArrowGreen" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L5,2.5 L0,5 z" fill="#16a34a" /></marker>
+      <marker id="w12ArrowRed" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L5,2.5 L0,5 z" fill="#dc2626" /></marker>
+    </defs>
+  </svg>
+
+  <header>
+    <div class="hero">
+      <h1>สัปดาห์ที่ 12: โมเมนตัมเชิงมุม พลังงานการหมุน และสมบัติยืดหยุ่น</h1>
+      <p>เว็บไซต์ประกอบการเรียนการสอนรายวิชา Fundamental of Physics for Engineers (FUNSC115)</p>
+    </div>
+  </header>
+
+  <div class="topbar">
+    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    <nav class="nav" id="nav">
+      <a href="index.html#content-table">หน้าแรก</a>
+      <a href="#opening">🚀 เปิดบทเรียน</a>
+      <a href="#angular-momentum-impluse-theorem">🌀 การดลเชิงมุม</a>
+      <a href="#conservation-of-angular-momentum">⚖️ อนุรักษ์โมเมนตัม</a>
+      <a href="#rotational-energy">🔋 พลังงานการหมุน</a>
+      <a href="#elasticity">🧱 สมบัติยืดหยุ่น</a>
+      <a href="#young">📏 Young</a>
+      <a href="#shear">🔀 Shear</a>
+      <a href="#bulk">🧊 Bulk</a>
+      <a href="#summary">🎯 สรุป/Quiz</a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="lesson" id="opening">
+      <h2>🚀 เปิดบทเรียน</h2>
+      <p class="lead">คาบนี้ต่อยอดจากกฎการหมุนของวัตถุแข็งเกร็ง ไปสู่โมเมนตัมเชิงมุม งานและพลังงานของการหมุน จากนั้นเชื่อมแนวคิดเรื่องแรงกับการเปลี่ยนรูปของของแข็งผ่านความเค้น ความเครียด และมอดูลัสยืดหยุ่น</p>
+      <div class="grid">
+        <div class="card"><strong>🎯 เป้าหมายวันนี้</strong>
+          <ul>
+            <li>อธิบายการดลเชิงมุมและโมเมนตัมเชิงมุมจาก \(\sum \vec \tau=I \vec\alpha\)</li>
+            <li>ฝึกใช้การอนุรักษ์โมเมนตัมเชิงมุม</li>
+            <li>เชื่อมงานของแรงบิดกับพลังงานจลน์การหมุน</li>
+            <li>จำแนก Young's, Shear และ Bulk modulus จากรูปแบบการเปลี่ยนรูป</li>
+          </ul>
+        </div>
+        <div class="card"><strong>🗺️ ภาพรวม</strong><br>
+          เริ่มจากทบทวนกฎการหมุนและโมเมนตัมเชิงมุม
+          จากนั้นศึกษาพลังงานการหมุน แล้วขยายไปสู่สมบัติยืดหยุ่น</div>
+        <div class="card"><strong>🧭 วิธีเรียน</strong><br>เรียนผ่านคำถาม ทดลองคิด ทำกิจกรรม และตอบ quiz ระหว่างสอน</div>
+      </div>
+      <div class="interaction">
+        <h3>📊 Poll เปิดคาบ: นักบินอวกาศดึงเชือกให้สั้นลง</h3>
+        <p>ถ้านักบินอวกาศสองคนหมุนรอบจุดศูนย์กลางมวลและดึงเชือกให้สั้นลง โดยไม่มีแรงบิดภายนอก อัตราเร็วในแนวสัมผัสจะเป็นอย่างไร?</p>
+        <div class="options" data-poll>
+          <button class="option-btn">ลดลง</button>
+          <button class="option-btn">เท่าเดิม</button>
+          <button class="option-btn">เพิ่มขึ้น</button>
+          <button class="option-btn">ขึ้นกับมวลเท่านั้น</button>
+        </div>
+        <p class="hint">
+          เก็บคำตอบไว้ก่อน แล้วระหว่างหน่วยเรียนเราจะค่อย ๆ ใช้แนวคิดของกฎการอนุรักษ์ของโมเมนตัมเชิงมุมมาอธิบายปรากฏการณ์นี้
+        </p>
+      </div>
+    </section>
+
+    <section class="lesson" id="angular-momentum-impluse-theorem">
+      <h2>🌀 1. ทฤษฎีบทการดลและโมเมนตัมเชิงมุม</h2>
+
+        <div class="card">
+          <p class="lead">
+            พิจารณาเกี่ยวกับกฎการเคลื่อนที่แบบหมุน รอบแกนหมุนคงที่
+            สำหรับวัตถุแข็งเกร็งอีกครั้ง
+          </p>
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">
+                \[\sum_{i=1}^N \vec \tau_i=I \vec \alpha\]
+              </div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+          <p class="lead">
+            เพื่อความง่ายในการทำความเข้าใจ พิจารณากรณีที่มีแรงบิดเพียงแรงเดียวและความเร่งเชิงมุมคงที่
+            \(\vec{\alpha} = \frac{\vec{\omega}(t)-\vec{\omega}(0)}{\Delta t}\)
+            จะได้ว่า \(\vec{\tau}=I\frac{\vec{\omega}(t)-\vec{\omega}(0)}{\Delta t}\)
+            ซึ่งเมื่อจัดรูปสมการใหม่จะได้ว่า
+            \(\vec{\tau}\Delta t=I\vec{\omega}(t)-I\vec{\omega}(0)\)
+          </p>
+          <p class="lead">
+            จากความสัมพันธ์นี้ เราเรียกผลคูณระหว่างช่วงเวลากับแรงบิดว่า
+            <strong>การดลเชิงมุม (Angular Impulse)</strong>
+          </p>
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">
+                \[\vec{J}=\vec{\tau}\Delta t\]
+              </div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+
+          <p>ซึ่งมีหน่วยเป็น \( \mathrm{N \cdot m \cdot s} \)</p>
+
+          <div class="warning-box"><div class="warning-icon">⚠️</div><div class="warning-content">
+            <p><b>ข้อควรระวัง : สมการ (2) สำหรับแรงบิดคงที่เท่านั้น</b></p>
+          </div></div>
+
+          <p class="lead">
+            และเรียกผลคูณระหว่างโมเมนต์ความเฉื่อยกับความเร็วเชิงมุมว่า
+            <strong>โมเมนตัมเชิงมุม (Angular Momentum)</strong>
+          </p>
+
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">
+                \[\vec{L}=I\vec{\omega}\]
+              </div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+
+          <p>ซึ่งมีหน่วยเป็น \( \mathrm{N \cdot m \cdot s} \) หรือ \( \mathrm{kg \cdot m^2/s} \)</p>
+
+          <p class="lead">
+            จะได้ว่า \(\vec{J}=\Delta \vec{L}\) ซึ่งถ้ามีแรงบิดมากกว่าหนึ่งแรงบิด กระทำต่อวัตถุแข็งเกร็ง
+            ด้านซ้ายมือของสมการจะเปลี่ยนเป็นผมรวมของการดลเชิงมุมทั้งหมดแทน
+          </p>
+
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">
+                \[\sum_{i=1}^N\vec{J}_i=\Delta \vec{L}\]
+              </div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+
+          <div class="warning-box"><div class="warning-icon">⚠️</div><div class="warning-content">
+            <p><b>ข้อควรระวัง : แต่ละแรงบิดในสมการ (4) ไม่จำเป็นต้องคงที่</b></p>
+          </div></div>
+
+          <p class="lead">
+            ซึ่งตีความได้ว่า 
+            <strong>การเปลี่ยนแปลงโมเมนตัมเชิงมุมมีค่าเท่ากับการดลเชิงมุมสุทธิที่กระทำกับระบบ</strong>
+          </p>
+
+          <div class="lead">
+            <p>จะเห็นได้ว่าความสัมพันธ์นี้มีบทบาทเช่นเดียวกับทฤษฎีบทการดลและโมเมนตัม
+            เราจึงสามารถเรียกสมการนี้ว่า</p>
+            <p style="text-align: center;"><strong>ทฤษฎีบทการดลและโมเมนตัมเชิงมุม</strong></p>
+          </div>
+    </section>
+    
+    <section class="lesson" id="conservation-of-angular-momentum">
+      <h2>⚖️ 2. กฎการอนุรักษ์ของโมเมนตัมเชิงมุม</h2>
+      <p class="lead">
+        จากทฤษฎีบทการดลเชิงมุมและโมเมนตัมเชิงมุม สมการ (4)
+        เมื่อการดลเชิงมุมสุทธิที่กระทำกับระบบมีค่าเป็นศูนย์ \((\sum_{i=1}^N\vec{J}_i=0)\)
+        โมเมนตัมเชิงมุมของระบบจะคงที่ \(\Delta \vec L =0\) หรือ
+      </p>
+
+      <div class="equation-card">
+        <div class="equation-wrapper">
+          <div class="equation">
+            \[\vec{L}_f=\vec{L}_i\]
+          </div>
+          <div class="equation-label"></div>
+        </div>
+      </div>
+      <div class="grid">
+        <div>
+          <p class="lead">
+            หากพิจารณากรณีที่แกนหมุนคงที่ สมการนี้จะลดรูปเป็น
+          </p>
+
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">
+                \[I_f\omega_f=I_i\omega_i\]
+              </div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+
+          <div class="lead">
+            <p>ความสัมพันธ์ (5) มีบทบาทเช่นเดียวกับกฎการอนุรักษ์โมเมนตัมเชิงเส้น
+            เราจึงเรียกสมการนี้ว่า</p>
+            <p style="text-align: center;"><strong>กฎการอนุรักษ์โมเมนตัมเชิงมุม</strong></p>
+          </div>
+        </div>
+        <figure class="figure-card figure-wide">
+          <img src="asset/week%2012/figure-1.png" alt="ภาพแสดงการอนุรักษ์โมเมนตัมเชิงมุมของนักยิมนาสติกที่หุบแขนเข้าหาตัว การกระทำนี้ไม่ก่อให้เกิดการดลเชิงมุม ทำให้ความเฉื่อยเชิงมุมลดลง และเพื่อรักษาโมเมนตัมเชิงมุมให้คงเดิม ความเร็วเชิงมุมจึงเพิ่มขึ้น">
+          <figcaption class="caption">
+            ภาพแสดงการอนุรักษ์โมเมนตัมเชิงมุมของนักยิมนาสติกที่หุบแขนเข้าหาตัว การกระทำนี้ไม่ก่อให้เกิดการดลเชิงมุม ทำให้ความเฉื่อยเชิงมุมลดลง และเพื่อรักษาโมเมนตัมเชิงมุมให้คงเดิม ความเร็วเชิงมุมจึงเพิ่มขึ้น
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="interaction">
+        <h3>🧠 Checkpoint: กฎการอนุรักษ์โมเมนตัมเชิงมุมใช้ได้ตอนไหน?</h3>
+        <div data-quiz data-answer="b" class="options">
+          <button class="option-btn" data-choice="a">ระบบไม่มีแรงใด ๆ กระทำเลยเท่านั้น</button>
+          <button class="option-btn" data-choice="b">แรงบิดภายนอกสุทธิรอบแกนที่พิจารณาเป็นศูนย์</button>
+          <button class="option-btn" data-choice="c">วัตถุมีความเร็วเชิงมุมคงที่เสมอ</button>
+        </div>
+        <p data-feedback></p>
+      </div>
+  
+      <div class="interaction example-card w12-astro-example">
+        <h3>🧑‍🚀 ตัวอย่างที่ 1 : อนุรักษ์โมเมนตัมเชิงมุม</h3>
+        <p class="lead">
+          นักบินอวกาศสองคนมีมวลเท่ากัน \(m\) เชื่อมด้วยเชือกที่ความยาวเริ่มต้น \(d_i\)
+          และเคลื่อนที่รอบจุดศูนย์กลางมวล เมื่อดึงเชือกให้สั้นลง ความยาวลดลงเป็น \(d_f\)
+          และไม่มีแรงบิดภายนอกสุทธิ หากกำหนดคอัตราเร็วเชิงเส้นเริ่มต้นของทั้งสอง \(v_i\)
+          เราสามารถหา ความอัตราเร็ว \(v_f\) หลังดึงเชือก
+          โดยใช้กฎการอนุรักษ์โมเมนตัมเชิงมุมได้
+        </p>
+        <div class="w12-sim-grid">
+          <div class="w12-sim-panel">
+            <svg id="w12AstronautSvg" viewBox="0 0 640 360" role="img" aria-label="ภาพเคลื่อนไหวการอนุรักษ์โมเมนตัมเชิงมุมของนักบินอวกาศสองคน"></svg>
+          </div>
+          <div class="w12-control-panel">
+            <label>มวลของนักบินอวกาศแต่ละคน \(m\)
+              <input id="w12AstroMass" type="range" min="40" max="120" value="75" step="5">
+              <span id="w12AstroMassVal">75</span> kg
+            </label>
+            <label>ความยาวเชือกเริ่มต้น \(d_i\)
+              <input id="w12AstroLength1" type="range" min="4" max="16" value="10" step="0.5">
+              <span id="w12AstroLength1Val">10.0</span> m
+            </label>
+            <label>ความยาวเชือกสุดท้าย \(d_f\)
+              <input id="w12AstroLength2" type="range" min="2" max="14" value="5" step="0.5">
+              <span id="w12AstroLength2Val">5.0</span> m
+            </label>
+            <label>อัตราเร็วเริ่มต้น \(v_i\)
+              <input id="w12AstroV1" type="range" min="1" max="12" value="5" step="0.25">
+              <span id="w12AstroV1Val">5.00</span> m/s
+            </label>
+            <div id="w12AstroFeedback" class="w12-result-box"></div>
+            <button type="button" class="reveal-btn" id="w12AstroPlayBtn">เริ่ม animation</button>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="reveal-btn"
+          data-reveal
+          data-reveal-open="แสดงวิธีคำนวณ"
+          data-reveal-close="ซ่อนวิธีคำนวณ"
+        >
+          แสดงวิธีคำนวณ
+        </button>
+        <div class="equation-card" id="w12AstroSteps" data-reveal-answer hidden></div>
+      </div>
+
+    </section>
+
+    <section class="lesson" id="rotational-energy">
+      <h2>🔋 3. งานและพลังงานการเคลื่อนที่แบบหมุน</h2>
+      <div class="card">
+        <p class="lead">
+          พิจารณาเพิ่มเติมเกี่ยวกับกฎการเคลื่อนที่แบบหมุนรอบแกนหมุนคงที่ที่ความเร่งเชิงมุมคงที่สำหรับวัตถุแข็งเกร็ง
+          \(\sum_i \tau_i = I\alpha\)
+          คูณสมการนี้ด้วยการเปลี่ยนแปลงตำแหน่งเชิงมุม \( \Delta \theta \)
+          ที่วัตถุเคลื่อนที่ไป จะได้ว่า
+          \(\sum_i \tau_i \Delta \theta = I\alpha \Delta \theta\)
+          และใช้หนึ่งในสมการจลนศาสตร์ สำหรับการเคลื่อนที่แบบหมุน จะได้ว่า
+        </p>
+
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">
+                \[
+                \sum_i \tau_i \Delta \theta
+                =
+                I\left(
+                \frac{1}{2}\omega_f^2
+                -
+                \frac{1}{2}\omega_i^2
+                \right)
+                \]
+              </div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+
+        <p class="lead">
+          จากความสัมพันธ์นี้ หากเราเรียกผลคูณระหว่างการเปลี่ยนแปลงตำแหน่งเชิงมุมกับแรงบิดว่า
+          <strong>งานที่เกิดจากแรงบิด</strong>
+        </p>
+
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">
+                \[
+                W_{\tau}=\tau \Delta \theta
+                \]
+              </div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+
+          <div class="warning-box"><div class="warning-icon">⚠️</div><div class="warning-content">
+            <p><b>ข้อควรระวัง : สมการ (8) สำหรับแรงบิดคงที่เท่านั้น</b></p>
+          </div></div>
+
+        <p class="lead">
+          ซึ่งมีหน่วยเป็นจูล \( (\mathrm{J}) \)
+          และเรียกผลคูณระหว่างโมเมนต์ความเฉื่อยกับค่าครึ่งหนึ่งของอัตราเร็วเชิงมุมยกกำลังสองว่า
+          <strong>พลังงานจลน์การหมุน</strong>
+        </p>
+
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">
+                \[
+                KE_{\mathrm{rotation}}
+                \equiv
+                \frac{1}{2}I\omega^2
+                \]
+              </div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+
+        <p class="lead">
+          ซึ่งมีหน่วยเป็นจูล \( (\mathrm{J}) \) เช่นเดียวกัน
+          จะได้ว่า
+        </p>
+
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">
+                \[
+                W_{\tau}
+                =
+                \Delta KE_{\mathrm{rotation}}
+                \]
+              </div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+
+          <div class="warning-box"><div class="warning-icon">⚠️</div><div class="warning-content">
+            <p><b>ข้อควรระวัง : สมการ (10) สำหรับกรณีที่มีแรงบิดเพียงแรงเดียว แต่แรงบิดไม่จำเป็นจะต้องคงที่
+              นักศึกษาคิดว่าถ้ามีแรงบิดมากกว่าหนึ่งแรง สมการนี้ควรปรับเปลี่ยนอย่างไร?</b></p>
+          </div></div>
+
+        <p class="lead">
+          สมการสุดท้ายนี้แสดงให้เห็นว่า
+          <strong>งานที่เกิดจากแรงบิดและพลังงานจลน์การหมุนเป็นไปตามทฤษฎีบทงานและพลังงาน</strong>
+        </p>
+
+      </div>
+
+      <div class="interaction">
+        <h3>🧮 ตัวอย่างที่ 2 : พลังงานการหมุน</h3>
+        <div class="grid">
+          <p class="lead">	สองนักบินอวกาศมีมวลคนละ m = 75.0 กิโลกรัม
+            เชื่อมกันด้วยเชือกมวลเบายาว 10.0 เมตร
+            พวกเขาลอยในอวกาศที่ห่างไกลจากทุกสิ่ง
+            และโคจรรอบจุดศูนย์กลางมวลด้วยอัตราเร็ว 5.00 เมตร/วินาที
+            พิจารณาสองนักบินอวกาศเป็นจุดมวล
+            <br>a. จงหาพลังงานจลน์การหมุนของระบบ
+            <br>b. ถ้านักบินอวกาศคนหนึ่งดึงเชือกจนสั้นลงเหลือ 5.00 เมตร
+            จงหาพลังงานจลน์การหมุนใหม่ของนักบินอวกาศทั้งสอง</p>
+            <figure class="figure-card figure-wide">
+              <img src="asset/week%2012/figure-2.png" alt="ภาพแสดงภาพประกอบตัวอย่างที่ 2">
+              <figcaption class="caption">
+                ภาพแสดงภาพประกอบตัวอย่างที่ 2
+              </figcaption>
+            </figure>
+        </div>
+        <button
+          type="button"
+          class="reveal-btn"
+          data-reveal
+          data-reveal-open="แสดงเฉลย/วิธีทำ"
+          data-reveal-close="ซ่อนเฉลย/วิธีทำ"
+        >
+          แสดงเฉลย/วิธีทำ
+        </button>
+        <div class="card" data-reveal-answer hidden>
+          <h3>🧮 เฉลยและวิธีทำ</h3>
+          <p>
+            ให้ระยะจากจุดศูนย์กลางมวลถึงนักบินอวกาศแต่ละคนเป็น \(r\)
+            ดังนั้นตอนเริ่มต้นเชือกยาว \(10.0\,\mathrm{m}\) จะได้ \(r_i=5.00\,\mathrm{m}\)
+            และตอนสุดท้ายเชือกยาว \(5.00\,\mathrm{m}\) จะได้ \(r_f=2.50\,\mathrm{m}\)
+          </p>
+          <div class="formula">
+            \[
+              I_i=2mr_i^2
+              =2(75.0)(5.00)^2
+              =3.75\times10^3\ \mathrm{kg\cdot m^2}
+            \]
+            \[
+              \omega_i=\frac{v_i}{r_i}
+              =\frac{5.00}{5.00}
+              =1.00\ \mathrm{rad/s}
+            \]
+            \[
+              KE_{rotaion,i}=\frac12 I_i\omega_i^2
+              =\frac12(3.75\times10^3)(1.00)^2
+              =1.875\times10^3\ \mathrm{J}
+            \]
+          </div>
+          <p>
+            เมื่อนักบินอวกาศดึงเชือกให้สั้นลง ไม่มีแรงบิดภายนอกสุทธิ
+            จึงใช้กฎอนุรักษ์โมเมนตัมเชิงมุม \(L_i=L_f\)
+          </p>
+          <div class="formula">
+            \[
+              L_i=I_i\omega_i=(3.75\times10^3)(1.00)
+              =3.75\times10^3\ \mathrm{kg\cdot m^2/s}
+            \]
+            \[
+              I_f=2mr_f^2
+              =2(75.0)(2.50)^2
+              =9.375\times10^2\ \mathrm{kg\cdot m^2}
+            \]
+            \[
+              \omega_f=\frac{L_f}{I_f}
+              =\frac{3.75\times10^3}{9.375\times10^2}
+              =4.00\ \mathrm{rad/s}
+            \]
+            \[
+              KE_{rotaion,f}=\frac12 I_f\omega_f^2
+              =\frac12(9.375\times10^2)(4.00)^2
+              =7.50\times10^3\ \mathrm{J}
+            \]
+          </div>
+          <p>
+            ดังนั้นคำตอบคือ
+            \[
+              \boxed{KE_{rotaion,i}=1.875\times10^3\ \mathrm{J}},
+              \qquad
+              \boxed{KE_{rotaion,f}=7.50\times10^3\ \mathrm{J}}
+            \]
+            พลังงานจลน์การหมุนเพิ่มขึ้น เพราะนักบินอวกาศทำงานภายในระบบขณะดึงเชือก
+            แต่โมเมนตัมเชิงมุมของระบบยังคงตัว
+          </p>
+        </div>
+      </div>
+
+      <div class="interaction">
+        <h3>🧠 Concept Check: นักบินอวกาศดึงเชือกแล้วพลังงานเพิ่มขึ้นได้อย่างไร?</h3>
+        <div data-quiz data-answer="c" class="options">
+          <button class="option-btn" data-choice="a">พลังงานเพิ่มขึ้นเพราะโมเมนตัมเชิงมุมถูกสร้างขึ้นใหม่</button>
+          <button class="option-btn" data-choice="b">พลังงานไม่สามารถเพิ่มขึ้นได้ เพราะไม่มีแรงภายนอก</button>
+          <button class="option-btn" data-choice="c">พลังงานเพิ่มจากงานภายในที่นักบินอวกาศทำขณะดึงเชือก</button>
+        </div>
+        <p data-feedback></p>
+      </div>
+    </section>
+
+    <section class="lesson" id="elasticity">
+      <h2>🧱 4. สมบัติยืดหยุ่นของของแข็ง</h2>
+      <p class="lead">
+        ในชีวิตจริง วัตถุทุกชนิดสามารถเปลี่ยนรูปได้ไม่มากก็น้อย
+        การเปลี่ยนรูปร่างหรือขนาดเกิดจากแรงภายนอก
+        ขณะเดียวกันแรงภายในของวัตถุจะต้านการเปลี่ยนรูปนั้น
+
+        เพื่อความสมบูรณ์ในเนื้อหา
+        บทนี้เราจะศึกษาสมบัติเบื้องต้นของวัตถุที่ไม่ใช่วัตถุแข็งเกร็ง ซึ่งในบทเรียนที่ผ่าน ๆ
+        เราเคยศึกษาระบบที่เปลี่ยนแปลงรูปทรงได้ คือ มวลติดสปริง
+        ส่วนนี้เป็นการขยายแนวคิดดังกล่าว
+      </p>
+
+      <div class="lead">
+        <p>การเปลี่ยนรูปของของแข็งอธิบายด้วย ความเค้นและความเครียด</p>
+        <ul>
+          <li><b>ความเค้น (stress)</b> คือ แรงภายนอกต่อหนึ่งหน่วยพื้นที่หน้าตัด</li>
+          <li><b>ความเครียด (strain)</b> คือ ระดับของการเปลี่ยนรูปที่เกิดขึ้น</li>
+        </ul>
+          <p><b>สำหรับความเค้นที่มีค่าน้อย</b> พบว่า ความเครียด ∝ ความเค้น หรือ</p>
+          <p style="text-align: center;"><b>ความเค้น=ค่าคงที่×ความเครียด</b></p>
+          <p>โดยค่าคงที่การแปรผันเรียกว่า มอดูลัสยืดหยุ่น (elastic modulus)
+          ซึ่งขึ้นกับชนิดวัสดุและลักษณะการเปลี่ยนรูป และนิยามว่า</p>
+          <p style="text-align: center;"><b>มอดูลัสยืดหยุ่น =  ความเค้น/ความเครียด</b></p>
+      </div>
+
+      <div class="lead">
+        <p>
+          มอดูลัสยืดหยุ่นเชื่อมโยง “แรงที่กระทำ” กับ “การตอบสนองของวัตถุ”
+          คล้ายค่าคงที่สปริง \(k\) ในกฎของฮุค \((F_s=𝑘Δ𝑥)\)
+          โดยเราจะพิจารณามอดูลัสยืดหยุ่น 3 แบบ
+        </p>
+        <ul>
+          <li>มอดูลัสของยัง (Young's modulus) — ต้านการเปลี่ยนความยาว</li>
+          <li>มอดูลัสเฉือน (Shear modulus) — ต้านการเลื่อนของระนาบภายในที่ขนานกัน</li>
+          <li>มอดูลัสปริมาตร (Bulk modulus) — ต้านการเปลี่ยนแปลงปริมาตรของของแข็งหรือของเหลว</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2 id="young">📏 4.1 มอดูลัสของยัง: ความยืดหยุ่นตามความยาว</h2>
+        <div class="grid">
+          <p class="lead">
+            พิจารณาแท่งยาวที่มีพื้นที่หน้าตัด \(A\)
+            และความยาวเริ่มต้น \(L_i\) โดยยึดแน่นไว้ที่ปลายด้านหนึ่ง
+            เมื่อมีแรงภายนอกกระทำตั้งฉากกับหน้าตัด แรงระดับโมเลกุลภายในแท่งจะต้านการยืด
+            แต่ระบบจะเข้าสู่สมดุลที่ความยาวสุดท้าย \(L_f>L_i\)
+            โดยแรงภายนอกถูกสมดุลด้วยแรงภายใน ในสภาวะนี้แท่งจะอยู่ภายใต้ <strong>ความเค้น</strong>
+          </p>
+          <figure class="figure-card">
+            <img src="asset/week%2012/figure-3.png" alt="ภาพแสดงแสดงแรง \(\vec F\) กระทำต่อปลายอิสระของแท่งวัตถุ โดยที่ปลายอีกด้านถูกยึดไว้">
+            <figcaption>ภาพแสดงแสดงแรง \(\vec F\) กระทำต่อปลายอิสระของแท่งวัตถุ โดยที่ปลายอีกด้านถูกยึดไว้</figcaption>
+          </figure>
+        </div>
+        <div class="grid">
+          <div class="lead">
+            <ul>
+              <li>ความเค้นดึง = \(F/A\) นิยามเป็น อัตราส่วนของขนาดแรงภายนอกต่อพื้นที่หน้าตัด
+              (หน้าตัดตั้งฉากกับทิศแรง)</li>
+              <li>ความเครียดดึง = \(Δ𝐿/L_i\)  นิยามเป็น
+              อัตราส่วนของการเปลี่ยนความยาวต่อความยาวเดิม</li>
+            </ul>
+            <p>จึงนิยาม มอดูลัสของยัง
+            (Young's modulus) ว่า
+            \(Y\) = ความเค้นดึง / ความเครียดดึง หรือ
+           </p>
+            <div class="equation-card">
+              <div class="equation-wrapper">
+                <div class="equation">
+                  \[Y = \frac{F/A}{Δ𝐿/L_i}\]
+                </div>
+                <div class="equation-label"></div>
+              </div>
+            </div> 
+            <p>มอดูลัสของยังใช้บอกคุณสมบัติของแท่งหรือเส้นลวดที่ถูกดึงหรืออัด
+            เนื่องจากความเครียดไม่มีหน่วย \(Y\) จึงมีหน่วยเป็น \(\mathrm{N/m^2}\) </p>
+          </div>
+          <div>
+            <figure class="figure-card">
+              <img src="asset/week%2012/figure-4.png" alt="ภาพแสดงกราฟความสัมพันธ์ระหว่างความเค้นกับความเครียด สำหรับของเข็งยืดหยุ่น">
+              <figcaption>ภาพแสดงกราฟความสัมพันธ์ระหว่างความเค้นกับความเครียด สำหรับของเข็งยืดหยุ่น</figcaption>
+            </figure>
+            <p class="card">สำหรับความเค้นที่ไม่มาก วัสดุจะกลับสู่ความยาวเดิมเมื่อเอาแรงออก
+              <b>ขีดจำกัดยืดหยุ่น (elastic limit)</b> คือ ค่าความเค้นสูงสุดที่วัสดุยังไม่เสียรูปถาวร
+              หากเพิ่มความเค้นเกินขีดนี้ ความสัมพันธ์ความเค้น–ความเครียดจะไม่เป็นเส้นตรง
+              วัสดุจะเสียรูปถาวร และเมื่อเพิ่มความเค้นต่อไป ในที่สุดวัสดุจะขาดหรือแตก</p>
+          </div>
+        </div>
+
+        <h3>
+          📋 ตารางแสดงค่าปกติของมอดูลัสยืดหยุ่น
+        </h3>
+
+        <figure class="figure-card">
+          <img src="asset/week%2012/figure-5.png" alt="ภาพแสดงตารางค่าปกติของมอดูลัสยืดหยุ่น">
+          <figcaption>ภาพแสดงตารางค่าปกติของมอดูลัสยืดหยุ่น</figcaption>
+        </figure>
+      </div>
+
+      <div class="interaction">
+        <h3>🧮 ตัวอย่างที่ 3</h3>
+        <p class="lead">
+          วิเคราะห์สายเคเบิลที่ใช้พยุงนักแสดงขณะโหนตัวขึ้นสู่เวที สมมติว่าเมื่อถึงจุดต่ำสุด
+          แรงตึงในสายเคเบิลมีค่าเท่ากับ 940 N ถามว่า สายเคเบิลเหล็กยาว 10 m
+          ควรมีเส้นผ่านศูนย์กลางเท่าใด หากต้องการให้สาย ยืดไม่เกิน 0.50 cm
+          ภายใต้สภาวะดังกล่าว
+        </p>
+      </div>
+
+      <div class="interaction">
+        <h3>🧪 กิจกรรม : มอดูลัสของยัง</h3>
+        <div>
+          <svg id="w12YoungSvg" viewBox="0 0 640 260" role="img" aria-label="แบบจำลองลวดถูกดึง"></svg>
+
+          <div class="w12-young-controls" aria-hidden="false">
+            <div class="control-item">
+              <label>แรงดึง (F)
+                <input id="w12YoungForce" type="range" min="0" max="10000" value="940" step="10">
+                <div><span id="w12YoungForceVal">940</span> N</div>
+              </label>
+            </div>
+            <div class="control-item">
+              <label>ความยาวเริ่มต้น \((L_i)\)
+                <input id="w12YoungLength" type="range" min="2" max="20" value="10" step="0.5">
+                <div><span id="w12YoungLengthVal">10.0</span> m</div>
+              </label>
+            </div>
+            <div class="control-item">
+              <label>เส้นผ่านศูนย์กลางลวด
+                <input id="w12YoungDiameter" type="range" min="1" max="12" value="5.2" step="0.1">
+                <div><span id="w12YoungDiameterVal">5.2</span> mm</div>
+              </label>
+            </div>
+            <div class="control-item">
+              <label>มอดูลัสของยัง (Y)
+                <input id="w12YoungModulus" type="range" min="50" max="250" value="200" step="5">
+                <div><span id="w12YoungModulusVal">200</span> GPa</div>
+              </label>
+            </div>
+            <div class="control-item">
+              <label>ขยายภาพ
+                <input id="w12YoungAmp" type="range" min="1" max="100" value="1" step="1">
+                <div><span id="w12YoungAmpVal">1</span>×</div>
+              </label>
+            </div>
+          </div>
+          <div class="w12-young-actions" style="margin-top:10px; display:flex; gap:8px; align-items:center;">
+            <button type="button" class="reveal-btn" id="w12YoungToggleCalc">แสดงวิธีคำนวณ</button>
+          </div>
+
+          <div class="card" id="w12YoungSteps" data-reveal-answer hidden style="margin-top:10px; max-height:28vh; overflow:auto;"></div>
+        </div>
+      </div>
+
+    <div class="card">
+      <h2 id="shear">🔀 4.2 มอดูลัสเฉือน: ความยืดหยุ่นของรูปร่าง</h2>
+      <p class="lead">
+        การเปลี่ยนรูปอีกแบบหนึ่งเกิดขึ้นเมื่อวัตถุถูกกระทำด้วยแรงที่
+        ขนานกับผิวหน้า ด้านหนึ่ง ขณะที่ผิวตรงข้ามถูกยึดไว้ แรงลักษณะนี้ทำให้เกิด
+        ความเค้นเฉือน (shear stress) หากวัตถุเริ่มต้นเป็นแท่งสี่เหลี่ยมผืนผ้า
+        การเฉือนจะทำให้หน้าตัดเปลี่ยนเป็นรูป สี่เหลี่ยมด้านขนาน
+        ตัวอย่างคือหนังสือที่ถูกผลักด้านข้าง โดยประมาณสำหรับการเปลี่ยนรูปเล็กน้อย
+        ปริมาตรของวัตถุจะไม่เปลี่ยน
+      </p>
+        <figure class="figure-card">
+          <img src="asset/week%2012/figure-6.png" alt="ภาพแสดงภาพหนังสือที่อยู่ภายใต้ความเค้นเฉือน เมื่อมือที่วางบนปกหนังสือออกแรงขนานไปกับปกติ">
+          <figcaption>ภาพแสดงภาพหนังสือที่อยู่ภายใต้ความเค้นเฉือน เมื่อมือที่วางบนปกหนังสือออกแรงขนานไปกับปกติ</figcaption>
+        </figure>
+
+        <div class="grid">
+          <div class="lead">
+            <p>นิยาม</p>
+            <ul>
+              <li>ความเค้นเฉือน = \(F/A\) คือ อัตราส่วนของแรงเฉือนต่อพื้นที่ผิวที่ถูกเฉือน</li>
+              <li>ความเครียดเฉือน = \(Δx/h\)  โดย Δ𝑥 คือ ระยะที่ผิวบนเลื่อนไปตามแนวนอน และ ℎ คือ ความสูงของวัตถุ</li>
+            </ul>
+            <p>ดังนั้น มอดูลัสเฉือน (Shear modulus) คือ
+            <br>\(S\) = ความเค้นดึง / ความเครียดดึง หรือ
+            \[S = \frac{F/A}{Δx/h}\]
+            ค่ามอดูลัสเฉือนของวัสดุต่าง ๆ แสดงไว้ในตาราง
+            และเช่นเดียวกับมอดูลัสของยัง หน่วยของมอดูลัสเฉือนคือ \(\mathrm{N/m^2}\) 
+           </p>
+          </div>
+          <figure class="figure-card">
+            <img src="asset/week%2012/figure-7.png" alt="ภาพแสดงการเปลี่ยนรูปทรงแบบเฉือนของกล่องสี่เหลี่ยมที่ถูกบิดโดยสองแรงที่ขนาดเท่ากันแต่ทิศทางตรงกันข้ามกัน">
+            <figcaption>ภาพแสดงการเปลี่ยนรูปทรงแบบเฉือนของกล่องสี่เหลี่ยมที่ถูกบิดโดยสองแรงที่ขนาดเท่ากันแต่ทิศทางตรงกันข้ามกัน</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="interaction w12-shear-activity">
+        <h3>🧪 กิจกรรม : มอดูลัสเฉือน</h3>
+        <div class="w12-sim-grid">
+          <div class="w12-sim-panel">
+            <svg id="w12ShearSvg" viewBox="0 0 640 360" role="img" aria-label="แบบจำลองกล่องถูกเฉือน"></svg>
+          </div>
+          <div class="w12-control-panel">
+            <label>แรงเฉือน \(F\)
+              <input id="w12ShearForce" type="range" min="0" max="2000" value="420" step="10">
+              <span><span id="w12ShearForceVal">420</span> N</span>
+            </label>
+            <label>พื้นที่ผิว \(A\)
+              <input id="w12ShearArea" type="range" min="0.01" max="0.20" value="0.08" step="0.01">
+              <span><span id="w12ShearAreaVal">0.08</span> m²</span>
+            </label>
+            <label>ความสูง \(h\)
+              <input id="w12ShearHeight" type="range" min="0.10" max="1.00" value="0.40" step="0.02">
+              <span><span id="w12ShearHeightVal">0.40</span> m</span>
+            </label>
+            <label>มอดูลัสเฉือน \(S\)
+              <input id="w12ShearModulus" type="range" min="0.01" max="0.5" value="0.01" step="0.01">
+              <span><span id="w12ShearModulusVal">0.01</span> GPa</span>
+            </label>
+            <div id="w12ShearFeedback" class="w12-result-box"></div>
+            <button type="button" class="reveal-btn" id="w12ShearToggleCalc">แสดงวิธีคำนวณ</button>
+          </div>
+        </div>
+        <div class="card" id="w12ShearSteps" data-reveal-answer hidden></div>
+      </div>
+
+      <div class="card">
+      <h2 id="bulk">🧊 4.3 มอดูลัสปริมาตร: ความยืดหยุ่นเชิงปริมาตร</h2>
+      <p class="lead">
+        มอดูลัสปริมาตร (Bulk modulus)
+        ใช้บอกการตอบสนองของวัตถุเมื่อถูกแรงที่มีขนาดเท่ากันกระทำ
+        ตั้งฉากและสม่ำเสมอทั่วทั้งผิว ของวัตถุ (สมมติว่าวัตถุทำจากสารชนิดเดียว)
+        แรงลักษณะนี้พบได้เมื่อวัตถุจมอยู่ในของไหล วัตถุจะ เปลี่ยนปริมาตรแต่ไม่เปลี่ยนรูปร่าง
+      </p>
+      <div class="grid">
+        <div class="lead">
+          <ul>
+            <li>ความเค้นปริมาตร = \(F/A\)
+              นิยามเป็นอัตราส่วนของแรงจากความดันส่วนเกินต่อพื้นที่ผิว
+              ซึ่งเท่ากับ ความดันที่เปลี่ยนแปลงไป Δ𝑃 วัตถุจะเกิดการเปลี่ยนปริมาตร Δ𝑉
+            </li>
+            <li>ความเครียดปริมาตร = \(\Delta V/V_i\) คือ
+              ค่าลบปริมาตรที่เปลี่ยนต่อปริมาตรเริ่มต้น</li>
+          </ul>
+          <p>ดังนั้น มอดูลัสปริมาตร นิยามว่า
+          <br>\(B\) = ความเค้นปริมาตร / ความเครียดปริมาตร หรือ
+          \[B = -\frac{F/A}{\Delta V/V_i}=-\frac{\Delta P}{\Delta V/V_i}\]
+          โดยใส่เครื่องหมายลบเพื่อให้ 𝐵 เป็นบวก เพราะเมื่อความดันเพิ่ม ปริมาตรจะลดลง และกลับกัน
+          </p>
+        </div>
+        <figure class="figure-card">
+          <img src="asset/week%2012/figure-8.png" alt="ภาพแสดงลูกบากศ์ที่อยู่ภายใต้ความดันสม่ำเสมอและถูกอัดทุกด้สนด้วยแรงที่ตั้งฉากกับด้านละแต่ละด้าน">
+          <figcaption>ภาพแสดงลูกบากศ์ที่อยู่ภายใต้ความดันสม่ำเสมอและถูกอัดทุกด้สนด้วยแรงที่ตั้งฉากกับด้านละแต่ละด้าน</figcaption>
+        </figure>
+      </div>
+      <div class="interaction">
+        <h3>🧮 ตัวอย่างที่ 4</h3>
+        <p class="lead">
+          ทรงกลมทองเหลืองแข็งลูกหนึ่งเริ่มต้นอยู่ในอากาศ โดยมีความดันอากาศกระทำเท่ากับ
+          \(1.0×10^5 \ \mathrm{N/m^2}\) ความดันบรรยากาศปกติ
+          จากนั้นทรงกลมถูกหย่อนลงไปในทะเลจนถึงระดับความลึกที่ความดันเท่ากับ \(2.0×10^7 \ \mathrm{N/m^2}\)
+          ปริมาตรของทรงกลมขณะอยู่ในอากาศคือ \(0.50 \ \mathrm{m^3}\) ถามว่า เมื่อทรงกลมจมอยู่ใต้น้ำ ปริมาตรของมันเปลี่ยนไปเท่าใด
+        </p>
+      </div>
+      </div>
+      <div class="interaction w12-bulk-activity">
+        <h3>🧪 กิจกรรม : มอดูลัสปริมาตร</h3>
+        <div class="w12-sim-grid">
+          <div class="w12-sim-panel">
+            <svg id="w12BulkSvg" viewBox="0 0 640 360" role="img" aria-label="แบบจำลองลูกบาศก์ถูกอัดด้วยความดันรอบด้าน"></svg>
+          </div>
+          <div class="w12-control-panel">
+            <label>🌊 ความดันที่เพิ่มขึ้น \(\Delta P\)
+              <input id="w12BulkPressure" type="range" min="1" max="80" value="30" step="1">
+              <span><span id="w12BulkPressureVal">30</span> MPa</span>
+            </label>
+            <label>📦 ปริมาตรเริ่มต้น \(V_i\)
+              <input id="w12BulkVolume" type="range" min="0.001" max="0.020" value="0.010" step="0.001">
+              <span><span id="w12BulkVolumeVal">0.010</span> m³</span>
+            </label>
+            <label>💪 มอดูลัสปริมาตร \(B\)
+              <input id="w12BulkModulus" type="range" min="20" max="180" value="60" step="2">
+              <span><span id="w12BulkModulusVal">60</span> GPa</span>
+            </label>
+            <div id="w12BulkFeedback" class="w12-result-box"></div>
+            <button type="button" class="reveal-btn" id="w12BulkToggleCalc">🧮 แสดงวิธีคำนวณ</button>
+          </div>
+        </div>
+        <div class="card" id="w12BulkSteps" data-reveal-answer hidden></div>
+      </div>
+    </section>
+
+    <section class="lesson" id="summary">
+      <h2>🎯 สรุปท้ายคาบ และ Final Quiz</h2>
+      <p class="lead">
+        ใจหลักของสัปดาห์นี้คือการต่อยอดกฎการหมุนไปสู่ปริมาณที่อนุรักษ์และพลังงานของการหมุน
+        จากทฤษฎีบทการดลเชิงมุม เราเห็นว่าเมื่อแรงบิดภายนอกสุทธิเป็นศูนย์
+        โมเมนตัมเชิงมุมของระบบจะคงตัว แม้โมเมนต์ความเฉื่อยและอัตราเร็วเชิงมุมจะเปลี่ยนไปได้
+        จากนั้นเชื่อมงานของแรงบิดกับพลังงานจลน์การหมุน และปิดท้ายด้วยสมบัติยืดหยุ่นของวัสดุ
+        ซึ่งอธิบายการเปลี่ยนรูปผ่านความเค้น ความเครียด และมอดูลัสยืดหยุ่น
+      </p>
+      <div class="grid">
+        <div class="card"><strong>1. การดลเชิงมุม</strong><br>\(\sum \tau \Delta t=\Delta L\) อธิบายว่าแรงบิดที่กระทำในช่วงเวลาหนึ่งทำให้โมเมนตัมเชิงมุมเปลี่ยนไป</div>
+        <div class="card"><strong>2. โมเมนตัมเชิงมุม</strong><br>สำหรับการหมุนรอบแกนคงที่ \(L=I\omega\) โดย \(I\) ขึ้นกับการกระจายมวลรอบแกน และ \(\omega\) คืออัตราเร็วเชิงมุม</div>
+        <div class="card"><strong>3. กฎอนุรักษ์โมเมนตัมเชิงมุม</strong><br>ถ้าแรงบิดภายนอกสุทธิรอบแกนที่พิจารณาเป็นศูนย์ จะได้ \(L_i=L_f\) หรือ \(I_i\omega_i=I_f\omega_f\)</div>
+        <div class="card"><strong>4. พลังงานการหมุน</strong><br>งานของแรงบิดเปลี่ยนพลังงานจลน์การหมุน โดย \(W_\tau=\Delta KE_{rotation}\) และ \(KE_{rotation}=\frac12 I\omega^2\)</div>
+        <div class="card"><strong>5. งานภายในของระบบ</strong><br>ในตัวอย่างนักบินอวกาศ พลังงานจลน์การหมุนเพิ่มขึ้นได้จากงานภายในขณะดึงเชือก แม้โมเมนตัมเชิงมุมยังคงตัว</div>
+        <div class="card"><strong>6. ความเค้นและความเครียด</strong><br>ความเค้นคือแรงต่อพื้นที่ ส่วนความเครียดคืออัตราส่วนการเปลี่ยนรูป จึงไม่มีหน่วย</div>
+        <div class="card"><strong>7. มอดูลัสยืดหยุ่น</strong><br>มอดูลัสยืดหยุ่นคือความเค้นหารด้วยความเครียด เลือก Young, Shear หรือ Bulk ตามรูปแบบการเปลี่ยนรูป</div>
+      </div>
+      <div class="interaction">
+        <h3>✅ Final Quiz</h3>
+        <p>ใช้คำถามชุดนี้ทบทวนแนวคิดหลักก่อนจบคาบ โดยเน้นการเลือกหลักการให้ถูกก่อนแทนค่าตัวเลข</p>
+        <div class="card">
+          <p><strong>ข้อ 1:</strong> กฎอนุรักษ์โมเมนตัมเชิงมุมใช้ได้เมื่อใด?</p>
+          <div class="options" data-quiz data-answer="b">
+            <button class="option-btn" data-choice="a">ระบบไม่มีแรงใด ๆ กระทำเลยเท่านั้น</button>
+            <button class="option-btn" data-choice="b">แรงบิดภายนอกสุทธิรอบแกนที่พิจารณาเป็นศูนย์</button>
+            <button class="option-btn" data-choice="c">พลังงานจลน์การหมุนต้องคงตัวเสมอ</button>
+          </div>
+          <p data-feedback></p>
+        </div>
+        <div class="card">
+          <p><strong>ข้อ 2:</strong> ถ้า \(I\) ลดลงและ \(L\) คงตัว อัตราเร็วเชิงมุม \(\omega\) จะเป็นอย่างไร?</p>
+          <div class="options" data-quiz data-answer="a">
+            <button class="option-btn" data-choice="a">เพิ่มขึ้น</button>
+            <button class="option-btn" data-choice="b">ลดลง</button>
+            <button class="option-btn" data-choice="c">เป็นศูนย์ทันที</button>
+          </div>
+          <p data-feedback></p>
+        </div>
+        <div class="card">
+          <p><strong>ข้อ 3:</strong> พลังงานจลน์การหมุนของวัตถุรอบแกนคงที่คำนวณจากสมการใด?</p>
+          <div class="options" data-quiz data-answer="c">
+            <button class="option-btn" data-choice="a">\(KE_{rotation}=I\omega\)</button>
+            <button class="option-btn" data-choice="b">\(KE_{rotation}=\tau\Delta t\)</button>
+            <button class="option-btn" data-choice="c">\(KE_{rotation}=\frac12 I\omega^2\)</button>
+          </div>
+          <p data-feedback></p>
+        </div>
+        <div class="card">
+          <p><strong>ข้อ 4:</strong> Young's modulus ใช้อธิบายการเปลี่ยนรูปแบบใดโดยตรง?</p>
+          <div class="options" data-quiz data-answer="a">
+            <button class="option-btn" data-choice="a">การยืดหรืออัดตามความยาว</button>
+            <button class="option-btn" data-choice="b">การเปลี่ยนปริมาตรจากความดันรอบด้าน</button>
+            <button class="option-btn" data-choice="c">การเลื่อนระนาบแบบเฉือนเท่านั้น</button>
+          </div>
+          <p data-feedback></p>
+        </div>
+        <div class="card">
+          <p><strong>ข้อ 5:</strong> วัสดุที่มีมอดูลัสยืดหยุ่นมากกว่า เมื่อรับความเค้นเท่ากัน จะมีแนวโน้มเป็นอย่างไร?</p>
+          <div class="options" data-quiz data-answer="b">
+            <button class="option-btn" data-choice="a">เปลี่ยนรูปมากกว่า</button>
+            <button class="option-btn" data-choice="b">เปลี่ยนรูปน้อยกว่า</button>
+            <button class="option-btn" data-choice="c">เปลี่ยนรูปเท่ากันเสมอ</button>
+          </div>
+          <p data-feedback></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>FUNSC115 · Fundamental of Physics for Engineers · Week 12 · Angular Momentum and Rotational Energy</footer>
+</body>
+</html>
