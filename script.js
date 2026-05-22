@@ -101,6 +101,34 @@ function initRevealBlocks() {
     });
 }
 
+function initProofEquationToggle() {
+    const proofBlocks = $$(
+        '#ProofEquationOfMotion, .ProofEquationOfMotion, [data-proof-equation-of-motion]'
+    );
+
+    proofBlocks.forEach(block => {
+        if (block.dataset.proofToggleReady === 'true') return;
+        block.dataset.proofToggleReady = 'true';
+
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'reveal-btn proof-toggle-btn';
+        block.hidden = true;
+        button.textContent = 'แสดงการพิสูจน์';
+        button.setAttribute('aria-expanded', 'false');
+
+        button.addEventListener('click', () => {
+            const willHide = !block.hidden;
+            block.hidden = willHide;
+            button.textContent = willHide ? 'แสดงการพิสูจน์' : 'ซ่อนการพิสูจน์';
+            button.setAttribute('aria-expanded', String(!willHide));
+            if (!willHide) renderMath(block);
+        });
+
+        block.insertAdjacentElement('beforebegin', button);
+    });
+}
+
 function initMultiChoice() {
     $$('[data-multi]').forEach(group => {
         $$('.option-btn', group).forEach(button => {
@@ -213,6 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSingleChoiceQuizzes();
     initTextChecks();
     initRevealBlocks();
+    initProofEquationToggle();
     initMultiChoice();
     initFinalOptionGroups();
     initDragAndDrop();

@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>สัปดาห์ที่ 11 หน่วยที่ 5 สมการการเคลื่อนที่แบบหมุน</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="css/week11.css" />
+  <script src="js/mathjax-config.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script defer src="script.js"></script>
+  <script defer src="js/week11.js"></script>
+</head>
+<body>
+  <svg width="0" height="0" class="svg-defs" aria-hidden="true" focusable="false">
+    <defs>
+      <marker id="w11ArrowBlue" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L5,2.5 L0,5 z" fill="#2563eb" /></marker>
+      <marker id="w11ArrowRed" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L5,2.5 L0,5 z" fill="#dc2626" /></marker>
+      <marker id="w11ArrowGreen" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L5,2.5 L0,5 z" fill="#16a34a" /></marker>
+      <marker id="w11ArrowOrange" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L5,2.5 L0,5 z" fill="#f59e0b" /></marker>
+    </defs>
+  </svg>
+
+  <header>
+    <div class="hero">
+      <h1>สัปดาห์ที่ 11: สมการการเคลื่อนที่แบบหมุน</h1>
+      <p>เว็บไซต์ประกอบการเรียนการสอนรายวิชา Fundamental of Physics for Engineers (FUNSC115)</p>
+    </div>
+  </header>
+
+  <div class="topbar">
+    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    <nav class="nav" id="nav">
+      <a href="index.html#content-table">🏠 หน้าแรก</a>
+      <a href="#opening">🚀 เปิดบทเรียน</a>
+      <a href="#rigid-body">🧊 วัตถุแข็งเกร็ง</a>
+      <a href="#angular-quantities">🌀 ปริมาณเชิงมุม</a>
+      <a href="#kinematics">📈 สมการการหมุน</a>
+      <a href="#cross-product">✖️ ครอสเวกเตอร์</a>
+      <a href="#derivation">⚙️ ที่มาของกฎ</a>
+      <a href="#torque">🔧 แรงบิด</a>
+      <a href="#inertia">🪐 ความเฉื่อยเชิงมุม</a>
+      <a href="#parallel-axis">📏 แกนขนาน</a>
+      <a href="#rot-law">⚖️ กฎการหมุน</a>
+      <a href="#summary">🎯 สรุป/Quiz</a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="lesson" id="opening">
+      <h2>🚀 เปิดบทเรียน</h2>
+      <p class="lead">คาบนี้ศึกษาการหมุนของวัตถุแข็งเกร็ง สมการการเคลื่อนที่แบบหมุน และกฎการเคลื่อนที่ของการหมุน โดยเชื่อมโยงกับความรู้เดิมเรื่องการเคลื่อนที่เชิงเส้นของอนุภาคและระบบอนุภาค</p>
+      <div class="grid">
+        <div class="card"><strong>🎯 เป้าหมายวันนี้</strong>
+          <ul>
+            <li>อธิบายวัตถุแข็งเกร็งและปริมาณเชิงมุม</li>
+            <li>ใช้สมการการเคลื่อนที่แบบหมุนที่ความเร่งเชิงมุมคงที่</li>
+            <li>คำนวณแรงบิดและโมเมนต์ความเฉื่อย</li>
+            <li>ใช้กฎการเคลื่อนที่แบบหมุน \(\sum\vec \tau=I \vec\alpha\)</li>
+          </ul>
+        </div>
+        <div class="card"><strong>🗺️ ภาพรวม</strong>
+          <br>เริ่มจากวัตถุแข็งเกร็งและปริมาณเชิงมุม
+          (ตำแหน่งเชิงมุม ความเร็วเชิงมุม ความเร่งเชิงมุม)
+          จากนั้นศึกษาสมการการหมุน
+          แนะนำแนวคิดแรงบิดและโมเมนต์ความเฉื่อย
+          ขยายไปสู่ทฤษฎีแกนขนาน และปิดท้ายด้วยกฎการเคลื่อนที่แบบหมุน
+          \(\sum\vec \tau=I \vec\alpha\)</div>
+        <div class="card"><strong>🧭 วิธีเรียนบนเว็บ</strong><br>เรียนผ่านคำถาม ทดลองคิด ทำกิจกรรม และตอบ quiz ระหว่างสอน</div>
+      </div>
+      <div class="interaction">
+        <h3>📊 Poll เปิดคาบ: ถ้าออกแรงขนาดเท่ากันกับประตู ตำแหน่งใดทำให้ประตูหมุนง่ายที่สุด?</h3>
+        <div class="options" data-poll>
+          <button class="option-btn">ใกล้บานพับ</button>
+          <button class="option-btn">ตรงกลางประตู</button>
+          <button class="option-btn">ไกลบานพับที่สุด</button>
+          <button class="option-btn">ทุกตำแหน่งเท่ากัน</button>
+        </div>
+        <p class="hint">เก็บคำตอบไว้ก่อน แล้วระหว่างหน่วยเรียนเราจะค่อย ๆ ใช้แนวคิดของแรงบิด มาตอบคำถามนี้</p>
+      </div>
+    </section>
+
+    <section class="lesson" id="rigid-body">
+      <h2>🧊 1. วัตถุแข็งเกร็ง</h2>
+      <p class="lead">
+        <b>วัตถุแข็งเกร็ง (Rigid Body)</b> เป็นกรณีพิเศษของระบบหลายอนุภาค
+        โดยมีคุณสมบัติสำคัญ คือ <strong>ระยะห่างระหว่างอนุภาคใด ๆ คงที่เสมอ
+        ไม่ว่าจะมี<i>แรงบิด</i>ภายนอกกระทำต่อระบบมากน้อยแค่ไหน</strong> กล่าวอีกนัยหนึ่ง
+        วัตถุแข็งเกร็ง คือ วัตถุที่ ไม่เปลี่ยนรูปร่างและขนาด
+      </p>
+      <div class="interaction">
+        <h3>🔍 กิจกรรมเปรียบเทียบวัตถุแข็งเกร็งกับวัตถุไม่แข็งเกร็ง</h3>
+        <div class="rigid-controls">
+          <button id="rigidPlayBtn" class="primary-btn">▶ เริ่ม/หยุดการหมุน</button>
+
+          <label>
+            มุมหมุน θ:
+            <input id="rigidAngleSlider" type="range" min="0" max="360" value="45">
+            <span id="rigidAngleValue">45°</span>
+          </label>
+
+          <label>
+            ความยืดหยุ่นของวัตถุไม่แข็งเกร็ง:
+            <input id="deformSlider" type="range" min="0" max="100" value="45">
+            <span id="deformValue">45%</span>
+          </label>
+        </div>
+
+        <div class="rigid-comparison-grid">
+          <div class="rigid-card">
+            <h3>🧊 วัตถุแข็งเกร็ง</h3>
+            <svg id="rigidSvg" viewBox="0 0 420 340">
+              <defs>
+                <marker id="arrowRigid" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                  <path d="M0,0 L9,3 L0,6 Z" fill="#2563eb"></path>
+                </marker>
+              </defs>
+
+              <line x1="210" y1="170" x2="370" y2="170" class="axis-line" />
+              <circle cx="210" cy="170" r="5" class="pivot-dot" />
+              <text x="218" y="160" class="svg-label">จุดหมุน</text>
+
+              <g id="rigidObject">
+                <polygon points="210,90 285,170 210,250 135,170" class="rigid-shape" />
+                <circle cx="210" cy="90" r="8" class="point p1" />
+                <circle cx="285" cy="170" r="8" class="point p2" />
+                <circle cx="210" cy="250" r="8" class="point p3" />
+                <circle cx="135" cy="170" r="8" class="point p4" />
+
+                <line x1="210" y1="170" x2="210" y2="90" class="radius-line" />
+                <line x1="210" y1="170" x2="285" y2="170" class="radius-line" />
+              </g>
+
+            </svg>
+
+            <div class="info-box success">
+              <strong>🔎 ข้อสังเกต:</strong>
+              ระยะห่างระหว่างจุดคงที่ และทุกจุดหมุนไปด้วยมุมเท่ากัน
+            </div>
+          </div>
+
+          <div class="rigid-card">
+            <h3>🧬 วัตถุไม่แข็งเกร็ง</h3>
+            <svg id="deformSvg" viewBox="0 0 420 340">
+              <defs>
+                <marker id="arrowDeform" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                  <path d="M0,0 L9,3 L0,6 Z" fill="#dc2626"></path>
+                </marker>
+              </defs>
+
+              <line x1="210" y1="170" x2="370" y2="170" class="axis-line" />
+              <circle cx="210" cy="170" r="5" class="pivot-dot" />
+              <text x="218" y="160" class="svg-label">จุดหมุน</text>
+
+
+              <g id="deformObject">
+                <polygon id="deformShape" class="deform-shape" />
+                <circle id="dP1" r="8" class="point p1" />
+                <circle id="dP2" r="8" class="point p2" />
+                <circle id="dP3" r="8" class="point p3" />
+                <circle id="dP4" r="8" class="point p4" />
+
+                <line id="deformRadius1" class="radius-line" />
+                <line id="deformRadius2" class="radius-line" />
+              </g>
+
+            </svg>
+
+            <div class="info-box warning">
+              <strong>🔎 ข้อสังเกต:</strong>
+              รูปร่างเปลี่ยนได้ ระยะห่างระหว่างจุดเปลี่ยนได้ และบางจุดอาจกวาดมุมไม่เท่ากัน
+            </div>
+          </div>
+        </div>
+
+        <div class="teacher-note">
+          <strong>💭 คำถามชวนคิด:</strong>
+          ถ้าเราต้องการอธิบายการหมุนของวัตถุแข็งเกร็งทั้งชิ้น 
+          ทำไมจึงสามารถเลือกเพียงจุดตัวแทนหนึ่งจุดมาใช้อธิบายการหมุนได้?
+        </div>
+      </div>
+
+      <p class="lead"> 
+        หากวัตถุแข็งเกร็งหมุนรอบแกนคงที่
+        อนุภาคทุกจุดจะกวาดมุมได้เท่ากัน ดังนั้น
+        ในการวิเคราะห์การเคลื่อนที่แบบหมุนรอบแกนคงที่ของวัตถุแข็งเกร็ง เราสามารถเลือก
+        จุดตัวแทน บนวัตถุเพื่อใช้อธิบายการหมุนได้เสมอ
+      </p>
+      
+      <div class="interaction">
+        <h3>🧠 Checkpoint : ข้อใดต่อไปนี้เป็นจริง?</h3>
+        <div data-quiz data-answer="b" class="options">
+          <button class="option-btn" data-choice="a">จุดที่อยู่ไกลแกนกวาดมุมมากกว่า</button>
+          <button class="option-btn" data-choice="b">ทุกจุดกวาดมุมเท่ากัน แต่ระยะทางการเคลื่อนที่ อาจต่างกัน</button>
+          <button class="option-btn" data-choice="c">ทุกจุดมีอัตราเร็วเชิงเส้นเท่ากันเสมอ</button>
+        </div><p data-feedback></p>
+      </div>
+    </section>
+
+    <div class="lesson-bridge"><strong>🔗 เชื่อมโยง</strong>
+      <p>
+      เช่นเดียวกับการเคลื่อนที่เชิงเส้น
+      การหมุนของวัตถุแข็งเกร็งสามารถอธิบายได้ด้วยตัวแปรสำคัญ
+      ได้แก่ ตำแหน่งเชิงมุม ความเร็วเชิงมุม และความเร่งเชิงมุม
+      <br>ต่อไปนี้ เราจะพิจารณาการเคลื่อนที่แบบหมุนของวัตถุแข็งเกร็งรอบแกนหมุนคงที่ เท่านั้น
+      </p>
+    </div>
+
+    <section class="lesson" id="angular-quantities">
+      <h2>🌀 2. ปริมาณสำคัญสำหรับการเคลื่อนที่แบบหมุนรอบแกนหมุนคงที่</h2>
+
+      <div class="card">
+        <h3>📍 2.1 ตำแหน่งเชิงมุม</h3>
+        
+        <div class="grid w11-two-col">
+          <div>
+            <p class="lead">
+              <b>ตำแหน่งเชิงมุม (angular position)</b> คือ
+              ปริมาณเวกเตอร์ที่ขนาดแสดงการวางตัวของวัตถุ (มุม)
+              เมื่อเทียบกับแนวอ้างอิง ซึ่งปกติจะกำหนดให้เป็นแกน x
+              และ ทิศทาง เป็นไปตามกฎมือขวารอบแกนหมุน กล่าวคือ
+              การหมุนทวนเข็มนาฬิกา เวกเตอร์ตำแหน่งเชิงมุมจะชี้ตามทิศบวกของแกนหมุน
+              ส่วนการหมุนตามเข็มนาฬิกาเวกเตอร์ชี้ตามทิศลบของแกนหมุน
+              สัญลักษณ์ที่มักใช้แทนคือ 
+              \(\vec \theta \) หน่วยเป็น เรเดียน (rad) หรือ องศา (degree)
+            
+            <br><br>หากหน่วยของมุมที่ใช้เป็น เรเดียน ระยะเชิงเส้นที่จุดตัวแทนเคลื่อนไปสามารถคำนวณได้จาก
+            </p>
+            <div class="equation-card">
+              <div class="equation-wrapper">
+                <div class="equation">\[s=r\theta\]</div>
+                <div class="equation-label"></div>
+              </div>
+            </div>
+          </div>
+          <figure class="figure-card figure-wide">
+            <img src="asset/week%2011/figure-1.png" alt="ภาพแสดงตัวอย่างการหมุนรอบแกนของวัตถุแข็งเกร็ง">
+            <figcaption class="caption">ภาพแสดงตัวอย่างการหมุนรอบแกนของวัตถุแข็งเกร็ง</figcaption>
+          </figure>
+        </div>
+      </div><br>
+
+      <div class="interaction">
+        <h3>🧪 กิจกรรม: คำนวณระยะเชิงเส้นและมุมในหน่วยอื่น</h3>
+        <div class="grid w11-two-col">
+          <div class="w11-controls">
+            <label>มุม \(\theta\) = <span id="w11ThetaVal">2.00</span> rad</label><input type="range" id="w11Theta" min="0" max="6.283" step="0.01" value="2.00" oninput="w11UpdateAngular()">
+            <label>รัศมี \(r\) = <span id="w11RadiusVal">1.50</span> m</label><input type="range" id="w11Radius" min="0.5" max="3.0" step="0.05" value="1.5" oninput="w11UpdateAngular()">
+            <div class="formula" id="w11AngularFeedback"></div>
+          </div>
+          <svg id="w11AngularSvg" class="w11-svg" viewBox="0 0 620 360"></svg>
+        </div>
+      </div>
+
+        <div class="interaction">
+          <h3>⏱️ กิจกรรม: ตำแหน่งเชิงมุมที่เป็นฟังก์ชันของเวลา</h3>
+
+          <p>
+            เลือกรูปแบบของฟังก์ชัน \( \theta(t) \) แล้วสังเกตการเคลื่อนที่ของจุดตัวแทนบนวัตถุที่หมุนรอบแกนคงที่
+          </p>
+
+          <div class="interaction-controls">
+            <label>
+              <select id="thetaFunctionType">
+                <option value="uniform">ความเร็วเชิงมุมคงที่: θ(t) = ωt</option>
+                <option value="accelerated">ความเร่งเชิงมุมคงที่: θ(t) = θ₀ + ω₀t + ½αt²</option>
+                <option value="oscillating">การแกว่งเชิงมุม: θ(t) = A sin(Ωt)</option>
+              </select>
+            </label>
+
+            <label>
+              เวลา t:
+              <input id="thetaTimeSlider" type="range" min="0" max="10" step="0.01" value="0">
+              <span id="thetaTimeValue">0.00 s</span>
+            </label>
+
+            <button id="thetaPlayBtn">▶ เล่น</button>
+            <button id="thetaResetBtn">↺ รีเซ็ต</button>
+          </div>
+
+          <div class="theta-parameter-panel">
+            <label class="theta-param theta-param-uniform">
+              ω:
+              <input id="omegaInput" type="number" value="1.00" step="0.10">
+              <span>rad/s</span>
+            </label>
+
+            <label class="theta-param theta-param-accelerated">
+              θ₀:
+              <input id="theta0Input" type="number" value="0.00" step="0.10">
+              <span>rad</span>
+            </label>
+
+            <label class="theta-param theta-param-accelerated">
+              ω₀:
+              <input id="omega0Input" type="number" value="0.60" step="0.10">
+              <span>rad/s</span>
+            </label>
+
+            <label class="theta-param theta-param-accelerated">
+              α:
+              <input id="alphaInput" type="number" value="0.30" step="0.10">
+              <span>rad/s²</span>
+            </label>
+
+            <label class="theta-param theta-param-oscillating">
+              A:
+              <input id="amplitudeInput" type="number" value="1.50" step="0.10">
+              <span>rad</span>
+            </label>
+
+            <label class="theta-param theta-param-oscillating">
+              Ω:
+              <input id="bigOmegaInput" type="number" value="1.20" step="0.10">
+              <span>rad/s</span>
+            </label>
+          </div>
+
+          <div class="theta-visual-layout">
+            <div class="theta-canvas-card">
+              <h4>การเคลื่อนที่ของจุดตัวแทน</h4>
+
+              <svg id="thetaMotionSvg" viewBox="0 0 420 420">
+                <defs>
+                  <marker id="thetaArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                    <path d="M0,0 L9,3 L0,6 Z" fill="#2563eb"></path>
+                  </marker>
+                </defs>
+
+                <circle cx="210" cy="210" r="145" class="theta-guide-circle" />
+                <line x1="60" y1="210" x2="360" y2="210" class="theta-axis" />
+                <line x1="210" y1="360" x2="210" y2="60" class="theta-axis" />
+
+                <text x="365" y="215" class="theta-axis-label">x</text>
+                <text x="217" y="55" class="theta-axis-label">y</text>
+
+                <circle cx="210" cy="210" r="5" class="theta-pivot" />
+                <text x="220" y="202" class="theta-small-label">แกนหมุน</text>
+
+                <path id="thetaArc" class="theta-arc" marker-end="url(#thetaArrow)" />
+                <line id="thetaRadiusLine" x1="210" y1="210" x2="355" y2="210" class="theta-radius-line" />
+
+                <circle id="thetaPoint" cx="355" cy="210" r="12" class="theta-moving-point" />
+                <path id="thetaTrail" class="theta-trail" />
+
+                <text id="thetaLabel" x="270" y="165" class="theta-angle-label">θ = 0.00 rad</text>
+              </svg>
+            </div>
+
+            <div class="theta-info-card">
+              <h4>ค่าที่คำนวณได้</h4>
+
+              <div class="theta-output">
+                <span>สมการที่ใช้</span>
+                <strong id="thetaEquationText">θ(t) = ωt</strong>
+              </div>
+
+              <div class="theta-output">
+                <span>เวลา</span>
+                <strong id="thetaTText">t = 0.00 s</strong>
+              </div>
+
+              <div class="theta-output">
+                <span>ตำแหน่งเชิงมุม</span>
+                <strong id="thetaValueText">θ = 0.00 rad</strong>
+              </div>
+
+              <div class="theta-output">
+                <span>ความเร็วเชิงมุมโดยประมาณ</span>
+                <strong id="omegaValueText">ω = 1.00 rad/s</strong>
+              </div>
+
+              <div class="theta-output">
+                <span>ลักษณะการเคลื่อนที่</span>
+                <strong id="motionDescriptionText">หมุนด้วยความเร็วเชิงมุมคงที่</strong>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      <div class="lesson-bridge"><strong>🔗 เชื่อมโยง</strong>
+        <p>
+        เมื่อเรารู้ตำแหน่งเชิงมุม ณ เวลาต่าง ๆ เราสามารถหาความเร็วและความเร่งเชิงมุมได้อย่างไร?
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="grid w11-two-col">
+          <div>
+            <h3>💨 2.2 ความเร็วเชิงมุม</h3>
+            <p class="lead">
+              <b>ความเร็วเชิงมุม (Angular Velocity)</b> คือ
+              ปริมาณเวกเตอร์ที่ขนาดแสดงอัตราการเปลี่ยนแปลงของตำแหน่งเชิงมุมตามเวลา
+              \[\frac{d \vec \theta}{dt}\]
+              และมีทิศทางตามกฎมือขวารอบแกนหมุน
+              เช่น หากแกนหมุนคือแกน z และการหมุนหมุนทวนเข็มนาฬิกา
+              ความเร็วเชิงมุมจะมีทิศ \(\hat{k}\) ส่วนการหมุนตามเข็มนาฬิกา
+              จะมีทิศ \(-\hat{k}\) สัญลักษณ์ที่ใช้แทนคือ \(\vec \omega\) (omega)
+              หน่วยวัดเป็นเรเดียนต่อวินาที (rad/s)
+            </p>
+            <h3>⚡ 2.3 ความเร่งเชิงมุม</h3>
+            <p class="lead">
+              <b>ความเร่งเชิงมุม (Angular Acceleration)</b> คือ
+              ปริมาณเวกเตอร์ที่ขนาดแสดงอัตราการเปลี่ยนแปลงของความเร็วเชิงมุมตามเวลา 
+              \[\frac{d \vec \omega}{dt}\]
+              และมีทิศทางตามกฎมือขวารอบแกนหมุน
+              เช่นเดียวกับความเร็วเชิงมุม สัญลักษณ์ที่ใช้แทนคือ \(\vec \alpha\) (alpha) หน่วยวัดเป็น
+              เรเดียนต่อวินาทียกกำลังสอง (rad/s²)
+            </p>
+          </div>
+          <figure class="figure-card figure-wide">
+            <img src="asset/week%2011/figure-2.png" alt="ภาพประกอบคำอธิบายความเร็วเชิงมุมและความเร่งเชิงมุม">
+            <figcaption class="caption">
+              ภาพประกอบคำอธิบายความเร็วเชิงมุมและความเร่งเชิงมุม
+            </figcaption>
+            <p class="card" style="text-align: left;">
+              <b>คำอธิบาย</b>
+              <br>ถ้าวัตถุแข็งเกร็งหมุนรอบแกน \(z\) ทวนเข็มนาฬิกา
+              <br>โดยตำแหน่งเชิงมุม \(\theta\) เพิ่ม 2 เรเดียนภายในเวลา 1 วินาที อย่างสม่ำเสมอ
+              ดังนั้น ความเร็วเชิงมุมของล้อคือ \(\vec \omega = 2\hat{k}\) เรเดียน/วินาที
+              <br><br>แต่ถ้าอัตราเร็วเชิงมุม \(\omega\) ลดลงจาก 2 เป็น 0 เรเดียนต่อวินาที
+              ภายในเวลา 1 วินาที อย่างสม่ำเสมอ
+              ความเร่งเชิงมุมของล้อจะเท่ากับ \(\vec \alpha = -2\hat{k}\) เรเดียน/วินาที²</p>
+          </figure>
+          </div>
+        <p class="lead">
+          หากหน่วยของมุมที่ใช้เป็น เรเดียน
+          อัตราเร็วและความเร่งในแนวสัมผัสของจุดตัวแทนจะมีค่าเท่ากับ
+        </p>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">\[ v=r\omega \ \text{และ} \ a=r\alpha \]</div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson" id="kinematics">
+      <h2>📈 3. การเคลื่อนที่แบบหมุนที่แกนหมุนคงที่ที่ความเร่งเชิงมุมคงที่</h2>
+      <p class="lead">สำหรับการหมุนของวัตถุแข็งเกร็งรอบแกนคงที่ที่มีความเร่งเชิงมุมคงที่
+        การเคลื่อนที่ดังกล่าวอธิบายได้ด้วยชุดสมการที่มีรูปแบบคล้ายกับสมการการเคลื่อนที่เชิงเส้นในหนึ่งมิติ</p>
+      <h2>🧮 สมการจลนศาสตร์ สำหรับการเคลื่อนที่แบบหมุน</h2>
+      
+      <div class="grid">
+        <div class="formula conversion-formula">\[\omega = \omega_0 + \alpha t\]</div>
+        <div class="formula conversion-formula">\[\theta = \theta_0+\frac{1}{2}(\omega_0+\omega)t\]</div>
+      </div>
+      <div class="grid">
+        <div class="formula conversion-formula">\[\theta = \theta_0 + \omega_0t + \frac{1}{2}\alpha t^2\]</div>
+        <div class="formula conversion-formula">\[\omega^2 = \omega_0^2 + 2\alpha (\theta-\theta_0)\]</div>
+      </div>
+
+      <div class="interaction example-card">
+        <h3>🧮 ตัวอย่างที่ 1: ล้อหมุนด้วยความเร่งเชิงมุมคงที่</h3>
+        <p class="lead">ล้อหมุนด้วยความเร่งเชิงมุมคงที่ \(\alpha=2.00\ \mathrm{rad/s^2}\)
+          ถ้าอัตราเร็วเชิงมุมของล้อเท่ากับ \(4.00\ \mathrm{rad/s}\) ที่เวลา 0 วินาที
+          <br>ให้หา a. การเปลี่ยนแปลงตำแหน่งเชิงมุมเมื่อเวลาผ่านไป 5.00 วินาที
+          <br>b. จำนวนรอบ และ
+          <br>c. อัตราเร็วเชิงมุม ณ เวลา 5.00 วินาที</p>
+          <button class="reveal-btn" data-reveal data-reveal-open="ดูวิธีทำ" data-reveal-close="ซ่อนวิธีทำ">ดูวิธีทำ</button><div data-reveal-answer hidden>
+            <div class="equation-card">
+              <div class="equation">
+                \[\Delta\theta=\omega_0t+\frac{1}{2}\alpha t^2=(4.00)(5.00)+\frac{1}{2}(2.00)(5.00)^2=45.0\ \mathrm{rad}\]
+              </div>
+              <div class="equation">\[N=\frac{45.0}{2\pi}=7.16\ \mathrm{rev}\]</div>
+              <div class="equation">
+                \[\omega=\omega_0+\alpha t=4.00+(2.00)(5.00)=14.0\ \mathrm{rad/s}\]
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div class="interaction example-card">
+        <h3>🔗 ตัวอย่างที่ 2: เชื่อมโยงการหมุนกับการเคลื่อนที่เชิงเส้นของจุดบนล้อ</h3>
+          <div class="grid w11-two-col">
+            <p class="lead">
+              ล้อรัศมี \(R=0.500\) เมตร หมุนด้วยอัตราเร่งเชิงมุมคงที่เท่ากับ
+              \(\alpha=3.00 \ \mathrm{rad/s^2}\) 
+              <br>ให้หา a. ความเร่งในแนวสัมผัสของจุดนอกสุดของล้อมีค่าเท่าไร
+              <br>b. ถ้าอัตราเร็วเชิงมุมของล้อเท่ากับ 2.00 rad/s ที่เวลา 0 วินาที จุดนอกสุดของล้อมีการเคลื่อนที่ไปเป็นระยะทางกี่เมตร เมื่อเวลาผ่านไป 2.00 วินาที
+              <br>c. อัตราเร็วในแนวสัมผัสของจุดบนล้อมีค่าเป็นเท่าไร ณ เวลา 2.00 วินาที
+            </p>
+            <figure class="figure-card figure-wide">
+              <img src="asset/week%2011/figure-3.png" alt="ภาพแสดงการหมุนของล้อสำหรับตัวอย่างที่ 2">
+              <figcaption class="caption">
+                ภาพแสดงการหมุนของล้อสำหรับตัวอย่างที่ 2
+              </figcaption>
+            </figure>
+          </div>
+           <button class="reveal-btn" data-reveal data-reveal-open="ดูวิธีทำ" data-reveal-close="ซ่อนวิธีทำ">ดูวิธีทำ</button><div data-reveal-answer hidden>
+            <div class="equation-card">
+              <div class="equation">
+                \[a=R\alpha=(0.500)(3.00)=1.50\ \mathrm{m/s^2}\]
+              </div>
+              <div class="equation">
+                \[\Delta\theta=\omega_0t+\frac{1}{2}\alpha t^2=(2.00)(2.00)+\frac{1}{2}(3.00)(2.00)^2=10.0\ \mathrm{rad}\]
+              </div>
+              <div class="equation">
+                \[s=R\Delta\theta=(0.500)(10.0)=5.00\ \mathrm{m}\]
+              </div>
+              <div class="equation">
+                \[\omega=\omega_0+\alpha t=2.00+(3.00)(2.00)=8.00\ \mathrm{rad/s}\]
+              </div>
+              <div class="equation">
+                \[v=R\omega=(0.500)(8.00)=4.00\ \mathrm{m/s}\]
+              </div>
+              <p class="hint">
+                ดังนั้น a. \(a=1.50\ \mathrm{m/s^2}\), b. \(s=5.00\ \mathrm{m}\), และ c. \(v=4.00\ \mathrm{m/s}\)
+              </p>
+            </div>
+          </div>
+      </div>
+
+    </section>
+
+    <div class="lesson-bridge"><strong>🔗 เชื่อมโยง</strong>
+      <p>
+        จากเนื้อหาก่อนหน้าจะเห็นได้ว่า ความเร่งเชิงมุม
+        เป็นส่วนสำคัญในการกำหนดลักษณะการเคลื่อนที่แบบหมุนของวัตถุแข็งเกร็ง
+        แต่สิ่งที่ทำให้เกิดความเร่งเชิงมุมคืออะไร?
+        <br>ก่อนจะไปทำความเข้าใจเกี่ยวกับสิ่งที่ทำให้เกิดความเร่งเชิงมุม เราต้องเข้าใจสิ่งที่เรียกว่า
+        การคูณแบบครอส เสียก่อน
+      </p>
+    </div>
+
+    <section class="lesson cross-product-section" id="cross-product">
+      <h2>✖️ 4. การคูณเวกเตอร์แบบครอส</h2>
+      <div class="grid">
+        <div>
+          <p class="lead">
+            <b>ผลคูณแบบครอส (Cross Product)</b> ของเวกเตอร์สองตัว เขียนแทนด้วย
+            \( \vec{A} \times \vec{B} \)
+            เป็นเวกเตอร์ที่มีขนาดเท่ากับพื้นที่ของสี่เหลี่ยมด้านขนานที่มี
+            \( \vec{A} \) และ \( \vec{B} \) เป็นด้าน
+            และมีทิศทางเป็นไปตามกฎมือขวา
+          </p>
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">
+                        \[\vec{A}\times\vec{B}=AB\sin\theta \, \hat{n}\]
+              </div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+          <p>
+            โดยที่ \( \theta \) คือ มุมที่เล็กที่สุดระหว่างเวกเตอร์ทั้งสอง
+            และ \( \hat{n} \) คือ เวกเตอร์หนึ่งหน่วยที่ตั้งฉากกับระนาบของ
+            \( \vec{A} \) และ \( \vec{B} \)
+          </p>
+        </div>
+        <figure class="figure-card figure-wide">
+          <img src="asset/week%2011/figure-4.png" alt="ภาพแสดงแผนภาพประกอบคำอธิบายนิยามการคูณแบบครอสและแผนภาพกฎมือขวา">
+          <figcaption class="caption">
+            ภาพแสดงแผนภาพประกอบคำอธิบายนิยามการคูณแบบครอสและแผนภาพกฎมือขวา
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="interaction">
+        <h3>🧭 กิจกรรม: สำรวจผลคูณแบบครอส</h3>
+
+        <div class="cross-controls">
+          <label>
+            ขนาด \(A\)
+            <input id="crossA" type="range" min="1" max="6" step="0.1" value="4">
+            <span id="crossAValue">4.0</span>
+          </label>
+
+          <label>
+            ขนาด \(B\)
+            <input id="crossB" type="range" min="1" max="6" step="0.1" value="3">
+            <span id="crossBValue">3.0</span>
+          </label>
+
+          <label>
+            มุม \( \theta \)
+            <input id="crossTheta" type="range" min="0" max="180" step="1" value="60">
+            <span id="crossThetaValue">60°</span>
+          </label>
+
+          <button id="swapCrossBtn">สลับลำดับการคูณ</button>
+        </div>
+
+        <div class="cross-layout">
+          <div class="cross-visual-card">
+            <svg id="crossSvg" viewBox="0 0 520 380">
+              <defs>
+                <marker id="arrowA" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+                  <path d="M0,0 L14,7 L0,14 Z" fill="#2563eb"></path>
+                </marker>
+                <marker id="arrowB" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+                  <path d="M0,0 L14,7 L0,14 Z" fill="#dc2626"></path>
+                </marker>
+                <marker id="arrowN" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+                  <path d="M0,0 L14,7 L0,14 Z" fill="#16a34a"></path>
+                </marker>
+                <linearGradient id="crossAreaGradient" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.32"></stop>
+                  <stop offset="100%" stop-color="#f97316" stop-opacity="0.14"></stop>
+                </linearGradient>
+              </defs>
+
+          <line id="crossAxisZ" x1="135" y1="265" x2="135" y2="85" class="axis-line cross-axis-z" />
+          <text id="crossAxisZLabel" x="143" y="90" class="cross-axis-label">z</text>
+
+              <polygon id="parallelogramArea" class="cross-area" />
+
+              <line id="parallelA" class="parallel-guide" />
+              <line id="parallelB" class="parallel-guide" />
+
+              <line id="vectorA" class="vector-a" marker-end="url(#arrowA)" />
+              <line id="vectorB" class="vector-b" marker-end="url(#arrowB)" />
+
+              <path id="angleArcCross" class="angle-arc-cross" />
+              <text id="angleTextCross" class="cross-label">θ</text>
+
+          <circle id="crossOriginDot" cx="135" cy="265" r="5" fill="#0f172a"></circle>
+
+              <line id="normalVector" x1="395" y1="220" x2="395" y2="150" class="normal-vector" marker-end="url(#arrowN)" />
+              <text id="normalLabel" x="405" y="165" class="normal-label">A × B</text>
+
+              <text id="labelA" class="label-a">A</text>
+              <text id="labelB" class="label-b">B</text>
+            </svg>
+          </div>
+
+          <div class="cross-info-card">
+            <h4>ผลลัพธ์การคูณแบบครอส</h4>
+
+            <div class="cross-output">
+              <span>ขนาดของผลคูณแบบครอส</span>
+              <strong id="crossMagnitudeText">\(|\vec A \times \vec B|\) = 10.39</strong>
+            </div>
+
+            <div class="cross-output">
+              <span>ทิศทาง</span>
+              <strong id="crossDirectionText">ทิศ +z ตามกฎมือขวา</strong>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="concept-box">
+        <h3>✨ สมบัติสำคัญของการคูณแบบครอส</h3>
+
+        <div class="property-grid">
+          <div>
+            <h4>1. เวกเตอร์ขนานกัน</h4>
+            <p>
+              ถ้า \( \theta = 0^\circ \) หรือ \(180^\circ\)
+              จะได้ \( \sin\theta = 0 \)
+              ดังนั้น \( \vec{A}\times\vec{B}=\vec{0} \)
+            </p>
+          </div>
+
+          <div>
+            <h4>2. เวกเตอร์ตั้งฉากกัน</h4>
+            <p>
+              ถ้า \( \theta = 90^\circ \)
+              จะได้ \( \sin\theta = 1 \)
+              ดังนั้น \( |\vec{A}\times\vec{B}|=AB \)
+            </p>
+          </div>
+
+          <div>
+            <h4>3. ไม่มีสมบัติการสลับที่</h4>
+            <p>
+              \[
+                \vec{A}\times\vec{B}
+                =
+                -\vec{B}\times\vec{A}
+              \]
+            </p>
+          </div>
+
+          <div>
+            <h4>4. มีสมบัติการกระจาย</h4>
+            <p>
+              \[
+                \vec{A}\times(\vec{B}+\vec{C})
+                =
+                \vec{A}\times\vec{B}
+                +
+                \vec{A}\times\vec{C}
+              \]
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="concept-box unit-vector-box">
+        <h3>🧩 การคูณแบบครอสของเวกเตอร์หนึ่งหน่วย</h3>
+
+        <div class="equation">
+          \[
+            \hat{i}\times\hat{j}=\hat{k},
+            \quad
+            \hat{j}\times\hat{k}=\hat{i},
+            \quad
+            \hat{k}\times\hat{i}=\hat{j}
+          \]
+        </div>
+
+        <div class="equation">
+          \[
+            \hat{j}\times\hat{i}=-\hat{k},
+            \quad
+            \hat{k}\times\hat{j}=-\hat{i},
+            \quad
+            \hat{i}\times\hat{k}=-\hat{j}
+          \]
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson" id="derivation">
+      <h2>⚙️ 5. ที่มาของกฎการเคลื่อนที่แบบหมุนสำหรับวัตถุแข็งเกร็ง</h2>
+      <div id="ProofEquationOfMotion" class="card">
+        <p class="card">
+          เพื่อให้ได้มุมมองและการตีความใหม่เกี่ยวกับการเคลื่อนที่แบบหมุนที่แกนหมุนคงที่สำหรับวัตถุแข็งเกร็ง
+          เราจะพิจารณาวัตถุแข็งเกร็งที่ประกอบไปด้วย \(N\) อนุภาค
+          โดยเริ่มจากเขียนกฎการเคลื่อนที่ข้อที่ 2 ของนิวตัน สำหรับอนุภาค \(i\) ใด ๆ ในระบบ
+        </p>
+        <div class="equation">
+          \[
+            \vec{F}_i+\sum_{j=1}^{N}\vec{F}_{ij}=m_i\vec{a}_i
+          \]
+        </div>
+
+        <p class="card">
+          โดยที่ \(\vec{F}_i\) คือ แรงภายนอกสุทธิที่กระทำกับอนุภาค \(i\)
+          และ \(\vec{F}_{ij}\) คือ แรงภายในที่อนุภาค \(j\) กระทำกับอนุภาค \(i\)
+          <br><br>เนื่องจากอนุภาคเคลื่อนที่เป็นวงกลมบนระนาบ เพราะแกนหมุนคงที่
+          ดังนั้นความเร่งของอนุภาคสามารถเขียนเป็นผลรวมของความเร่งแนวสัมผัสและความเร่งสู่ศูนย์กลางได้ว่า
+        </p>
+
+        <div class="equation">
+          \[
+            \vec{a}_i=-a_{i,c}\hat{r}_i+a_{i,\parallel}\hat{v}_i
+          \]
+        </div>
+
+        <p class="card">
+          โดยที่ \(\hat{r}_i\) และ \(\hat{v}_i\) คือเวกเตอร์หนึ่งหน่วยที่ชี้ออกในแนวรัศมี
+          และเวกเตอร์หนึ่งหน่วยที่ชี้ในแนวสัมผัส สำหรับอนุภาคตัวที่ \(i\) ตามลำดับ
+          <br>จากความสัมพันธ์ระหว่างความเร่งในแนวสัมผัสและความเร่งเชิงมุม จะได้ว่า
+        </p>
+
+        <div class="equation">
+          \[
+            \vec{F}_i+\sum_{j=1}^{N}\vec{F}_{ij}
+            =
+            m_i\left(-a_{i,c}\hat{r}_i+r_i\alpha\hat{v}_i\right)
+          \]
+        </div>
+
+        <p class="card">
+          ต่อจากนั้นคูณแบบครอสกับสมการการเคลื่อนที่นี้ของแต่ละอนุภาคด้วยเวกเตอร์ตำแหน่งของอนุภาคเอง
+          แล้วรวมผลคูณที่ได้ของทุกอนุภาคเข้าด้วยกัน
+        </p>
+
+        <div class="equation">
+          \[
+            \sum_{i=1}^{N}\left(\vec{r}_i\times\vec{F}_i\right)
+            +
+            \sum_{i=1}^{N}\sum_{j=1}^{N}
+            \left(\vec{r}_i\times\vec{F}_{ij}\right)
+            =
+            \sum_{i=1}^{N}
+            \left[
+              \vec{r}_i\times
+              m_i\left(-a_{i,c}\hat{r}_i+r_i\alpha\hat{v}_i\right)
+            \right]
+          \]
+        </div>
+
+        <p class="card">
+          จากกฎการเคลื่อนที่ข้อที่ 3 ของนิวตันจะได้ว่า        \(
+            \sum_{i=1}^{N}\sum_{j=1}^{N}
+            \left(\vec{r}_i\times\vec{F}_{ij}\right)=0
+          \)
+          และจากสมบัติการคูณแบบครอสเราจะได้ว่า
+          \(
+            \vec{r}_i\times\hat{r}_i=0
+          \)
+
+          ดังนั้นผลลัพธ์สุดท้าย คือ
+        </p>
+      </div>
+
+      <p class="lead">
+        เมื่อพิจารณาการหมุนของวัตถุแข็งเกร็งที่ประกอบด้วย \(N\) อนุภาค
+        โดยที่แกนหมุนคงที่และวางตัวตามแกน z สมการแสดงความสัมพันธ์ของ
+        ตำแหน่ง \(\vec r_i\) แรงลัพธ์ที่กระทำ \(\vec F_i\)
+        และมวล \(m_i\) ของแต่ละอนุภาค กับ ความเร่งเชิงมุม \(\alpha\) ของวัตถุแข็งเกร็ง คือ
+      </p>
+
+      <div class="equation-card">
+        <div class="equation-wrapper">
+          <div class="equation">
+        \[
+          \sum_{i=1}^{N}
+          \left(\vec{r}_i\times\vec{F}_i\right)
+          =
+          \left(
+            \sum_{i=1}^{N}m_i r_i^2
+          \right)
+          \alpha\hat{k}
+        \]
+          </div>
+          <div class="equation-label"></div>
+        </div>
+      </div>
+
+
+
+    </section>
+
+    <div class="lesson-bridge"><strong>🔗 เชื่อมโยง</strong>
+      <p>
+        สมการนี้เป็นสมการที่มีความสำคัญสำหรับการอธิบายการเคลื่อนที่แบบหมุนที่แกนหมุนคงที่สำหรับวัตถุแข็งเกร็ง
+        ดังนั้นต่อจากนี้เราจะนิยามและพิจารณาแต่ละพจน์ที่อยู่ในสมการ
+      </p>
+    </div>
+
+    <section class="lesson" id="torque">
+      <h2>🔧 6. นิยามของแรงบิด</h2>
+    
+      <p class="lead"> <b>แรงบิด (torque)</b> หรือที่เรียกกันทั่วไปว่า ทอร์ก คือ 
+        แรงที่กระทำต่อวัตถุแล้วทำให้วัตถุเกิดการหมุนรอบแกนหมุน
+        แรงบิดเป็นตัวชี้วัดความสามารถในการหมุนของวัตถุ และมีหน่วยวัดเป็นนิวตันเมตร (N·m)
+        ซึ่งแรงบิดคำนวณได้จาก
+      </p>
+
+      <div class="equation-card">
+        <div class="equation-wrapper">
+          <div class="equation">
+              \[
+              \vec{\tau}\equiv\vec{r}\times\vec{F}
+            \]
+          </div>
+          <div class="equation-label"></div>
+        </div>
+      </div>
+
+      <p class="lead">
+        ทิศทางของทอร์กจะเป็นไปตามกฎมือขวา และค่าของทอร์กหาได้จาก
+      </p>
+
+      <div class="equation-card">
+        <div class="equation-wrapper">
+          <div class="equation">
+          \[\tau=r_{\perp}F=rF_{\perp}=rF\sin\theta\]
+          </div>
+          <div class="equation-label"></div>
+        </div>
+      </div>
+
+      <div class="grid w11-two-col">
+        <div>
+          <div class="lead">
+            <p>โดยที่</p>
+            <ul class="definition-list">
+              <li>
+                \(r\) และ \(r_{\perp}\)
+                คือ ระยะจากจุดหมุนถึงจุดที่แรงกระทำ และ ระยะตั้งฉากจากจุดหมุนถึงจุดที่อยู่บนแนวแรง ตามลำดับ
+              </li>
+
+              <li>
+                \(F\) และ \(F_{\perp}\)
+                คือ ขนาดของแรง และ ขนาดขององค์ประกอบแรงที่ตั้งฉากกับแนวระยะ ตามลำดับ
+              </li>
+
+              <li>
+                \(\theta\)
+                คือ มุมระหว่างเวกเตอร์ตำแหน่งของจุดที่แรงกระทำกับแรง
+              </li>
+            </ul>
+          </div>
+          <div class="concept-box">
+            <h3>🌟 ผลลัพธ์สำคัญ</h3>
+            <ul>
+              <li>
+                แม้แรงสองแรงจะมีขนาดเท่ากัน แต่ถ้าแรงกระทำที่ตำแหน่งต่างกัน
+                หรือกระทำด้วยมุมต่างกัน แรงบิดก็จะต่างกันด้วย
+              </li>
+
+              <li>
+                แรงที่มีแนวตั้งฉากกับเวกเตอร์ตำแหน่งมากที่สุด
+                จะทำให้เกิดแรงบิดมากที่สุด
+              </li>
+              </ul>
+          </div>
+        </div>
+
+        <figure class="figure-card figure-wide">
+          <img src="asset/week%2011/figure-5.png" alt="ภาพแสดงภาพตัวอย่างองค์ประกอบตั้งฉากของระยะและแรง">
+          <figcaption class="caption">
+            ภาพแสดงภาพตัวอย่างองค์ประกอบตั้งฉากของระยะและแรง
+          </figcaption>
+        </figure>
+      </div>
+
+
+      <div class="interaction">
+        <h3>🔧 Torque Explorer</h3>
+        <div class="grid w11-two-col">
+          <div class="w11-controls">
+            <label>ระยะจากจุดหมุน \(r\) = <span id="w11TorqueRVal">0.80</span> m</label><input type="range" id="w11TorqueR" min="0" max="1.4" step="0.02" value="0.8" oninput="w11UpdateTorque()">
+            <label>แรง \(F\) = <span id="w11TorqueFVal">10.0</span> N</label><input type="range" id="w11TorqueF" min="0" max="30" step="0.5" value="10" oninput="w11UpdateTorque()">
+            <label>มุมระหว่าง \(\vec r\) กับ \(\vec F\) = <span id="w11TorqueAVal">90</span>°</label><input type="range" id="w11TorqueA" min="-180" max="180" step="1" value="90" oninput="w11UpdateTorque()">
+            <div class="formula" id="w11TorqueFeedback"></div>
+          </div>
+          <svg id="w11TorqueSvg" class="w11-svg" viewBox="0 0 620 360"></svg>
+        </div>
+      </div>
+
+      <div class="interaction example-card" id="example3">
+        <h3>🧮 ตัวอย่างที่ 3: ทอร์กของแรงหลายแรง</h3>
+        <div class="grid w11-two-col">
+          <div>
+          <p class="lead">จงหาทอร์กของทุกแรงที่ปรากฏ โดยกำหนดให้จุดหมุนอยู่ที่จุด O
+            และระยะ \(a=10.0\ \mathrm{cm}\), \(b=20.0\ \mathrm{cm}\)</p>
+          <button
+            type="button"
+            class="reveal-btn"
+            data-reveal
+            data-reveal-open="แสดงเฉลย/วิธีทำ"
+            data-reveal-close="ซ่อนเฉลย/วิธีทำ"
+          >
+            แสดงเฉลย/วิธีทำ
+          </button>
+          <div class="reveal-box" data-reveal-answer hidden>
+            <h4>เฉลยและวิธีทำ</h4>
+            <p>กำหนดให้ทอร์กทวนเข็มนาฬิกาเป็นบวก และแปลงหน่วย \(a=0.100\ \mathrm{m}\), \(b=0.200\ \mathrm{m}\)</p>
+            <p>ใช้ความสัมพันธ์ \(\tau = rF \sin\theta\)</p>
+            <div class="formula">
+              \[
+                \vec \tau_{8.0\ \mathrm{N}}=(0.200)(8.0)\sin(90) \ \hat{k} =1.60\ \ \hat{k} \mathrm{N\cdot m}
+              \]
+            </div>
+            <p>แรง \(8.0\ \mathrm{N}\) ทำให้วัตถุหมุนทวนเข็มนาฬิกา จึงเป็นบวก</p>
+            <div class="formula">
+              \[
+                \vec \tau_{5.0\ \mathrm{N}}=-(0.200)(5.0)\sin(90) \ \hat{k} =-1.00 \ \hat{k} \ \mathrm{N\cdot m}
+              \]
+            </div>
+            <p>แรง \(5.0\ \mathrm{N}\) ทำให้วัตถุหมุนตามเข็มนาฬิกา จึงเป็นลบ</p>
+            <div class="formula">
+              \[
+                \vec \tau_{10.0\ \mathrm{N}}=(0.100)(10.0)\sin(105) \ \hat{k} =0.966 \ \hat{k} \ \mathrm{N\cdot m}
+              \]
+            </div>
+            <p>แรง \(10.0\ \mathrm{N}\) มีระยะจากจุดหมุนถึงแรงเท่ากับ \(a\) ทำมุมกับแกน -x 15 องศา และทำให้หมุนทวนเข็มนาฬิกา จึงเป็นบวก</p>
+          </div>
+          </div>
+          <figure class="figure-card figure-wide">
+            <img src="asset/week%2011/figure-6.png" alt="ภาพแสดงแรงและตำแหน่งที่แรงกระทำ สำหรับตัวอย่างที่ 3">
+            <figcaption class="caption">
+              ภาพแสดงแรงและตำแหน่งที่แรงกระทำ สำหรับตัวอย่างที่ 3
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <div class="lesson-bridge"><strong>🔗 เชื่อมโยง</strong>
+      <p>
+        จากนิยามของทอร์ก สมการ (4) จะเขียนใหม่ได้เป็น
+        \[\sum_{i=1}^N \vec \tau_i = 
+        \left(
+            \sum_{i=1}^{N}m_i r_i^2
+          \right)
+          \alpha\hat{k}\]
+      ในหัวข้อถัดไปเราจะพิจารณาพจน์ในวงเล็บขวามือ
+      </p>
+    </div>
+
+    <section class="lesson" id="inertia">
+      <h2>🪐 7. นิยามความเฉื่อยเชิงมุม</h2>
+        <div class="grid">
+          <div>
+          <p class="lead">
+            <b>ความเฉื่อยเชิงมุม (Moment of Inertia)</b> คือ
+            สมบัติของวัตถุที่ต้านทานการเปลี่ยนแปลงสภาพการหมุน หรือ
+            ความยากง่ายในการทำให้วัตถุหมุน หรือหยุดหมุน ยิ่งโมเมนต์ความเฉื่อยมาก
+            วัตถุจะยิ่งหมุนยาก หรือหยุดหมุนยาก และในทางกลับกัน ถ้าโมเมนต์ความเฉื่อยน้อย
+            วัตถุจะหมุนง่าย หรือหยุดหมุนง่าย และมีหน่วยวัดเป็น \(\mathrm{kg.m^2}\) 
+            ซึ่งความเฉื่อยเชิงมุมคำนวณได้จาก
+          </p>
+          
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">
+                \[I=\sum_i m_i r_i^2\]
+              </div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+
+        <p class="lead">
+          โดยที่ \(r_i\) คือระยะตั้งฉากจากแกนหมุนไปจนถึงอนุภาคตัวที่ \(i\) และ
+          \(𝑚_i\) คือมวลของอนุภาคตัวนั้น
+        </p>
+      </div>
+          <figure class="figure-card figure-wide">
+            <img src="asset/week%2011/figure-7.png" alt="ภาพแสดงตัวอย่างประกอบการหาความเฉื่อยเชิงมุม">
+            <figcaption class="caption">
+              ภาพแสดงตัวอย่างประกอบการหาความเฉื่อยเชิงมุม
+            </figcaption>
+          </figure>
+        </div>
+
+      <div class="interaction example-card">
+        <h3>🪐 ตัวอย่างที่ 4</h3>
+        <div class="grid">
+        <div>
+        <p class="lead">ลูกบอลสองลูกมีมวล \(M\) และ
+          𝑚 กำหนดให้แกน y คือ หมุนของระบบ
+          และระยะระหว่างแกนหมุนกับลูกบอลแต่ละลูก
+          แสดงดังภาพ จงหาความเฉื่อยเชิงมุมของระบบนี้</p>
+        <button
+          type="button"
+          class="reveal-btn"
+          data-reveal
+          data-reveal-open="แสดงเฉลย/วิธีทำ"
+          data-reveal-close="ซ่อนเฉลย/วิธีทำ"
+        >
+          แสดงเฉลย/วิธีทำ
+        </button>
+        <div class="reveal-box" data-reveal-answer hidden>
+          <h4>เฉลยและวิธีทำ</h4>
+          <p>
+            ใช้นิยามความเฉื่อยเชิงมุมของระบบอนุภาค
+            โดย \(r_i\) คือระยะตั้งฉากจากแกนหมุนถึงมวลแต่ละก้อน
+          </p>
+          <div class="formula">
+            \[
+              I=\sum_i m_i r_i^2
+            \]
+          </div>
+          <p>
+            จากภาพ มวล \(M\) อยู่ห่างแกน \(y\) เป็นระยะ \(x\)
+            และมวล \(m\) อยู่ห่างแกน \(y\) เป็นระยะ \(L-x\)
+          </p>
+          <div class="formula">
+            \[
+              I=Mx^2+m(L-x)^2
+            \]
+          </div>
+          <p>
+            ดังนั้นความเฉื่อยเชิงมุมของระบบรอบแกน \(y\) คือ
+            \[
+              \boxed{I=Mx^2+m(L-x)^2}
+            \]
+          </p>
+        </div>
+        </div>
+        <figure class="figure-card figure-wide">
+            <img src="asset/week%2011/figure-8.png" alt="ภาพแสดงภาพประกอบตัวอย่างที่ 4">
+            <figcaption class="caption">
+              ภาพแสดงภาพประกอบตัวอย่างที่ 4
+            </figcaption>
+          </figure>
+        </div>
+      </div><br>
+
+      <div class="concept-box">
+        <h2>🧱 วัตถุแข็งเกร็งเนื้อสารต่อเนื่อง</h2>
+        <p class="lead">
+          ในการหาความเฉื่อยเชิงมุมของวัตถุแข็งเกร็งที่เป็นเนื้อสารต่อเนื่อง
+          (continuous rigid body) ในระบบพิกัดฉาก
+          เราสามารถใช้แนวคิดที่คล้ายกับการหาจุดศูนย์กลางมวลของวัตถุต่อเนื่อง กล่าวคือ
+          พิจารณาแบ่งวัตถุดังกล่าวออกเป็นองค์ประกอบย่อยขนาดเล็กมากจำนวนมาก
+          (\(N\) เข้าใกล้ค่าอนันต์) โดยแต่ละองค์ประกอบมีมวล \(Δ𝑚_i\)
+           ซึ่งมีค่าน้อยมากเข้าใกล้ศูนย์ และมีพิกัดอยู่ที่ \((x_i,y_i,z_i )\)
+           ในเชิงคณิตศาสตร์ การพิจารณาดังกล่าวนำไปสู่การแสดงความเฉื่อยเชิงมุมของวัตถุในรูปของปริพันธ์ ดังนี้
+        </p>
+        <div class="equation-card"><div class="equation">\[I=\int r^2\,dm\]</div></div>
+        <p>โดยที่ \(r\)  คือ ระยะตั้งฉากจากแกนหมุนถึงองค์ประกอบมวล \(𝑑𝑚\)</p>
+        <figure class="figure-card figure-wide">
+            <img src="asset/week%2011/figure-9.png" alt="ภาพแสดงความเฉื่อยเชิงมุมรอบแกนหมุนที่ผ่านจุดศูนย์กลางมวล \(I_{CM}\) ของวัตถุแข็งเกร็งที่เป็นเนื้อสารต่อเนื่องแบบต่างๆ">
+            <figcaption class="caption">
+              ภาพแสดงความเฉื่อยเชิงมุมรอบแกนหมุนที่ผ่านจุดศูนย์กลางมวล \(I_{CM}\) ของวัตถุแข็งเกร็งที่เป็นเนื้อสารต่อเนื่องแบบต่างๆ
+            </figcaption>
+          </figure>
+      </div>
+    </section>
+
+    <section class="lesson" id="parallel-axis">
+      <h2>📏 ทฤษฎีแกนขนาน</h2>
+      <div class="grid">
+        <div>
+          <p class="lead">
+            จากนิยามของความเฉื่อยเชิงมุม
+            สามารถพิสูจน์ความสัมพันธ์ทางคณิตศาสตร์ที่สำคัญและมีประโยชน์
+            เรียกว่า <b>ทฤษฎีแกนขนาน  (Parallel Axis Theorem)</b> ได้ไม่ยาก โดยทฤษฎีนี้กล่าวว่า
+            <br><b>“ความเฉื่อยเชิงมุมของวัตถุรอบแกนใด ๆ
+              เท่ากับผลรวมของ
+              ความเฉื่อยเชิงมุมของวัตถุรอบแกนที่ขนานกับแกนนั้นและผ่านจุดศูนย์กลางมวล
+              บวกกับผลคูณของมวลวัตถุและกำลังสองของระยะทางระหว่างสองแกน”</b>
+          </p>
+          <div class="equation-card">
+            <div class="equation-wrapper">
+              <div class="equation">
+                \[I=I_{CM}+Md^2\]
+              </div>
+              <div class="equation-label"></div>
+            </div>
+          </div>
+
+          <p class="lead">
+            โดยที่ \(I_{CM}\) คือ ความเฉื่อยเชิงมุมของวัตถุรอบแกนหมุนที่ผ่านจุดศูนย์กลางมวล
+            \(M\) คือ มวลของวัตถุ และ \(D\) คือ ระยะทางที่แกนหมุนใหม่เลื่อนขนานไป
+          </p>
+        </div>  
+
+        <figure class="figure-card figure-wide">
+            <img src="asset/week%2011/figure-10.png" alt="ภาพแสดงการหมุนของวัตถุมวล \(M\) รอบแกนหมุนใหม่ที่เลื่อนแบบขนานไปจากแกนเดิมที่ผ่านจุดศูนย์กลางมวล เป็นระยะทาง \(D\)">
+            <figcaption class="caption">
+              ภาพแสดงการหมุนของวัตถุมวล \(M\) รอบแกนหมุนใหม่ที่เลื่อนแบบขนานไปจากแกนเดิมที่ผ่านจุดศูนย์กลางมวล เป็นระยะทาง \(D\)
+            </figcaption>
+        </figure>
+      </div>  
+
+    </section>
+
+    <div class="interaction">
+      <h3>📐 กิจกรรม : ทฤษฎีแกนขนาน</h3>
+    </div>
+
+    <section class="lesson" id="rot-law">
+      <h2>⚖️ 8. กฎการเคลื่อนที่แบบหมุนรอบแกนหมุนคงที่ของวัตถุแข็งเกร็ง</h2>
+
+      <div class="grid">
+        <div>
+          <p class="lead">
+            จากนิยามของแรงบิดและความเฉื่อยเชิงมุม เราสามารถเขียนสมการ (4)
+            ให้กระชับขึ้นและอยู่ในรูป
+          </p>
+              <div class="equation-card">
+                <div class="equation-wrapper">
+                  <div class="equation">
+                    \[\sum_{i=1}^N \vec \tau=I \vec \alpha\]
+                  </div>
+                  <div class="equation-label"></div>
+                </div>
+              </div>
+          <p class="lead">
+            โดยที่ \(\sum_{i=1}^N \vec \tau\) หมายถึง แรงบิดรวม (total torque) ที่กระทำต่อวัตถุ
+            \(I\) คือ หมายถึง ความเฉื่อยเชิงมุมของวัตถุ
+            และ \(\vec \alpha\) คือ ความเร่งเชิงมุมของวัตถุ
+          </p>
+
+          <p class="lead">
+            สมการนี้อธิบายการเคลื่อนที่แบบหมุนของวัตถุแข็งเกร็งรอบแกนหมุนคงที่
+            โดยมีบทบาทเช่นเดียวกับกฎการเคลื่อนที่ข้อที่สองของนิวตันสำหรับการเคลื่อนที่เชิงเส้น
+            กล่าวคือ แรงบิดรวมทำหน้าที่เช่นเดียวกับแรงสุทธิ
+            ส่วนความเร่งเชิงมุมทำหน้าที่เช่นเดียวกับความเร่งเชิงเส้น
+            และความเฉื่อยเชิงมุมมีบทบาทเช่นเดียวกับมวล ดังนั้น เราเรียกสมการนี้ว่า
+            <br><strong>กฎการเคลื่อนที่แบบหมุนรอบแกนหมุนคงที่ของวัตถุแข็งเกร็ง</strong>
+          </p>
+        </div>
+
+        <figure class="figure-card figure-wide">
+          <img src="asset/week%2011/figure-11.png" alt="ภาพแสดงตัวอย่างแรงภายนอกที่ทำให้การแรงบิดกระทำกับวัตถุแข็งเกร็งที่หมุนรอบแกน y ที่มีความเฉื่อยเชิงมุมรอบแกนนี้เท่ากับ \(I\)">
+          <figcaption class="caption">
+            ภาพแสดงตัวอย่างแรงภายนอกที่ทำให้การแรงบิดกระทำกับวัตถุแข็งเกร็งที่หมุนรอบแกน y ที่มีความเฉื่อยเชิงมุมรอบแกนนี้เท่ากับ \(I\)
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="interaction">
+        <h3>⚖️ Rotational Dynamics Simulator</h3>
+      </div>
+
+      <div class="interaction example-card" id="example5">
+        <h3>🛞 ตัวอย่างที่ 5: ทรงกระบอกสองรัศมี</h3>
+        <div class="grid w11-two-col">
+          <div class="w11-controls">
+            <p>ทรงกระบอกที่มีรัศมีต่างกัน 2 ส่วน สามารถหมุนรอบแกน \(x\) ได้อย่างอิสระ ถ้าเชือกที่พันรอบบริเวณรัศมี \(r_1\) ออกแรง \(F_1\) และเชือกที่พันรอบบริเวณรัศมี \(r_2\) ออกแรง \(F_2\) ให้หาทอร์กสุทธิและความเร่งเชิงมุมเมื่อทราบ \(I\)</p>
+            <label>\(F_1\) = <span id="w11F1Val">20</span> N</label><input type="range" id="w11F1" min="0" max="60" step="1" value="20" oninput="w11UpdateEx5()">
+            <label>\(r_1\) = <span id="w11R1Val">0.20</span> m</label><input type="range" id="w11R1" min="0.05" max="0.5" step="0.01" value="0.20" oninput="w11UpdateEx5()">
+            <label>\(F_2\) = <span id="w11F2Val">30</span> N</label><input type="range" id="w11F2" min="0" max="60" step="1" value="30" oninput="w11UpdateEx5()">
+            <label>\(r_2\) = <span id="w11R2Val">0.10</span> m</label><input type="range" id="w11R2" min="0.05" max="0.5" step="0.01" value="0.10" oninput="w11UpdateEx5()">
+            <label>\(I\) = <span id="w11Ex5IVal">2.00</span> kg·m²</label><input type="range" id="w11Ex5I" min="0.5" max="8" step="0.1" value="2" oninput="w11UpdateEx5()">
+            <div class="formula" id="w11Ex5Feedback"></div>
+          </div>
+          <div>
+            <figure class="figure-card figure-wide">
+                <img src="asset/week%2011/figure-12.png" alt="ภาพแสดงภาพประกอบตัวอย่างที่ 5">
+                <figcaption class="caption">
+                  ภาพแสดงภาพประกอบตัวอย่างที่ 5
+                </figcaption>
+              </figure>
+            <svg id="w11Ex5Svg" class="w11-svg" viewBox="0 0 620 360"></svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson" id="summary">
+      <h2>🎯 สรุปท้ายคาบ และ Final Quiz</h2>
+      <p class="lead">
+        ใจหลักของสัปดาห์นี้ คือ การอธิบายการหมุนของวัตถุแข็งเกร็งด้วยปริมาณเชิงมุม
+        เริ่มจากการเชื่อมโยงการเคลื่อนที่เชิงเส้นกับการเคลื่อนที่เชิงมุม
+        จากนั้นใช้แนวคิดแรงบิดเพื่อบอกว่าแรงทำให้วัตถุหมุนมากน้อยเพียงใด
+        และใช้ความเฉื่อยเชิงมุมเพื่ออธิบายว่าวัตถุต้านทานการเปลี่ยนสภาพการหมุนมากน้อยเพียงใด
+        ท้ายที่สุดแนวคิดทั้งหมดมาบรรจบกันในสมการ \(\sum \vec \tau=I\vec \alpha\)
+        ซึ่งเป็นคู่เทียบของ \(\sum \vec F=m\vec a\) สำหรับการหมุน
+      </p>
+
+      <div class="grid">
+        <div class="card"><strong>🧊 1. วัตถุแข็งเกร็ง</strong><br>ระยะห่างระหว่างอนุภาคทุกคู่คงที่ และทุกจุดบนวัตถุกวาดมุมเท่ากันเมื่อหมุนรอบแกนคงที่</div>
+        <div class="card"><strong>🌀 2. ปริมาณเชิงมุม</strong><br>\(\theta\), \(\omega\), และ \(\alpha\) ใช้อธิบายตำแหน่ง ความเร็ว และความเร่งของการหมุน</div>
+        <div class="card"><strong>🔗 3. ความสัมพันธ์เชิงเส้น-เชิงมุม</strong><br>เมื่อจุดอยู่ห่างแกนเป็นระยะ \(r\) จะได้ \(s=r\theta\), \(v=r\omega\), และ \(a_t=r\alpha\)</div>
+        <div class="card"><strong>🔧 4. แรงบิด</strong><br>\(\tau=rF\sin\theta\) ขึ้นกับขนาดแรง ระยะจากจุดหมุน และมุมระหว่าง \(\vec r\) กับ \(\vec F\)</div>
+        <div class="card"><strong>🪐 5. ความเฉื่อยเชิงมุม</strong><br>\(I=\sum m_ir_i^2\) หรือ \(I=\int r^2\,dm\) ขึ้นกับการกระจายมวลรอบแกนหมุน</div>
+        <div class="card"><strong>📏 6. ทฤษฎีแกนขนาน</strong><br>ถ้าเลื่อนแกนหมุนขนานจากแกนผ่าน CM เป็นระยะ \(d\) จะได้ \(I=I_{CM}+Md^2\)</div>
+        <div class="card"><strong>⚖️ 7. กฎการหมุน</strong><br>\(\sum \vec \tau=I \vec \alpha\) บอกว่าแรงบิดสุทธิเป็นตัวกำหนดความเร่งเชิงมุมของวัตถุ</div>
+      </div>
+
+      <h3>📋 ตารางสูตรสำคัญของการหมุน</h3>
+      <div class="card">
+        <table class="mini-table">
+          <thead>
+            <tr><th>หัวข้อ</th><th>สูตร</th><th>ความหมาย/เงื่อนไข</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>ความยาวส่วนโค้ง</td><td>\(s=r\theta\)</td><td>ใช้เมื่อ \(\theta\) มีหน่วยเป็นเรเดียน</td></tr>
+            <tr><td>ความเร็วเชิงเส้น</td><td>\(v=r\omega\)</td><td>จุดที่อยู่ไกลแกนกว่าจะมีความเร็วเชิงเส้นมากกว่าเมื่อ \(\omega\) เท่ากัน</td></tr>
+            <tr><td>ความเร่งสัมผัส</td><td>\(a_t=r\alpha\)</td><td>เกิดจากการเปลี่ยนขนาดของความเร็วเชิงเส้นตามแนวสัมผัส</td></tr>
+            <tr><td>แรงบิด</td><td>\(\tau=rF\sin\theta\)</td><td>เป็นบวกหรือลบตามทิศการหมุนที่กำหนด</td></tr>
+            <tr><td>ความเฉื่อยเชิงมุมของอนุภาค</td><td>\(I=\sum m_ir_i^2\)</td><td>มวลที่อยู่ไกลแกนมีผลมากเพราะขึ้นกับ \(r^2\)</td></tr>
+            <tr><td>ทฤษฎีแกนขนาน</td><td>\(I=I_{CM}+Md^2\)</td><td>ใช้กับแกนใหม่ที่ขนานกับแกนผ่านจุดศูนย์กลางมวล</td></tr>
+            <tr><td>กฎการหมุน</td><td>\(\sum\vec \tau=I\vec \alpha\)</td><td>ใช้กับการหมุนรอบแกนคงที่ของวัตถุแข็งเกร็ง</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="interaction">
+        <h3>✅ Quick Quiz: เลือกคำตอบที่ถูกที่สุด</h3>
+        <p><strong>ข้อ 1:</strong> ถ้าออกแรงขนาดเท่าเดิมกับประตู ตำแหน่งใดทำให้เกิดแรงบิดมากที่สุด?</p>
+        <div class="options" data-quiz data-answer="c">
+          <button class="option-btn" data-choice="a">ใกล้บานพับมากที่สุด</button>
+          <button class="option-btn" data-choice="b">ตรงกลางประตูเสมอ</button>
+          <button class="option-btn" data-choice="c">ไกลจากบานพับมากที่สุด และออกแรงตั้งฉากกับประตู</button>
+          <button class="option-btn" data-choice="d">ตำแหน่งใดก็ได้ เพราะแรงมีขนาดเท่ากัน</button>
+        </div>
+        <p data-feedback></p>
+      </div>
+
+      <div class="interaction">
+        <h3>☑️ Quick Quiz: เลือกได้หลายคำตอบ</h3>
+        <p><strong>ข้อ 2:</strong> ข้อใดเป็นข้อความที่ถูกต้องเกี่ยวกับการหมุนของวัตถุแข็งเกร็ง?</p>
+        <div class="options" data-multi>
+          <button class="option-btn" data-correct="true">ทุกจุดบนวัตถุแข็งเกร็งกวาดมุมเท่ากันเมื่อหมุนรอบแกนเดียวกัน</button>
+          <button class="option-btn" data-correct="true">แรงที่แนวแรงผ่านจุดหมุนให้แรงบิดเป็นศูนย์</button>
+          <button class="option-btn" data-correct="false">โมเมนต์ความเฉื่อยขึ้นกับมวลรวมเท่านั้น ไม่เกี่ยวกับตำแหน่งของมวล</button>
+          <button class="option-btn" data-correct="true">มวลที่อยู่ไกลแกนหมุนทำให้ \(I\) เพิ่มขึ้นมาก เพราะมีพจน์ \(r^2\)</button>
+          <button class="option-btn" data-correct="false">สมการ \(\sum\vec \tau=I \vec \alpha\) ใช้ได้โดยไม่ต้องระบุแกนหมุนหรือทิศเครื่องหมาย</button>
+        </div>
+      </div>
+
+      <div class="interaction">
+        <h3>🧩 Drag & Drop: จับคู่สูตรกับความหมาย</h3>
+        <p>ลากการ์ดสูตรไปวางในช่องความหมายที่ตรงกัน แล้วกดตรวจคำตอบ</p>
+        <div class="drag-items">
+          <span class="drag-item" draggable="true" data-type="arc">\(s=r\theta\)</span>
+          <span class="drag-item" draggable="true" data-type="torque">\(\tau=rF\sin\theta\)</span>
+          <span class="drag-item" draggable="true" data-type="inertia">\(I=\sum m_ir_i^2\)</span>
+          <span class="drag-item" draggable="true" data-type="parallel-axis">\(I=I_{CM}+Md^2\)</span>
+          <span class="drag-item" draggable="true" data-type="rot-law">\(\sum\vec \tau=I\vec \alpha\)</span>
+        </div>
+        <div class="dropzone-wrap">
+          <div class="dropzone" data-accept="arc"><strong>เชื่อมระยะตามส่วนโค้งกับมุมที่กวาด</strong></div>
+          <div class="dropzone" data-accept="torque"><strong>คำนวณความสามารถของแรงในการทำให้วัตถุหมุน</strong></div>
+          <div class="dropzone" data-accept="inertia"><strong>หาความเฉื่อยเชิงมุมของระบบอนุภาค</strong></div>
+          <div class="dropzone" data-accept="parallel-axis"><strong>หา \(I\) รอบแกนใหม่ที่ขนานกับแกนผ่าน CM</strong></div>
+          <div class="dropzone" data-accept="rot-law"><strong>เชื่อมแรงบิดสุทธิกับความเร่งเชิงมุม</strong></div>
+        </div>
+        <div class="options">
+          <button onclick="checkDropzones(this)">ตรวจคำตอบ</button>
+          <button class="secondary" onclick="resetDropzones(this)">รีเซ็ต</button>
+        </div>
+        <p data-feedback></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>FUNSC115 · Fundamental of Physics for Engineers · Week 11 · Equation of Rotational Motions</footer>
+</body>
+</html>
