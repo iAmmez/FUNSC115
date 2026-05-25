@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>คำแนะนำรายวิชา | Fundamental of Physics for Engineers</title>
   <link rel="stylesheet" href="styles.css" />
-  <script src="js/mathjax-config.js"></script>
+  <script defer src="js/mathjax-config.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
   <script defer src="script.js"></script>
 </head>
@@ -31,7 +31,7 @@
       <h3>👨‍🏫 ข้อมูลผู้สอน</h3>
       <div class="instructor-profile">
         <div class="instructor-photo-card">
-          <img src="https://e-cms.rmutl.ac.th/assets/upload/personal/personal20260427100932.png" alt="รูปผู้สอน ดร.สราวุธ สะสม">
+          <img decoding="async" loading="lazy" src="https://e-cms.rmutl.ac.th/assets/upload/personal/personal20260427100932.png" alt="รูปผู้สอน ดร.สราวุธ สะสม">
         </div>
         <div class="grid instructor-info-grid">
         <div class="card"><strong>👨‍🏫 ผู้สอน</strong><br>ดร.สราวุธ สะสม (ต๋อมแต๋ม)</div>
@@ -97,8 +97,8 @@
             <a class="week-model-link" href="week10.html">สัปดาห์ที่ 10</a>
           </td><td>กลศาสตร์ของไหล</td></tr>
           <tr><td class="cell-center">07</td><td>
-            <a class="week-model-link" href="week14.html">สัปดาห์ที่ 14</a>
-            <a class="week-model-link" href="week15.html">สัปดาห์ที่ 15</a>
+            <a class="week-model-link" href="">สัปดาห์ที่ 14</a>
+            <a class="week-model-link" href="">สัปดาห์ที่ 15</a>
           </td>
             <td>ความร้อนและอุณหพลศาสตร์เบื้องต้น</td></tr>
         </tbody>
@@ -153,7 +153,7 @@
 
       <div class="book-grid">
         <article class="book-card">
-          <img src="asset/week%201/physics-for-scientists-engineers-1.png" alt="ปกหนังสือฟิสิกส์ 1 Physics for Scientists and Engineers I">
+          <img decoding="async" loading="lazy" src="asset/week%201/physics-for-scientists-engineers-1.png" alt="ปกหนังสือฟิสิกส์ 1 Physics for Scientists and Engineers I">
           <div>
             <h3>ฟิสิกส์ 1: Physics for Scientists and Engineers I</h3>
             <!-- <p>Serway และ Jewett ฉบับแปลไทย</p>!-->
@@ -161,12 +161,55 @@
         </article>
 
         <article class="book-card">
-          <img src="asset/week%201/physics-scientists-engineers-modern-physics.jpg" alt="ปกหนังสือ PHYSICS for Scientists and Engineers with Modern Physics">
+          <img decoding="async" loading="lazy" src="asset/week%201/physics-scientists-engineers-modern-physics.jpg" alt="ปกหนังสือ PHYSICS for Scientists and Engineers with Modern Physics">
           <div>
             <h3>PHYSICS for Scientists and Engineers with Modern Physics</h3>
              <!--<p>Serway และ Jewett ฉบับภาษาอังกฤษ</p>-->
           </div>
         </article>
+      </div>
+    </section>
+
+    <section class="lesson physics-ai-spotlight" id="physics-vs-ai">
+      <div class="physics-ai-content">
+        <span class="physics-ai-badge">AI + Engineering Mindset</span>
+        <h2>ทำไมวิศวกรต้องเรียนฟิสิกส์ในยุค AI?</h2>
+        <p>
+          AI ช่วยคำนวณและสร้างคำตอบได้เร็ว แต่ฟิสิกส์ช่วยให้วิศวกรตั้งคำถามถูก ตรวจคำตอบเป็น
+          และออกแบบระบบที่ทำงานได้จริงในโลกที่มีแรง พลังงาน วัสดุ และข้อจำกัดเสมอ
+        </p>
+
+        <div class="physics-ai-points" aria-label="เหตุผลสำคัญที่วิศวกรยังต้องเรียนฟิสิกส์">
+          <div>
+            <strong>ตั้งโจทย์ให้ AI เข้าใจ</strong>
+            <span>แปลงสถานการณ์จริงเป็นแบบจำลอง ตัวแปร และสมมติฐานที่ชัดเจน</span>
+          </div>
+          <div>
+            <strong>ตรวจคำตอบอย่างมีเหตุผล</strong>
+            <span>ดูหน่วย ขนาดประมาณ ทิศทาง และความสมเหตุสมผลก่อนนำไปใช้</span>
+          </div>
+          <div>
+            <strong>ออกแบบอย่างรับผิดชอบ</strong>
+            <span>เชื่อมโยงข้อมูลกับแรง พลังงาน ความร้อน และความปลอดภัยของระบบ</span>
+          </div>
+        </div>
+
+        <a class="physics-ai-link" href="PhysicsVSAI.html">ลองช่วยกันหาคำตอบ</a>
+      </div>
+
+      <div class="physics-ai-visual" aria-hidden="true">
+        <div class="ai-chip">
+          <span>AI</span>
+          <small>model</small>
+        </div>
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="orbit-dot dot-one"></div>
+        <div class="orbit-dot dot-two"></div>
+        <div class="formula-chip formula-force">F = ma</div>
+        <div class="formula-chip formula-energy">E = mc²</div>
+        <div class="signal-line line-one"></div>
+        <div class="signal-line line-two"></div>
       </div>
     </section>
 

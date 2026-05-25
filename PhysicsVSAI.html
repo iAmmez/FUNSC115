@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ทำไมวิศวกรต้องเรียนฟิสิกส์ในยุค AI?</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-soft: #f1f5f9;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --primary-soft: #dbeafe;
+      --accent: #7c3aed;
+      --accent-soft: #ede9fe;
+      --success: #16a34a;
+      --success-soft: #dcfce7;
+      --warning: #f59e0b;
+      --warning-soft: #fef3c7;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --border: #e2e8f0;
+      --shadow: 0 22px 60px rgba(15, 23, 42, 0.08);
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Noto Sans Thai", Tahoma, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.14), transparent 34rem),
+        radial-gradient(circle at top right, rgba(124, 58, 237, 0.13), transparent 36rem),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(248, 250, 252, 0.86);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    .nav-inner {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      box-shadow: 0 10px 26px rgba(37, 99, 235, 0.25);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.92rem;
+      padding: 8px 12px;
+      border-radius: 999px;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+    }
+
+    .nav-home-link {
+      color: white !important;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.2);
+    }
+
+    .nav-home-link:hover {
+      color: white !important;
+      background: linear-gradient(135deg, var(--primary-dark), var(--accent));
+      box-shadow: 0 14px 28px rgba(37, 99, 235, 0.26);
+    }
+
+    .hero {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 54px auto 30px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(226, 232, 240, 0.92);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      border-radius: 999px;
+      right: -120px;
+      top: -140px;
+      background: linear-gradient(135deg, rgba(37,99,235,0.16), rgba(124,58,237,0.14));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 880px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 8px 14px;
+      background: var(--primary-soft);
+      color: var(--primary-dark);
+      font-weight: 800;
+      font-size: 0.94rem;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3 { line-height: 1.25; letter-spacing: -0.025em; }
+    h1 { font-size: clamp(2.2rem, 5vw, 4.6rem); margin: 0 0 18px; }
+    h2 { font-size: clamp(1.55rem, 3vw, 2.45rem); margin: 0 0 14px; }
+    h3 { font-size: 1.25rem; margin: 0 0 10px; }
+    p { margin: 0 0 12px; }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.18rem;
+      max-width: 70ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-secondary {
+      color: var(--primary-dark);
+      background: white;
+      border: 1px solid var(--border);
+    }
+
+    .btn-reset {
+      background: #fff;
+      color: #475569;
+      border: 1px solid var(--border);
+      padding: 9px 14px;
+      font-size: 0.92rem;
+    }
+
+    .btn-reset:hover {
+      background: #f8fafc;
+      color: var(--danger);
+      border-color: #fecaca;
+    }
+
+    .section {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 26px auto;
+      padding: 34px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 22px;
+    }
+
+    .section-title-block { flex: 1; }
+
+    .section-kicker {
+      color: var(--primary);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.82rem;
+      margin-bottom: 6px;
+    }
+
+    .muted { color: var(--muted); }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      min-height: 100%;
+    }
+
+    .card.soft { background: var(--surface-soft); }
+
+    .callout {
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+      margin: 18px 0;
+    }
+
+    .callout.primary { background: var(--primary-soft); border-color: #bfdbfe; color: #1e3a8a; }
+    .callout.success { background: var(--success-soft); border-color: #bbf7d0; color: #14532d; }
+    .callout.warning { background: var(--warning-soft); border-color: #fde68a; color: #78350f; }
+    .callout.danger { background: var(--danger-soft); border-color: #fecaca; color: #7f1d1d; }
+
+    .option-grid {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .option {
+      width: 100%;
+      text-align: left;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 15px 16px;
+      cursor: pointer;
+      font: inherit;
+      transition: 0.18s ease;
+    }
+
+    .option:hover {
+      border-color: #93c5fd;
+      background: #eff6ff;
+      transform: translateY(-1px);
+    }
+
+    .option.selected {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    }
+
+    .option.correct { border-color: var(--success); background: var(--success-soft); }
+    .option.wrong { border-color: var(--danger); background: var(--danger-soft); }
+
+    .feedback { margin-top: 14px; display: none; }
+    .feedback.show { display: block; }
+
+    .ai-box {
+      background: #111827;
+      color: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin: 16px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ai-box::before {
+      content: "AI";
+      position: absolute;
+      right: 18px;
+      top: 10px;
+      color: rgba(255,255,255,0.18);
+      font-weight: 900;
+      font-size: 3rem;
+      line-height: 1;
+    }
+
+    .equation {
+      font-family: "Cambria Math", "Times New Roman", serif;
+      font-size: 1.25rem;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin: 12px 0;
+      overflow-x: auto;
+    }
+
+    .matching-board {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .chip {
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 999px;
+      padding: 9px 12px;
+      cursor: pointer;
+      font-weight: 800;
+      color: var(--ink);
+      transition: 0.15s ease;
+    }
+
+    .chip:hover { background: var(--primary-soft); border-color: #93c5fd; }
+    .chip.active { box-shadow: 0 0 0 4px rgba(37,99,235,0.16); }
+    .chip.done { opacity: 0.45; pointer-events: none; }
+
+    .bucket {
+      border: 2px dashed #cbd5e1;
+      border-radius: 22px;
+      padding: 18px;
+      min-height: 230px;
+      background: #f8fafc;
+      cursor: pointer;
+    }
+
+    .bucket:hover { border-color: #93c5fd; background: #eff6ff; }
+
+    .bucket h3 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .bucket-list {
+      display: grid;
+      gap: 9px;
+      margin-top: 12px;
+    }
+
+    .bucket-item {
+      background: white;
+      border-radius: 14px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      font-weight: 800;
+    }
+
+    .pairing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .pair-col {
+      display: grid;
+      gap: 10px;
+    }
+
+    .pair-item {
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 16px;
+      padding: 14px;
+      cursor: pointer;
+      font-weight: 800;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+    }
+
+    .pair-item:hover { background: #eff6ff; border-color: #93c5fd; }
+    .pair-item.active { box-shadow: 0 0 0 4px rgba(124,58,237,0.14); border-color: var(--accent); }
+    .pair-item.correct { background: var(--success-soft); border-color: var(--success); }
+    .pair-item.wrong { background: var(--danger-soft); border-color: var(--danger); }
+
+    .slider-group { display: grid; gap: 14px; }
+
+    .slider-row {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .slider-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+      font-weight: 800;
+    }
+
+    input[type="range"] { width: 100%; accent-color: var(--primary); }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .metric {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 15px;
+    }
+
+    .metric-label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .metric-value {
+      font-weight: 900;
+      font-size: 1.35rem;
+      color: var(--primary-dark);
+    }
+
+    .scenario-card {
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+      background: white;
+      display: grid;
+      gap: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      font: inherit;
+      resize: vertical;
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    }
+
+    .mini-instruction {
+      font-size: 0.95rem;
+      color: var(--muted);
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin: 12px 0;
+    }
+
+    .progress-wrap {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 60;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 12px;
+      box-shadow: 0 12px 32px rgba(15,23,42,0.12);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .progress-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+    }
+
+    .footer {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 28px auto 70px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    @media (max-width: 920px) {
+      .grid-2, .grid-3, .matching-board, .pairing-grid { grid-template-columns: 1fr; }
+      .hero, .section { padding: 26px; }
+      .nav-inner { align-items: flex-start; flex-direction: column; }
+      .nav-links { justify-content: flex-start; }
+    }
+
+    @media (max-width: 620px) {
+      .metric-grid { grid-template-columns: 1fr; }
+      .section-header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="brand-mark">Φ</div>
+        <div>Physics × AI</div>
+      </div>
+      <div class="nav-links">
+        <a class="nav-home-link" href="index.html">กลับหน้าหลัก</a>
+        <a href="#opening">เปิดคาบ</a>
+        <a href="#ai-role">AI vs วิศวกร</a>
+        <a href="#ai-check">ตรวจ AI</a>
+        <a href="#matching">จับคู่</a>
+        <a href="#motor">มอเตอร์</a>
+        <a href="#brake">เบรก</a>
+        <a href="#crane">แรงบิด</a>
+        <a href="#reflection">Reflection</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="opening">
+    <div class="hero-content">
+      <div class="badge">กิจกรรมโต้ตอบก่อนเริ่มคาบแรก</div>
+      <h1>ทำไมวิศวกรต้องเรียนฟิสิกส์ในยุค AI?</h1>
+      <p class="lead">
+        เว็บไซต์นี้ออกแบบให้ผู้สอนเปิดบนจอ แล้วให้นักศึกษาตอบคำถาม เลือกตัวเลือก จับคู่ และตรวจคำตอบ AI
+        เพื่อให้เห็นว่า AI เป็นเครื่องมือ แต่ฟิสิกส์คือพื้นฐานของการตัดสินใจทางวิศวกรรม
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#poll">เริ่มกิจกรรม</a>
+        <a class="btn btn-secondary" href="#closing">ดูข้อสรุป</a>
+        <a class="btn btn-secondary" href="index.html">กลับหน้าหลัก</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="poll" data-reset-section="poll">
+      <div class="section-header">
+        <div class="section-title-block">
+          <div class="section-kicker">Opening Poll</div>
+          <h2>ถ้ามี AI แล้ว ยังต้องเรียนฟิสิกส์หรือไม่?</h2>
+          <p class="muted">ให้ผู้เรียนเลือกคำตอบก่อนเริ่มเรียน แล้วผู้สอนชวนอภิปรายสั้น ๆ</p>
+        </div>
+        <button class="btn btn-reset" data-reset="poll">รีเซตหัวข้อนี้</button>
+      </div>
+
+      <div class="card">
+        <h3>คำถาม</h3>
+        <p>ถ้า AI ช่วยคำนวณและอธิบายได้ นักศึกษาวิศวกรรมยังต้องเรียนฟิสิกส์หรือไม่?</p>
+        <div class="option-grid" data-quiz="poll">
+          <button class="option" data-feedback="ดีมาก นี่คือแนวคิดหลักของคาบนี้: AI เป็นเครื่องมือ แต่ฟิสิกส์คือพื้นฐานของการตัดสินใจทางวิศวกรรม">ยังจำเป็นมาก เพราะต้องใช้ตรวจสอบคำตอบของ AI</button>
+          <button class="option" data-feedback="ใช่ครับ AI ช่วยได้มาก แต่ผู้ใช้ยังต้องมีความรู้พอที่จะตรวจสอบคำตอบ สมมติฐาน และความปลอดภัย">จำเป็นบ้าง เพราะ AI ยังอาจผิดพลาด</button>
+          <button class="option" data-feedback="คำตอบนี้น่าสนใจ แต่ในงานวิศวกรรมจริง หากเราไม่เข้าใจฟิสิกส์ เราอาจไม่รู้ว่า AI ใช้สูตรผิดหรือให้คำตอบที่ไม่ปลอดภัย">ไม่ค่อยจำเป็น เพราะ AI คำนวณแทนได้</button>
+          <button class="option" data-feedback="ลองคิดต่อว่า ถ้า AI ให้คำตอบผิด แล้วไม่มีใครตรวจสอบ ผลลัพธ์ทางวิศวกรรมอาจเกิดความเสียหายหรืออันตรายได้">ไม่จำเป็น เพราะ AI ทำได้เกือบทุกอย่างแล้ว</button>
+        </div>
+        <div class="feedback callout primary" id="pollFeedback"></div>
+      </div>
+    </section>
+
+    <section class="section" id="ai-role" data-reset-section="ai-role">
+      <div class="section-header">
+        <div class="section-title-block">
+          <div class="section-kicker">Drag / Click to Sort</div>
+          <h2>AI ช่วยอะไรได้ และวิศวกรต้องเข้าใจอะไรเอง?</h2>
+          <p class="muted">คลิกข้อความ แล้วคลิกกล่องปลายทาง เพื่อจัดประเภทคำตอบ</p>
+        </div>
+        <button class="btn btn-reset" data-reset="ai-role">รีเซตหัวข้อนี้</button>
+      </div>
+
+      <div class="mini-instruction">
+        วิธีใช้: เลือกชิปคำตอบ 1 อัน แล้วคลิกกล่อง “AI ช่วยได้” หรือ “วิศวกรต้องเข้าใจเอง”
+      </div>
+
+      <div class="chips" id="chips"></div>
+      <div class="matching-board">
+        <div class="bucket" id="aiBucket">
+          <h3>🤖 AI ช่วยได้</h3>
+          <div class="bucket-list"></div>
+        </div>
+        <div class="bucket" id="engineerBucket">
+          <h3>🧠 วิศวกรต้องเข้าใจเอง</h3>
+          <div class="bucket-list"></div>
+        </div>
+      </div>
+      <div class="callout success" id="sortSummary" style="display:none;">
+        AI ช่วยให้เราทำงานเร็วขึ้น แต่ฟิสิกส์ช่วยให้เรารู้ว่า คำตอบนั้นเชื่อถือได้ ปลอดภัย และใช้จริงได้หรือไม่
+      </div>
+    </section>
+
+    <section class="section" id="ai-check" data-reset-section="ai-check">
+      <div class="section-header">
+        <div class="section-title-block">
+          <div class="section-kicker">Challenge 1</div>
+          <h2>ตรวจคำตอบ AI: AI คำนวณผิดได้หรือไม่?</h2>
+          <p class="muted">ให้ผู้เรียนเลือกคำตอบเพื่อตรวจสอบความถูกต้องของ AI</p>
+        </div>
+        <button class="btn btn-reset" data-reset="ai-check">รีเซตหัวข้อนี้</button>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>โจทย์ที่ถาม AI</h3>
+          <div class="ai-box">
+            วัตถุมวล 2 kg ถูกแรง 10 N กระทำบนพื้นไม่มีแรงเสียดทาน วัตถุจะมีความเร่งเท่าใด?
+          </div>
+          <button class="btn btn-primary" id="showWrongAi">ถาม AI</button>
+          <div class="callout danger" id="wrongAiAnswer" style="display:none; margin-top:16px;">
+            AI ตอบว่า: ความเร่งของวัตถุคือ <strong>20 m/s²</strong>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>คำถามสำหรับผู้เรียน</h3>
+          <p>คำตอบของ AI ถูกต้องหรือไม่?</p>
+          <div class="option-grid" data-quiz="newton">
+            <button class="option" data-correct="false">ถูกต้อง เพราะแรงมากกว่ามวล</button>
+            <button class="option" data-correct="true">ผิด เพราะควรได้ 5 m/s²</button>
+            <button class="option" data-correct="false">ผิด เพราะควรได้ 10 m/s²</button>
+            <button class="option" data-correct="false">ตอบไม่ได้ เพราะไม่มีข้อมูลเวลา</button>
+          </div>
+          <div class="feedback callout" id="newtonFeedback"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="matching" data-reset-section="matching">
+      <div class="section-header">
+        <div class="section-title-block">
+          <div class="section-kicker">Matching Activity</div>
+          <h2>จับคู่งานวิศวกรรมกับแนวคิดฟิสิกส์</h2>
+          <p class="muted">คลิกการ์ดฝั่งซ้าย แล้วคลิกแนวคิดฟิสิกส์ที่สัมพันธ์กันทางฝั่งขวา</p>
+        </div>
+        <button class="btn btn-reset" data-reset="matching">รีเซตหัวข้อนี้</button>
+      </div>
+
+      <div class="pairing-grid">
+        <div class="pair-col" id="taskPairs">
+          <div class="pair-item" data-pair="force">เลือกมอเตอร์ยกของ</div>
+          <div class="pair-item" data-pair="friction">ตรวจระยะเบรกของรถ</div>
+          <div class="pair-item" data-pair="torque">ตรวจความปลอดภัยของเครน</div>
+          <div class="pair-item" data-pair="pressure">เลือกปั๊มน้ำส่งขึ้นถังสูง</div>
+          <div class="pair-item" data-pair="heat">ออกแบบการระบายความร้อนอุปกรณ์ไฟฟ้า</div>
+        </div>
+        <div class="pair-col" id="conceptPairs">
+          <div class="pair-item" data-pair="heat">ความร้อน การพาความร้อน และสมดุลพลังงาน</div>
+          <div class="pair-item" data-pair="pressure">ความดันของของไหลและพลังงานของของไหล</div>
+          <div class="pair-item" data-pair="force">งาน กำลัง และประสิทธิภาพ</div>
+          <div class="pair-item" data-pair="torque">แรงบิดและระยะจากจุดหมุน</div>
+          <div class="pair-item" data-pair="friction">การเคลื่อนที่ แรงเบรก และแรงเสียดทาน</div>
+        </div>
+      </div>
+      <div class="feedback callout" id="pairFeedback"></div>
+    </section>
+
+    <section class="section" id="motor" data-reset-section="motor">
+      <div class="section-header">
+        <div class="section-title-block">
+          <div class="section-kicker">Challenge 2</div>
+          <h2>เลือกมอเตอร์ยกของ: คำนวณถูกอาจยังไม่พอ</h2>
+          <p class="muted">เน้นการเลือกตัวเลือกและปรับค่าด้วย slider เพื่อเปรียบเทียบคำตอบเชิงอุดมคติกับงานจริง</p>
+        </div>
+        <button class="btn btn-reset" data-reset="motor">รีเซตหัวข้อนี้</button>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>สถานการณ์</h3>
+          <p>ต้องเลือกมอเตอร์สำหรับยกแท่นมวล 500 kg ให้เคลื่อนที่ขึ้นด้วยความเร็วคงที่ 0.3 m/s</p>
+          <button class="btn btn-primary" id="showMotorAi">ถาม AI</button>
+          <div class="ai-box" id="motorAiAnswer" style="display:none; margin-top:16px;">
+            ใช้สมการ P = mgv<br />
+            P = 500 × 9.8 × 0.3 = 1470 W<br />
+            ดังนั้นควรเลือกมอเตอร์ขนาด 1470 W
+          </div>
+          <div class="option-grid" data-quiz="motorCheck">
+            <button class="option" data-correct="false">เพียงพอ เพราะคำนวณถูกต้องแล้ว</button>
+            <button class="option" data-correct="true">ไม่เพียงพอ เพราะยังไม่รวมประสิทธิภาพและ Safety Factor</button>
+            <button class="option" data-correct="false">ไม่เพียงพอ เพราะไม่ควรใช้สูตรกำลัง</button>
+            <button class="option" data-correct="false">เพียงพอ ถ้ามอเตอร์เป็นของใหม่</button>
+          </div>
+          <div class="feedback callout" id="motorCheckFeedback"></div>
+        </div>
+
+        <div class="card soft">
+          <h3>Motor Power Question Slider</h3>
+          <p class="muted">ปรับค่า แล้วให้นักศึกษาตอบว่าอะไรทำให้กำลังที่ต้องใช้เพิ่มขึ้น</p>
+          <div class="slider-group">
+            <div class="slider-row">
+              <div class="slider-top"><span>มวลแท่น m</span><span><span id="mLiftVal">500</span> kg</span></div>
+              <input id="mLift" type="range" min="100" max="1000" value="500" step="10" />
+            </div>
+            <div class="slider-row">
+              <div class="slider-top"><span>ความเร็ว v</span><span><span id="vLiftVal">0.30</span> m/s</span></div>
+              <input id="vLift" type="range" min="0.1" max="1.0" value="0.3" step="0.01" />
+            </div>
+            <div class="slider-row">
+              <div class="slider-top"><span>ประสิทธิภาพ η</span><span><span id="etaVal">75</span>%</span></div>
+              <input id="eta" type="range" min="40" max="100" value="75" step="1" />
+            </div>
+            <div class="slider-row">
+              <div class="slider-top"><span>Safety Factor</span><span><span id="sfVal">1.50</span></span></div>
+              <input id="sf" type="range" min="1" max="3" value="1.5" step="0.05" />
+            </div>
+          </div>
+          <div class="metric-grid">
+            <div class="metric">
+              <div class="metric-label">กำลังขั้นต่ำเชิงอุดมคติ</div>
+              <div class="metric-value" id="pIdeal">-</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">กำลังที่ควรเลือกโดยประมาณ</div>
+              <div class="metric-value" id="pReal">-</div>
+            </div>
+          </div>
+          <div class="callout warning" id="motorWarning"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="brake" data-reset-section="brake">
+      <div class="section-header">
+        <div class="section-title-block">
+          <div class="section-kicker">Challenge 3</div>
+          <h2>ระบบเบรก: คำตอบตัวเลขต้องตรวจความปลอดภัย</h2>
+          <p class="muted">ใช้การทำนาย เลือกตัวเลือก และปรับค่าเพื่อตรวจแรงเสียดทาน</p>
+        </div>
+        <button class="btn btn-reset" data-reset="brake">รีเซตหัวข้อนี้</button>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>คำถามทำนายก่อนคำนวณ</h3>
+          <p>รถมวล 800 kg เคลื่อนที่ด้วยความเร็ว 60 km/h และต้องหยุดใน 25 m สถานการณ์นี้ต้องใช้แรงเบรกอย่างไร?</p>
+          <div class="option-grid" data-quiz="brakePredict">
+            <button class="option" data-correct="false">น้อย เพราะรถไม่ใหญ่มาก</button>
+            <button class="option" data-correct="false">ไม่เกี่ยวกับความเร็ว</button>
+            <button class="option" data-correct="true">ค่อนข้างมาก เพราะความเร็วสูงและระยะหยุดสั้น</button>
+            <button class="option" data-correct="false">ไม่มีแรงเบรกถ้าถนนเรียบ</button>
+          </div>
+          <div class="feedback callout" id="brakePredictFeedback"></div>
+        </div>
+
+        <div class="card soft">
+          <h3>Brake Safety Slider</h3>
+          <div class="slider-group">
+            <div class="slider-row">
+              <div class="slider-top"><span>มวลรถ</span><span><span id="carMassVal">800</span> kg</span></div>
+              <input id="carMass" type="range" min="300" max="2000" value="800" step="10" />
+            </div>
+            <div class="slider-row">
+              <div class="slider-top"><span>ความเร็วเริ่มต้น</span><span><span id="speedVal">60</span> km/h</span></div>
+              <input id="speed" type="range" min="20" max="120" value="60" step="1" />
+            </div>
+            <div class="slider-row">
+              <div class="slider-top"><span>ระยะเบรก</span><span><span id="stopDistVal">25</span> m</span></div>
+              <input id="stopDist" type="range" min="5" max="100" value="25" step="1" />
+            </div>
+            <div class="slider-row">
+              <div class="slider-top"><span>สัมประสิทธิ์แรงเสียดทาน μ</span><span><span id="muVal">0.80</span></span></div>
+              <input id="mu" type="range" min="0.1" max="1.2" value="0.8" step="0.01" />
+            </div>
+          </div>
+          <div class="metric-grid">
+            <div class="metric"><div class="metric-label">ความเร็ว</div><div class="metric-value" id="speedMS">-</div></div>
+            <div class="metric"><div class="metric-label">ความเร่งที่ต้องใช้</div><div class="metric-value" id="brakeAcc">-</div></div>
+            <div class="metric"><div class="metric-label">แรงเบรกเฉลี่ย</div><div class="metric-value" id="brakeForce">-</div></div>
+            <div class="metric"><div class="metric-label">แรงเสียดทานสูงสุด</div><div class="metric-value" id="fricMax">-</div></div>
+          </div>
+          <div class="callout" id="brakeStatus"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="crane" data-reset-section="crane">
+      <div class="section-header">
+        <div class="section-title-block">
+          <div class="section-kicker">Challenge 4</div>
+          <h2>แรงบิด: ไม่ใช่แค่น้ำหนัก แต่ระยะก็สำคัญ</h2>
+          <p class="muted">เน้นคำถามเลือกตอบและการปรับค่าเพื่อดูความสัมพันธ์ของแรงบิด</p>
+        </div>
+        <button class="btn btn-reset" data-reset="crane">รีเซตหัวข้อนี้</button>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>คำถามทำนาย</h3>
+          <p>ถ้าวัตถุมีมวลเท่าเดิม แต่ย้ายออกไปไกลจากจุดหมุนมากขึ้น แรงบิดจะเป็นอย่างไร?</p>
+          <div class="option-grid" data-quiz="torquePredict">
+            <button class="option" data-correct="true">เพิ่มขึ้น</button>
+            <button class="option" data-correct="false">ลดลง</button>
+            <button class="option" data-correct="false">เท่าเดิม</button>
+            <button class="option" data-correct="false">ไม่เกี่ยวกับระยะ</button>
+          </div>
+          <div class="feedback callout" id="torquePredictFeedback"></div>
+        </div>
+
+        <div class="card soft">
+          <h3>Torque Question Slider</h3>
+          <div class="slider-group">
+            <div class="slider-row">
+              <div class="slider-top"><span>มวลวัตถุ</span><span><span id="loadMassVal">1000</span> kg</span></div>
+              <input id="loadMass" type="range" min="100" max="3000" value="1000" step="50" />
+            </div>
+            <div class="slider-row">
+              <div class="slider-top"><span>ระยะจากจุดหมุน</span><span><span id="armVal">5.0</span> m</span></div>
+              <input id="arm" type="range" min="1" max="12" value="5" step="0.1" />
+            </div>
+            <div class="slider-row">
+              <div class="slider-top"><span>มุมระหว่างแขนกับแนวแรง</span><span><span id="angleVal">90</span>°</span></div>
+              <input id="angle" type="range" min="10" max="90" value="90" step="1" />
+            </div>
+          </div>
+          <div class="metric-grid">
+            <div class="metric"><div class="metric-label">น้ำหนักวัตถุ</div><div class="metric-value" id="weightLoad">-</div></div>
+            <div class="metric"><div class="metric-label">แรงบิด</div><div class="metric-value" id="torqueVal">-</div></div>
+          </div>
+          <div class="callout warning" id="torqueWarning"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="judgment" data-reset-section="judgment">
+      <div class="section-header">
+        <div class="section-title-block">
+          <div class="section-kicker">Engineering Judgment Zone</div>
+          <h2>เลือกคำตอบที่ควรตรวจสอบก่อนเชื่อ AI</h2>
+          <p class="muted">ให้นักศึกษาตอบแบบเลือกตัวเลือกในแต่ละสถานการณ์</p>
+        </div>
+        <button class="btn btn-reset" data-reset="judgment">รีเซตหัวข้อนี้</button>
+      </div>
+
+      <div class="grid-3">
+        <div class="scenario-card">
+          <h3>ทางลาดขนของ</h3>
+          <p>AI บอกว่าใช้แรงดันของขึ้นทางลาดประมาณ 350 N ก่อนนำไปใช้จริงควรตรวจอะไรเพิ่ม?</p>
+          <div class="option-grid" data-quiz="scenario1">
+            <button class="option" data-correct="false">แรงเสียดทานเท่านั้น</button>
+            <button class="option" data-correct="false">ความแข็งแรงของทางลาดเท่านั้น</button>
+            <button class="option" data-correct="true">แรงเสียดทาน ความแข็งแรง และ Safety Factor</button>
+          </div>
+          <div class="feedback callout" id="scenario1Feedback"></div>
+        </div>
+
+        <div class="scenario-card">
+          <h3>ปั๊มน้ำ</h3>
+          <p>AI ใช้สมการ P = ρgh เพื่อคำนวณความดันของปั๊ม คำตอบนี้อาจขาดปัจจัยใด?</p>
+          <div class="option-grid" data-quiz="scenario2">
+            <button class="option" data-correct="false">ความสูงเท่านั้น</button>
+            <button class="option" data-correct="true">การสูญเสียในท่อ ข้องอ วาล์ว และอัตราการไหล</button>
+            <button class="option" data-correct="false">สีของท่อ</button>
+          </div>
+          <div class="feedback callout" id="scenario2Feedback"></div>
+        </div>
+
+        <div class="scenario-card">
+          <h3>อุปกรณ์ร้อนเกินไป</h3>
+          <p>AI แนะนำว่า “ติด Heat Sink ก็พอ” ก่อนเชื่อคำตอบควรตรวจอะไร?</p>
+          <div class="option-grid" data-quiz="scenario3">
+            <button class="option" data-correct="true">กำลังความร้อน พื้นที่ผิว การไหลของอากาศ และอุณหภูมิแวดล้อม</button>
+            <button class="option" data-correct="false">ดูว่า Heat Sink สวยหรือไม่</button>
+            <button class="option" data-correct="false">ตรวจเฉพาะราคา</button>
+          </div>
+          <div class="feedback callout" id="scenario3Feedback"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reflection" data-reset-section="reflection">
+      <div class="section-header">
+        <div class="section-title-block">
+          <div class="section-kicker">Reflection</div>
+          <h2>สะท้อนความคิดก่อนเริ่มเรียนจริง</h2>
+          <p class="muted">ให้นักศึกษาพิมพ์คำตอบสั้น ๆ หรือใช้เป็นคำถามอภิปรายปิดกิจกรรม</p>
+        </div>
+        <button class="btn btn-reset" data-reset="reflection">รีเซตหัวข้อนี้</button>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>คำถามที่ 1</h3>
+          <p>หลังจากทำกิจกรรมนี้ คุณคิดว่าวิชาฟิสิกส์สำคัญต่อวิศวกรรมอย่างไร?</p>
+          <textarea id="reflection1" placeholder="พิมพ์คำตอบของคุณที่นี่..."></textarea>
+        </div>
+        <div class="card">
+          <h3>คำถามที่ 2</h3>
+          <p>ถ้าใช้ AI แก้ปัญหาวิศวกรรม คุณควรตรวจสอบอะไรบ้างก่อนเชื่อคำตอบ?</p>
+          <textarea id="reflection2" placeholder="พิมพ์คำตอบของคุณที่นี่..."></textarea>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="closing">
+      <div class="section-header">
+        <div class="section-title-block">
+          <div class="section-kicker">Closing Message</div>
+          <h2>สรุปก่อนเริ่มเรียนฟิสิกส์</h2>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card soft">
+          <h3>ในงานวิศวกรรมจริง เราต้องเข้าใจว่า...</h3>
+          <ul>
+            <li>ระบบมีแรงอะไรบ้าง</li>
+            <li>สูตรใดใช้ได้ และสูตรใดใช้ไม่ได้</li>
+            <li>สมมติฐานเหมาะสมหรือไม่</li>
+            <li>หน่วยถูกต้องหรือไม่</li>
+            <li>คำตอบสมเหตุสมผลหรือไม่</li>
+            <li>ผลลัพธ์ปลอดภัยหรือไม่</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="callout primary" style="font-size:1.25rem; font-weight:900;">
+            AI อาจช่วยหาคำตอบ<br />
+            แต่ฟิสิกส์ช่วยให้วิศวกรตัดสินใจได้อย่างถูกต้อง
+          </div>
+          <p class="muted">
+            ในยุค AI วิศวกรไม่ได้ต้องเรียนฟิสิกส์น้อยลง แต่ต้องเข้าใจฟิสิกส์มากพอที่จะใช้ AI ได้อย่างฉลาด ปลอดภัย และรับผิดชอบ
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="progress-wrap">
+    <span class="progress-dot"></span>
+    <span id="progressText">เริ่มกิจกรรม</span>
+  </div>
+
+  <footer class="footer">
+    เว็บไซต์กิจกรรมเปิดคาบแรก: ฟิสิกส์สำหรับวิศวกรในยุค AI
+  </footer>
+
+  <script>
+    const g = 9.8;
+
+    function fmt(value, digits = 0) {
+      return Number(value).toLocaleString('th-TH', {
+        maximumFractionDigits: digits,
+        minimumFractionDigits: digits
+      });
+    }
+
+    function setText(id, text) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = text;
+    }
+
+    function clearOptions(scope) {
+      scope.querySelectorAll('.option').forEach(btn => {
+        btn.classList.remove('selected', 'correct', 'wrong');
+      });
+      scope.querySelectorAll('.feedback').forEach(fb => {
+        fb.classList.remove('show', 'success', 'warning', 'danger', 'primary');
+        fb.style.display = '';
+        fb.innerHTML = '';
+      });
+    }
+
+    function hideWithin(scope, selectors) {
+      selectors.forEach(sel => {
+        const el = scope.querySelector(sel);
+        if (el) el.style.display = 'none';
+      });
+    }
+
+    document.querySelectorAll('[data-reset]').forEach(btn => {
+      btn.addEventListener('click', () => resetSection(btn.dataset.reset));
+    });
+
+    function resetSection(name) {
+      const section = document.querySelector(`[data-reset-section="${name}"]`);
+      if (!section) return;
+      clearOptions(section);
+
+      if (name === 'ai-role') resetSortActivity();
+      if (name === 'ai-check') hideWithin(section, ['#wrongAiAnswer']);
+      if (name === 'matching') resetPairing();
+      if (name === 'motor') {
+        hideWithin(section, ['#motorAiAnswer']);
+        setDefault('mLift', 500); setDefault('vLift', 0.3); setDefault('eta', 75); setDefault('sf', 1.5);
+        updateMotor();
+      }
+      if (name === 'brake') {
+        setDefault('carMass', 800); setDefault('speed', 60); setDefault('stopDist', 25); setDefault('mu', 0.8);
+        updateBrake();
+      }
+      if (name === 'crane') {
+        setDefault('loadMass', 1000); setDefault('arm', 5); setDefault('angle', 90);
+        updateCrane();
+      }
+      if (name === 'reflection') {
+        document.getElementById('reflection1').value = '';
+        document.getElementById('reflection2').value = '';
+      }
+    }
+
+    function setDefault(id, value) {
+      const el = document.getElementById(id);
+      if (el) el.value = value;
+    }
+
+    // Poll
+    document.querySelectorAll('[data-quiz="poll"] .option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-quiz="poll"] .option').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        const fb = document.getElementById('pollFeedback');
+        fb.textContent = btn.dataset.feedback;
+        fb.className = 'feedback callout primary show';
+      });
+    });
+
+    // Sort role activity
+    const sortItems = [
+      { text: 'คำนวณตัวเลข', bucket: 'ai' },
+      { text: 'อธิบายสูตร', bucket: 'ai' },
+      { text: 'สรุปเนื้อหา', bucket: 'ai' },
+      { text: 'เขียนรายงานเบื้องต้น', bucket: 'ai' },
+      { text: 'สร้างโค้ดจำลอง', bucket: 'ai' },
+      { text: 'เสนอแนวทางการออกแบบเบื้องต้น', bucket: 'ai' },
+      { text: 'เลือกสมมติฐานที่เหมาะสม', bucket: 'engineer' },
+      { text: 'ตรวจสอบหน่วย', bucket: 'engineer' },
+      { text: 'ตรวจว่าคำตอบสมเหตุสมผลหรือไม่', bucket: 'engineer' },
+      { text: 'ประเมินความปลอดภัย', bucket: 'engineer' },
+      { text: 'เข้าใจข้อจำกัดของสูตร', bucket: 'engineer' },
+      { text: 'ตัดสินใจว่าจะนำคำตอบไปใช้จริงได้หรือไม่', bucket: 'engineer' }
+    ];
+
+    const chips = document.getElementById('chips');
+    let selectedChip = null;
+
+    function renderChips() {
+      chips.innerHTML = '';
+      sortItems.forEach((item, index) => {
+        const chip = document.createElement('button');
+        chip.className = 'chip';
+        chip.textContent = item.text;
+        chip.dataset.bucket = item.bucket;
+        chip.dataset.index = index;
+        chip.addEventListener('click', () => {
+          selectedChip = chip;
+          document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+        });
+        chips.appendChild(chip);
+      });
+    }
+
+    function resetSortActivity() {
+      selectedChip = null;
+      renderChips();
+      document.querySelector('#aiBucket .bucket-list').innerHTML = '';
+      document.querySelector('#engineerBucket .bucket-list').innerHTML = '';
+      document.getElementById('sortSummary').style.display = 'none';
+    }
+
+    function handleBucketClick(bucketName) {
+      if (!selectedChip || selectedChip.classList.contains('done')) return;
+      const target = bucketName === 'ai' ? document.querySelector('#aiBucket .bucket-list') : document.querySelector('#engineerBucket .bucket-list');
+      const div = document.createElement('div');
+      div.className = 'bucket-item';
+      const isCorrect = selectedChip.dataset.bucket === bucketName;
+      div.textContent = selectedChip.textContent + (isCorrect ? ' ✓' : ' ✗');
+      div.style.borderColor = isCorrect ? '#86efac' : '#fecaca';
+      div.style.background = isCorrect ? '#dcfce7' : '#fee2e2';
+      target.appendChild(div);
+      selectedChip.classList.add('done');
+      selectedChip.classList.remove('active');
+      selectedChip = null;
+      if ([...document.querySelectorAll('.chip')].every(c => c.classList.contains('done'))) {
+        document.getElementById('sortSummary').style.display = 'block';
+      }
+    }
+
+    document.getElementById('aiBucket').addEventListener('click', () => handleBucketClick('ai'));
+    document.getElementById('engineerBucket').addEventListener('click', () => handleBucketClick('engineer'));
+
+    // Reveal AI answers
+    document.getElementById('showWrongAi').addEventListener('click', () => {
+      document.getElementById('wrongAiAnswer').style.display = 'block';
+    });
+
+    document.getElementById('showMotorAi').addEventListener('click', () => {
+      document.getElementById('motorAiAnswer').style.display = 'block';
+    });
+
+    // Generic quizzes
+    function setupQuiz(name, feedbackId, correctHTML, wrongHTML) {
+      document.querySelectorAll(`[data-quiz="${name}"] .option`).forEach(btn => {
+        btn.addEventListener('click', () => {
+          const group = document.querySelectorAll(`[data-quiz="${name}"] .option`);
+          group.forEach(b => b.classList.remove('selected', 'correct', 'wrong'));
+          const isCorrect = btn.dataset.correct === 'true';
+          btn.classList.add(isCorrect ? 'correct' : 'wrong');
+          const fb = document.getElementById(feedbackId);
+          fb.className = `feedback callout ${isCorrect ? 'success' : 'warning'} show`;
+          fb.innerHTML = isCorrect ? correctHTML : wrongHTML;
+        });
+      });
+    }
+
+    setupQuiz('newton','newtonFeedback','<strong>ถูกต้อง!</strong><br>จากกฎข้อที่ 2 ของนิวตัน F = ma ดังนั้น a = F/m = 10/2 = 5 m/s²','ลองตรวจจากสมการ F = ma อีกครั้ง ถ้า F = 10 N และ m = 2 kg ความเร่งต้องเป็น 10/2 = 5 m/s²');
+    setupQuiz('motorCheck','motorCheckFeedback','<strong>ถูกต้อง!</strong><br>1470 W เป็นกำลังขั้นต่ำในกรณีอุดมคติ งานจริงต้องรวมประสิทธิภาพ แรงเสียดทาน การสูญเสีย ช่วงเริ่มออกตัว และ Safety Factor','คำตอบ 1470 W คำนวณจากสูตรได้ถูกในอุดมคติ แต่ยังไม่เพียงพอสำหรับการเลือกมอเตอร์จริง');
+    setupQuiz('brakePredict','brakePredictFeedback','<strong>ถูกต้อง!</strong><br>การหยุดรถเกี่ยวข้องกับมวล ความเร็ว และระยะหยุด ยิ่งต้องหยุดในระยะสั้น แรงเบรกเฉลี่ยยิ่งมาก','ลองคิดจากพลังงานจลน์และระยะหยุด ความเร็วสูงและระยะหยุดสั้นทำให้ต้องใช้แรงเบรกมาก');
+    setupQuiz('torquePredict','torquePredictFeedback','<strong>ถูกต้อง!</strong><br>แรงบิดขึ้นกับระยะจากจุดหมุน τ = rF sinθ ถ้า r เพิ่ม แรงบิดเพิ่ม','แรงบิดไม่ได้ขึ้นกับน้ำหนักอย่างเดียว แต่ขึ้นกับระยะจากจุดหมุนด้วย');
+    setupQuiz('scenario1','scenario1Feedback','<strong>ถูกต้อง!</strong><br>ต้องตรวจทั้งแรงเสียดทาน ความแข็งแรงของทางลาด และ Safety Factor','ในงานจริงต้องตรวจมากกว่าค่าคำนวณเพียงค่าเดียว');
+    setupQuiz('scenario2','scenario2Feedback','<strong>ถูกต้อง!</strong><br>การเลือกปั๊มจริงต้องรวมการสูญเสียในท่อ ข้องอ วาล์ว และอัตราการไหล','สมการ ρgh เป็นเพียงส่วนหนึ่งของการประเมินระบบปั๊มจริง');
+    setupQuiz('scenario3','scenario3Feedback','<strong>ถูกต้อง!</strong><br>ต้องตรวจพลังงานความร้อน พื้นที่ผิว การไหลของอากาศ และอุณหภูมิแวดล้อม','การบอกว่า “ติด Heat Sink” ยังไม่พอ ต้องประเมินว่าระบายความร้อนได้เพียงพอหรือไม่');
+
+    // Matching activity
+    let selectedTask = null;
+    function setupPairing() {
+      document.querySelectorAll('#taskPairs .pair-item').forEach(item => {
+        item.addEventListener('click', () => {
+          if (item.classList.contains('correct')) return;
+          document.querySelectorAll('#taskPairs .pair-item').forEach(i => i.classList.remove('active'));
+          selectedTask = item;
+          item.classList.add('active');
+        });
+      });
+      document.querySelectorAll('#conceptPairs .pair-item').forEach(item => {
+        item.addEventListener('click', () => {
+          if (!selectedTask || item.classList.contains('correct')) return;
+          const isCorrect = selectedTask.dataset.pair === item.dataset.pair;
+          const fb = document.getElementById('pairFeedback');
+          if (isCorrect) {
+            selectedTask.classList.remove('active');
+            selectedTask.classList.add('correct');
+            item.classList.add('correct');
+            fb.className = 'feedback callout success show';
+            fb.innerHTML = '<strong>จับคู่ถูกต้อง!</strong> งานวิศวกรรมนี้ต้องใช้แนวคิดฟิสิกส์ที่เลือก';
+            selectedTask = null;
+          } else {
+            item.classList.add('wrong');
+            fb.className = 'feedback callout warning show';
+            fb.innerHTML = 'ยังไม่ตรงกัน ลองคิดว่าโจทย์นี้เกี่ยวข้องกับแรง งาน พลังงาน ของไหล ความร้อน หรือแรงบิด';
+            setTimeout(() => item.classList.remove('wrong'), 700);
+          }
+        });
+      });
+    }
+
+    function resetPairing() {
+      selectedTask = null;
+      document.querySelectorAll('.pair-item').forEach(item => item.classList.remove('active', 'correct', 'wrong'));
+      const fb = document.getElementById('pairFeedback');
+      fb.className = 'feedback callout';
+      fb.innerHTML = '';
+    }
+
+    // Motor simulator
+    ['mLift', 'vLift', 'eta', 'sf'].forEach(id => document.getElementById(id).addEventListener('input', updateMotor));
+
+    function updateMotor() {
+      const m = +document.getElementById('mLift').value;
+      const v = +document.getElementById('vLift').value;
+      const eta = +document.getElementById('eta').value / 100;
+      const sf = +document.getElementById('sf').value;
+      const pIdeal = m * g * v;
+      const pReal = pIdeal / eta * sf;
+
+      setText('mLiftVal', fmt(m));
+      setText('vLiftVal', v.toFixed(2));
+      setText('etaVal', Math.round(eta * 100));
+      setText('sfVal', sf.toFixed(2));
+      setText('pIdeal', fmt(pIdeal, 0) + ' W');
+      setText('pReal', fmt(pReal, 0) + ' W');
+
+      const warning = document.getElementById('motorWarning');
+      if (eta < 0.6) {
+        warning.textContent = 'ประสิทธิภาพต่ำมาก กำลังที่ต้องเลือกจริงจะสูงกว่าค่าขั้นต่ำอย่างมาก';
+      } else if (sf < 1.2) {
+        warning.textContent = 'Safety Factor ต่ำ ควรระวังเมื่อนำไปใช้จริง';
+      } else {
+        warning.textContent = 'คำถามสำหรับผู้เรียน: ถ้าเพิ่มมวล เพิ่มความเร็ว หรือลดประสิทธิภาพ กำลังที่ควรเลือกเปลี่ยนอย่างไร?';
+      }
+    }
+
+    // Brake simulator
+    ['carMass', 'speed', 'stopDist', 'mu'].forEach(id => document.getElementById(id).addEventListener('input', updateBrake));
+
+    function updateBrake() {
+      const m = +document.getElementById('carMass').value;
+      const speedKmh = +document.getElementById('speed').value;
+      const d = +document.getElementById('stopDist').value;
+      const mu = +document.getElementById('mu').value;
+      const v = speedKmh / 3.6;
+      const a = -(v * v) / (2 * d);
+      const brakeF = m * Math.abs(a);
+      const fMax = mu * m * g;
+
+      setText('carMassVal', fmt(m));
+      setText('speedVal', fmt(speedKmh));
+      setText('stopDistVal', fmt(d));
+      setText('muVal', mu.toFixed(2));
+      setText('speedMS', v.toFixed(2) + ' m/s');
+      setText('brakeAcc', a.toFixed(2) + ' m/s²');
+      setText('brakeForce', fmt(brakeF, 0) + ' N');
+      setText('fricMax', fmt(fMax, 0) + ' N');
+
+      const status = document.getElementById('brakeStatus');
+      if (brakeF <= fMax) {
+        status.className = 'callout success';
+        status.innerHTML = '<strong>สถานะ:</strong> แรงเสียดทานยังเพียงพอสำหรับแรงเบรกเฉลี่ยที่ต้องใช้';
+      } else {
+        status.className = 'callout danger';
+        status.innerHTML = '<strong>คำเตือน:</strong> แรงเสียดทานไม่เพียงพอ รถอาจลื่นไถลและหยุดไม่ได้ในระยะที่ต้องการ';
+      }
+    }
+
+    // Crane simulator
+    ['loadMass', 'arm', 'angle'].forEach(id => document.getElementById(id).addEventListener('input', updateCrane));
+
+    function updateCrane() {
+      const m = +document.getElementById('loadMass').value;
+      const r = +document.getElementById('arm').value;
+      const angle = +document.getElementById('angle').value;
+      const theta = angle * Math.PI / 180;
+      const weight = m * g;
+      const torque = r * weight * Math.sin(theta);
+
+      setText('loadMassVal', fmt(m));
+      setText('armVal', r.toFixed(1));
+      setText('angleVal', fmt(angle));
+      setText('weightLoad', fmt(weight, 0) + ' N');
+      setText('torqueVal', fmt(torque, 0) + ' N·m');
+
+      const warning = document.getElementById('torqueWarning');
+      if (torque > 160000) {
+        warning.textContent = 'แรงบิดสูงมาก ควรพิจารณาขีดจำกัดของเครนและ Safety Factor';
+      } else {
+        warning.textContent = 'คำถามสำหรับผู้เรียน: ถ้าระยะจากจุดหมุนเพิ่มขึ้น แต่แรงเท่าเดิม แรงบิดเปลี่ยนอย่างไร?';
+      }
+    }
+
+    // Progress text
+    const sections = [
+      ['opening', 'เปิดคาบ'],
+      ['poll', 'Poll'],
+      ['ai-role', 'AI vs วิศวกร'],
+      ['ai-check', 'ตรวจ AI'],
+      ['matching', 'จับคู่'],
+      ['motor', 'มอเตอร์'],
+      ['brake', 'เบรก'],
+      ['crane', 'แรงบิด'],
+      ['judgment', 'ตัดสินใจ'],
+      ['reflection', 'Reflection'],
+      ['closing', 'สรุป']
+    ];
+
+    function updateProgress() {
+      let current = sections[0][1];
+      for (const [id, label] of sections) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top < window.innerHeight * 0.35) current = label;
+      }
+      setText('progressText', current);
+    }
+
+    window.addEventListener('scroll', updateProgress);
+
+    renderChips();
+    setupPairing();
+    updateMotor();
+    updateBrake();
+    updateCrane();
+    updateProgress();
+  </script>
+</body>
+</html>

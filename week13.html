@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>สัปดาห์ที่ 13 หน่วยที่ 5 การเคลื่อนที่แบบออสซิเลต</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="css/week13.css" />
+  <script defer src="js/mathjax-config.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <script defer src="script.js"></script>
+  <script defer src="js/week13.js"></script>
+</head>
+<body>
+  <header>
+    <div class="hero">
+      <h1>สัปดาห์ที่ 13: การเคลื่อนที่แบบออสซิเลต</h1>
+      <p>เว็บไซต์ประกอบการเรียนการสอนรายวิชา Fundamental of Physics for Engineers (FUNSC115)</p>
+    </div>
+  </header>
+
+  <div class="topbar">
+    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    <nav class="nav" id="nav">
+      <a href="index.html#content-table">🏠 หน้าแรก</a>
+      <a href="#opening">🚀 เปิดบทเรียน</a>
+      <a href="#wave-equation">🌊 สมการคลื่น</a>
+      <a href="#shm-intro">🌀 SHM</a>
+      <a href="#spring-system">🔩 มวลติดสปริง</a>
+      <a href="#circle-shm">🔵 วงกลมกับ SHM</a>
+      <a href="#spring-equations">📈 สมการสปริง</a>
+      <a href="#natural-frequency">⏱ ความถี่ธรรมชาติ</a>
+      <a href="#energy-shm">⚡ พลังงาน</a>
+      <a href="#simple-pendulum">🪢 ลูกตุ้มอย่างง่าย</a>
+      <a href="#physical-pendulum">🪵 ลูกตุ้มกายภาพ</a>
+      <a href="#summary">🎯 สรุป</a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="lesson" id="opening">
+      <h2>🚀 เปิดบทเรียน</h2>
+      <p class="lead">คาบนี้ศึกษาการเคลื่อนที่แบบออสซิเลตหรือการเคลื่อนที่ที่ระบบสั่นกลับไปกลับมารอบตำแหน่งสมดุล โดยเริ่มจากสมการคลื่น จากนั้นเข้าสู่การเคลื่อนที่แบบซิมเปิลฮาร์มอนิก การสั่นของมวลติดสปริง พลังงานของระบบสปริง การแกว่งของลูกตุ้มอย่างง่าย และการแกว่งของลูกตุ้มกายภาพ</p>
+      <div class="grid">
+        <div class="card"><strong>🎯 เป้าหมายวันนี้</strong><ul><li>อธิบายความหมายของคลื่นฮาร์มอนิกและความสัมพันธ์ \(v=f\lambda\)</li><li>อธิบายเงื่อนไขของการเคลื่อนที่แบบซิมเปิลฮาร์มอนิก</li><li>คำนวณคาบ ความถี่ ความเร็วสูงสุด ความเร่งสูงสุด และพลังงานของมวลติดสปริง</li><li>เปรียบเทียบมวลติดสปริง ลูกตุ้มอย่างง่าย และลูกตุ้มกายภาพ</li></ul></div>
+        <div class="card"><strong>🗺️ ภาพรวม</strong><br>เริ่มจากสมการคลื่นและความสัมพันธ์ระหว่างแอมพลิจูด ความยาวคลื่น ความถี่ และอัตราเร็วคลื่น จากนั้นเข้าสู่แนวคิดการเคลื่อนที่แบบซิมเปิลฮาร์มอนิกผ่านแรงคืนกลับและการสั่นของมวลติดสปริง แล้วเชื่อมตำแหน่ง ความเร็ว ความเร่ง คาบ ความถี่ และพลังงานของระบบสปริง ก่อนขยายไปสู่การแกว่งของลูกตุ้มอย่างง่ายและลูกตุ้มกายภาพที่ใช้แนวคิดแรงบิดคืนกลับในรูปแบบเดียวกัน</div>
+        <div class="card"><strong>🧭 วิธีเรียน</strong><br>
+          เรียนผ่านคำถาม ทดลองคิด ทำกิจกรรม และตอบ quiz ระหว่างสอน
+        </div>
+      </div>
+      <div class="interaction">
+        <h3>📊 Poll เปิดคาบ: ระบบใดไม่ใช่การเคลื่อนที่แบบซ้ำไปซ้ำมา?</h3>
+        <div class="options" data-quiz data-answer="car">
+          <button class="option-btn" data-choice="swing">ชิงช้าแกว่งกลับไปมา</button>
+          <button class="option-btn" data-choice="spring">มวลติดสปริงสั่น</button>
+          <button class="option-btn" data-choice="car">รถวิ่งเป็นเส้นตรงด้วยความเร็วคงที่</button>
+          <button class="option-btn" data-choice="string">สายกีตาร์สั่น</button>
+        </div>
+        <div data-feedback></div>
+      </div>
+    </section>
+
+    <section class="lesson" id="wave-equation">
+      <h2>🌊 1. สมการคลื่น</h2>
+      <div class="grid">
+        <p class="lead">
+          <b>สมการคลื่น (Wave equation)</b> เป็นสมการทางคณิตศาสตร์ที่ใช้อธิบายการเคลื่อนที่ของคลื่นในตัวกลางหรือในระบบทางกายภาพ
+          โดยแสดงความสัมพันธ์ระหว่าง การกระจัดของคลื่น ตำแหน่ง และเวลา
+          สมการนี้สามารถใช้ศึกษาคลื่นหลายชนิด เช่น คลื่นบนเส้นเชือก คลื่นเสียง และคลื่นผิวน้ำ
+          <br><br>สำหรับคลื่นหนึ่งมิติที่เคลื่อนที่ไปตามแกน x สมการคลื่นพื้นฐานสามารถเขียนได้เป็น
+        </p>
+        <div class="figure-card figure-wide">
+          <img decoding="async" loading="lazy" src="asset/week%2013/figure-1.png" alt="ภาพแสดงภาพองค์ประกอบของคลื่น">
+          <div class="caption">ภาพแสดงภาพองค์ประกอบของคลื่น</div>
+        </div>
+      </div>
+
+      <div class="equation-card"><div class="equation-wrapper"><div class="equation">\[\frac{\partial^2 y}{\partial x^2}=\frac{1}{v^2}\frac{\partial^2 y}{\partial t^2}\]</div><div class="equation-label"></div></div></div>
+      
+      <p class="lead">
+        โดยที่ \(y(x,t)\) คือ การกระจัดของคลื่นที่ตำแหน่ง \(x\) และเวลา \(t\)
+        และ \(v\) คือ ความเร็วของคลื่น
+        <br><br>สมการนี้แสดงให้เห็นว่า การเปลี่ยนแปลงของการกระจัดตามตำแหน่งมีความสัมพันธ์กับการเปลี่ยนแปลงตามเวลา ซึ่งเป็นลักษณะพื้นฐานของการเคลื่อนที่แบบคลื่น
+      </p>
+      
+      <p class="lead">คำตอบรูปแบบหนึ่งของสมการคลื่นคือ <b>คลื่นไซน์ (sinusoidal wave)</b> ซึ่งสามารถเขียนได้เป็น</p>
+      <div class="equation-card"><div class="equation-wrapper"><div class="equation">\[y(x,t)=A\sin(kx-\omega t+\phi)\]</div><div class="equation-label"></div></div></div>
+      <div class="card">
+      <p>โดยที่</p>
+      <div class="grid">
+        <ul>
+          <li>\(A\) คือ แอมพลิจูด (amplitude) ของคลื่น</li>
+          <li>\(k\) คือ เลขคลื่น (wave number) โดย \(k=\frac{2\pi}{\lambda}\)</li>
+          <li>\(\omega\) คือ ความถี่เชิงมุม (angular frequency) โดย \(\omega=2\pi f\)</li>
+        </ul>
+        <ul>
+          <li>\(\lambda\) คือ ความยาวคลื่น</li>
+          <li>\(f\) คือ ความถี่ของคลื่น</li>
+          <li>\(\phi\) คือ เฟสเริ่มต้น (initial phase)</li>
+        </ul>
+        </div>
+      </div>
+
+      <p class="lead">
+        อัตราเร็วของคลื่นมีความสัมพันธ์กับความยาวคลื่นและความถี่ดังนี้
+      </p>
+      <div class="equation-card">
+        <div class="equation-wrapper">
+          <div class="equation">
+          \[v=f\lambda\]
+          </div>
+          <div class="equation-label"></div>
+        </div>
+      </div>
+
+      <div class="interaction w13-panel" id="waveLab">
+        <h3>🌊 Wave Simulator</h3>
+          <div class="w13-control-grid">
+          <label>แอมพลิจูด A (m) <input type="range" id="waveAmp" min="1" max="8" step="0.1" value="4.2"><span id="waveAmpOut"></span></label>
+          <label>ความถี่ f (Hz) <input type="range" id="waveFreq" min="0.2" max="3" step="0.1" value="1"><span id="waveFreqOut"></span></label>
+          <label>ความยาวคลื่น λ (m) <input type="range" id="waveLambda" min="1.6" max="7.2" step="0.1" value="3.8"><span id="waveLambdaOut"></span></label>
+          <label>เฟสเริ่มต้น φ <input type="range" id="wavePhase" min="0" max="6.28" step="0.01" value="0"><span id="wavePhaseOut"></span></label>
+        </div>
+        <div class="w13-toolbar">
+          <button type="button" id="waveToggle">เริ่ม animation</button>
+          <button type="button" class="secondary" id="waveReset">Reset</button>
+          <span class="w13-time" id="waveTime">เวลา t = 0.00 s</span>
+        </div>
+        <canvas id="waveCanvas" class="w13-canvas" width="900" height="260"></canvas>
+        <div class="w13-readout" id="waveReadout"></div>
+      </div>
+      <div class="interaction">
+        <h3>🧠 Concept Check</h3>
+        <p>ถ้าความถี่เพิ่มขึ้น แต่ความเร็วคลื่นคงที่ ความยาวคลื่นจะเป็นอย่างไร?</p>
+        <div class="options" data-quiz data-answer="decrease"><button class="option-btn" data-choice="increase">เพิ่มขึ้น</button><button class="option-btn" data-choice="decrease">ลดลง</button><button class="option-btn" data-choice="same">คงที่</button></div><div data-feedback></div>
+      </div>
+    </section>
+
+    <section class="lesson" id="shm-intro">
+      <h2>🌀 2. การเคลื่อนที่แบบซิมเปิลฮาร์มอนิก</h2>
+
+      <div class="lead">
+        <p><b>การเคลื่อนที่แบบออสซิเลต (Oscillation motion)</b>
+        เป็นการเคลื่อนที่ที่ระบบเกิดการสั่นกลับไปกลับมารอบ<i>ตำแหน่งสมดุล</i>
+        <br>หนึ่งในตัวอย่างพื้นฐานสำหรับการเคลื่อนที่แบบออสซิเลต คือ
+        <b>การเคลื่อนที่แบบฮาร์มอนิกอย่างง่าย (simple harmonic motion)</b>
+        ซึ่งเป็นการเคลื่อนที่แบบออสซิเลตที่มีขนาดสูงสุดของการสั่น (amplitude) คงที่
+        การเคลื่อนที่ลักษณะนี้เกิดขึ้นได้ก็ต่อเมื่อระบบมีแรงคืนกลับที่มีคุณสมบัติดังนี้</p>
+        <ul>
+          <li>1.ขนาดของแรงคืนกลับแปรผันตรงกับขนาดของการกระจัดที่วัดจากตำแหน่งสมดุล</li>
+          <li>2. ทิศทางของแรงคืนกลับตรงข้ามกับทิศทางการกระจัดเสมอ</li>
+        </ul>
+      </div>
+
+      <div class="interaction w13-panel" id="restoringLab">
+        <h3>🎯 Restoring Force Demo</h3>
+        <p>ลากตำแหน่งของมวลออกจากสมดุล แล้วสังเกตทิศทางของแรงคืนกลับ</p>
+        <label>ตำแหน่ง x (m) <input type="range" id="restoreX" min="-1" max="1" step="0.01" value="0.55"><span id="restoreXOut"></span></label>
+        <svg id="restoreSvg" viewBox="0 0 900 220" class="w13-svg"></svg>
+        <div class="w13-readout" id="restoreReadout"></div>
+      </div>
+
+      <div class="grid">
+        <p class="lead">ตัวอย่างระบบทางกายภาพที่มีการเคลื่อนที่ลักษณะนี้
+        <br>ได้แก่ การสั่นของมวลติดสปริง และการแกว่งของวัตถุที่ถูกแขวน</p>
+        <div class="figure-card"><img decoding="async" loading="lazy" src="asset/week%2013/figure-2.jpg" alt="ภาพแสดงตัวอย่างการเคลื่อนที่แบบฮาร์มอนิกอย่างง่าย">
+          <div class="caption">ภาพแสดงตัวอย่างการเคลื่อนที่แบบฮาร์มอนิกอย่างง่าย</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson" id="spring-system">
+        <h2>🔩 2.1 การเคลื่อนที่แบบสปริง</h2>
+        <p class="lead">
+          <b>ระบบมวลติดสปริง (Spring-mass system)</b>
+          คือ ระบบที่ประกอบด้วยสปริงซึ่งปลายด้านหนึ่งถูกยึดไว้กับที่
+          ส่วนปลายอีกด้านหนึ่งติดกับมวล ตำแหน่งสมดุลของระบบ คือตำแหน่งที่สปริงไม่ถูกยืดหรืออัด
+          ซึ่งมักกำหนดให้เป็น \(x=0 \ \mathrm{m}\) หากเราดึงมวลออกไปที่ตำแหน่ง \(x=A \ \mathrm{m}\)
+          แล้วปล่อย มวลจะเคลื่อนที่กลับไปกลับมา ระหว่างตำแหน่ง \(x=A \ \mathrm{m}\) และ
+          \(x=-A \ \mathrm{m}\) โดยเรียกระยะ \(A\) นี้ว่า
+          ขนาดสูงสุดของการสั่น หรือ แอมพลิจูดของการสั่น
+        </p>
+        <div class="interaction w13-panel" id="springLab">
+          <h3>🧪 Spring Oscillator Simulator</h3>
+          <div class="w13-control-grid">
+            <label>มวล m (kg) <input type="range" id="springM" min="0.1" max="2" step="0.05" value="0.50"><span id="springMOut"></span></label>
+            <label>ค่าคงที่สปริง k (N/m) <input type="range" id="springK" min="1" max="30" step="0.5" value="8"><span id="springKOut"></span></label>
+            <label>แอมพลิจูด A (m) <input type="range" id="springA" min="0.00" max="0.8" step="0.01" value="0.35"><span id="springAOut"></span></label>
+          </div>
+          <div class="w13-toolbar">
+            <button type="button" id="springToggle">เริ่ม animation</button>
+            <button type="button" class="secondary" id="springReset">Reset</button>
+            <span class="w13-time" id="springTime">เวลา t = 0.00 s</span>
+          </div>
+          <svg id="springSvg" viewBox="0 0 900 260" class="w13-svg"></svg>
+          <div class="w13-readout" id="springReadout"></div>
+        </div>
+      </div><br>
+
+      <div class="card" id="circle-shm">
+        <h2>🔵 ความสัมพันธ์ระหว่างการเคลื่อนไหวของมวลติดสปริงและการเคลื่อนที่แบบวงกลม</h2>
+        <div class="grid">
+          <p class="lead">
+            วิธีที่ง่ายวิธีหนึ่งในการจำลองการเคลื่อนที่ของมวลติดสปริง คือ
+            การพิจารณาการเคลื่อนที่แบบวงกลมสม่ำเสมอ
+            <br><br>ภาพขวามือแสดงการเคลื่อนที่แบบวงกลมสม่ำเสมอของหมุดไม้ (ทรงกระบอกไม้)
+            ติดอยู่กับจานหมุนในแนวดิ่ง ซึ่งหมุนด้วยความถี่เชิงมุมคงที่
+            หากวางหลอดไฟไว้เหนือจานและหมุด จะเกิดเงาหมุดดังภาพ
+            หากรัศมีของจานมีค่าเท่ากับ \(A\) และกำหนดตำแหน่งของเงาที่อยู่ตรงกับเส้นกึ่งกลางของจานเป็น
+            \(x=0 \ \mathrm{m}\) เมื่อจานหมุนด้วยอัตราเร็วเชิงมุม 𝜔 คงที่ เงาจะเคลื่อนที่แกว่งไปมาระหว่าง
+            \(x=+A \ \mathrm{m}\) และ \(x=-A \ \mathrm{m}\)
+          </p>
+          <div class="figure-card"><img decoding="async" loading="lazy" src="asset/week%2013/figure-4.png" alt="ภาพแสดงเงาที่เกิดจากการฉายแสงในแนวดิ่งผ่านหมุดไม้ที่เคลื่อนที่เป็นวงกลม">
+            <div class="caption">ภาพแสดงเงาที่เกิดจากการฉายแสงในแนวดิ่งผ่านหมุดไม้ที่เคลื่อนที่เป็นวงกลม</div>
+          </div>
+        </div>
+        <p class="lead">
+          หากจัดให้จุดศูนย์กลางของจานหมุนอยู่ตรงกับแนวตำแหน่งสมดุลของมวลติดสปริง
+          ให้เงาของหมุดไม้ตรงกับมวลตอนที่ถูกยืดออกเป็นระยะ \(x=A\)
+          พอและปรับความถี่เชิงมุมให้เหมาะสม การเคลื่อนที่ของเงาหมุดไม้จะเคลื่อนที่ไปพร้อมกับมวลติดสปริง
+        </p>
+        <div class="interaction w13-panel" id="circleLab">
+          <h3>🔵 Circle-to-SHM Animation</h3>
+          <label>
+            อัตราเร็วเชิงมุม ω = <span id="circleOmegaOut"></span>
+            <input type="range" id="circleOmega" min="0.5" max="6" step="0.1" value="2.4">
+          </label>
+          <div class="w13-control-grid w13-compact-controls">
+            <label><input type="checkbox" id="circleShowDisc" checked> จานหมุน</label>
+            <label><input type="checkbox" id="circleShowSpring" checked> มวลติดสปริง</label>
+          </div>
+          <div class="w13-toolbar">
+            <button type="button" id="circleToggle">เล่น animation</button>
+          </div>
+          <canvas id="circleCanvas" class="w13-canvas" width="900" height="520"></canvas>
+          <p class="lead">
+              กล่าวอีกนัยหนึ่ง
+              เราสามารถอธิบายการเคลื่อนที่ของมวลติดสปริงได้โดยคำอธิบายการเคลื่อนที่ของเงาของหมุดไม้ที่เคลื่อนที่เป็นวงกลม
+              โดยมีรัศมีเท่ากับแอมพลิจูด \(A\) ของการสั่น และมีอัตราเร็วเชิงมุม \(\omega\)  ที่เหมาะสม
+              (ซึ่งจะแสดงในภายหลังการกำหนดค่าที่เหมาะสม)
+              ตำแหน่งของเงาหมุดไม้ ก็คือ ตำแหน่งตามแกน \(x\) ของหมุดไม้ \(x(t)\)
+              ซึ่งก็คือ ตำแหน่งของมวลติดสปริง จากการศึกษาการเคลื่อนที่แบบวงกลมสม่ำเสมอ
+              เรารู้ว่า \(x(t)=A\cos (\omega t)\)
+            </p>
+        </div>
+      </div><br>
+
+      <div class="card" id="spring-equations">
+      <h2>📈 สมการการเคลื่อนที่ของมวลติดสปริง</h2>
+      <div>
+        <p class="lead">จากการที่เรารู้ว่าตำแหน่งของมวลติดสปริงอธิบายได้ด้วย</p>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">\[x(t)=A\cos(\omega t)\]
+            </div><div class="equation-label"></div></div></div>
+        <p class="lead">สามารถแสดงต่อไปได้ไม่ยากว่า ความเร็ว และ ความเร่งของมวลจะเท่ากับ</p>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">\[v(t)=-A\omega\sin(\omega t)\]</div>
+            <div class="equation-label"></div></div></div>
+        <div class="equation-card">
+          <div class="equation-wrapper"><div class="equation">
+            \[a(t)=-A\omega^2\cos(\omega t)\]</div><div class="equation-label"></div></div></div>
+      </div>
+      <div class="interaction w13-panel" id="tripleGraphLab">
+        <h3>📊 Triple Graph Explorer</h3>
+        <label>เลื่อนเวลา t <input type="range" id="graphTime" min="0" max="12.56" step="0.01" value="0"><span id="graphTimeOut"></span></label>
+        <canvas id="tripleGraphCanvas" class="w13-canvas" width="900" height="600"></canvas>
+        <div class="w13-readout" id="tripleGraphReadout"></div>
+      </div>
+      <div class="warning-box">
+        <div class="warning-content">
+          <strong>⚠️ ข้อสังเกตสำคัญ</strong>
+          <ol>
+            <li> เราสามารถเขียนความเร่งให้อยู่ในรูปของตำแหน่งได้
+              \[a=-\omega^2 x\]
+            </li>
+            <li> ตำแหน่งไกลสุดจากสมดุลจะมีค่าเท่ากับ \[x_{𝑚ax}=A\]
+              ค่าอัตราเร็วสูงสุดของมวลคือ \[v_{𝑚ax}=A\omega\]
+              และ ความเร่งสูงสุดเท่ากับ \[a_{𝑚ax}=A\omega^2\]
+            <li> คาบการสั่นของมวลติดสปริงและอัตราเร็วเชิงมุมของหมุดไม้สัมพันธ์กันตามสมการนี้
+              \[T=\frac{2𝜋}{\omega}\]
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="interaction">
+        <h3>🎯 Quick Quiz</h3><p>ตำแหน่งใดที่อัตราเร็วของมวลติดสปริงมีค่ามากที่สุด?</p>
+        <div class="options" data-quiz data-answer="eq"><button class="option-btn" data-choice="left">ตำแหน่งไกลสุดด้านซ้าย</button><button class="option-btn" data-choice="right">ตำแหน่งไกลสุดด้านขวา</button><button class="option-btn" data-choice="eq">ตำแหน่งสมดุล</button></div><div data-feedback></div>
+      </div>
+      </div>
+    </section>
+
+    <section class="lesson" id="natural-frequency">
+      <h2>⏱ ความถี่ธรรมชาติของมวลติดสปริง</h2>
+      <p class="lead">
+        พิจารณากฎการเคลื่อนที่ของนิวตันข้อที่ 2 \((\sum \vec F = 𝑚\vec a)\)
+        สำหรับมวลติดสปริง เนื่องจากมีแค่แรงสปริงเท่านั้นที่กระทำกับมวล ซึ่งจากกฎของฮุก
+        แรงสปริงเท่ากับ \(F_s=-kx\) ดังนั้น \(-kx(t)=𝑚𝑎(t)\) หรือ
+        \(-kx(t)=𝑚 \frac{d^2}{dt^2} x(t)\)
+        จากข้อสังเกตที่ 1 เราจะได้ว่า \(-kx(t)=−𝑚𝜔^2 x(t)\) และค่าความถี่เชิงมุมที่เหมาะสมเท่ากับ
+      </p>
+      <div class="equation-card">
+        <div class="equation-wrapper">
+          <div class="equation">\[\omega=\sqrt{\frac{k}{m}}\]</div>
+          <div class="equation-label">
+          </div>
+        </div>
+      </div>
+      <p class="lead">
+        จากข้อสังเกตที่ 3 \((T=2𝜋/𝜔)\) จะได้ว่า
+        <br>คาบของการสั่นของระบบมวลติดสปริง จะกำหนดด้วยค่ามวล \(m\) และ ค่าคงที่สปริง \(k\)
+      </p>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">
+              \[T=2\pi\sqrt{\frac{m}{k}}\]
+            </div>
+            <div class="equation-label"></div>
+          </div>
+        </div>
+        <p class="lead">และจากความสัมพันธ์ระหว่างคาบและความถี่ \((f=1/T)\) จะได้ว่า</p>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">
+              \[f=\frac{1}{2\pi}\sqrt{\frac{k}{m}}\]
+            </div><div class="equation-label"></div>
+          </div>
+        </div>
+        <p class="lead">
+          เราเรียกความถี่นี้ว่า <b>ความถี่ธรรมชาติ (Natural frequency)</b> ของระบบมวลติดสปริง เพราะ <b>เป็นความถี่ที่ระบบสั่นด้วยตัวมันเอง เมื่อไม่มีแรงภายนอกมากระทำ</b>
+        </p>
+      
+      <div class="card example-card">
+        <h2>ตัวอย่างที่ 1</h2>
+        <p>กล่องมวล 200 g ต่อกับสปริงเบาที่มีค่าคงที่สปริง \(k=5.00\,\mathrm{N/m}\)
+          ระบบนี้สั่นโดยไม่มีแรงเสียดทานบนพื้นลื่น ถ้ากล่องถูกเลื่อนออกจากสมดุลเป็นระยะทาง
+          5.00 cm แล้วปล่อยจากหยุดนิ่ง
+          จงหา</p><ul>
+            <li>คาบของการสั่น</li>
+            <li>ค่าอัตราเร็วสูงสุดของกล่อง</li>
+            <li>ค่าความเร่งสูงสุดของกล่อง</li>
+            <li>ตำแหน่ง ความเร็ว และความเร่งของกล่องที่เป็นฟังก์ชันของเวลา ตามหน่วย SI</li>
+          </ul>
+          <button class="reveal-btn" data-reveal="ex51">แสดงแนวคิดคำตอบ</button>
+          <div class="reveal-box" id="ex51" hidden>
+            <p>\(T=2\pi\sqrt{m/k}=1.26\,\mathrm{s}\),
+              \(v_{max}=A\omega=0.25\,\mathrm{m/s}\),
+              \(a_{max}=A\omega^2=1.25\,\mathrm{m/s^2}\)
+            </p>
+            <p>เมื่อปล่อยจากหยุดนิ่งที่ตำแหน่งไกลสุด
+              ใช้ \[x(t)=0.050\cos(5.00t)\],
+              \[v(t)=-0.250\sin(5.00t)\],
+              \[a(t)=-1.25\cos(5.00t)\]</p>
+            </div>
+          </div>
+    </section>
+
+    <section class="lesson" id="energy-shm">
+      <h2>⚡ พลังงานของมวลติดสปริง</h2>
+      <div class="grid">
+        <p class="lead">
+          เนื่องจากแรงที่เกี่ยวข้องกับระบบมวลติดสปริงมีแค่แรงสปริงซึ่งเป็นแรงอนุรักษ์
+          ดังนั้นพลังงานกลรวมของระบบจะต้องคงที่ตามกฎการอนุรักษ์พลังงานกล \((E_i=E_f)\)
+          สำหรับระบบมวลติดสปริง พลังงานรวมของระบบ ณ ขณะใดก็ตาม
+          จะเท่ากับผลรวมของงานจลน์ของมวลรวมกับพลังงานศักย์ยืดหยุ่นในสปริง
+          \(E=\frac12 𝑚v^2+\frac12 kx^2\) ดังนั้นสมการด้านล่าง
+          ซึ่งเป็นจริงสำหรับสองสถานกาณ์เริ่มต้นและสุดท้ายใด ๆ ของระบบ       
+        </p>
+        <div class="figure-card">
+          <img decoding="async" loading="lazy" src="asset/week%2013/figure-6.png" alt="ภาพแสดงพลังงานจลน์ พลังงานศักย์ และพลังงานรวมของระบบ ที่ตำแหน่งต่าง ๆ">
+          <div class="caption">ภาพแสดงพลังงานจลน์ พลังงานศักย์ และพลังงานรวมของระบบ ที่ตำแหน่งต่าง ๆ</div>
+        </div>
+        </div>
+        <div class="equation-card">
+          <div class="equation-wrapper">
+            <div class="equation">
+              \[\frac12 mv_f^2+ \frac12 kx_f^2=\frac12 mv_i^2+ \frac12 kx_i^2\]
+            </div><div class="equation-label"></div>
+          </div>
+        </div>
+      <div class="interaction w13-panel" id="energyLab">
+        <h3>⚡ Energy Conversion Explorer</h3>
+        <div class="w13-control-grid">
+          <label>มวล m (kg) <input type="range" id="energyM" min="0.2" max="3" step="0.1" value="1"><span id="energyMOut"></span></label>
+          <label>ค่าคงที่สปริง k (N/m) <input type="range" id="energyK" min="2" max="40" step="1" value="12"><span id="energyKOut"></span></label>
+          <label>แอมพลิจูด A (m) <input type="range" id="energyA" min="0.1" max="1" step="0.05" value="0.6"><span id="energyAOut"></span></label>
+        </div>
+        <label class="w13-time-slider">
+          เลื่อนเวลา \(t\)
+          <input type="range" id="energyTimeSlider" min="0" max="1" step="0.01" value="0">
+          <span id="energyTimeOut">เวลา t = 0.00 s</span>
+        </label>
+        <svg id="energySvg" viewBox="0 0 900 420" class="w13-svg"></svg>
+        <div class="w13-readout" id="energyReadout"></div>
+      </div>
+      <div class="interaction"><h3>🧠 Energy Prediction</h3><p>ที่ตำแหน่งไกลสุดจากสมดุล พลังงานชนิดใดมีค่าสูงสุด?</p><div class="options" data-quiz data-answer="u"><button class="option-btn" data-choice="k">พลังงานจลน์</button><button class="option-btn" data-choice="u">พลังงานศักย์ยืดหยุ่น</button><button class="option-btn" data-choice="zero">ไม่มีพลังงาน</button></div><div data-feedback></div></div>
+      <div class="card example-card">
+        <h2>ตัวอย่างที่ 2</h2>
+        <p>
+          จงพิจารณาความสัมพันธ์ของพลังงานรวมระหว่างตอนที่มวลเคลื่อนที่ไปไกลที่สุด
+          \(x=A\) และตอนที่มวลเคลื่อนที่ผ่านจุดสมดุล \(x=0\)
+        </p>
+        <button class="reveal-btn" data-reveal="ex52">แสดงแนวคิดคำตอบ</button>
+        <div class="reveal-box" id="ex52" hidden>
+          <p><strong>วิธีทำ</strong></p>
+          <p>ที่ตำแหน่งไกลสุด \(x=A\) มวลหยุดชั่วขณะ ดังนั้น \(v=0\)</p>
+          \[
+            KE_i=0,\qquad PE_i=\frac{1}{2}kA^2,\qquad E_i=\frac{1}{2}kA^2
+          \]
+          <p>ที่ตำแหน่งสมดุล \(x=0\) สปริงไม่ยืดหรือหด ดังนั้นพลังงานศักย์เป็นศูนย์</p>
+          \[
+            PE_f=0,\qquad KE_f=\frac{1}{2}mv_{\max}^2,\qquad E_f=\frac{1}{2}mv_{\max}^2
+          \]
+          <p>ใช้กฎอนุรักษ์พลังงานกล</p>
+          \[
+            E_i=E_f
+            \quad\Rightarrow\quad
+            \frac{1}{2}kA^2=\frac{1}{2}mv_{\max}^2
+          \]
+          \[
+            v_{\max}=A\sqrt{\frac{k}{m}}=A\omega
+          \]
+        </div>
+      </div><br>
+
+      <div class="card example-card">
+        <h2>ตัวอย่างที่ 3</h2>
+        <p>
+          มวล \(𝑚=0.500 \ \mathrm{k}g\) ต่อกับสปริงมวลเบาที่มีค่าคงที่สปริงเท่ากับ \(k=20.0 \ \mathrm{N/m}\)
+          สั่นอยู่บนพื้นลื่น ใช้แนวคิดพลังงานในการตอบคำถามต่อไปนี้
+          <br>a. คำนวณค่าอัตราเร็วสูงสุดของมวล เมื่อแอมพลิจูดการสั่นเท่ากับ \(A=3.00\) cm
+          <br>b. ความเร็วของมวลเป็นเท่าไรเมื่ออยู่ที่ตำแหน่ง \(x=2.00\) cm
+          <br>c. คำนวณหาพลังงานจลน์และพลังงานศักย์ของระบบ เมื่อมวลอยู่ที่ \(x=2.00\) cm
+
+        </p>
+        <button class="reveal-btn" data-reveal="ex53">แสดงแนวคิดคำตอบ</button>
+        <div class="reveal-box" id="ex53" hidden>
+          <p><strong>กำหนดให้</strong></p>
+          \[
+            m=0.500\,\mathrm{kg},\quad k=20.0\,\mathrm{N/m},\quad
+            A=3.00\,\mathrm{cm}=0.0300\,\mathrm{m},\quad
+            x=2.00\,\mathrm{cm}=0.0200\,\mathrm{m}
+          \]
+          <p><strong>a. หาอัตราเร็วสูงสุด</strong></p>
+          \[
+            E=\frac{1}{2}kA^2
+            =\frac{1}{2}(20.0)(0.0300)^2
+            =9.00\times10^{-3}\,\mathrm{J}
+          \]
+          \[
+            \frac{1}{2}mv_{\max}^2=E
+            \quad\Rightarrow\quad
+            v_{\max}=\sqrt{\frac{2E}{m}}
+            =\sqrt{\frac{2(9.00\times10^{-3})}{0.500}}
+            =0.190\,\mathrm{m/s}
+          \]
+          <p><strong>b. หาความเร็วเมื่อ \(x=0.0200\,\mathrm{m}\)</strong></p>
+          \[
+            E=\frac{1}{2}mv^2+\frac{1}{2}kx^2
+          \]
+          \[
+            v=\sqrt{\frac{2}{m}\left(E-\frac{1}{2}kx^2\right)}
+            =\sqrt{\frac{2}{0.500}\left(9.00\times10^{-3}-\frac{1}{2}(20.0)(0.0200)^2\right)}
+            =0.141\,\mathrm{m/s}
+          \]
+          <p><strong>c. หาพลังงานจลน์และพลังงานศักย์ที่ \(x=0.0200\,\mathrm{m}\)</strong></p>
+          \[
+            PE=\frac{1}{2}kx^2
+            =\frac{1}{2}(20.0)(0.0200)^2
+            =4.00\times10^{-3}\,\mathrm{J}
+          \]
+          \[
+            KE=E-PE
+            =9.00\times10^{-3}-4.00\times10^{-3}
+            =5.00\times10^{-3}\,\mathrm{J}
+          \]
+        </div>
+      </div>
+    </section>
+
+    <section class="lesson" id="simple-pendulum">
+      <h2>🪢 2.2 การเคลื่อนที่แบบซิมเปิลเพนดูลัม</h2>
+      <div class="grid">
+        <p class="lead">
+            <b>ลูกตุ้มอย่างง่าย หรือ ซิมเปิลเพนดูลัม (simple pendulum)</b> คือ
+            ระบบที่ประกอบด้วยวัตถุขนาดเล็ก แขวนด้วยเชือกเบาที่มีความยาวคงที่
+            โดยปลายอีกด้านหนึ่งตรึงไว้ เมื่อดึงวัตถุให้เชือกทำมุมเล็กๆ กับแนวดิ่งแล้วปล่อย
+            วัตถุจะเคลื่อนที่กลับไปมา (แกว่ง) รอบตำแหน่งสมดุล
+            <br><br>เนื่องจากเราสามารถพิจารณาวัตถุขนาดเล็กแขวนด้วยเชือกเบาเป็นวัตถุแข็งเกร็งได้
+            ดังนั้นสามารถใช้กฎการเคลื่อนที่แบบหมุนรอบแกนหมุนคงที่ของวัตถุแข็งเกร็ง
+            \((\sum_i \tau_i=I\alpha)\) กับการแกว่งของวัตถุนี้ได้
+        </p>
+        <div class="figure-card">
+          <img decoding="async" loading="lazy" src="asset/week%2013/figure-7.png" alt="ภาพแสดงตัวอย่างการแกว่งของลูกตุ้มอย่างง่าย">
+          <div class="caption">ภาพแสดงตัวอย่างการแกว่งของลูกตุ้มอย่างง่าย</div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="figure-card">
+          <img decoding="async" loading="lazy" src="asset/week%2013/figure-8.png" alt="รูปแสดงเวกเตอร์ที่ใช้ในการคำนวณหาแรงบิดที่กระทำกับมวล \(\vec \tau=\vec r\times\vec W=−ℓ𝑚𝑔 \sin \theta \ \hat{k}\)">
+          <div class="caption">รูปแสดงเวกเตอร์ที่ใช้ในการคำนวณหาแรงบิดที่กระทำกับมวล \(\vec \tau=\vec r\times\vec W=−ℓ𝑚𝑔 \sin \theta \ \hat{k}\)</div>
+        </div>
+        <p class="lead">
+          ซึ่งแรงบิดที่กระทำกับระบบเกิดจากน้ำหนักของวัตถุเท่านั้น
+          ดังนั้นจะได้ว่า \(−ℓ𝑚𝑔 \sin \theta = 𝑚ℓ^2 \frac{d^2}{dt^2} \theta(t)\)
+          หรือ \(-g \sin \theta = ℓ \frac{d^2}{dt^2} \theta(t)\)
+          <br><br>สำหรับการเคลื่อนที่ของลูกตุ้มอย่างง่าย เราสนใจเฉพาะกรณีที่มุมการแกว่งน้อย ๆ
+          ดังนั้นในหน่วยเรเดียน \(\sin \theta ≈ \theta\) และ เราจะได้ว่า
+          \[-g \theta (t) = ℓ \frac{d^2}{dt^2} \theta(t)\]
+          ซึ่งเมื่อเทียบกับสมการที่ใช้ในการอธิบายการเคลื่อนที่มวลติดสปริง
+          \[-kx(t)=𝑚 \frac{d^2}{dt^2} x(t)\]
+          เราสามารถเทียบ \(\theta(t) \ ↔ \ x(t), \ 𝑔 \ ↔ \ 𝑘 \)  และ \(ℓ↔𝑚\)
+        </p>
+      </div>
+      <p class="lead">
+        จากความคล้ายกันระหว่างระบบเพดูลัมอย่างง่ายกับระบบมวลติดสปริง
+        เราสามารถสรุปได้ว่าตำแหน่งเชิงมุมของการแกว่งเพดูลัมอย่างง่ายสามารถอธิบายได้ด้วย
+      </p>
+      <div class="equation-card">
+        <div class="equation-wrapper">
+          <div class="equation">
+            \[\theta (t)=\theta_0 \cos (\omega t)\]
+          </div><div class="equation-label"></div>
+        </div>
+      </div>
+      <p class="lead">ความเร็วเชิงมุม และ ความเร่งเชิงมุมเท่ากับ</p>
+      <div class="equation-card">
+        <div class="equation-wrapper">
+          <div class="equation">
+            \[\dot{\theta} (t)=-\theta_0 \omega \sin (\omega t) \ \text{และ} \ \ddot{\theta} (t)=-\theta_0 \omega^2 \cos (\omega t) \]
+          </div><div class="equation-label"></div>
+        </div>
+      </div>
+
+      <div class="warning-box">
+        <div class="warning-content">
+          <strong>⚠️ ข้อสังเกตสำคัญ</strong>
+          <ol>
+            <li> เราสามารถเขียนความเร่งเชิงมุมให้อยู่ในรูปของตำแหน่งเชิงมุมได้
+              \[\ddot{\theta}=-\omega^2 \theta\]
+            </li>
+            <li> ค่ามุมสูงสุดจากสมดุลจะมีค่าเท่ากับ \[\theta_{𝑚ax}=\theta_0\]
+              ค่าอัตราเร็วเชิงมุมสูงสุดคือ \[\dot{\theta}_{𝑚ax}=\theta_0\omega\]
+              และ ความเร่งเชิงมุมสูงสุดคือ \[\ddot{\theta}_{𝑚ax}=\theta_0\omega^2\]
+            <li> ความสัมพันธ์ระหว่าง \(\omega\) และคาบการแกว่ง \(T\) คือ
+              \[T=\frac{2𝜋}{\omega}\]
+            </li>
+          </ol>
+        </div>
+      </div>
+      <p class="lead">จากสิ่งที่พิจารณามา
+        เราสามารถกล่าวได้ว่าความถี่ธรรมชาติของการแกว่งของระบบเพดูลัมอย่างง่ายถูกกำหนดด้วยค่าความยาวเชือก
+        \(ℓ\) และ ค่าความเร่งแรงโน้มถ่วง \(g\)
+      </p>
+      <div class="equation-card">
+        <div class="equation-wrapper">
+          <div class="equation">
+            \[f=\frac{1}{2\pi}\sqrt{\frac{g}{ℓ}}\]
+          </div><div class="equation-label"></div>
+        </div>
+      </div>
+      <p class="lead">และมีคาบในการแกว่งเท่ากับ</p>
+      <div class="equation-card">
+        <div class="equation-wrapper">
+          <div class="equation">
+            \[f=2\pi\sqrt{\frac{ℓ}{g}}\]
+          </div><div class="equation-label"></div>
+        </div>
+      </div>
+
+      <div class="interaction w13-panel" id="pendulumLab">
+        <h3>🪢 Simple Pendulum Simulator</h3>
+        <div class="w13-control-grid">
+          <label>
+            ความยาวเชือก \(L\) (m)
+            <input type="range" id="pendL" min="0.2" max="3" step="0.05" value="1">
+            <span id="pendLOut"></span>
+          </label>
+          <label>
+            มุมเริ่มต้น \(\theta_{\max}\) (degree)
+            <input type="range" id="pendTheta" min="2" max="25" step="1" value="12">
+            <span id="pendThetaOut"></span>
+          </label>
+          <label>
+            ความเร่งโน้มถ่วง \(g\) (m/s²)
+            <input type="range" id="pendG" min="1.6" max="24.8" step="0.1" value="9.81">
+            <span id="pendGOut"></span>
+          </label>
+        </div>
+        <canvas id="pendCanvas" class="w13-canvas" width="900" height="360"></canvas>
+        <div class="w13-readout" id="pendReadout"></div>
+      </div>
+    </section>
+
+    <section class="lesson" id="physical-pendulum">
+      <h2>🪵 3. การเคลื่อนที่แบบเพนดูลัมกายภาพ</h2>
+      <div class="grid">
+        <p class="lead">
+          <b>ลูกตุ้มกายภาพ หรือ เพนดูลัมกายภาพ (physical pendulum)</b> คือ
+          วัตถุแข็งเกร็งที่แกว่งไปมาโดยมีจุดหมุนที่ไม่ได้อยู่ตรงจุดศูนย์กลางมวล ซึ่งแตกต่างจาก
+          ลูกตุ้มอย่างง่ายที่มวลทั้งหมดถือว่ารวมอยู่ที่จุดเดียว
+          <br><br>ในทำนองเดียวกับการพิจารณาระบบเพดูลัมอย่างง่าย
+          เราสามารถพิจารณาระบบเพดูลัมกายภาพเป็นวัตถุแข็งเกร็งได้
+          ดังนั้นสามารถใช้กฎการเคลื่อนที่แบบหมุนรอบแกนหมุนคงที่ของวัตถุแข็งเกร็ง
+          \((\sum_i \tau_i =I\alpha)\) กับการแกว่งของวัตถุนี้ได้
+        </p>
+        <div class="figure-card">
+            <img decoding="async" loading="lazy" src="asset/week%2013/figure-9.png" alt="ภาพแสดงตัวอย่างการแกว่งของลูกตุ้มกายภาพ">
+            <div class="caption">ภาพแสดงตัวอย่างการแกว่งของลูกตุ้มกายภาพ</div>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="figure-card">
+          <img decoding="async" loading="lazy" src="asset/week%2013/figure-10.png" alt="ภาพแสดงเวกเตอร์ที่ใช้ในการคำนวณหาแรงบิดที่กระทำกับมวล \(\vec \tau=\vec r\times \vec W=-L_{CM} mg \sin\theta \hat{k}\)">
+          <div class="caption">ภาพแสดงเวกเตอร์ที่ใช้ในการคำนวณหาแรงบิดที่กระทำกับมวล \(\vec \tau=\vec r\times \vec W=-L_{CM} mg \sin\theta \hat{k}\)</div>
+        </div>
+        <p class="lead">
+          แรงบิดที่กระทำกับระบบเกิดจากน้ำหนักของวัตถุเท่านั้น
+          แต่ในการพิจาณราครั้งนี้ค่าความเฉื่อยเชิงมุมของระบบจะขึ้นกับรูปร่างและความหนาแน่นของวัตถุดังนั้นจะได้ว่า
+          \(-L_{CM} mg \sin \theta=I \frac{d^2}{dt^2} \theta(t)\)
+          เช่นเดียวกันกับการเคลื่อนที่แบบฮาร์มอนิกอย่างง่ายอื่น ๆ
+          เราสนใจเฉพาะกรณีที่มุมการแกว่งน้อยๆ ดังนั้นในหน่วยเรเดียน \(\sin \theta ≈ \theta\)
+          และเราจะได้ว่า
+          \(-L_{CM} mg \theta=I \frac{d^2}{dt^2} \theta(t)\)
+          ซึ่งเมื่อเทียบกับสมการที่ใช้ในการอธิบายการเคลื่อนที่มวลติดสปริง
+          \(\theta(t)↔𝑥(t), \ L_{CM}𝑚𝑔↔𝑘, \ 𝐼↔𝑚\)
+        </p>
+      </div>
+      <p class="lead">
+        จากความคล้ายกันระหว่างระบบเพดูลัมกายภาพกับระบบมวลติดสปริง
+        เราสามารถสรุปได้ว่าตำแหน่งเชิงมุมของการแกว่งเพดูลัมกายภาพสามารถอธิบายได้ด้วย
+      </p>
+      <div class="equation-card">
+        <div class="equation-wrapper">
+          <div class="equation">
+            \[\theta (t)=\theta_0 \cos (\omega t)\]
+          </div><div class="equation-label"></div>
+        </div>
+      </div>
+      <p class="lead">ความเร็วเชิงมุม และ ความเร่งเชิงมุมเท่ากับ</p>
+      <div class="equation-card">
+        <div class="equation-wrapper">
+          <div class="equation">
+            \[\dot{\theta} (t)=-\theta_0 \omega \sin (\omega t) \ \text{และ} \ \ddot{\theta} (t)=-\theta_0 \omega^2 \cos (\omega t)\]
+          </div><div class="equation-label"></div>
+        </div>
+      </div>
+
+      <div class="warning-box">
+        <div class="warning-content">
+          <strong>⚠️ ข้อสังเกตสำคัญ</strong>
+          <ol>
+            <li> เราสามารถเขียนความเร่งเชิงมุมให้อยู่ในรูปของตำแหน่งเชิงมุมได้
+              \[\ddot{\theta}=-\omega^2 \theta\]
+            </li>
+            <li> ค่ามุมสูงสุดจากสมดุลจะมีค่าเท่ากับ \[\theta_{𝑚ax}=\theta_0\]
+              ค่าอัตราเร็วเชิงมุมสูงสุดคือ \[\dot{\theta}_{𝑚ax}=\theta_0\omega\]
+              และ ความเร่งเชิงมุมสูงสุดคือ \[\ddot{\theta}_{𝑚ax}=\theta_0\omega^2\]
+            <li> ความสัมพันธ์ระหว่าง \(\omega\) และคาบการแกว่ง \(T\) คือ
+              \[T=\frac{2𝜋}{\omega}\]
+            </li>
+          </ol>
+        </div>
+      </div>
+      <p class="lead">
+        จากสิ่งที่พิจารณามา
+        เราสามารถกล่าวได้ว่าความถี่ธรรมชาติของการแกว่งของระบบเพดูลัมกายภาพถูกกำหนดด้วยระยะจากจุดหมุนถึงจุดศูนย์กลางมวล 
+        \(L_{CM}\) มวลของระบบ \(m\) ค่าความเฉื่อยเชิงมุมรอบจุดหมุน \(I\) และค่าความเร่งแรงโน้มถ่วง \(g\)
+      </p>
+      <div class="equation-card">
+        <div class="equation-wrapper">
+          <div class="equation">
+            \[f=\frac{1}{2\pi}\sqrt{\frac{mgL_{CM}}{I}}\]
+          </div><div class="equation-label"></div>
+        </div>
+      </div>
+      <p class="lead">และมีคาบในการแกว่งเท่ากับ</p>
+      <div class="equation-card">
+        <div class="equation-wrapper">
+          <div class="equation">
+            \[f=2\pi\sqrt{\frac{I}{mgL_{CM}}}\]
+          </div><div class="equation-label"></div>
+        </div>
+      </div>
+
+
+      </section>
+
+    <section class="lesson" id="summary">
+      <h2>🎯 สรุปท้ายคาบ และ Final Quiz</h2>
+      <p class="lead">ระบบออสซิเลตหลายชนิดสามารถอธิบายด้วยรูปแบบทางคณิตศาสตร์ที่คล้ายกัน โดยหัวใจสำคัญคือมีแรงหรือแรงบิดคืนกลับที่พาระบบกลับสู่ตำแหน่งสมดุล</p>
+      <table class="mini-table">
+        <thead>
+          <tr><th>ระบบ</th><th>ปริมาณที่สั่น</th><th>ความถี่เชิงมุมธรรมชาติ</th><th>คาบ</th></tr></thead>
+          <tbody>
+            <tr><td>มวลติดสปริง</td><td>ตำแหน่ง \(x\)</td><td>\(\omega=\sqrt{k/m}\)</td><td>\(T=2\pi\sqrt{m/k}\)</td></tr>
+            <tr><td>ลูกตุ้มอย่างง่าย</td><td>มุม \(\theta\)</td><td>\(\omega=\sqrt{g/ℓ}\)</td><td>\(T=2\pi\sqrt{ℓ/g}\)</td></tr>
+            <tr><td>ลูกตุ้มกายภาพ</td><td>มุม \(\theta\)</td><td>\(\omega=\sqrt{mgL_{CM}/I}\)</td><td>\(T=2\pi\sqrt{I/(mgL_{CM})}\)</td></tr></tbody></table>
+      <div class="interaction"><h3>🎓 End-of-Class Challenge</h3><p>ข้อใดเป็นเหตุผลที่การสั่นของมวลติดสปริงจัดเป็น SHM?</p><div class="options" data-quiz data-answer="restore"><button class="option-btn" data-choice="constant">แรงมีค่าคงที่ตลอดเวลา</button><button class="option-btn" data-choice="restore">แรงคืนกลับแปรผันตรงกับการกระจัดและมีทิศตรงข้าม</button><button class="option-btn" data-choice="massless">มวลของวัตถุต้องเป็นศูนย์</button><button class="option-btn" data-choice="friction">ต้องมีแรงเสียดทานมาก</button></div><div data-feedback></div></div>
+      <div class="interaction">
+        <h3>✅ Final Quiz</h3>
+        <p>ใช้คำถามชุดนี้ทบทวนแนวคิดหลักของการเคลื่อนที่แบบออสซิเลต คลื่น SHM พลังงาน และการเปรียบเทียบระบบสั่นก่อนจบคาบ</p>
+        <div class="card">
+          <p><strong>ข้อ 1:</strong> ถ้าความยาวคลื่นคงที่ แต่ความถี่ของคลื่นเพิ่มขึ้น อัตราเร็วคลื่นจะเป็นอย่างไร?</p>
+          <div class="options" data-quiz data-answer="increase">
+            <button class="option-btn" data-choice="decrease">ลดลง</button>
+            <button class="option-btn" data-choice="increase">เพิ่มขึ้น</button>
+            <button class="option-btn" data-choice="same">คงที่เสมอ</button>
+          </div>
+          <p data-feedback></p>
+        </div>
+        <div class="card">
+          <p><strong>ข้อ 2:</strong> สำหรับมวลติดสปริง \(x(t)=A\cos(\omega t)\) ตำแหน่งใดที่อัตราเร็วมีขนาดมากที่สุด?</p>
+          <div class="options" data-quiz data-answer="equilibrium">
+            <button class="option-btn" data-choice="positiveA">ที่ \(x=+A\)</button>
+            <button class="option-btn" data-choice="negativeA">ที่ \(x=-A\)</button>
+            <button class="option-btn" data-choice="equilibrium">ที่ \(x=0\)</button>
+          </div>
+          <p data-feedback></p>
+        </div>
+        <div class="card">
+          <p><strong>ข้อ 3:</strong> เมื่อมวลติดสปริงอยู่ที่ตำแหน่งไกลสุดจากสมดุล พลังงานรูปใดมีค่ามากที่สุด?</p>
+          <div class="options" data-quiz data-answer="potential">
+            <button class="option-btn" data-choice="kinetic">พลังงานจลน์</button>
+            <button class="option-btn" data-choice="potential">พลังงานศักย์ยืดหยุ่น</button>
+            <button class="option-btn" data-choice="zero">พลังงานรวมเป็นศูนย์</button>
+          </div>
+          <p data-feedback></p>
+        </div>
+        <div class="card">
+          <p><strong>ข้อ 4:</strong> ถ้าเพิ่มมวล \(m\) แต่ค่าคงที่สปริง \(k\) เท่าเดิม คาบของมวลติดสปริงจะเป็นอย่างไร?</p>
+          <div class="options" data-quiz data-answer="longer">
+            <button class="option-btn" data-choice="shorter">คาบสั้นลง</button>
+            <button class="option-btn" data-choice="longer">คาบยาวขึ้น</button>
+            <button class="option-btn" data-choice="same">คาบเท่าเดิม</button>
+          </div>
+          <p data-feedback></p>
+        </div>
+        <div class="card">
+          <p><strong>ข้อ 5:</strong> สำหรับลูกตุ้มอย่างง่าย มุมแกว่งต้องเล็กเพื่อให้ใช้เงื่อนไขใดได้?</p>
+          <div class="options" data-quiz data-answer="smallangle">
+            <button class="option-btn" data-choice="smallangle">\(\sin\theta\approx\theta\)</button>
+            <button class="option-btn" data-choice="masszero">มวลของลูกตุ้มต้องเป็นศูนย์</button>
+            <button class="option-btn" data-choice="noGravity">แรงโน้มถ่วงต้องเป็นศูนย์</button>
+          </div>
+          <p data-feedback></p>
+        </div>
+        <div class="card">
+          <p><strong>ข้อ 6:</strong> ระบบใดใช้สูตรคาบ \(T=2\pi\sqrt{I/(mgd)}\)?</p>
+          <div class="options" data-quiz data-answer="physical">
+            <button class="option-btn" data-choice="spring">มวลติดสปริง</button>
+            <button class="option-btn" data-choice="simple">ลูกตุ้มอย่างง่าย</button>
+            <button class="option-btn" data-choice="physical">ลูกตุ้มกายภาพ</button>
+          </div>
+          <p data-feedback></p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>FUNSC115 · Fundamental of Physics for Engineers · Week 13 · Oscillatory Motion</footer>
+</body>
+</html>

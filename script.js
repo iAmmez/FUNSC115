@@ -18,6 +18,16 @@ function setFeedback(element, text, className = '') {
     element.className = className;
 }
 
+function initDisabledEmptyLinks() {
+    $$('a[href=""]').forEach(link => {
+        link.classList.add('disabled-link');
+        link.setAttribute('role', 'button');
+        link.setAttribute('aria-disabled', 'true');
+        link.setAttribute('tabindex', '-1');
+        link.addEventListener('click', event => event.preventDefault());
+    });
+}
+
 function initProgressNav() {
     const progressBar = document.getElementById('progressBar');
     const navLinks = $$('.nav a');
@@ -31,7 +41,8 @@ function initProgressNav() {
     const targets = navTargets.length ? navTargets : $$('section.lesson');
     if (!targets.length) return;
 
-    window.addEventListener('scroll', () => {
+    let ticking = false;
+    const updateProgress = () => {
         const scrollTop = window.scrollY;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight || 1;
         progressBar.style.width = `${Math.min(100, scrollTop / docHeight * 100)}%`;
@@ -41,7 +52,15 @@ function initProgressNav() {
             targets[0].id
         );
         navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${current}`));
-    });
+        ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(updateProgress);
+    }, { passive: true });
+    updateProgress();
 }
 
 function initPolls() {
@@ -236,6 +255,7 @@ function gradeFinalQuiz() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    initDisabledEmptyLinks();
     initProgressNav();
     initPolls();
     initSingleChoiceQuizzes();
